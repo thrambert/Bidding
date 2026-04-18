@@ -1,5 +1,9 @@
+# The module to call when launching the app.
+import app
+
+
 def main():
-    print("Hello from bidding!")
+   app.start()
 
 
 if __name__ == "__main__":
