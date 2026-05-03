@@ -1,10 +1,8 @@
 # This file starts the app.
 from PyQt6.QtWidgets import QApplication
-from utils import (
-   Asset,
-)
-from loaders.file_loaders import load_bid_rule_file
-from test_bidding import test_bidding
+from utils import Asset
+from bids.file_loaders import load_bid_rule_file
+from bids.test_bidding import test_bidding
 
 
 my_app = QApplication([])

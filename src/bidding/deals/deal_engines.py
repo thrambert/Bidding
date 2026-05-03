@@ -1,7 +1,7 @@
 """
 This module is a deal generator.
 """
-from bridgebots import Card, Deal, PlayerHand
+from bridgebots.deal import Card, Deal, PlayerHand
 from bridgebots.deal_enums import Direction, Rank, Suit
 from enum import Enum
 from random import randint
@@ -26,6 +26,7 @@ class DealMaker:
       self.vuln = vulnerability
 
    def create_random(self) -> Deal:
+      # Returns a deal where ranks in hands are sorted from highest card to lowest
       deck = self._get_52_cards()
       hands: dict[Direction, PlayerHand] = {}
       for direction in Direction:
@@ -33,13 +34,17 @@ class DealMaker:
       return Deal(self.dealer, self.vuln.ew_vuln(), self.vuln.ns_vuln(), hands)
 
    def create_from_str(self, short_cards: list[str]) -> Deal:
+      # Returns a deal where ranks in hands are sorted from highest card to lowest
+      #  arg is a list of card codes, as "AKQ9876-K92-K9-A" representing cards
+      #  in spades, hearts, diamonds and clubs for a hand.
       hands: dict[Direction, PlayerHand] = {}
       for direction in Direction:
-         hand_suits: dict[Suit: list[Rank]] = {}
-         hand_cards = short_cards[direction.value].split("-")
+         direction_cards = short_cards[direction.value].split("-")
+         cards = []
          for suit in Suit:
-            hand_suits[suit] = [Rank.from_str(c) for c in hand_cards[3 - suit.value]]
-         hands[direction] = PlayerHand(hand_suits)
+            ranks = [Rank.from_str(c) for c in direction_cards[3 - suit.value]]
+            cards.extend([Card(suit, rank) for rank in ranks])
+         hands[direction] = PlayerHand.from_cards(cards)
       return Deal(self.dealer, self.vuln.ew_vuln(), self.vuln.ns_vuln(), hands)
    
    def _get_52_cards(self) -> list[Card]:

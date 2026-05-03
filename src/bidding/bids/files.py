@@ -37,13 +37,14 @@ class BidRuleFile():
             if int(row['id']) == id:
                return row
   
-   def get_rows(self, situation: str, sequence: str) -> list:
-      # This function returns a list of rows matching given arguments.
+   def get_rows(self, step: str) -> list:
+      # This function returns a list of rows which match given argument.
+      #  So far, variants are ignored
       with open(self.name, newline='') as csvfile:
          matching_rows = []
          rows = csv.DictReader(csvfile, dialect=SemiColon)
          for row in rows:
-            if row['situation'] == situation and row['sequence'] == sequence:
+            if row['step'] == step:
                matching_rows.append(row)      
       return matching_rows
 
@@ -54,14 +55,14 @@ class BidExcelFile:
       wb = openpyxl.load_workbook(file_name)
       self.sheet = wb["rules"]
       self.header = self._get_header(self.sheet)
-      self.column_range = range(0, len(self.header) - 1)
+      self.column_range = range(0, len(self.header))
 
    def _get_header(self, excel_sheet) -> list:
       # Return list of relevant fields that are in row 0.
       fields = []
       for col in excel_sheet.iter_cols(0, excel_sheet.max_column):
          title = str(col[0].value)
-         if title == "Remarque":
+         if title == "SEF_page":
             break
          else:
             fields.append(title)
@@ -95,14 +96,23 @@ class BidFileConverter:
    
    def _normalize(self, field: str, excel_value, col: int) -> any:
       # This function adapts default values and formats.
-      if isinstance(excel_value, str) and (field == "points" or col in range(8, 25)):
-         excel_value = excel_value.replace(" ", "")
-         
-      if field in ["awake", "artificial"]:
+      ALLOW_BLANK = ["distribution", "hist_bid", "convention"]
+      BOOL_FIELDS = ["awake", "artificial"]
+      NUM_OP_FIELDS = ["distribution", "suit1_count", "suit2_count",
+                       "first_pass", "fit_cards", "arg1", "arg_bid"]
+      NUMERIC_FIELDS = ["won_tricks", "lost_tricks", "stops"]
+
+      if isinstance(excel_value, str) and not field in ALLOW_BLANK:
+            excel_value = excel_value.replace(" ", "")
+            
+      if field == "hist_bid" and excel_value:
+         return excel_value.replace("-", "passe")
+      
+      if field in BOOL_FIELDS:
          return True if excel_value == 1 else False
-      elif field in ["distribution", "color1_count", "color2_count", "fit_cards"]:
+      elif field in NUM_OP_FIELDS:
          return str(excel_value) if excel_value else ""
-      elif field in ["SEF_page", "won_tricks", "lost_tricks"]:
+      elif field in NUMERIC_FIELDS:
          return excel_value if excel_value else 0
       else:
          return excel_value if excel_value else ""

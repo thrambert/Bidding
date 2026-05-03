@@ -1,17 +1,4 @@
-from pydantic import BaseModel
 import re
-
-
-def matching(math_inequality: str, value: int) -> bool:
-   """
-   Value and math inequality (<n, <=n, >n, >=n) are concatenate to get a math
-   expression, example: 'value<=n'. If math inequality is only a number, == is
-   added in between. The math expression is then evaluated.
-   """
-   
-   equals = "==" if math_inequality[0].isdigit() else ""
-   expression = str(value) + equals + math_inequality
-   return eval(expression)
 
 
 class PointZone:
@@ -78,4 +65,4 @@ class PointZone:
    def contains_HLD(self, pts_HLD: int) -> bool:
       if not self.is_HLD:
          print("error in PointZone, should not use HLD")
-      return pts_HLD >= min and pts_HLD <= max
+      return pts_HLD >= self.min and pts_HLD <= self.max
