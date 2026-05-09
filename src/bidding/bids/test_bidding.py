@@ -9,9 +9,9 @@ from views.mats import BidChaining
 
 # cards by suits spades,...,clubs for test deal:
 TEST_HANDS = [
-      "AKQ9876-K92-K9-A",
-      "T-JT876-T7-KT984",
-      "J54-A5-A865-Q765",
+      "AKQ987-A92-K9-A4",
+      "T6-JT876-T7-QT98",
+      "J54-K5-A865-K765",
       "32-Q43-QJ432-J32",
 ]
 
@@ -25,3 +25,10 @@ def test_bidding():
 
    bid_chaining.run_all()
 
+# Unicolor
+# TEST_HANDS = [
+#       "AKQ9876-K92-K9-A",
+#       "T-JT876-T7-KT984",
+#       "J54-A5-A865-Q765",
+#       "32-Q43-QJ432-J32",
+# ]

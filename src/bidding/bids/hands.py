@@ -44,9 +44,16 @@ class MetaSuit(Enum):
    def is_minor(self):
       return self.group == "mineure"
 
+   def __eq__(self, other) -> bool:
+      return self.rank == other.rank
+   
    def __lt__(self, other) -> bool:
       return self.rank < other.rank
 
+   def __hash__(self):
+      # Required when you declare __eq__ to keep the object hashable
+      return hash(self.rank)
+   
    def __repr__(self) -> str:
       return self.text
 
@@ -59,6 +66,7 @@ class MetaSuit(Enum):
    @staticmethod
    def real() -> list:
       return [s for s in MetaSuit if s != MetaSuit.NO_TRUMP]
+   
    @staticmethod
    def from_suit(suit: Suit) -> MetaSuit:
       meta_suit = [s for s in MetaSuit if s.name == suit.name]
@@ -229,13 +237,22 @@ class RichHand:
       else:
          return len(ranks) >= 15 - ranks[0].value  # ACE.value = 14, KING = 13...
    
-   def controlled_suits(self) -> list[str]:
-      controls = []
+   def controlled_suits(self) -> set[str]:
+      controls = set()
       for meta_suit, ranks in self.suits.items():
          king_control = (ranks[0] == Rank.KING and len(ranks) >= 2)
          if len(ranks) <= 1 or ranks[0] == Rank.ACE or king_control:
-            controls.append(meta_suit)
+            controls.add(meta_suit.code)
       return controls
+
+   def blackwood_keys(self, fit_suit: MetaSuit) -> tuple[int, bool]:
+      # Returns number of keys and True if Queen is in fitted suit.
+      fit_ranks = self.suits[fit_suit]
+      aces = ["A" for ranks in self.suits.values() if ranks[0] == Rank.ACE]
+      count = len(aces)
+      if Rank.KING in fit_ranks:
+         count += 1
+      return (count, Rank.QUEEN in fit_ranks)
 
    def _compute_numeric_distribution(self) -> str:
       # This function returns text with numbers of cards par suit, example: 5422.

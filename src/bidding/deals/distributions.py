@@ -81,7 +81,7 @@ class Distribution:
             special_distrib.append("bicolore 6/5")         
       # semi-régulier
       if self.canonical == self.Main.REGULAR or self.numeric in ["5422", "6322"]:
-         special_distrib.append["semi-régulier"]
+         special_distrib.append("semi-régulier")
       # irrégulier
       if self.canonical != self.Main.REGULAR:
          special_distrib.append("irrégulier")

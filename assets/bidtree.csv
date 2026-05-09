@@ -1,382 +1,381 @@
-id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_count;first_pass;won_tricks;def_tricks;lost_tricks;fit_cards;stops;awake;hist_bid;function1;function2;arg2;function_bid;arg_bid;bid;symbolic_bid;artificial;forcing;convention
-1;OPEN;;>=24HL;;;;;;;;0;;0;;0;False;;;;;;;2K;2K;True;manche;2 carreau forcing de manche
-2;OPEN;;17H-23HL;unicolore;;Majeure;;;;;9;>=2;0;;0;False;;;;;;;2K;2K;True;manche;2 carreau forcing de manche
-3;OPEN;;17H-23HL;unicolore;;mineure;;;;;10;>=2;0;;0;False;;;;;;;2K;2K;True;manche;2 carreau forcing de manche
-4;OPEN;;20-23HL;unicolore;;Majeure;;;;;8.25;>=2;0;;0;False;;;;;;;2T;2T;True;autoforcing;2 fort indéterminé
-5;OPEN;;20-23HL;unicolore;;mineure;>=7;;;;9;;0;;0;False;;;;;;;2T;2T;True;autoforcing;2 fort indéterminé
-6;OPEN;;21-23HL;;;Majeure;5;;;;0;;0;;0;False;;;;;;;2T;2T;True;autoforcing;2 fort indéterminé
-7;OPEN;;22-23HL;régulier;;;;;;;0;;0;;0;False;;;;;;;2T;2T;True;autoforcing;2 fort indéterminé
-8;OPEN;;17H-23HL;bicolore 5/5;;Majeure;;Majeure;;;0;;3;;0;False;;;;;;;2T;2T;True;autoforcing;2 fort indéterminé
-9;OPEN;;20-21H;régulier;;;;;;;0;;0;;0;False;;no_good_major_5;;;;;2SA;2SA;False;;
-10;OPEN;SEQ1SA;15H-17H;régulier;;;;;;;0;;0;;0;False;;no_good_major_5;;;;;1SA;1SA;False;;
-11;OPEN;SEQ1SA;15-16H;5422;;mineure;;coeur;;;0;;0;;0;False;;;;;;;1SA;1SA;False;;
-12;OPEN;SEQ1SA;15-16H;5422;;mineure;;carreau;;;0;;0;;0;False;;;;;;;1SA;1SA;False;;
-13;OPEN;SEQ1SA;15-16H;6322;;mineure;;;;;0;;0;;0;False;;honors_in_short_colors;;;;;1SA;1SA;False;;
-14;OPEN;SEQ1SA;15-16H;5332;;;;;;;0;;0;;0;False;;honors_in_short_colors;;;;;1SA;1SA;False;;
-15;OPEN;;13H-23HL;bicolore;;mineure;>=6;Majeure;5;;0;;0;;0;False;;;;;long_suit;1CL1;;1m;False;;Meilleure mineure
-16;OPEN;;12H-23HL;;;Majeure;>=5;;;;0;;0;;0;False;;;;;long_suit;1CL1;;1M;False;;Majeure 5e
-17;OPEN;;12H-23HL;;;;;;;;0;;0;;0;False;;;;;best_minor;1;;1m;False;;Meilleure mineure
-18;OPEN;;12H-23HL;bicolore 5/5;pique,trèfle;;;;;;0;;5;;0;False;;;;;;;1T;1T;False;;
-19;OPEN;;8H-11H;;;Majeure;>=5;;;2;0;;0;;0;False;;;;;long_suit;1CL1;;1M;False;;Majeure 5e
-20;OPEN;;8H11H;bicolore;;mineure;>=6;Majeure;5;2;0;;0;;0;False;;;;;long_suit;1CL1;;1m;False;;
-21;OPEN;;10H-11H;;;pique;>=5;;;3;0;;0;;0;False;;;long_color_points_H;>=4;;;1P;1P;False;;
-22;OPEN;;5-10H;unicolore;;Majeure;6;;;;0;<=1;0;;0;False;;;long_color_points_H;>=4;long_suit;2CL1;;2M;False;;Barrage
-23;OPEN;;5-10H;unicolore;;;7;;;;0;;0;;0;False;;;long_color_points_H;>=4;long_suit;3CL1;;3E;False;;Barrage
-24;OPEN;;5-10H;unicolore;;;8;;;;0;;0;;0;False;;;long_color_points_H;>=4;long_suit;4CL1;;4E;False;;Barrage
-25;OPEN;;10-16H;unicolore;;mineure;>=7;;;;0;;0;;0;False;;;long_color_points_H;10;;;3SA;3SA;False;;Mineure affranchie
-26;ROSA;;5-10H;irrégulier;;;;;;>=2;0;;0;4;0;False;1M passe;;;;support;3;;3M;False;;Barrage
-27;ROSA;;>=11HLD;;;;;;;>=2;0;;0;4;0;False;1M passe;any_short_color;;;;;2SA;2SA;False;;
-28;ROSA;;>=11HLD;;;;;;;>=2;0;;0;3;0;False;1M passe;any_short_color;;;;;2T;2T;True;forcing;Drury
-29;ROSA;;>=11HLD;;;;;;;>=2;0;;0;>=4;0;False;1M passe;;;;;;2T;2T;True;forcing;Drury
-30;ROSA;;8-10H;;;;;;;>=2;0;;0;<3;0;False;1C passe;;suit_length;P>=4;;;1P;1P;False;;
-31;ROSA;;8-10H;;;;>=6;;;>=2;0;;0;<3;0;False;1M passe;;;;long_suit;2CL1;;2E;False;;
-32;ROSA;;8-10H;;;;5;;;>=2;0;;0;<3;0;False;1M passe;;long_color_points_H;>=7;long_suit;2CL1;;2E;False;;
-33;ROSA;;8-11H;;;;>=5;;;>=2;0;;0;>=4;0;False;1C passe;;long_color_points_H;>=5;;;2P;2P;False;;Enchère de rencontre
-34;ROSA;;8-11H;;;;>=5;;;>=2;0;;0;>=4;0;False;1M passe;;long_color_points_H;>=5;long_suit;3CL1;;3E;False;;Enchère de rencontre
-35;ROSA;;6-11H;;;;;;;>=2;0;;0;<3;0;False;1M passe;;;;;;1SA;1SA;False;;
-36;ROSA;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M passe;;;;support;2;;2M;False;;
-37;ROSA;;11-12HLD;;;;;;;;0;;0;3;0;False;1M passe;;;;;;2SA;2SA;True;forcing;2 SA fitté
-38;ROSA;;11-12HLD;;;;;;;;0;;0;4;0;False;1M passe;;;;support;3;;3M;False;;
-39;ROSA;;>=11H;;;carreau;>=5;;;;0;;0;>=3;0;False;1M passe;;;;;;2K;2K;False;autoforcing;
-40;ROSA;;>=11H;;;;;;;;0;;0;>=3;0;False;1M passe;;;;;;2T;2T;False;autoforcing;
-41;ROSA;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M passe;;;;;;3SA;3SA;True;forcing;3 SA fitté
-42;ROSA;;6-9H;;;;;;;;0;;0;5;0;False;1M passe;;;;support;4;;4M;False;;
-43;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M passe;;suit_length;T<=1;;;4T;4T;True;forcing;Splinter
-44;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M passe;;suit_length;K<=1;;;4K;4K;True;forcing;Splinter
-45;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1P passe;;suit_length;C<=1;;;4C;4C;True;forcing;Splinter
-46;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1C passe;;suit_length;P<=1;;;3P;3P;True;forcing;Splinter
-47;ROSA;;>=11H;;;coeur;>=5;;;;0;;0;<3;0;False;1P passe;;;;;;2C;2C;False;;
-48;ROSA;;>=11H;;;mineure;;;;;0;;0;<3;0;False;1M passe;;;;long_suit;2CL1;;2m;False;;
-49;ROSA;;>=6HL;;;;;;;;0;;0;<3;0;False;1C passe;;suit_length;P>=4;;;1P;1P;False;forcing;
-50;ROSA;;6-10HL;;;;;;;;0;;0;<3;0;False;1M passe;;;;;;1SA;1SA;False;;
-51;ROSA;;6-12HL;;;mineure;>=5;Majeure;>=4;>=2;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;1M;False;;
-52;ROSA;;13-23HL;;;carreau;>=5;Majeure;4;>=2;0;;0;;0;False;1T passe;;;;;;1K;1K;False;;
-53;ROSA;;13-23HL;;;trèfle;>=5;Majeure;4;>=2;0;;0;;0;False;1K passe;;;;;;2T;2T;False;;
-54;ROSA;;6-23HL;4441;;;;;;>=2;0;;0;;0;False;1m passe;;;;best_major;1;;1M;False;;
-55;ROSA;;6-23HL;4432;;;;Majeure;4;>=2;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;1M;False;;
-56;ROSA;;6-23HL;;;;>=5;;;>=2;0;;0;;0;False;1m passe;long_suit_1_unnamed;;;long_suit;1CL1;;1E;False;;
-57;ROSA;;6-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;1M;False;forcing;
-58;ROSA;;13-23HL;;;carreau;>=5;Majeure;4;;0;;0;;0;False;1T passe;;;;;;1K;1K;False;forcing;
-59;ROSA;;13-23HL;;;trèfle;>=5;Majeure;4;;0;;0;;0;False;1K passe;;;;;;2T;2T;False;autoforcing;
-60;ROSA;;6-23HL;4441;;;;;;;0;;0;;0;False;1m passe;;;;best_major;1;;1M;False;forcing;
-61;ROSA;;6-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;1M;False;forcing;
-62;ROSA;;6-23HL;;;;>=5;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;;;long_suit;1CL1;;1E;False;forcing;
-63;ROSA;;8-11H;bicolore;;Majeure;>=5;;;>=2;0;;0;>=4;0;False;1m passe;;long_color_points_H;>=4;long_suit;2CL1;;2M;False;;Enchère de rencontre
-64;ROSA;;8-11H;bicolore;;carreau;>=5;;;>=2;0;;0;>=4;0;False;1T passe;;long_color_points_H;>=4;;;2K;2K;False;;Enchère de rencontre
-65;ROSA;;8-11H;bicolore;;trèfle;>=5;;;>=2;0;;0;>=4;0;False;1K passe;;long_color_points_H;>=4;;;3T;3T;False;;Enchère de rencontre
-66;ROSA;;>=18HL;unicolore;;Majeure;;;;;0;;0;;0;False;1m passe;;long_color_points_H;>=4;long_suit;2CL1;;2M;False;;
-67;ROSA;;>=18HL;unicolore;;carreau;;;;;0;;0;;0;False;1T passe;;long_color_points_H;>=4;;;2K;2K;False;;
-68;ROSA;;>=18HL;unicolore;;trèfle;;;;;0;;0;;0;False;1K passe;;long_color_points_H;>=4;;;3T;3T;False;;
-69;ROSA;;4-10H;unicolore;;;7;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;3CL1;;3E;False;;Barrage
-70;ROSA;;4-10H;unicolore;;mineure;>=9;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;5CL1;;5m;False;;Barrage
-71;ROSA;;4-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;4CL1;;4E;False;;Barrage
-72;ROSA;;6-10HL;régulier;;;;;;;0;;0;;0;False;1m passe;;;;;;1SA;1SA;False;;
-73;ROSA;;11H-12HL;régulier;;;;;;;0;;0;;0;False;1m passe;;;;;;2SA;2SA;False;;
-74;ROSA;;13-15HL;régulier;;;;;;;0;;0;;0;False;1m passe;;;;;;3SA;3SA;False;;
-75;ROSA;;6-8H;;;;;;;;0;;0;>=5;0;False;1T passe;;;;;;2T;2T;False;;
-76;ROSA;;9-11H;;;;;;;;0;;0;>=5;0;False;1T passe;;;;;;3T;3T;False;;
-77;ROSA;;6-8H;;;;;;;;0;;0;>=4;0;False;1K passe;;;;;;2K;2K;False;;
-78;ROSA;;9-11H;;;;;;;;0;;0;>=4;0;False;1K passe;;;;;;3K;3K;False;;
-79;ROACA;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M X;;;;support;2;;2M;False;;
-80;ROACA;;11-12HLD;;;;;;;;0;;0;3;0;False;1M X;;;;;;2SA;2SA;True;;2SA Truscott
-81;ROACA;;6-10H;;;;;;;;0;;0;4;0;False;1M X;;;;support;3;;3M;False;;Barrage
-82;ROACA;;>=11HLD;;;mineure;>=5;;;;0;;0;>=4;0;False;1M X;;;;long_suit;3CL1;;3m;False;;Enchère de rencontre
-83;ROACA;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M X;;;;;;3SA;3SA;True;forcing;3 SA fitté
-84;ROACA;;6-9H;;;;;;;;0;;0;5;0;False;1M X;;;;support;4;;4M;False;;
-85;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M X;;suit_length;T<=1;;;4T;4T;True;forcing;Splinter
-86;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M X;;suit_length;K<=1;;;4K;4K;True;forcing;Splinter
-87;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1P X;;suit_length;C<=1;;;4C;4C;True;forcing;Splinter
-88;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1C X;;suit_length;P<=1;;;3P;3P;True;forcing;Splinter
-89;ROACA;;8-10H;;;coeur;>=5;;;;0;;0;<3;0;False;1P X;;long_color_points_H;>=4;;;2C;2C;False;;
-90;ROACA;;8-10H;;;mineure;>=5;;;;0;;0;<3;0;False;1M X;;long_color_points_H;>=4;long_suit;2CL1;;2m;False;;
-91;ROACA;;8-10H;;;coeur;>=6;;;;0;;0;<3;0;False;1P X;;;;;;2C;2C;False;;
-92;ROACA;;8-10H;;;mineure;>=6;;;;0;;0;<3;0;False;1M X;;;;long_suit;2CL1;;2m;False;;
-93;ROACA;;>=6HL;;;;;;;;0;;0;<3;0;False;1C X;;suit_length;P>=4;;;1P;1P;False;forcing;
-94;ROACA;;8-10HL;semi-régulier;;;;;;;0;;0;<3;0;False;1M X;;;;;;1SA;1SA;False;;
-95;ROACA;;>=10H;;;;;;;;0;;0;;0;False;1M X;;;;;;XX;XX;False;;
-96;ROACA;;7-10H;;;trèfle;>=6;;;;0;;0;;0;False;1K X;;;;;;2T;2T;False;;
-97;ROACA;;7-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m X;;;;long_suit;1CL2;;1M;False;forcing;
-98;ROACA;;13-23HL;;;carreau;>=5;Majeure;4;;0;;0;;0;False;1T X;;;;;;1K;1K;False;forcing;
-99;ROACA;;7-23HL;4441;;;;;;;0;;0;;0;False;1m X;;;;best_major;1;;1M;False;forcing;
-100;ROACA;;7-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m X;;;;long_suit;1CL2;;1M;False;forcing;
-101;ROACA;;7-23HL;;;;>=5;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;1CL1;;1E;False;forcing;
-102;ROACA;;4-10H;unicolore;;;7;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;3CL1;;3E;False;;Barrage
-103;ROACA;;4-10H;unicolore;;mineure;>=9;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;5CL1;;5m;False;;Barrage
-104;ROACA;;4-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;4CL1;;4E;False;;Barrage
-105;ROACA;;8-10HL;semi-régulier;;;;;;;0;;0;;0;False;1m X;;;;;;1SA;1SA;False;;
-106;ROACA;;>=10H;;;;;;;;0;;0;;0;False;1m X;;;;;;XX;XX;False;;
-107;ROACA;;7-8H;;;;;;;;0;;0;5;0;False;1m X;;;;support;2;;2m;False;;
-108;ROACA;;7-8H;;;;;;;;0;;0;6;0;False;1m X;;;;support;3;;3m;False;;
-109;ROACA;;7-8H;;;;;;;;0;;0;7;0;False;1m X;;;;support;4;;4m;False;;
-110;ROACA;;>=9H;;;;;;;;0;;0;5;0;False;1m X;;;;;;2SA;2SA;True;;2SA Truscott
-111;ROAIC;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1C 1P;;;;support;2;;2M;False;;
-112;ROAIC;;11-15HLD;;;;;;;;0;;0;3;0;False;1C 1P;;;;;;2SA;2SA;True;forcing;2SA fitté
-113;ROAIC;;11-12HLD;;;;;;;;0;;0;4;0;False;1C 1P;;;;support;3;;3M;False;;
-114;ROAIC;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1C 1P;;;;;;3SA;3SA;True;forcing;3 SA fitté
-115;ROAIC;;6-9H;;;;;;;;0;;0;5;0;False;1C 1P;;;;support;4;;4M;False;;
-116;ROAIC;;13-15HLD;;;;;;;;0;;0;5;0;False;1C 1P;short_in_interv_color;;;;;3P;4E;True;forcing;Splinter
-117;ROAIC;;13-15HLD;;;mineure;>=5;;;;0;;0;>=4;0;False;1C 1P;long_suit_1_unnamed;long_color_points_H;>=5;long_suit;4CL1;;4m;False;;Enchère de rencontre
-118;ROAIC;;>=11H;;;;;;;;0;;0;>=4;0;False;1C 1P;;;;;;2P;2P;True;manche;Cuebid
-119;ROAIC;;>=11HL;;;;>=5;;;;0;;0;;0;False;1C 1P;long_suit_1_unnamed;;;long_suit;2CL1;;2E;False;forcing;
-120;ROAIC;;4-10H;;;;7;;;;0;;0;<3;0;False;1C 1P;long_suit_1_unnamed;;;long_suit;3CL1;;3E;False;;Barrage
-121;ROAIC;;4-10H;;;;>=8;;;;0;;0;<3;0;False;1C 1P;long_suit_1_unnamed;;;long_suit;4CL1;;4E;False;;Barrage
-122;ROAIC;;8-10HL;semi-régulier;;;;;;;0;;0;<3;1;False;1C 1P;;;;;;1SA;1SA;False;;
-123;ROAIC;;>=8HL;;;;;;;;0;;0;<3;0;False;1C 1P;;;;;;X;X;False;;Contre Spoutnik généralisé
-124;ROAIC;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M 2E;;;;support;2;;2M;False;;
-125;ROAIC;;11-15HLD;;;;;;;;0;;0;3;0;False;1M 2E;;;;;;2SA;2SA;True;forcing;2SA fitté
-126;ROAIC;;11-12HLD;;;;;;;;0;;0;4;0;False;1M 2E;;;;support;3;;3M;False;;
-127;ROAIC;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M 2E;;;;;;3SA;3SA;True;forcing;3 SA fitté
-128;ROAIC;;6-9H;;;;;;;;0;;0;5;0;False;1M 2E;;;;support;4;;4M;False;;
-129;ROAIC;;13-15HLD;;;;;;;;0;;0;5;0;False;1M 2E;short_in_interv_color;;;cuebid;4;;4E;True;forcing;Splinter
-130;ROAIC;;13-15HLD;;;mineure;>=5;;;;0;;0;>=4;0;False;1M 2E;long_suit_1_unnamed;long_color_points_H;>=5;long_suit;4CL1;;4m;False;;Enchère de rencontre
-131;ROAIC;;13-15HLD;;;coeur;>=5;;;;0;;0;>=4;0;False;1P 2E;long_suit_1_unnamed;long_color_points_H;>=5;;;4C;4C;False;;Enchère de rencontre
-132;ROAIC;;13-15HLD;;;pique;>=5;;;;0;;0;>=4;0;False;1C 2E;long_suit_1_unnamed;long_color_points_H;>=5;;;3P;3P;False;;Enchère de rencontre
-133;ROAIC;;>=11H;;;;;;;;0;;0;>=4;0;False;1M 2E;;;;cuebid;3;;3E;True;manche;Cuebid
-134;ROAIC;;>=11HL;;;;>=5;;;;0;;0;;0;False;1M 2E;long_suit_1_unnamed;;;long_suit;2CL1;;2E;False;forcing;
-135;ROAIC;;4-10H;;;;7;;;;0;;0;<3;0;False;1M 2E;long_suit_1_unnamed;long_over_interv;True;long_suit;3CL1;;3E;False;;Barrage
-136;ROAIC;;4-10H;;;;>=8;;;;0;;0;<3;0;False;1M 2E;long_suit_1_unnamed;long_over_interv;True;long_suit;4CL1;;4E;False;;Barrage
-137;ROAIC;;>=8HL;;;;;;;;0;;0;<3;0;False;1M 2E;;;;;;X;X;False;;Contre Spoutnik généralisé
-138;ROAIC;;>=7HL;;;Majeure;>=5;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;;;long_suit;1CL1;;1M;False;forcing;
-139;ROAIC;;>=11HL;;;Majeure;>=5;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;long_over_interv;False;long_suit;2CL1;;2M;False;forcing;
-140;ROAIC;;7-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m 1E;long_suit_2_unnamed;;;long_suit;1CL2;;1M;False;forcing;
-141;ROAIC;;13-23HL;;;carreau;>=5;;;;0;;0;;0;False;1T 1E;long_suit_1_unnamed;;;;;2K;2K;False;autoforcing;
-142;ROAIC;;>=11HL;;;trèfle;>=5;;;;0;;0;;0;False;1K 1E;long_suit_1_unnamed;;;;;2T;2T;False;autoforcing;
-143;ROAIC;;7-23HL;4441;;;;;;;0;;0;;0;False;1m 1E;;;;best_major;1;;1M;False;forcing;
-144;ROAIC;;>=11HL;4441;;;;;;;0;;0;;0;False;1m 1P;;suit_length;C>=4;;;2C;2C;False;forcing;
-145;ROAIC;;7-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m 1E;long_suit_2_unnamed;;;long_suit;1CL2;;1M;False;forcing;
-146;ROAIC;;7-23HL;;;;>=5;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;;;long_suit;1CL1;;1E;False;forcing;
-147;ROAIC;;4-10H;;;;>=7;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;;;long_suit;3CL1;;3E;False;;Barrage
-148;ROAIC;;8-10HL;semi-régulier;;;;;;;0;;0;;1;False;1m 1E;;longuest_major;<4;;;1SA;1SA;False;;
-149;ROAIC;;11H-12HL;semi-régulier;;;;;;;0;;0;;1;False;1m 1E;;longuest_major;<4;;;2SA;2SA;False;;
-150;ROAIC;;13-15HL;semi-régulier;;;;;;;0;;0;;1;False;1m 1E;;longuest_major;<4;;;3SA;3SA;False;;
-151;ROAIC;;6-8H;;;;;;;;0;;0;>=5;0;False;1T 1E;;;;;;2T;2T;False;;
-152;ROAIC;;9-11H;;;;;;;;0;;0;>=5;0;False;1T 1E;;;;;;3T;3T;False;;
-153;ROAIC;;6-8H;;;;;;;;0;;0;>=4;0;False;1K 1E;;;;;;2K;2K;False;;
-154;ROAIC;;9-11H;;;;;;;;0;;0;>=4;0;False;1K 1E;;;;;;3K;3K;False;;
-155;ROAIC;;>=8HL;;;;;;;;0;;0;;0;False;1T 1K;;longuest_major;<4;;;X;X;False;;
-156;ROAIC;;>=8HL;;;;;;;;0;;0;;0;False;1m 1C;;suit_length;P<4;;;X;X;False;;
-157;ROAIC;;>=8HL;;;;;;;;0;;0;;0;False;1m 1P;;suit_length;C>=4;;;X;X;False;;Contre Spounik simple
-158;ROAIC;;>=11H;;;;;;;;0;;0;;0;False;1m 1E;;longuest_major;<4;cuebid;2;;2E;False;;Cuebid
-159;ROAIC;;>=11HL;;;Majeure;>=5;;;;0;;0;;0;False;1K 2T;;;;long_suit;2CL1;;2M;False;forcing;
-160;ROAIC;;>=11HL;4441;;;;;;;0;;0;;0;False;1K 2T;;;;best_major;2;;2M;False;forcing;
-161;ROAIC;;>=11HL;4432;;;;Majeure;4;;0;;0;;0;False;1K 2T;;;;long_suit;2CL2;;2M;False;forcing;
-162;ROAIC;;4-10H;;;Majeure;>=7;;;;0;;0;;0;False;1K 2T;;;;long_suit;3CL1;;3E;False;;Barrage
-163;ROAIC;;11H-12HL;semi-régulier;;;;;;;0;;0;;1;False;1K 2T;;longuest_major;<4;;;2SA;2SA;False;;
-164;ROAIC;;13-15HL;semi-régulier;;;;;;;0;;0;;1;False;1K 2T;;longuest_major;<4;;;3SA;3SA;False;;
-165;ROAIC;;6-8H;;;;;;;;0;;0;>=4;0;False;1K 2T;;;;;;2K;2K;False;;
-166;ROAIC;;9-11H;;;;;;;;0;;0;>=4;0;False;1K 2T;;;;;;3K;3K;False;;
-167;ROA1SA;;8-10HLD;;;;;;;;0;;0;3;0;False;1M 1SA;;;;support;2;;2M;False;;
-168;ROA1SA;;5-10H;;;;;;;;0;;0;4;0;False;1M 1SA;;;;support;3;;3M;False;;Barrage
-169;ROA1SA;;5-10H;;;;;;;;0;;0;5;0;False;1M 1SA;;;;support;4;;4M;False;;Barrage
-170;ROA1SA;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1M 1SA;;;;;;2SA;2SA;True;;Cuebid
-171;ROA1SA;;>=11H;unicolore;;;>=6;;;;0;;0;;0;False;1M 1SA;long_suit_1_unnamed;;;long_suit;2CL1;;2E;False;;
-172;ROA1SA;;>=11HLD;;;;>=5;;;;0;;0;>=4;0;False;1M 1SA;long_suit_1_unnamed;;;long_suit;3CL1;;3E;False;;Enchère de rencontre
-173;ROA1SA;;>=9H;;;;;;;;0;;0;;0;False;1M 1SA;;;;;;X;X;False;;
-174;ROA1SA;;>=9H;bicolore;coeur,pique;;;;;;0;;0;;0;False;1m 1SA;;;;;;2T;2T;False;;
-175;ROA1SA;;>=9H;;;;;;;;0;;0;>=5;0;False;1K 1SA;;;;;;2K;2K;False;;
-176;ROA1SA;;5-10H;unicolore;;;7;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;3CL1;;3E;False;;Barrage
-177;ROA1SA;;5-10H;unicolore;;mineure;>=9;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;5CL1;;5m;False;;Barrage
-178;ROA1SA;;5-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;4CL1;;4E;False;;Barrage
-179;ROA1SA;;>=13HLD;;;;;;;;0;;0;>=5;0;False;1m 1SA;;;;;;2SA;2SA;False;manche;Cuebid
-180;ROA1SA;;>=9H;unicolore;;;>=6;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;;;long_suit;1CL1;;1E;False;;
-181;ROA1SA;;>=11H;unicolore;;;>=6;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;;;long_suit;2CL1;;2E;False;;
-182;ROA1SA;;5-10H;unicolore;;;7;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;;;long_suit;3CL1;;3E;False;;Barrage
-183;ROA1SA;;5-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;;;long_suit;4CL1;;4E;False;;Barrage
-184;ROA1SA;;>=9H;;;;;;;;0;;0;;0;False;1m 1SA;;;;;;X;X;False;;
-185;INT_N2;;;bicolore 5/5;coeur,pique;;;;;;0;;6;;0;False;1m;honors_in_bicolors;;;;;2K;2K;True;;Michael's cuebids précisés
-186;INT_N2;;;bicolore 5/5;carreau,coeur;;;;;;0;;6;;0;False;1T;honors_in_bicolors;;;;;2SA;2SA;True;;Michael's cuebids précisés
-187;INT_N2;;;bicolore 5/5;trèfle,coeur;;;;;;0;;6;;0;False;1K;honors_in_bicolors;;;;;2SA;2SA;True;;Michael's cuebids précisés
-188;INT_N2;;;bicolore 5/5;carreau,trèfle;;;;;;0;;6;;0;False;1M;honors_in_bicolors;;;;;2SA;2SA;True;;Michael's cuebids précisés
-189;INT_N2;;;bicolore 5/5;pique,trèfle;;;;;;0;;6;;0;False;1C;honors_in_bicolors;;;;;2C;2C;True;;Michael's cuebids précisés
-190;INT_N2;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1P;honors_in_bicolors;;;;;2P;2P;True;;Michael's cuebids précisés
-191;INT_N2;;;bicolore 5/5;pique,carreau;;;;;;0;;6;;0;False;1C;honors_in_bicolors;;;;;3T;3T;True;;Michael's cuebids précisés
-192;INT_N2;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1P;honors_in_bicolors;;;;;3T;3T;True;;Michael's cuebids précisés
-193;INT_N2;;;bicolore 5/5;;mineure;>=6;mineure;>=5;;0;;6;;0;False;;;;;;;4SA;4SA;True;;
-194;INT_N2;;;;;mineure;>=7;;;;0;;0;;0;False;1E;;long_color_points_H;10;cuebid;3;;3E;True;;
-195;INT_N2;;;;;mineure;>=7;;;;0;;0;;1;False;1E;;long_color_points_H;10;;;3SA;3SA;True;;
-196;INT_N2;;8-18HL;;;;>=5;;;;0;;0;;0;False;;;;;long_suit;1CL1;;1E;False;;
-197;INT_N2;;11-18HL;;;;>=6;;;;0;;0;;0;False;1E;long_suit_1_unnamed;long_over_interv;False;long_suit;2CL1;;2E;False;;
-198;INT_N2;;11-18HL;;;trèfle;>=6;;;;0;;0;;0;False;1T;;;;;;2T;2T;False;;
-199;INT_N2;;14-18HL;;;coeur;>=5;;;;0;;0;;0;False;1P;;long_color_points_H;>=4;;;2C;2C;False;;
-200;INT_N2;;5-10H;;;Majeure;6;;;;0;;0;;0;False;1m;;;;long_suit;2CL1;;2M;False;;Barrage
-201;INT_N2;;5-10H;;;pique;6;;;;0;;0;;0;False;1C;;;;;;2P;2P;False;;Barrage
-202;INT_N2;;5-10H;;;;7;;;;0;;0;;0;False;;;;;long_suit;3CL1;;3E;False;;Barrage
-203;INT_N2;;5-10H;;;;8;;;;0;;0;;0;False;;;;;long_suit;4CL1;;4E;False;;Barrage
-204;INT_N2;;16-18HL;régulier;;;;;;;0;;0;;1;False;;;longuest_major;<5;;;1SA;1SA;False;;
-205;INT_N2;;12-18HL;;;;;;;;0;;0;;0;False;1E;takeout_double;;;;;X;X;True;;Contre d'appel
-206;INT_N2;;>=19HL;;;;;;;;0;;0;;0;False;1E;;;;;;X;X;False;;Contre toute distribution
-207;INT_N4;;8-18HL;;;;>=5;;;;0;;0;;0;False;;;;;long_suit;1CL1;;1E;False;;
-208;INT_N4;;11-18HL;;;;>=6;;;;0;;0;;0;False;1E;long_suit_1_unnamed;long_over_interv;False;long_suit;2CL1;;2E;False;;
-209;INT_N4;;11-18HL;;;trèfle;>=6;;;;0;;0;;0;False;1T;;;;;;2T;2T;False;;
-210;INT_N4;;14-18HL;;;coeur;>=5;;;;0;;0;;0;False;1P;;long_color_points_H;>=4;;;2C;2C;False;;
-211;INT_N4;;5-10H;;;Majeure;6;;;;0;;0;;0;False;1m;;;;long_suit;2CL1;;2M;False;;Barrage
-212;INT_N4;;5-10H;;;pique;6;;;;0;;0;;0;False;1C;;;;;;2P;2P;False;;Barrage
-213;INT_N4;;5-10H;;;;7;;;;0;;0;;0;False;;;;;long_suit;3CL1;;3E;False;;Barrage
-214;INT_N4;;5-10H;;;;8;;;;0;;0;;0;False;;;;;long_suit;4CL1;;4E;False;;Barrage
-215;INT_N4;;16-18HL;régulier;;;;;;;0;;0;;1;False;;stop_opponents_suits;longuest_major;<5;;;1SA;1SA;False;;
-216;INT_N4;;12-18HL;;;;;;;;0;;0;;0;False;;takeout_double;;;;;X;X;True;;Contre d'appel
-217;INT_N4;;>=19HL;;;;;;;;0;;0;;0;False;;;;;;;X;X;False;;Contre toute distribution
-218;INT_N4;;;bicolore 6/5;pique,coeur;;;;;;0;;6;;0;False;1T passe 1K;;;;;;2SA;2SA;True;;Bicolore 6/5
-219;INT_N4;;;bicolore 6/5;pique,carreau;;;;;;0;;6;;0;False;1T passe 1C;;;;;;2SA;2SA;True;;Bicolore 6/5
-220;INT_N4;;;bicolore 6/5;pique,trèfle;;;;;;0;;6;;0;False;1K passe 1C;;;;;;2SA;2SA;True;;Bicolore 6/5
-221;INT_N4;;;bicolore 6/5;coeur,carreau;;;;;;0;;6;;0;False;1T passe 1P;;;;;;2SA;2SA;True;;Bicolore 6/5
-222;INT_N4;;;bicolore 6/5;coeur,trèfle;;;;;;0;;6;;0;False;1K passe 1P;;;;;;2SA;2SA;True;;Bicolore 6/5
-223;INT_N4;;;bicolore 6/5;carreau,trèfle;;;;;;0;;6;;0;False;1C passe 1P;;;;;;2SA;2SA;True;;Bicolore 6/5
-224;INT_N4;;;bicolore 6/5;pique,coeur;;;;;;0;;6;;0;False;1K passe 2T;;;;;;2SA;2SA;True;;Bicolore 6/5
-225;INT_N4;;;bicolore 6/5;pique,carreau;;;;;;0;;6;;0;False;1C passe 2T;;;;;;2SA;2SA;True;;Bicolore 6/5
-226;INT_N4;;;bicolore 6/5;pique,trèfle;;;;;;0;;6;;0;False;1C passe 2K;;;;;;2SA;2SA;True;;Bicolore 6/5
-227;INT_N4;;;bicolore 6/5;coeur,carreau;;;;;;0;;6;;0;False;1P passe 2T;;;;;;2SA;2SA;True;;Bicolore 6/5
-228;INT_N4;;;bicolore 6/5;coeur,trèfle;;;;;;0;;6;;0;False;1P passe 1K;;;;;;2SA;2SA;True;;Bicolore 6/5
-229;INT_N4;;;bicolore 6/5;carreau,trèfle;;;;;;0;;6;;0;False;1P passe 2C;;;;;;2SA;2SA;True;;Bicolore 6/5
-230;INT_N4;;;bicolore 5/5;pique,coeur;;;;;;0;;6;;0;False;1T passe 1K;;;;;;2T;2T;True;;Cuebid couleur d'ouverture
-231;INT_N4;;;bicolore 5/5;pique,carreau;;;;;;0;;6;;0;False;1T passe 1C;;;;;;2T;2T;True;;Cuebid couleur d'ouverture
-232;INT_N4;;;bicolore 5/5;pique,trèfle;;;;;;0;;6;;0;False;1K passe 1C;;;;;;2K;2K;True;;Cuebid couleur d'ouverture
-233;INT_N4;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1T passe 1P;;;;;;2T;2T;True;;Cuebid couleur d'ouverture
-234;INT_N4;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1K passe 1P;;;;;;2K;2K;True;;Cuebid couleur d'ouverture
-235;INT_N4;;;bicolore 5/5;carreau,trèfle;;;;;;0;;6;;0;False;1C passe 1P;;;;;;2C;2C;True;;Cuebid couleur d'ouverture
-236;INT_N4;;;bicolore 5/5;pique,coeur;;;;;;0;;6;;0;False;1K passe 2T;;;;;;2K;2K;True;;Cuebid couleur d'ouverture
-237;INT_N4;;;bicolore 5/5;pique,carreau;;;;;;0;;6;;0;False;1C passe 2T;;;;;;2C;2C;True;;Cuebid couleur d'ouverture
-238;INT_N4;;;bicolore 5/5;pique,trèfle;;;;;;0;;6;;0;False;1C passe 2K;;;;;;2C;2C;True;;Cuebid couleur d'ouverture
-239;INT_N4;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1P passe 2T;;;;;;2P;2P;True;;Cuebid couleur d'ouverture
-240;INT_N4;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1P passe 1K;;;;;;2P;2P;True;;Cuebid couleur d'ouverture
-241;INT_N4;;;bicolore 5/5;carreau,trèfle;;;;;;0;;6;;0;False;1P passe 2C;;;;;;2P;2P;True;;Cuebid couleur d'ouverture
-242;INT_N4;;>=13HL;unicolore;;carreau;;;;;0;;0;;0;False;1T passe 1K;;long_color_points_H;>=5;;;2K;2K;True;;Cuebid couleur de réponse
-243;INT_N4;;>=13HL;unicolore;;coeur;;;;;0;;0;;0;False;1T passe 1C;;long_color_points_H;>=5;;;2C;2C;True;;Cuebid couleur de réponse
-244;INT_N4;;>=13HL;unicolore;;coeur;;;;;0;;0;;0;False;1K passe 1C;;long_color_points_H;>=5;;;2C;2C;True;;Cuebid couleur de réponse
-245;INT_N4;;>=13HL;unicolore;;pique;;;;;0;;0;;0;False;1T passe 1P;;long_color_points_H;>=5;;;2P;2P;True;;Cuebid couleur de réponse
-246;INT_N4;;>=13HL;unicolore;;pique;;;;;0;;0;;0;False;1K passe 1P;;long_color_points_H;>=5;;;2P;2P;True;;Cuebid couleur de réponse
-247;INT_N4;;>=13HL;unicolore;;pique;;;;;0;;0;;0;False;1C passe 1P;;long_color_points_H;>=5;;;2P;2P;True;;Cuebid couleur de réponse
-248;INT_N4;;>=13HL;unicolore;;trèfle;;;;;0;;0;;0;False;1K passe 2T;;long_color_points_H;>=5;;;3T;3T;True;;Cuebid couleur de réponse
-249;INT_N4;;>=13HL;unicolore;;trèfle;;;;;0;;0;;0;False;1C passe 2T;;long_color_points_H;>=5;;;3T;3T;True;;Cuebid couleur de réponse
-250;INT_N4;;>=13HL;unicolore;;carreau;;;;;0;;0;;0;False;1C passe 2K;;long_color_points_H;>=5;;;3K;3K;True;;Cuebid couleur de réponse
-251;INT_N4;;>=13HL;unicolore;;trèfle;;;;;0;;0;;0;False;1P passe 2T;;long_color_points_H;>=5;;;3T;3T;True;;Cuebid couleur de réponse
-252;INT_N4;;>=13HL;unicolore;;carreau;;;;;0;;0;;0;False;1P passe 1K;;long_color_points_H;>=5;;;2K;2K;True;;Cuebid couleur de réponse
-253;INT_N4;;>=13HL;unicolore;;coeur;;;;;0;;0;;0;False;1P passe 2C;;long_color_points_H;>=5;;;3C;3C;True;;Cuebid couleur de réponse
-254;INT_N4;;12-18HL;;;;;;;;0;;0;;0;False;1E passe 1SA;takeout_double;;;;;X;X;True;;Contre d'appel
-255;INT_N4;;>=19HL;;;;;;;;0;;0;;0;False;1E passe 1SA;;;;;;X;X;False;;Contre toute distribution
-256;INT_N4;;;bicolore 5/5;pique,coeur;;;;;;0;;6;;0;False;1m passe 1SA;;;;cuebid;2;;2m;True;;Cuebid couleur d'ouverture
-257;INT_N4;;;bicolore 5/5;;coeur;>=5;mineure;>=5;;0;;6;;0;False;1P passe 1SA;;;;;;2P;2P;True;;Cuebid
-258;INT_N4;;;bicolore 5/5;;pique;>=5;mineure;>=5;;0;;6;;0;False;1C passe 1SA;;;;;;2C;2C;True;;Cuebid
-259;INT_N4;;;bicolore 5/5;trèfle,carreau;;;;;;0;;0;;0;False;1M passe 1SA;;;;;;2SA;2SA;True;;
-260;INT_N4;;;bicolore 5/5;trèfle,coeur;;;;;;0;;0;;0;False;1K passe 1SA;;;;;;2SA;2SA;True;;
-261;INT_N4;;;bicolore 5/5;carreau,coeur;;;;;;0;;0;;0;False;1T passe 1SA;;;;;;2SA;2SA;True;;
-262;INT_N4;;8-18HL;;;;>=5;;;;0;;0;;0;False;1T passe 2T;long_suit_1_unnamed;;;long_suit;2CL1;;2E;False;;
-263;INT_N4;;8-18HL;;;Majeure;>=5;;;;0;;0;;0;False;1K passe 2K;;;;long_suit;2CL1;;2M;False;;
-264;INT_N4;;8-18HL;;;pique;>=5;;;;0;;0;;0;False;1C passe 2C;;;;;;2P;2P;False;;
-265;INT_N4;;11-18HL;;;trèfle;>=6;;;;0;;0;;0;False;1K passe 2K;;;;;;3T;3T;False;;
-266;INT_N4;;11-18HL;;;mineure;>=6;;;;0;;0;;0;False;1M passe 2M;;;;long_suit;3CL1;;3m;False;;
-267;INT_N4;;;bicolore 5/5;pique,coeur;;;;;;0;;6;;0;False;1m passe 2m;;;;cuebid;3;;3m;True;;
-268;INT_N4;;;bicolore 5/5;trèfle,carreau;;;;;;0;;6;;0;False;1M passe 2M;;;;;;2SA;2SA;True;;
-269;INT_N4;;;bicolore 5/5;pique,trèfle;;;;;;0;;6;;0;False;1C passe 2C;;;;;;3C;3C;True;;
-270;INT_N4;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1P passe 2P;;;;;;3P;3P;True;;
-271;INT_N4;;;bicolore 5/5;pique,carreau;;;;;;0;;6;;0;False;1C passe 2C;;;;;;4T;4T;True;;
-272;INT_N4;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1P passe 2P;;;;;;4T;4T;True;;
-273;SEQ1SA;TEXAS;<=8HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1SA passe;;;;;;2C;;False;;Bicolore majeur 5/5
-274;SEQ1SA;TEXAS;9-10HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1SA passe;;;;;;2K;;False;;Bicolore majeur 5/5
-275;SEQ1SA;TEXAS;11-15HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1SA passe;;;;;;4K;;False;;Bicolore majeur 5/5
-276;SEQ1SA;TEXAS;>=16HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1SA passe;;;;;;2C;;False;;Bicolore majeur 5/5
-277;SEQ1SA;STAYMAN;7-8H;irrégulier;;Majeure;5;;;;0;;0;;0;False;1SA passe;;;;;;2T;2T;True;;
-278;SEQ1SA;STAYMAN;>=9HL;;;;;;;;0;;0;;0;False;1SA passe;major_4;;;;;2T;2T;True;;Stayman
-279;SEQ1SA;SEQ1SA;8-9H;semi-régulier;;mineure;5;;;;0;;0;;0;False;;;;;;;2SA;2SA;False;;
-280;SEQ1SA;PASS;10-15H;semi-régulier;;mineure;5;;;;0;;0;;0;False;;;;;;;3SA;3SA;False;passe;
-281;SEQ1SA;SEQ1SA;9HL;régulier;;;;;;;0;;0;;0;False;;;;;;;2SA;2SA;False;;Proposition de manche
-282;SEQ1SA;PASS;10-15HL;régulier;;;;;;;0;;0;;0;False;;;;;;;3SA;3SA;False;passe;
-283;SEQ1SA;SEQ1SA;16-17HL;régulier;;;;;;;0;;0;;0;False;;;;;;;4SA;4SA;False;;Proposition de petit chelem
-284;SEQ1SA;PASS;18-19HL;régulier;;;;;;;0;;0;;0;False;;;;;;;6SA;6SA;False;passe;
-285;SEQ1SA;SEQ1SA;20-21HL;régulier;;;;;;;0;;0;;0;False;;;;;;;5SA;5SA;False;;Proposition de grand chelem
-286;SEQ1SA;PASS;22-25HL;régulier;;;;;;;0;;0;;0;False;;;;;;;7SA;7SA;False;passe;
-287;SEQ1SA;SEQ1SA;<16H;;;;;;;;0;;0;;0;False;2SA passe;;;;;;passe;passe;False;;
-288;SEQ1SA;PASS;>=16H;;;;;;;;0;;0;;0;False;2SA passe;;;;;;3SA;3SA;False;passe;
-289;SEQ1SA;SEQ1SA;<16H;;;;;;;;0;;0;;0;False;4SA passe;;;;;;passe;passe;False;;
-290;SEQ1SA;PASS;>=16H;;;;;;;;0;;0;;0;False;4SA passe;;;;;;6SA;6SA;False;passe;
-291;SEQ1SA;SEQ1SA;<16H;;;;;;;;0;;0;;0;False;5SA passe;;;;;;passe;passe;False;;
-292;SEQ1SA;PASS;>=16H;;;;;;;;0;;0;;0;False;5SA passe;;;;;;7SA;7SA;False;passe;
-293;SEQ1SA;TEXAS;;;;coeur;>=5;;;;0;;0;;0;False;1SA passe;;;;;;2K;2K;True;;Texas
-294;SEQ1SA;TEXAS;;;;pique;>=5;;;;0;;0;;0;False;1SA passe;;;;;;2C;2C;True;;Texas
-295;SEQ1SA;TEXAS;;;;trèfle;>=6;;;;0;;0;;0;False;1SA passe;;;;;;2P;2P;True;;Texas
-296;SEQ1SA;TEXAS;;;;carreau;>=6;;;;0;;0;;0;False;1SA passe;;;;;;3T;3T;True;;Texas
-297;SEQ1SA;TEXAS;<=9H;;;mineure;5;;;;0;;0;;0;False;1SA passe;;;;;;passe;passe;False;;
-298;SEQ1SA;TEXAS;10-15H;;;trèfle;5;;;;0;;0;;0;False;1SA passe;any_short_color;;;;;2P;2P;True;;Texas
-299;SEQ1SA;TEXAS;10-15H;;;carreau;5;;;;0;;0;;0;False;1SA passe;any_short_color;;;;;3T;3T;True;;Texas
-300;SEQ1SA;TEXAS;>=16H;;;trèfle;5;;;;0;;0;;0;False;1SA passe;;;;;;2P;2P;True;;Texas
-301;SEQ1SA;TEXAS;>=16H;;;carreau;5;;;;0;;0;;0;False;1SA passe;;;;;;3T;3T;True;;Texas
-302;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;;;;2K;2K;True;;Stayman
-303;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;1;best_major;2;;2M;False;;Stayman
-304;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;2;;;2SA;2SA;True;;Stayman
-305;STAYMAN;STAYMAN;<=15H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2K passe;any_short_color;;;long_suit;3CL1;;3m;False;manche;Stayman
-306;STAYMAN;STAYMAN;>=16H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;3CL1;;3m;False;manche;Stayman
-307;STAYMAN;SEQ1SA;9HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;2SA;2SA;False;;Proposition de manche
-308;STAYMAN;PASS;10-15HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;3SA;3SA;False;passe;
-309;STAYMAN;SEQ1SA;16-17HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;4SA;4SA;False;;Proposition de petit chelem
-310;STAYMAN;PASS;18-19HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;6SA;6SA;False;passe;
-311;STAYMAN;SEQ1SA;20-21HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;5SA;5SA;False;;Proposition de grand chelem
-312;STAYMAN;PASS;22-25HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;7SA;7SA;False;passe;
-313;STAYMAN;PASS;<=9HL;irrégulier;;Majeure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;2CL1;;2M;False;passe;Misère dorée
-314;STAYMAN;STAYMAN;>=10HL;;;Majeure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;3CL1;;3M;True;manche;Chassé-croisé
-315;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;3;;3M;False;;Stayman
-316;STAYMAN;PASS;11-16HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;4;;4M;False;passe;Stayman
-317;STAYMAN;CHELEM;>=17HLD;;;;;;;;0;;0;;0;False;2T passe 2C passe;;suit_length;C>=4;;;3P;3P;True;forcing;Convention 2012
-318;STAYMAN;CHELEM;>=17HLD;;;;;;;;0;;0;;0;False;2T passe 2P passe;;suit_length;P>=4;;;3C;3C;True;forcing;Convention 2012
-319;STAYMAN;STAYMAN;<=15H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2M passe;;short_color;;long_suit;3CL1;;3m;False;manche;Stayman
-320;STAYMAN;STAYMAN;>=16H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2M passe;;;;long_suit;3CL1;;3m;False;manche;Stayman
-321;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;3T;3T;True;;Transfert
-322;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;3K;3K;True;;Transfert
-323;STAYMAN;STAYMAN;11-15HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;4T;4T;True;manche;Transfert
-324;STAYMAN;STAYMAN;11-15HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;4K;4K;True;manche;Transfert
-325;STAYMAN;STAYMAN;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;3C;3C;False;forcing;
-326;STAYMAN;STAYMAN;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;3P;3P;False;forcing;
-327;STAYMAN;STAYMAN;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;short_color;T;;;4T;4T;True;;Splinter
-328;STAYMAN;STAYMAN;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;short_color;K;;;4K;4K;True;;Splinter
-329;STAYMAN;STAYMAN;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2P passe;;short_color;C;;;4C;4C;True;;Splinter
-330;STAYMAN;PASS;<16HL;;;;;;;;0;;0;;0;False;2T passe 2K passe 3C passe;;suit_length;P=3;;;3P;3P;False;passe;
-331;STAYMAN;PASS;>=16HL;;;;;;;;0;;0;;0;False;2T passe 2K passe 3C passe;;suit_length;P=3;;;4P;4P;False;passe;
-332;STAYMAN;PASS;<16HL;;;;;;;;0;;0;;0;False;2T passe 2K passe 3P passe;;suit_length;C=3;;;3C;3C;False;passe;
-333;STAYMAN;PASS;>=16HL;;;;;;;;0;;0;;0;False;2T passe 2K passe 3P passe;;suit_length;C=3;;;4C;4C;False;passe;
-334;STAYMAN;PASS;<17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe 3M passe;;;;;;passe;passe;False;passe;
-335;STAYMAN;PASS;>=17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe 3M passe;;;;support;4;;4M;False;passe;
-336;STAYMAN;PASS;<16HL;;;;;;;;0;;0;;0;False;2T passe 2SA passe 3T passe;;;;;;3C;3C;False;passe;
-337;STAYMAN;PASS;>=16HL;;;;;;;;0;;0;;0;False;2T passe 2SA passe 3T passe;;;;;;4C;4C;False;passe;
-338;STAYMAN;PASS;<16HL;;;;;;;;0;;0;;0;False;2T passe 2SA passe 3K passe;;;;;;3P;3P;False;passe;
-339;STAYMAN;PASS;>=16HL;;;;;;;;0;;0;;0;False;2T passe 2SA passe 3K passe;;;;;;4P;4P;False;passe;
-340;STAYMAN;PASS;;;;;;;;;0;;0;;0;False;2T passe 2SA passe 4T passe;;;;;;4C;4C;False;passe;
-341;STAYMAN;PASS;;;;;;;;;0;;0;;0;False;2T passe 2SA passe 4K passe;;;;;;4P;4P;False;passe;
-342;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 2K passe;;;;;;2C;2C;False;;Rectification Texas
-343;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 2C;;;;;;2P;2P;False;;Rectification Texas
-344;TEXAS;TEXAS;16-17H;;;;;;;;0;;0;;0;False;1SA passe 2K passe;;suit_length;C>=4;;;3C;3C;False;;Rectification fittée Texas
-345;TEXAS;TEXAS;16-17H;;;;;;;;0;;0;;0;False;1SA passe 2C passe;;suit_length;P>=4;;;3P;3P;False;;Rectification fittée Texas
-346;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 2P passe;;;;;;3T;3T;False;;Rectification Texas
-347;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 3T passe;;;;;;3K;3K;False;;Rectification Texas
-348;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 4K passe;;;;best_major;4;;4M;False;;
-349;TEXAS;TEXAS;;;;coeur;>=6;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3C;3C;False;;
-350;TEXAS;TEXAS;;;;pique;>=6;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3P;3P;False;;
-351;TEXAS;TEXAS;15-17HLD;;;coeur;>=6;;;;0;;0;;0;False;2K passe 2C passe;;suit_length;T<=1;;;4T;4T;False;;Splinter
-352;TEXAS;TEXAS;15-17HLD;;;pique;>=6;;;;0;;0;;0;False;2C passe 2P passe;;suit_length;T<=1;;;4T;4T;False;;Splinter
-353;TEXAS;TEXAS;15-17HLD;;;coeur;>=6;;;;0;;0;;0;False;2K passe 2C passe;;suit_length;K<=1;;;4K;4K;False;;Splinter
-354;TEXAS;TEXAS;15-17HLD;;;pique;>=6;;;;0;;0;;0;False;2C passe 2P passe;;suit_length;K<=1;;;4K;4K;False;;Splinter
-355;TEXAS;TEXAS;15-17HLD;;;pique;>=6;;;;0;;0;;0;False;2C passe 2P passe;;suit_length;C<=1;;;4C;4C;False;;Splinter
-356;TEXAS;TEXAS;<=15H;;;;;mineure;>=4;;0;;0;;0;False;2K passe 2C passe;any_short_color;;;long_suit;3CL2;;3m;False;;
-357;TEXAS;TEXAS;;;;;;mineure;>=4;;0;;0;;0;False;2C passe 2P passe;any_short_color;;;long_suit;3CL2;;3m;False;;
-358;TEXAS;TEXAS;>=16H;;;;;mineure;>=4;;0;;0;;0;False;2K passe 2C passe;;;;long_suit;3CL2;;3m;False;;
-359;TEXAS;TEXAS;;;;;;mineure;>=4;;0;;0;;0;False;2C passe 2P passe;;;;long_suit;3CL2;;3m;False;;
-360;TEXAS;SEQ1SA;8-9H;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;2SA;2SA;False;;
-361;TEXAS;PASS;10-15H;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3SA;3SA;False;passe;
-362;TEXAS;SEQ1SA;9HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;2SA;2SA;False;;Proposition de manche
-363;TEXAS;PASS;10-15HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3SA;3SA;False;passe;
-364;TEXAS;SEQ1SA;16-17HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;4SA;4SA;False;;Proposition de petit chelem
-365;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;6SA;6SA;False;passe;
-366;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;5SA;5SA;False;;Proposition de grand chelem
-367;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;7SA;7SA;False;passe;
-368;TEXAS;SEQ1SA;8-9H;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;2SA;2SA;False;;
-369;TEXAS;PASS;10-15H;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3SA;3SA;False;passe;
-370;TEXAS;SEQ1SA;9HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;2SA;2SA;False;;Proposition de manche
-371;TEXAS;PASS;10-15HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3SA;3SA;False;passe;
-372;TEXAS;SEQ1SA;16-17HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;4SA;4SA;False;;Proposition de petit chelem
-373;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;6SA;6SA;False;passe;
-374;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;5SA;5SA;False;;Proposition de grand chelem
-375;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;7SA;7SA;False;passe;
-376;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;2T passe 2C passe 3P passe;;;;control;C,15,17;;?;True;;
-377;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;2T passe 2P passe 3C passe;;;;control;P,15,17;;?;True;;
-378;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;3P passe;;;;control;;;;False;;
-379;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4E passe;;;;control;;;;False;;
-380;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe;;;;blackwood;;;;False;;
-381;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe 5E passe;;;;;;;;False;;
+id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_count;first_pass;won_tricks;def_tricks;lost_tricks;fit_cards;stops;awake;hist_bid;function1;function2;arg2;function_bid;arg_bid;bid;symbolic_bid;fit;artificial;forcing;convention
+1;OPEN;;>=24HL;;;;;;;;0;;0;;0;False;;;;;;;2K;2K;;True;manche;2 carreau forcing de manche
+2;OPEN;;17H-23HL;unicolore;;Majeure;;;;;9;>=2;0;;0;False;;;;;;;2K;2K;;True;manche;2 carreau forcing de manche
+3;OPEN;;17H-23HL;unicolore;;mineure;;;;;10;>=2;0;;0;False;;;;;;;2K;2K;;True;manche;2 carreau forcing de manche
+4;OPEN;;20-23HL;unicolore;;Majeure;;;;;8.25;>=2;0;;0;False;;;;;;;2T;2T;;True;autoforcing;2 fort indéterminé
+5;OPEN;;20-23HL;unicolore;;mineure;>=7;;;;9;;0;;0;False;;;;;;;2T;2T;;True;autoforcing;2 fort indéterminé
+6;OPEN;;21-23HL;;;Majeure;5;;;;0;;0;;0;False;;;;;;;2T;2T;;True;autoforcing;2 fort indéterminé
+7;OPEN;;22-23HL;régulier;;;;;;;0;;0;;0;False;;;;;;;2T;2T;;True;autoforcing;2 fort indéterminé
+8;OPEN;;17H-23HL;bicolore 5/5;;Majeure;;Majeure;;;0;;3;;0;False;;;;;;;2T;2T;;True;autoforcing;2 fort indéterminé
+9;OPEN;;20-21H;régulier;;;;;;;0;;0;;0;False;;no_good_major_5;;;;;2SA;2SA;;False;;
+10;OPEN;SEQ1SA;15H-17H;régulier;;;;;;;0;;0;;0;False;;no_good_major_5;;;;;1SA;1SA;;False;;
+11;OPEN;SEQ1SA;15-16H;5422;;mineure;;coeur;;;0;;0;;0;False;;;;;;;1SA;1SA;;False;;
+12;OPEN;SEQ1SA;15-16H;5422;;mineure;;carreau;;;0;;0;;0;False;;;;;;;1SA;1SA;;False;;
+13;OPEN;SEQ1SA;15-16H;6322;;mineure;;;;;0;;0;;0;False;;honors_in_short_colors;;;;;1SA;1SA;;False;;
+14;OPEN;SEQ1SA;15-16H;5332;;;;;;;0;;0;;0;False;;honors_in_short_colors;;;;;1SA;1SA;;False;;
+15;OPEN;;13H-23HL;bicolore;;mineure;>=6;Majeure;5;;0;;0;;0;False;;;;;long_suit;1CL1;;1m;;False;;Meilleure mineure
+16;OPEN;;12H-23HL;;;Majeure;>=5;;;;0;;0;;0;False;;;;;long_suit;1CL1;;1M;;False;;Majeure 5e
+17;OPEN;;12H-23HL;;;;;;;;0;;0;;0;False;;;;;best_minor;1;;1m;;False;;Meilleure mineure
+18;OPEN;;12H-23HL;bicolore 5/5;pique,trèfle;;;;;;0;;5;;0;False;;;;;;;1T;1T;;False;;
+19;OPEN;;8H-11H;;;Majeure;>=5;;;2;0;;0;;0;False;;;;;long_suit;1CL1;;1M;;False;;Majeure 5e
+20;OPEN;;8H11H;bicolore;;mineure;>=6;Majeure;5;2;0;;0;;0;False;;;;;long_suit;1CL1;;1m;;False;;
+21;OPEN;;10H-11H;;;pique;>=5;;;3;0;;0;;0;False;;;long_color_points_H;>=4;;;1P;1P;;False;;
+22;OPEN;;5-10H;unicolore;;Majeure;6;;;;0;<=1;0;;0;False;;;long_color_points_H;>=4;long_suit;2CL1;;2M;;False;;Barrage
+23;OPEN;;5-10H;unicolore;;;7;;;;0;;0;;0;False;;;long_color_points_H;>=4;long_suit;3CL1;;3E;;False;;Barrage
+24;OPEN;;5-10H;unicolore;;;8;;;;0;;0;;0;False;;;long_color_points_H;>=4;long_suit;4CL1;;4E;;False;;Barrage
+25;OPEN;;10-16H;unicolore;;mineure;>=7;;;;0;;0;;0;False;;;long_color_points_H;10;;;3SA;3SA;;False;;Mineure affranchie
+26;ROSA;;5-10H;irrégulier;;;;;;>=2;0;;0;4;0;False;1M passe;;;;support;3;;3M;M,5,4;False;;Barrage
+27;ROSA;;>=11HLD;;;;;;;>=2;0;;0;4;0;False;1M passe;any_short_color;;;;;2SA;2SA;par,5,4;False;;
+28;ROSA;;>=11HLD;;;;;;;>=2;0;;0;3;0;False;1M passe;any_short_color;;;;;2T;2T;par,5,3;True;forcing;Drury
+29;ROSA;;>=11HLD;;;;;;;>=2;0;;0;>=4;0;False;1M passe;;;;;;2T;2T;par,5,4;True;forcing;Drury
+30;ROSA;;8-10H;;;;;;;>=2;0;;0;<3;0;False;1C passe;;suit_length;P>=4;;;1P;1P;;False;;
+31;ROSA;;8-10H;;;;>=6;;;>=2;0;;0;<3;0;False;1M passe;;;;long_suit;2CL1;;2E;;False;;
+32;ROSA;;8-10H;;;;5;;;>=2;0;;0;<3;0;False;1M passe;;long_color_points_H;>=7;long_suit;2CL1;;2E;;False;;
+33;ROSA;;8-11H;;;;>=5;;;>=2;0;;0;>=4;0;False;1C passe;;long_color_points_H;>=5;;;2P;2P;C,5,4;False;;Enchère de rencontre
+34;ROSA;;8-11H;;;;>=5;;;>=2;0;;0;>=4;0;False;1M passe;;long_color_points_H;>=5;long_suit;3CL1;;3E;par,5,4;False;;Enchère de rencontre
+35;ROSA;;6-11H;;;;;;;>=2;0;;0;<3;0;False;1M passe;;;;;;1SA;1SA;;False;;
+36;ROSA;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M passe;;;;support;2;;2M;M,5,3;False;;
+37;ROSA;;11-12HLD;;;;;;;;0;;0;3;0;False;1M passe;;;;;;2SA;2SA;par,5,3;True;forcing;2 SA fitté
+38;ROSA;;11-12HLD;;;;;;;;0;;0;4;0;False;1M passe;;;;support;3;;3M;M,5,4;False;;
+39;ROSA;;>=11H;;;carreau;>=5;;;;0;;0;>=3;0;False;1M passe;;;;;;2K;2K;;False;autoforcing;
+40;ROSA;;>=11H;;;;;;;;0;;0;>=3;0;False;1M passe;;;;;;2T;2T;;False;autoforcing;
+41;ROSA;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M passe;;;;;;3SA;3SA;par,5,4;True;forcing;3 SA fitté
+42;ROSA;;6-9H;;;;;;;;0;;0;5;0;False;1M passe;;;;support;4;;4M;M,5,5;False;;
+43;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M passe;;suit_length;T<=1;;;4T;4T;par,5,5;True;forcing;Splinter
+44;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M passe;;suit_length;K<=1;;;4K;4K;par,5,5;True;forcing;Splinter
+45;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1P passe;;suit_length;C<=1;;;4C;4C;P,5,5;True;forcing;Splinter
+46;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1C passe;;suit_length;P<=1;;;3P;3P;C,5,5;True;forcing;Splinter
+47;ROSA;;>=11H;;;coeur;>=5;;;;0;;0;<3;0;False;1P passe;;;;;;2C;2C;;False;;
+48;ROSA;;>=11H;;;mineure;;;;;0;;0;<3;0;False;1M passe;;;;long_suit;2CL1;;2m;;False;;
+49;ROSA;;>=6HL;;;;;;;;0;;0;<3;0;False;1C passe;;suit_length;P>=4;;;1P;1P;;False;forcing;
+50;ROSA;;6-10HL;;;;;;;;0;;0;<3;0;False;1M passe;;;;;;1SA;1SA;;False;;
+51;ROSA;;6-12HL;;;mineure;>=5;Majeure;>=4;>=2;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;1M;;False;;
+52;ROSA;;13-23HL;;;carreau;>=5;Majeure;4;>=2;0;;0;;0;False;1T passe;;;;;;1K;1K;;False;;
+53;ROSA;;13-23HL;;;trèfle;>=5;Majeure;4;>=2;0;;0;;0;False;1K passe;;;;;;2T;2T;;False;;
+54;ROSA;;6-23HL;4441;;;;;;>=2;0;;0;;0;False;1m passe;;;;best_major;1;;1M;;False;;
+55;ROSA;;6-23HL;4432;;;;Majeure;4;>=2;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;1M;;False;;
+56;ROSA;;6-23HL;;;;>=5;;;>=2;0;;0;;0;False;1m passe;long_suit_1_unnamed;;;long_suit;1CL1;;1E;;False;;
+57;ROSA;;6-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;1M;;False;forcing;
+58;ROSA;;13-23HL;;;carreau;>=5;Majeure;4;;0;;0;;0;False;1T passe;;;;;;1K;1K;;False;forcing;
+59;ROSA;;13-23HL;;;trèfle;>=5;Majeure;4;;0;;0;;0;False;1K passe;;;;;;2T;2T;;False;autoforcing;
+60;ROSA;;6-23HL;4441;;;;;;;0;;0;;0;False;1m passe;;;;best_major;1;;1M;;False;forcing;
+61;ROSA;;6-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;1M;;False;forcing;
+62;ROSA;;6-23HL;;;;>=5;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;;;long_suit;1CL1;;1E;;False;forcing;
+63;ROSA;;8-11H;bicolore;;Majeure;>=5;;;>=2;0;;0;>=4;0;False;1m passe;;long_color_points_H;>=4;long_suit;2CL1;;2M;par,3,4;False;;Enchère de rencontre
+64;ROSA;;8-11H;bicolore;;carreau;>=5;;;>=2;0;;0;>=4;0;False;1T passe;;long_color_points_H;>=4;;;2K;2K;T,3,4;False;;Enchère de rencontre
+65;ROSA;;8-11H;bicolore;;trèfle;>=5;;;>=2;0;;0;>=4;0;False;1K passe;;long_color_points_H;>=4;;;3T;3T;K,3,3;False;;Enchère de rencontre
+66;ROSA;;>=18HL;unicolore;;Majeure;;;;;0;;0;;0;False;1m passe;;long_color_points_H;>=4;long_suit;2CL1;;2M;;False;;
+67;ROSA;;>=18HL;unicolore;;carreau;;;;;0;;0;;0;False;1T passe;;long_color_points_H;>=4;;;2K;2K;;False;;
+68;ROSA;;>=18HL;unicolore;;trèfle;;;;;0;;0;;0;False;1K passe;;long_color_points_H;>=4;;;3T;3T;;False;;
+69;ROSA;;4-10H;unicolore;;;7;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;3CL1;;3E;;False;;Barrage
+70;ROSA;;4-10H;unicolore;;mineure;>=9;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;5CL1;;5m;;False;;Barrage
+71;ROSA;;4-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;4CL1;;4E;;False;;Barrage
+72;ROSA;;6-10HL;régulier;;;;;;;0;;0;;0;False;1m passe;;;;;;1SA;1SA;;False;;
+73;ROSA;;11H-12HL;régulier;;;;;;;0;;0;;0;False;1m passe;;;;;;2SA;2SA;;False;;
+74;ROSA;;13-15HL;régulier;;;;;;;0;;0;;0;False;1m passe;;;;;;3SA;3SA;;False;;
+75;ROSA;;6-8H;;;;;;;;0;;0;>=5;0;False;1T passe;;;;;;2T;2T;T,3,5;False;;
+76;ROSA;;9-11H;;;;;;;;0;;0;>=5;0;False;1T passe;;;;;;3T;3T;T,3,5;False;;
+77;ROSA;;6-8H;;;;;;;;0;;0;>=4;0;False;1K passe;;;;;;2K;2K;K,3,4;False;;
+78;ROSA;;9-11H;;;;;;;;0;;0;>=4;0;False;1K passe;;;;;;3K;3K;K,3,4;False;;
+79;ROACA;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M X;;;;support;2;;2M;M,5,3;False;;
+80;ROACA;;11-12HLD;;;;;;;;0;;0;3;0;False;1M X;;;;;;2SA;2SA;par,5,3;True;;2SA Truscott
+81;ROACA;;6-10H;;;;;;;;0;;0;4;0;False;1M X;;;;support;3;;3M;M,5,4;False;;Barrage
+82;ROACA;;>=11HLD;;;mineure;>=5;;;;0;;0;>=4;0;False;1M X;;;;long_suit;3CL1;;3m;par,5,4;False;;Enchère de rencontre
+83;ROACA;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M X;;;;;;3SA;3SA;par,5,4;True;forcing;3 SA fitté
+84;ROACA;;6-9H;;;;;;;;0;;0;5;0;False;1M X;;;;support;4;;4M;M,5,5;False;;
+85;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M X;;suit_length;T<=1;;;4T;4T;par,5,5;True;forcing;Splinter
+86;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M X;;suit_length;K<=1;;;4K;4K;par,5,5;True;forcing;Splinter
+87;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1P X;;suit_length;C<=1;;;4C;4C;P,5,5;True;forcing;Splinter
+88;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1C X;;suit_length;P<=1;;;3P;3P;C,5,5;True;forcing;Splinter
+89;ROACA;;8-10H;;;coeur;>=5;;;;0;;0;<3;0;False;1P X;;long_color_points_H;>=4;;;2C;2C;;False;;
+90;ROACA;;8-10H;;;mineure;>=5;;;;0;;0;<3;0;False;1M X;;long_color_points_H;>=4;long_suit;2CL1;;2m;;False;;
+91;ROACA;;8-10H;;;coeur;>=6;;;;0;;0;<3;0;False;1P X;;;;;;2C;2C;;False;;
+92;ROACA;;8-10H;;;mineure;>=6;;;;0;;0;<3;0;False;1M X;;;;long_suit;2CL1;;2m;;False;;
+93;ROACA;;>=6HL;;;;;;;;0;;0;<3;0;False;1C X;;suit_length;P>=4;;;1P;1P;;False;forcing;
+94;ROACA;;8-10HL;semi-régulier;;;;;;;0;;0;<3;0;False;1M X;;;;;;1SA;1SA;;False;;
+95;ROACA;;>=10H;;;;;;;;0;;0;;0;False;1M X;;;;;;XX;XX;;False;;
+96;ROACA;;7-10H;;;trèfle;>=6;;;;0;;0;;0;False;1K X;;;;;;2T;2T;;False;;
+97;ROACA;;7-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m X;;;;long_suit;1CL2;;1M;;False;forcing;
+98;ROACA;;13-23HL;;;carreau;>=5;Majeure;4;;0;;0;;0;False;1T X;;;;;;1K;1K;;False;forcing;
+99;ROACA;;7-23HL;4441;;;;;;;0;;0;;0;False;1m X;;;;best_major;1;;1M;;False;forcing;
+100;ROACA;;7-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m X;;;;long_suit;1CL2;;1M;;False;forcing;
+101;ROACA;;7-23HL;;;;>=5;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;1CL1;;1E;;False;forcing;
+102;ROACA;;4-10H;unicolore;;;7;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;3CL1;;3E;;False;;Barrage
+103;ROACA;;4-10H;unicolore;;mineure;>=9;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;5CL1;;5m;;False;;Barrage
+104;ROACA;;4-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;4CL1;;4E;;False;;Barrage
+105;ROACA;;8-10HL;semi-régulier;;;;;;;0;;0;;0;False;1m X;;;;;;1SA;1SA;;False;;
+106;ROACA;;>=10H;;;;;;;;0;;0;;0;False;1m X;;;;;;XX;XX;;False;;
+107;ROACA;;7-8H;;;;;;;;0;;0;5;0;False;1m X;;;;support;2;;2m;m,3,5;False;;
+108;ROACA;;7-8H;;;;;;;;0;;0;6;0;False;1m X;;;;support;3;;3m;m,3,6;False;;
+109;ROACA;;7-8H;;;;;;;;0;;0;7;0;False;1m X;;;;support;4;;4m;m,3,7;False;;
+110;ROACA;;>=9H;;;;;;;;0;;0;5;0;False;1m X;;;;;;2SA;2SA;par,3,5;True;;2SA Truscott
+111;ROAIC;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1C 1P;;;;;;2C;2C;C,5,3;False;;
+112;ROAIC;;11-15HLD;;;;;;;;0;;0;3;0;False;1C 1P;;;;;;2SA;2SA;C,5,3;True;forcing;2SA fitté
+113;ROAIC;;11-12HLD;;;;;;;;0;;0;4;0;False;1C 1P;;;;;;3C;3C;C,5,4;False;;
+114;ROAIC;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1C 1P;;;;;;3SA;3SA;C,5,4;True;forcing;3 SA fitté
+115;ROAIC;;6-9H;;;;;;;;0;;0;5;0;False;1C 1P;;;;;;4C;4C;C,5,5;False;;
+116;ROAIC;;13-15HLD;;;;;;;;0;;0;5;0;False;1C 1P;short_in_interv_color;;;;;3P;4E;C,5,5;True;forcing;Splinter
+117;ROAIC;;13-15HLD;;;mineure;>=5;;;;0;;0;>=4;0;False;1C 1P;long_suit_1_unnamed;long_color_points_H;>=5;long_suit;4CL1;;4m;C,5,4;False;;Enchère de rencontre
+118;ROAIC;;>=11H;;;;;;;;0;;0;>=4;0;False;1C 1P;;;;;;2P;2P;C,5,4;True;manche;Cuebid
+119;ROAIC;;>=11HL;;;;>=5;;;;0;;0;;0;False;1C 1P;long_suit_1_unnamed;;;long_suit;2CL1;;2E;;False;forcing;
+120;ROAIC;;4-10H;;;;7;;;;0;;0;<3;0;False;1C 1P;long_suit_1_unnamed;;;long_suit;3CL1;;3E;;False;;Barrage
+121;ROAIC;;4-10H;;;;>=8;;;;0;;0;<3;0;False;1C 1P;long_suit_1_unnamed;;;long_suit;4CL1;;4E;;False;;Barrage
+122;ROAIC;;8-10HL;semi-régulier;;;;;;;0;;0;<3;1;False;1C 1P;;;;;;1SA;1SA;;False;;
+123;ROAIC;;>=8HL;;;;;;;;0;;0;<3;0;False;1C 1P;;;;;;X;X;;False;;Contre Spoutnik généralisé
+124;ROAIC;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M 2E;;;;support;2;;2M;M,5,3;False;;
+125;ROAIC;;11-15HLD;;;;;;;;0;;0;3;0;False;1M 2E;;;;;;2SA;2SA;M,5,3;True;forcing;2SA fitté
+126;ROAIC;;11-12HLD;;;;;;;;0;;0;4;0;False;1M 2E;;;;support;3;;3M;M,5,4;False;;
+127;ROAIC;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M 2E;;;;;;3SA;3SA;M,5,4;True;forcing;3 SA fitté
+128;ROAIC;;6-9H;;;;;;;;0;;0;5;0;False;1M 2E;;;;support;4;;4M;M,5,5;False;;
+129;ROAIC;;13-15HLD;;;;;;;;0;;0;5;0;False;1M 2E;short_in_interv_color;;;cuebid;4;;4E;par,5,5;True;forcing;Splinter
+130;ROAIC;;13-15HLD;;;mineure;>=5;;;;0;;0;>=4;0;False;1M 2E;long_suit_1_unnamed;long_color_points_H;>=5;long_suit;4CL1;;4m;par,5,4;False;;Enchère de rencontre
+131;ROAIC;;13-15HLD;;;coeur;>=5;;;;0;;0;>=4;0;False;1P 2E;long_suit_1_unnamed;long_color_points_H;>=5;;;4C;4C;P,5,4;False;;Enchère de rencontre
+132;ROAIC;;13-15HLD;;;pique;>=5;;;;0;;0;>=4;0;False;1C 2E;long_suit_1_unnamed;long_color_points_H;>=5;;;3P;3P;C,5,4;False;;Enchère de rencontre
+133;ROAIC;;>=11H;;;;;;;;0;;0;>=4;0;False;1M 2E;;;;cuebid;3;;3E;par,5,4;True;manche;Cuebid
+134;ROAIC;;>=11HL;;;;>=5;;;;0;;0;;0;False;1M 2E;long_suit_1_unnamed;;;long_suit;2CL1;;2E;;False;forcing;
+135;ROAIC;;4-10H;;;;7;;;;0;;0;<3;0;False;1M 2E;long_suit_1_unnamed;long_over_interv;True;long_suit;3CL1;;3E;;False;;Barrage
+136;ROAIC;;4-10H;;;;>=8;;;;0;;0;<3;0;False;1M 2E;long_suit_1_unnamed;long_over_interv;True;long_suit;4CL1;;4E;;False;;Barrage
+137;ROAIC;;>=8HL;;;;;;;;0;;0;<3;0;False;1M 2E;;;;;;X;X;;False;;Contre Spoutnik généralisé
+138;ROAIC;;>=7HL;;;Majeure;>=5;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;;;long_suit;1CL1;;1M;;False;forcing;
+139;ROAIC;;>=11HL;;;Majeure;>=5;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;long_over_interv;False;long_suit;2CL1;;2M;;False;forcing;
+140;ROAIC;;7-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m 1E;long_suit_2_unnamed;;;long_suit;1CL2;;1M;;False;forcing;
+141;ROAIC;;13-23HL;;;carreau;>=5;;;;0;;0;;0;False;1T 1E;long_suit_1_unnamed;;;;;2K;2K;;False;autoforcing;
+142;ROAIC;;>=11HL;;;trèfle;>=5;;;;0;;0;;0;False;1K 1E;long_suit_1_unnamed;;;;;2T;2T;;False;autoforcing;
+143;ROAIC;;7-23HL;4441;;;;;;;0;;0;;0;False;1m 1E;;;;best_major;1;;1M;;False;forcing;
+144;ROAIC;;>=11HL;4441;;;;;;;0;;0;;0;False;1m 1P;;suit_length;C>=4;;;2C;2C;;False;forcing;
+145;ROAIC;;7-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m 1E;long_suit_2_unnamed;;;long_suit;1CL2;;1M;;False;forcing;
+146;ROAIC;;7-23HL;;;;>=5;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;;;long_suit;1CL1;;1E;;False;forcing;
+147;ROAIC;;4-10H;;;;>=7;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;;;long_suit;3CL1;;3E;;False;;Barrage
+148;ROAIC;;8-10HL;semi-régulier;;;;;;;0;;0;;1;False;1m 1E;;longuest_major;<4;;;1SA;1SA;;False;;
+149;ROAIC;;11H-12HL;semi-régulier;;;;;;;0;;0;;1;False;1m 1E;;longuest_major;<4;;;2SA;2SA;;False;;
+150;ROAIC;;13-15HL;semi-régulier;;;;;;;0;;0;;1;False;1m 1E;;longuest_major;<4;;;3SA;3SA;;False;;
+151;ROAIC;;6-8H;;;;;;;;0;;0;>=5;0;False;1T 1E;;;;;;2T;2T;T,3,5;False;;
+152;ROAIC;;9-11H;;;;;;;;0;;0;>=5;0;False;1T 1E;;;;;;3T;3T;T,3,5;False;;
+153;ROAIC;;6-8H;;;;;;;;0;;0;>=4;0;False;1K 1E;;;;;;2K;2K;K,3,4;False;;
+154;ROAIC;;9-11H;;;;;;;;0;;0;>=4;0;False;1K 1E;;;;;;3K;3K;K,3,4;False;;
+155;ROAIC;;>=8HL;;;;;;;;0;;0;;0;False;1T 1K;;longuest_major;<4;;;X;X;;False;;
+156;ROAIC;;>=8HL;;;;;;;;0;;0;;0;False;1m 1C;;suit_length;P<4;;;X;X;;False;;
+157;ROAIC;;>=8HL;;;;;;;;0;;0;;0;False;1m 1P;;suit_length;C>=4;;;X;X;;False;;Contre Spounik simple
+158;ROAIC;;>=11H;;;;;;;;0;;0;;0;False;1m 1E;;longuest_major;<4;cuebid;2;;2E;;False;;Cuebid
+159;ROAIC;;>=11HL;;;Majeure;>=5;;;;0;;0;;0;False;1K 2T;;;;long_suit;2CL1;;2M;;False;forcing;
+160;ROAIC;;>=11HL;4441;;;;;;;0;;0;;0;False;1K 2T;;;;best_major;2;;2M;;False;forcing;
+161;ROAIC;;>=11HL;4432;;;;Majeure;4;;0;;0;;0;False;1K 2T;;;;long_suit;2CL2;;2M;;False;forcing;
+162;ROAIC;;4-10H;;;Majeure;>=7;;;;0;;0;;0;False;1K 2T;;;;long_suit;3CL1;;3E;;False;;Barrage
+163;ROAIC;;11H-12HL;semi-régulier;;;;;;;0;;0;;1;False;1K 2T;;longuest_major;<4;;;2SA;2SA;;False;;
+164;ROAIC;;13-15HL;semi-régulier;;;;;;;0;;0;;1;False;1K 2T;;longuest_major;<4;;;3SA;3SA;;False;;
+165;ROAIC;;6-8H;;;;;;;;0;;0;>=4;0;False;1K 2T;;;;;;2K;2K;K,3,4;False;;
+166;ROAIC;;9-11H;;;;;;;;0;;0;>=4;0;False;1K 2T;;;;;;3K;3K;K,3,4;False;;
+167;ROA1SA;;8-10HLD;;;;;;;;0;;0;3;0;False;1M 1SA;;;;support;2;;2M;M,5,3;False;;
+168;ROA1SA;;5-10H;;;;;;;;0;;0;4;0;False;1M 1SA;;;;support;3;;3M;M,5,4;False;;Barrage
+169;ROA1SA;;5-10H;;;;;;;;0;;0;5;0;False;1M 1SA;;;;support;4;;4M;M,5,5;False;;Barrage
+170;ROA1SA;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1M 1SA;;;;;;2SA;2SA;par,5,4;True;;Cuebid
+171;ROA1SA;;>=11H;unicolore;;;>=6;;;;0;;0;;0;False;1M 1SA;long_suit_1_unnamed;;;long_suit;2CL1;;2E;;False;;
+172;ROA1SA;;>=11HLD;;;;>=5;;;;0;;0;>=4;0;False;1M 1SA;long_suit_1_unnamed;;;long_suit;3CL1;;3E;par,5,4;False;;Enchère de rencontre
+173;ROA1SA;;>=9H;;;;;;;;0;;0;;0;False;1M 1SA;;;;;;X;X;;False;;
+174;ROA1SA;;>=9H;bicolore;coeur,pique;;;;;;0;;0;;0;False;1m 1SA;;;;;;2T;2T;;False;;
+175;ROA1SA;;>=9H;;;;;;;;0;;0;>=5;0;False;1K 1SA;;;;;;2K;2K;K,3,5;False;;
+176;ROA1SA;;5-10H;unicolore;;;7;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;3CL1;;3E;;False;;Barrage
+177;ROA1SA;;5-10H;unicolore;;mineure;>=9;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;5CL1;;5m;;False;;Barrage
+178;ROA1SA;;5-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;long_color_points_H;>=4;long_suit;4CL1;;4E;;False;;Barrage
+179;ROA1SA;;>=13HLD;;;;;;;;0;;0;>=5;0;False;1m 1SA;;;;;;2SA;2SA;par,3,5;False;manche;Cuebid
+180;ROA1SA;;>=9H;unicolore;;;>=6;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;;;long_suit;1CL1;;1E;;False;;
+181;ROA1SA;;>=11H;unicolore;;;>=6;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;;;long_suit;2CL1;;2E;;False;;
+182;ROA1SA;;5-10H;unicolore;;;7;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;;;long_suit;3CL1;;3E;;False;;Barrage
+183;ROA1SA;;5-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m 1SA;long_suit_1_unnamed;;;long_suit;4CL1;;4E;;False;;Barrage
+184;ROA1SA;;>=9H;;;;;;;;0;;0;;0;False;1m 1SA;;;;;;X;X;;False;;
+185;INT_N2;;;bicolore 5/5;coeur,pique;;;;;;0;;6;;0;False;1m;honors_in_bicolors;;;;;2K;2K;;True;;Michael's cuebids précisés
+186;INT_N2;;;bicolore 5/5;carreau,coeur;;;;;;0;;6;;0;False;1T;honors_in_bicolors;;;;;2SA;2SA;;True;;Michael's cuebids précisés
+187;INT_N2;;;bicolore 5/5;trèfle,coeur;;;;;;0;;6;;0;False;1K;honors_in_bicolors;;;;;2SA;2SA;;True;;Michael's cuebids précisés
+188;INT_N2;;;bicolore 5/5;carreau,trèfle;;;;;;0;;6;;0;False;1M;honors_in_bicolors;;;;;2SA;2SA;;True;;Michael's cuebids précisés
+189;INT_N2;;;bicolore 5/5;pique,trèfle;;;;;;0;;6;;0;False;1C;honors_in_bicolors;;;;;2C;2C;;True;;Michael's cuebids précisés
+190;INT_N2;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1P;honors_in_bicolors;;;;;2P;2P;;True;;Michael's cuebids précisés
+191;INT_N2;;;bicolore 5/5;pique,carreau;;;;;;0;;6;;0;False;1C;honors_in_bicolors;;;;;3T;3T;;True;;Michael's cuebids précisés
+192;INT_N2;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1P;honors_in_bicolors;;;;;3T;3T;;True;;Michael's cuebids précisés
+193;INT_N2;;;bicolore 5/5;;mineure;>=6;mineure;>=5;;0;;6;;0;False;;;;;;;4SA;4SA;;True;;
+194;INT_N2;;;;;mineure;>=7;;;;0;;0;;0;False;1E;;long_color_points_H;10;cuebid;3;;3E;;True;;
+195;INT_N2;;;;;mineure;>=7;;;;0;;0;;1;False;1E;;long_color_points_H;10;;;3SA;3SA;;True;;
+196;INT_N2;;8-18HL;;;;>=5;;;;0;;0;;0;False;;;;;long_suit;1CL1;;1E;;False;;
+197;INT_N2;;11-18HL;;;;>=6;;;;0;;0;;0;False;1E;long_suit_1_unnamed;long_over_interv;False;long_suit;2CL1;;2E;;False;;
+198;INT_N2;;11-18HL;;;trèfle;>=6;;;;0;;0;;0;False;1T;;;;;;2T;2T;;False;;
+199;INT_N2;;14-18HL;;;coeur;>=5;;;;0;;0;;0;False;1P;;long_color_points_H;>=4;;;2C;2C;;False;;
+200;INT_N2;;5-10H;;;Majeure;6;;;;0;;0;;0;False;1m;;;;long_suit;2CL1;;2M;;False;;Barrage
+201;INT_N2;;5-10H;;;pique;6;;;;0;;0;;0;False;1C;;;;;;2P;2P;;False;;Barrage
+202;INT_N2;;5-10H;;;;7;;;;0;;0;;0;False;;;;;long_suit;3CL1;;3E;;False;;Barrage
+203;INT_N2;;5-10H;;;;8;;;;0;;0;;0;False;;;;;long_suit;4CL1;;4E;;False;;Barrage
+204;INT_N2;;16-18HL;régulier;;;;;;;0;;0;;1;False;;;longuest_major;<5;;;1SA;1SA;;False;;
+205;INT_N2;;12-18HL;;;;;;;;0;;0;;0;False;1E;takeout_double;;;;;X;X;;True;;Contre d'appel
+206;INT_N2;;>=19HL;;;;;;;;0;;0;;0;False;1E;;;;;;X;X;;False;;Contre toute distribution
+207;INT_N4;;8-18HL;;;;>=5;;;;0;;0;;0;False;;;;;long_suit;1CL1;;1E;;False;;
+208;INT_N4;;11-18HL;;;;>=6;;;;0;;0;;0;False;1E;long_suit_1_unnamed;long_over_interv;False;long_suit;2CL1;;2E;;False;;
+209;INT_N4;;11-18HL;;;trèfle;>=6;;;;0;;0;;0;False;1T;;;;;;2T;2T;;False;;
+210;INT_N4;;14-18HL;;;coeur;>=5;;;;0;;0;;0;False;1P;;long_color_points_H;>=4;;;2C;2C;;False;;
+211;INT_N4;;5-10H;;;Majeure;6;;;;0;;0;;0;False;1m;;;;long_suit;2CL1;;2M;;False;;Barrage
+212;INT_N4;;5-10H;;;pique;6;;;;0;;0;;0;False;1C;;;;;;2P;2P;;False;;Barrage
+213;INT_N4;;5-10H;;;;7;;;;0;;0;;0;False;;;;;long_suit;3CL1;;3E;;False;;Barrage
+214;INT_N4;;5-10H;;;;8;;;;0;;0;;0;False;;;;;long_suit;4CL1;;4E;;False;;Barrage
+215;INT_N4;;16-18HL;régulier;;;;;;;0;;0;;1;False;;stop_opponents_suits;longuest_major;<5;;;1SA;1SA;;False;;
+216;INT_N4;;12-18HL;;;;;;;;0;;0;;0;False;;takeout_double;;;;;X;X;;True;;Contre d'appel
+217;INT_N4;;>=19HL;;;;;;;;0;;0;;0;False;;;;;;;X;X;;False;;Contre toute distribution
+218;INT_N4;;;bicolore 6/5;pique,coeur;;;;;;0;;6;;0;False;1T passe 1K;;;;;;2SA;2SA;;True;;Bicolore 6/5
+219;INT_N4;;;bicolore 6/5;pique,carreau;;;;;;0;;6;;0;False;1T passe 1C;;;;;;2SA;2SA;;True;;Bicolore 6/5
+220;INT_N4;;;bicolore 6/5;pique,trèfle;;;;;;0;;6;;0;False;1K passe 1C;;;;;;2SA;2SA;;True;;Bicolore 6/5
+221;INT_N4;;;bicolore 6/5;coeur,carreau;;;;;;0;;6;;0;False;1T passe 1P;;;;;;2SA;2SA;;True;;Bicolore 6/5
+222;INT_N4;;;bicolore 6/5;coeur,trèfle;;;;;;0;;6;;0;False;1K passe 1P;;;;;;2SA;2SA;;True;;Bicolore 6/5
+223;INT_N4;;;bicolore 6/5;carreau,trèfle;;;;;;0;;6;;0;False;1C passe 1P;;;;;;2SA;2SA;;True;;Bicolore 6/5
+224;INT_N4;;;bicolore 6/5;pique,coeur;;;;;;0;;6;;0;False;1K passe 2T;;;;;;2SA;2SA;;True;;Bicolore 6/5
+225;INT_N4;;;bicolore 6/5;pique,carreau;;;;;;0;;6;;0;False;1C passe 2T;;;;;;2SA;2SA;;True;;Bicolore 6/5
+226;INT_N4;;;bicolore 6/5;pique,trèfle;;;;;;0;;6;;0;False;1C passe 2K;;;;;;2SA;2SA;;True;;Bicolore 6/5
+227;INT_N4;;;bicolore 6/5;coeur,carreau;;;;;;0;;6;;0;False;1P passe 2T;;;;;;2SA;2SA;;True;;Bicolore 6/5
+228;INT_N4;;;bicolore 6/5;coeur,trèfle;;;;;;0;;6;;0;False;1P passe 1K;;;;;;2SA;2SA;;True;;Bicolore 6/5
+229;INT_N4;;;bicolore 6/5;carreau,trèfle;;;;;;0;;6;;0;False;1P passe 2C;;;;;;2SA;2SA;;True;;Bicolore 6/5
+230;INT_N4;;;bicolore 5/5;pique,coeur;;;;;;0;;6;;0;False;1T passe 1K;;;;;;2T;2T;;True;;Cuebid couleur d'ouverture
+231;INT_N4;;;bicolore 5/5;pique,carreau;;;;;;0;;6;;0;False;1T passe 1C;;;;;;2T;2T;;True;;Cuebid couleur d'ouverture
+232;INT_N4;;;bicolore 5/5;pique,trèfle;;;;;;0;;6;;0;False;1K passe 1C;;;;;;2K;2K;;True;;Cuebid couleur d'ouverture
+233;INT_N4;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1T passe 1P;;;;;;2T;2T;;True;;Cuebid couleur d'ouverture
+234;INT_N4;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1K passe 1P;;;;;;2K;2K;;True;;Cuebid couleur d'ouverture
+235;INT_N4;;;bicolore 5/5;carreau,trèfle;;;;;;0;;6;;0;False;1C passe 1P;;;;;;2C;2C;;True;;Cuebid couleur d'ouverture
+236;INT_N4;;;bicolore 5/5;pique,coeur;;;;;;0;;6;;0;False;1K passe 2T;;;;;;2K;2K;;True;;Cuebid couleur d'ouverture
+237;INT_N4;;;bicolore 5/5;pique,carreau;;;;;;0;;6;;0;False;1C passe 2T;;;;;;2C;2C;;True;;Cuebid couleur d'ouverture
+238;INT_N4;;;bicolore 5/5;pique,trèfle;;;;;;0;;6;;0;False;1C passe 2K;;;;;;2C;2C;;True;;Cuebid couleur d'ouverture
+239;INT_N4;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1P passe 2T;;;;;;2P;2P;;True;;Cuebid couleur d'ouverture
+240;INT_N4;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1P passe 1K;;;;;;2P;2P;;True;;Cuebid couleur d'ouverture
+241;INT_N4;;;bicolore 5/5;carreau,trèfle;;;;;;0;;6;;0;False;1P passe 2C;;;;;;2P;2P;;True;;Cuebid couleur d'ouverture
+242;INT_N4;;>=13HL;unicolore;;carreau;;;;;0;;0;;0;False;1T passe 1K;;long_color_points_H;>=5;;;2K;2K;;True;;Cuebid couleur de réponse
+243;INT_N4;;>=13HL;unicolore;;coeur;;;;;0;;0;;0;False;1T passe 1C;;long_color_points_H;>=5;;;2C;2C;;True;;Cuebid couleur de réponse
+244;INT_N4;;>=13HL;unicolore;;coeur;;;;;0;;0;;0;False;1K passe 1C;;long_color_points_H;>=5;;;2C;2C;;True;;Cuebid couleur de réponse
+245;INT_N4;;>=13HL;unicolore;;pique;;;;;0;;0;;0;False;1T passe 1P;;long_color_points_H;>=5;;;2P;2P;;True;;Cuebid couleur de réponse
+246;INT_N4;;>=13HL;unicolore;;pique;;;;;0;;0;;0;False;1K passe 1P;;long_color_points_H;>=5;;;2P;2P;;True;;Cuebid couleur de réponse
+247;INT_N4;;>=13HL;unicolore;;pique;;;;;0;;0;;0;False;1C passe 1P;;long_color_points_H;>=5;;;2P;2P;;True;;Cuebid couleur de réponse
+248;INT_N4;;>=13HL;unicolore;;trèfle;;;;;0;;0;;0;False;1K passe 2T;;long_color_points_H;>=5;;;3T;3T;;True;;Cuebid couleur de réponse
+249;INT_N4;;>=13HL;unicolore;;trèfle;;;;;0;;0;;0;False;1C passe 2T;;long_color_points_H;>=5;;;3T;3T;;True;;Cuebid couleur de réponse
+250;INT_N4;;>=13HL;unicolore;;carreau;;;;;0;;0;;0;False;1C passe 2K;;long_color_points_H;>=5;;;3K;3K;;True;;Cuebid couleur de réponse
+251;INT_N4;;>=13HL;unicolore;;trèfle;;;;;0;;0;;0;False;1P passe 2T;;long_color_points_H;>=5;;;3T;3T;;True;;Cuebid couleur de réponse
+252;INT_N4;;>=13HL;unicolore;;carreau;;;;;0;;0;;0;False;1P passe 1K;;long_color_points_H;>=5;;;2K;2K;;True;;Cuebid couleur de réponse
+253;INT_N4;;>=13HL;unicolore;;coeur;;;;;0;;0;;0;False;1P passe 2C;;long_color_points_H;>=5;;;3C;3C;;True;;Cuebid couleur de réponse
+254;INT_N4;;12-18HL;;;;;;;;0;;0;;0;False;1E passe 1SA;takeout_double;;;;;X;X;;True;;Contre d'appel
+255;INT_N4;;>=19HL;;;;;;;;0;;0;;0;False;1E passe 1SA;;;;;;X;X;;False;;Contre toute distribution
+256;INT_N4;;;bicolore 5/5;pique,coeur;;;;;;0;;6;;0;False;1m passe 1SA;;;;cuebid;2;;2m;;True;;Cuebid couleur d'ouverture
+257;INT_N4;;;bicolore 5/5;;coeur;>=5;mineure;>=5;;0;;6;;0;False;1P passe 1SA;;;;;;2P;2P;;True;;Cuebid
+258;INT_N4;;;bicolore 5/5;;pique;>=5;mineure;>=5;;0;;6;;0;False;1C passe 1SA;;;;;;2C;2C;;True;;Cuebid
+259;INT_N4;;;bicolore 5/5;trèfle,carreau;;;;;;0;;0;;0;False;1M passe 1SA;;;;;;2SA;2SA;;True;;
+260;INT_N4;;;bicolore 5/5;trèfle,coeur;;;;;;0;;0;;0;False;1K passe 1SA;;;;;;2SA;2SA;;True;;
+261;INT_N4;;;bicolore 5/5;carreau,coeur;;;;;;0;;0;;0;False;1T passe 1SA;;;;;;2SA;2SA;;True;;
+262;INT_N4;;8-18HL;;;;>=5;;;;0;;0;;0;False;1T passe 2T;long_suit_1_unnamed;;;long_suit;2CL1;;2E;;False;;
+263;INT_N4;;8-18HL;;;Majeure;>=5;;;;0;;0;;0;False;1K passe 2K;;;;long_suit;2CL1;;2M;;False;;
+264;INT_N4;;8-18HL;;;pique;>=5;;;;0;;0;;0;False;1C passe 2C;;;;;;2P;2P;;False;;
+265;INT_N4;;11-18HL;;;trèfle;>=6;;;;0;;0;;0;False;1K passe 2K;;;;;;3T;3T;;False;;
+266;INT_N4;;11-18HL;;;mineure;>=6;;;;0;;0;;0;False;1M passe 2M;;;;long_suit;3CL1;;3m;;False;;
+267;INT_N4;;;bicolore 5/5;pique,coeur;;;;;;0;;6;;0;False;1m passe 2m;;;;cuebid;3;;3m;;True;;
+268;INT_N4;;;bicolore 5/5;trèfle,carreau;;;;;;0;;6;;0;False;1M passe 2M;;;;;;2SA;2SA;;True;;
+269;INT_N4;;;bicolore 5/5;pique,trèfle;;;;;;0;;6;;0;False;1C passe 2C;;;;;;3C;3C;;True;;
+270;INT_N4;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1P passe 2P;;;;;;3P;3P;;True;;
+271;INT_N4;;;bicolore 5/5;pique,carreau;;;;;;0;;6;;0;False;1C passe 2C;;;;;;4T;4T;;True;;
+272;INT_N4;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1P passe 2P;;;;;;4T;4T;;True;;
+273;SEQ1SA;TEXAS;<=8HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1SA passe;;;;;;2C;;;False;;Bicolore majeur 5/5
+274;SEQ1SA;TEXAS;9-10HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1SA passe;;;;;;2K;;;False;;Bicolore majeur 5/5
+275;SEQ1SA;TEXAS;11-15HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1SA passe;;;;;;4K;;;False;;Bicolore majeur 5/5
+276;SEQ1SA;TEXAS;>=16HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1SA passe;;;;;;2C;;;False;;Bicolore majeur 5/5
+277;SEQ1SA;STAYMAN;7-8H;irrégulier;;Majeure;5;;;;0;;0;;0;False;1SA passe;;;;;;2T;2T;;True;;
+278;SEQ1SA;STAYMAN;>=9HL;;;;;;;;0;;0;;0;False;1SA passe;major_4;;;;;2T;2T;;True;;Stayman
+279;SEQ1SA;SEQ1SA;8-9H;semi-régulier;;mineure;5;;;;0;;0;;0;False;;;;;;;2SA;2SA;;False;;
+280;SEQ1SA;PASS;10-15H;semi-régulier;;mineure;5;;;;0;;0;;0;False;;;;;;;3SA;3SA;;False;passe;
+281;SEQ1SA;SEQ1SA;9HL;régulier;;;;;;;0;;0;;0;False;;;;;;;2SA;2SA;;False;;Proposition de manche
+282;SEQ1SA;PASS;10-15HL;régulier;;;;;;;0;;0;;0;False;;;;;;;3SA;3SA;;False;passe;
+283;SEQ1SA;SEQ1SA;16-17HL;régulier;;;;;;;0;;0;;0;False;;;;;;;4SA;4SA;;False;;Proposition de petit chelem
+284;SEQ1SA;PASS;18-19HL;régulier;;;;;;;0;;0;;0;False;;;;;;;6SA;6SA;;False;passe;
+285;SEQ1SA;SEQ1SA;20-21HL;régulier;;;;;;;0;;0;;0;False;;;;;;;5SA;5SA;;False;;Proposition de grand chelem
+286;SEQ1SA;PASS;22-25HL;régulier;;;;;;;0;;0;;0;False;;;;;;;7SA;7SA;;False;passe;
+287;SEQ1SA;SEQ1SA;<16H;;;;;;;;0;;0;;0;False;2SA passe;;;;;;passe;passe;;False;;
+288;SEQ1SA;PASS;>=16H;;;;;;;;0;;0;;0;False;2SA passe;;;;;;3SA;3SA;;False;passe;
+289;SEQ1SA;SEQ1SA;<16H;;;;;;;;0;;0;;0;False;4SA passe;;;;;;passe;passe;;False;;
+290;SEQ1SA;PASS;>=16H;;;;;;;;0;;0;;0;False;4SA passe;;;;;;6SA;6SA;;False;passe;
+291;SEQ1SA;SEQ1SA;<16H;;;;;;;;0;;0;;0;False;5SA passe;;;;;;passe;passe;;False;;
+292;SEQ1SA;PASS;>=16H;;;;;;;;0;;0;;0;False;5SA passe;;;;;;7SA;7SA;;False;passe;
+293;SEQ1SA;TEXAS;;;;coeur;>=5;;;;0;;0;;0;False;1SA passe;;;;;;2K;2K;;True;;Texas
+294;SEQ1SA;TEXAS;;;;pique;>=5;;;;0;;0;;0;False;1SA passe;;;;;;2C;2C;;True;;Texas
+295;SEQ1SA;TEXAS;;;;trèfle;>=6;;;;0;;0;;0;False;1SA passe;;;;;;2P;2P;;True;;Texas
+296;SEQ1SA;TEXAS;;;;carreau;>=6;;;;0;;0;;0;False;1SA passe;;;;;;3T;3T;;True;;Texas
+297;SEQ1SA;TEXAS;<=9H;;;mineure;5;;;;0;;0;;0;False;1SA passe;;;;;;passe;passe;;False;;
+298;SEQ1SA;TEXAS;10-15H;;;trèfle;5;;;;0;;0;;0;False;1SA passe;any_short_color;;;;;2P;2P;;True;;Texas
+299;SEQ1SA;TEXAS;10-15H;;;carreau;5;;;;0;;0;;0;False;1SA passe;any_short_color;;;;;3T;3T;;True;;Texas
+300;SEQ1SA;TEXAS;>=16H;;;trèfle;5;;;;0;;0;;0;False;1SA passe;;;;;;2P;2P;;True;;Texas
+301;SEQ1SA;TEXAS;>=16H;;;carreau;5;;;;0;;0;;0;False;1SA passe;;;;;;3T;3T;;True;;Texas
+302;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;;;;2K;2K;;True;;Stayman
+303;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;1;best_major;2;;2M;;False;;Stayman
+304;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;2;;;2SA;2SA;;True;;Stayman
+305;STAYMAN;STAYMAN;<=15H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2K passe;any_short_color;;;long_suit;3CL1;;3m;;False;manche;Stayman
+306;STAYMAN;STAYMAN;>=16H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;3CL1;;3m;;False;manche;Stayman
+307;STAYMAN;SEQ1SA;9HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;2SA;2SA;;False;;Proposition de manche
+308;STAYMAN;PASS;10-15HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;3SA;3SA;;False;passe;
+309;STAYMAN;SEQ1SA;16-17HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;4SA;4SA;;False;;Proposition de petit chelem
+310;STAYMAN;PASS;18-19HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;6SA;6SA;;False;passe;
+311;STAYMAN;SEQ1SA;20-21HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;5SA;5SA;;False;;Proposition de grand chelem
+312;STAYMAN;PASS;22-25HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;7SA;7SA;;False;passe;
+313;STAYMAN;PASS;<=9HL;irrégulier;;Majeure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;2CL1;;2M;;False;passe;Misère dorée
+314;STAYMAN;STAYMAN;>=10HL;;;Majeure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;3CL1;;3M;;True;manche;Chassé-croisé
+315;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;3;;3M;M,4,4;False;;Stayman
+316;STAYMAN;PASS;11-16HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;4;;4M;M,4,4;False;passe;Stayman
+317;STAYMAN;CHELEM;>=17HLD;;;;;;;;0;;0;;0;False;2T passe 2C passe;;suit_length;C>=4;;;3P;3P;C,4,4;True;forcing;Convention 2012
+318;STAYMAN;CHELEM;>=17HLD;;;;;;;;0;;0;;0;False;2T passe 2P passe;;suit_length;P>=4;;;3C;3C;P,4,4;True;forcing;Convention 2012
+319;STAYMAN;STAYMAN;<=15H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2M passe;;short_color;;long_suit;3CL1;;3m;;False;manche;Stayman
+320;STAYMAN;STAYMAN;>=16H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2M passe;;;;long_suit;3CL1;;3m;;False;manche;Stayman
+321;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;3T;3T;C,4,4;True;;Transfert
+322;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;3K;3K;P,4,4;True;;Transfert
+323;STAYMAN;STAYMAN;11-15HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;4T;4T;C,4,4;True;manche;Transfert
+324;STAYMAN;STAYMAN;11-15HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;4K;4K;P,4,4;True;manche;Transfert
+325;STAYMAN;STAYMAN;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;3C;3C;C,4,4;False;forcing;
+326;STAYMAN;STAYMAN;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;3P;3P;P,4,4;False;forcing;
+327;STAYMAN;STAYMAN;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;short_color;T;;;4T;4T;par,4,4;True;;Splinter
+328;STAYMAN;STAYMAN;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;short_color;K;;;4K;4K;par,4,4;True;;Splinter
+329;STAYMAN;STAYMAN;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2P passe;;short_color;C;;;4C;4C;P,4,4;True;;Splinter
+330;STAYMAN;PASS;<16HL;;;;;;;;0;;0;;0;False;2T passe 2K passe 3C passe;;suit_length;P=3;;;3P;3P;;False;passe;
+331;STAYMAN;PASS;>=16HL;;;;;;;;0;;0;;0;False;2T passe 2K passe 3C passe;;suit_length;P=3;;;4P;4P;;False;passe;
+332;STAYMAN;PASS;<16HL;;;;;;;;0;;0;;0;False;2T passe 2K passe 3P passe;;suit_length;C=3;;;3C;3C;;False;passe;
+333;STAYMAN;PASS;>=16HL;;;;;;;;0;;0;;0;False;2T passe 2K passe 3P passe;;suit_length;C=3;;;4C;4C;;False;passe;
+334;STAYMAN;PASS;<17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe 3M passe;;;;;;passe;passe;;False;passe;
+335;STAYMAN;PASS;>=17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe 3M passe;;;;support;4;;4M;;False;passe;
+336;STAYMAN;PASS;<16HL;;;;;;;;0;;0;;0;False;2T passe 2SA passe 3T passe;;;;;;3C;3C;;False;passe;
+337;STAYMAN;PASS;>=16HL;;;;;;;;0;;0;;0;False;2T passe 2SA passe 3T passe;;;;;;4C;4C;;False;passe;
+338;STAYMAN;PASS;<16HL;;;;;;;;0;;0;;0;False;2T passe 2SA passe 3K passe;;;;;;3P;3P;;False;passe;
+339;STAYMAN;PASS;>=16HL;;;;;;;;0;;0;;0;False;2T passe 2SA passe 3K passe;;;;;;4P;4P;;False;passe;
+340;STAYMAN;PASS;;;;;;;;;0;;0;;0;False;2T passe 2SA passe 4T passe;;;;;;4C;4C;;False;passe;
+341;STAYMAN;PASS;;;;;;;;;0;;0;;0;False;2T passe 2SA passe 4K passe;;;;;;4P;4P;;False;passe;
+342;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 2K passe;;;;;;2C;2C;;False;;Rectification Texas
+343;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 2C;;;;;;2P;2P;;False;;Rectification Texas
+344;TEXAS;TEXAS;16-17H;;;;;;;;0;;0;;0;False;1SA passe 2K passe;;suit_length;C>=4;;;3C;3C;C,5,4;False;;Rectification fittée Texas
+345;TEXAS;TEXAS;16-17H;;;;;;;;0;;0;;0;False;1SA passe 2C passe;;suit_length;P>=4;;;3P;3P;P,5,4;False;;Rectification fittée Texas
+346;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 2P passe;;;;;;3T;3T;;False;;Rectification Texas
+347;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 3T passe;;;;;;3K;3K;;False;;Rectification Texas
+348;TEXAS;TEXAS;;;;;;;;;0;;0;;0;False;1SA passe 4K passe;;;;best_major;4;;4M;M,5,2;False;;
+349;TEXAS;TEXAS;;;;coeur;>=6;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3C;3C;C,2,6;False;;
+350;TEXAS;TEXAS;;;;pique;>=6;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3P;3P;P,2,6;False;;
+351;TEXAS;TEXAS;15-17HLD;;;coeur;>=6;;;;0;;0;;0;False;2K passe 2C passe;;suit_length;T<=1;;;4T;4T;C,2,6;False;;Splinter
+352;TEXAS;TEXAS;15-17HLD;;;pique;>=6;;;;0;;0;;0;False;2C passe 2P passe;;suit_length;T<=1;;;4T;4T;P,2,6;False;;Splinter
+353;TEXAS;TEXAS;15-17HLD;;;coeur;>=6;;;;0;;0;;0;False;2K passe 2C passe;;suit_length;K<=1;;;4K;4K;C,2,6;False;;Splinter
+354;TEXAS;TEXAS;15-17HLD;;;pique;>=6;;;;0;;0;;0;False;2C passe 2P passe;;suit_length;K<=1;;;4K;4K;P,2,6;False;;Splinter
+355;TEXAS;TEXAS;15-17HLD;;;pique;>=6;;;;0;;0;;0;False;2C passe 2P passe;;suit_length;C<=1;;;4C;4C;P,2,6;False;;Splinter
+356;TEXAS;TEXAS;<=15H;;;;;mineure;>=4;;0;;0;;0;False;2K passe 2C passe;any_short_color;;;long_suit;3CL2;;3m;;False;;
+357;TEXAS;TEXAS;;;;;;mineure;>=4;;0;;0;;0;False;2C passe 2P passe;any_short_color;;;long_suit;3CL2;;3m;;False;;
+358;TEXAS;TEXAS;>=16H;;;;;mineure;>=4;;0;;0;;0;False;2K passe 2C passe;;;;long_suit;3CL2;;3m;;False;;
+359;TEXAS;TEXAS;;;;;;mineure;>=4;;0;;0;;0;False;2C passe 2P passe;;;;long_suit;3CL2;;3m;;False;;
+360;TEXAS;SEQ1SA;8-9H;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;2SA;2SA;;False;;
+361;TEXAS;PASS;10-15H;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3SA;3SA;;False;passe;
+362;TEXAS;SEQ1SA;9HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;2SA;2SA;;False;;Proposition de manche
+363;TEXAS;PASS;10-15HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3SA;3SA;;False;passe;
+364;TEXAS;SEQ1SA;16-17HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;4SA;4SA;;False;;Proposition de petit chelem
+365;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;6SA;6SA;;False;passe;
+366;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;5SA;5SA;;False;;Proposition de grand chelem
+367;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;7SA;7SA;;False;passe;
+368;TEXAS;SEQ1SA;8-9H;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;2SA;2SA;;False;;
+369;TEXAS;PASS;10-15H;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3SA;3SA;;False;passe;
+370;TEXAS;SEQ1SA;9HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;2SA;2SA;;False;;Proposition de manche
+371;TEXAS;PASS;10-15HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3SA;3SA;;False;passe;
+372;TEXAS;SEQ1SA;16-17HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;4SA;4SA;;False;;Proposition de petit chelem
+373;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;6SA;6SA;;False;passe;
+374;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;5SA;5SA;;False;;Proposition de grand chelem
+375;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;7SA;7SA;;False;passe;
+376;CHELEM;PASS;;;;;;;;;0;;0;;0;False;passe passe;;;;;;passe;passe;;False;passe;
+378;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;3P passe;;;;control;;;;;False;;
+379;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4E passe;;;;control;;;;;False;;
+380;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe;;;;blackwood;;;;;False;;
+381;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe 5E passe;;;;blackwood;;;;;False;;

@@ -4,7 +4,7 @@ from pydantic import AfterValidator, BaseModel, Field, field_validator, Validati
 from typing import Annotated
 import re
 from bids.files import BidRuleFile
-from bids.bids import Forcing, valid_symbolic_bid
+from bids.bids import Bid, Forcing
 from bids.hands import MetaSuit
 from bids.steps import Step
 from deals.distributions import Distribution
@@ -49,9 +49,14 @@ def _validated_count(value: str) -> str:
    
 def _validated_hist_bid(value: str) -> str:
    if value:
-      for bid in value.split(" "):
-         if not valid_symbolic_bid(bid):
+      for bid_raw in value.split(" "):
+         if not Bid.valid_symbolic_bid(bid_raw):
             raise MyDataException(f"'{value}' ne correspond pas à une suite d'enchères.")
+   return value
+
+def _validated_fit(value: str) -> str:
+   if value and not re.fullmatch(r"[TKCPMmEp](ar)?,[1-9],[1-9]", value):
+      raise MyDataException(f"{value} n'est pas une couleur de fit suivie du nbr de cartes des 2 joueurs.")
    return value
 
 def _validated_forcing(value: str) -> str:
@@ -131,6 +136,7 @@ class BidRule(BaseModel):
    arg_bid: str = ""
    bid: str = ""
    symbolic_bid: str = ""
+   fit: Annotated[str, Field(default=""), AfterValidator(_validated_fit)]
    artificial: bool = False
    forcing: Annotated[str, Field(default=""), AfterValidator(_validated_forcing)]
    convention: str = ""
