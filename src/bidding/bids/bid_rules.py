@@ -164,3 +164,16 @@ class BidRule(BaseModel):
       rows = bid_rule_file.get_rows(step_name)
       return [BidRule(**row) for row in rows]
 
+   def split_fit(self, partner_suit_code: str) -> tuple:
+      # Returns (suit_code, partner nbr trumps, player nbr trumps)
+      if not self.fit:
+         return "", 0, 0
+      suit_like, nbr_partner, nbr_player = self.fit.replace(" ", "").split(",")
+      if suit_like == "par":
+         suit_code = partner_suit_code
+      elif suit_like in [s.code for s in MetaSuit.real()]:
+         suit_code = suit_like
+      else:
+         suit_code = ""
+      return suit_code, int(nbr_partner), int(nbr_player)
+

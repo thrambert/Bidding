@@ -24,7 +24,7 @@ id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2
 23;OPEN;;5-10H;unicolore;;;7;;;;0;;0;;0;False;;;long_color_points_H;>=4;long_suit;3CL1;;3E;;False;;Barrage
 24;OPEN;;5-10H;unicolore;;;8;;;;0;;0;;0;False;;;long_color_points_H;>=4;long_suit;4CL1;;4E;;False;;Barrage
 25;OPEN;;10-16H;unicolore;;mineure;>=7;;;;0;;0;;0;False;;;long_color_points_H;10;;;3SA;3SA;;False;;Mineure affranchie
-26;ROSA;;5-10H;irrégulier;;;;;;>=2;0;;0;4;0;False;1M passe;;;;support;3;;3M;M,5,4;False;;Barrage
+26;ROSA;;5-10H;irrégulier;;;;;;>=2;0;;0;4;0;False;1M passe;;;;support;3;;3M;par,5,4;False;;Barrage
 27;ROSA;;>=11HLD;;;;;;;>=2;0;;0;4;0;False;1M passe;any_short_color;;;;;2SA;2SA;par,5,4;False;;
 28;ROSA;;>=11HLD;;;;;;;>=2;0;;0;3;0;False;1M passe;any_short_color;;;;;2T;2T;par,5,3;True;forcing;Drury
 29;ROSA;;>=11HLD;;;;;;;>=2;0;;0;>=4;0;False;1M passe;;;;;;2T;2T;par,5,4;True;forcing;Drury
@@ -34,13 +34,13 @@ id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2
 33;ROSA;;8-11H;;;;>=5;;;>=2;0;;0;>=4;0;False;1C passe;;long_color_points_H;>=5;;;2P;2P;C,5,4;False;;Enchère de rencontre
 34;ROSA;;8-11H;;;;>=5;;;>=2;0;;0;>=4;0;False;1M passe;;long_color_points_H;>=5;long_suit;3CL1;;3E;par,5,4;False;;Enchère de rencontre
 35;ROSA;;6-11H;;;;;;;>=2;0;;0;<3;0;False;1M passe;;;;;;1SA;1SA;;False;;
-36;ROSA;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M passe;;;;support;2;;2M;M,5,3;False;;
+36;ROSA;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M passe;;;;support;2;;2M;par,5,3;False;;
 37;ROSA;;11-12HLD;;;;;;;;0;;0;3;0;False;1M passe;;;;;;2SA;2SA;par,5,3;True;forcing;2 SA fitté
-38;ROSA;;11-12HLD;;;;;;;;0;;0;4;0;False;1M passe;;;;support;3;;3M;M,5,4;False;;
+38;ROSA;;11-12HLD;;;;;;;;0;;0;4;0;False;1M passe;;;;support;3;;3M;par,5,4;False;;
 39;ROSA;;>=11H;;;carreau;>=5;;;;0;;0;>=3;0;False;1M passe;;;;;;2K;2K;;False;autoforcing;
 40;ROSA;;>=11H;;;;;;;;0;;0;>=3;0;False;1M passe;;;;;;2T;2T;;False;autoforcing;
 41;ROSA;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M passe;;;;;;3SA;3SA;par,5,4;True;forcing;3 SA fitté
-42;ROSA;;6-9H;;;;;;;;0;;0;5;0;False;1M passe;;;;support;4;;4M;M,5,5;False;;
+42;ROSA;;6-9H;;;;;;;;0;;0;5;0;False;1M passe;;;;support;4;;4M;par,5,5;False;;
 43;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M passe;;suit_length;T<=1;;;4T;4T;par,5,5;True;forcing;Splinter
 44;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M passe;;suit_length;K<=1;;;4K;4K;par,5,5;True;forcing;Splinter
 45;ROSA;;13-15HLD;;;;;;;;0;;0;5;0;False;1P passe;;suit_length;C<=1;;;4C;4C;P,5,5;True;forcing;Splinter
@@ -77,12 +77,12 @@ id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2
 76;ROSA;;9-11H;;;;;;;;0;;0;>=5;0;False;1T passe;;;;;;3T;3T;T,3,5;False;;
 77;ROSA;;6-8H;;;;;;;;0;;0;>=4;0;False;1K passe;;;;;;2K;2K;K,3,4;False;;
 78;ROSA;;9-11H;;;;;;;;0;;0;>=4;0;False;1K passe;;;;;;3K;3K;K,3,4;False;;
-79;ROACA;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M X;;;;support;2;;2M;M,5,3;False;;
+79;ROACA;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M X;;;;support;2;;2M;par,5,3;False;;
 80;ROACA;;11-12HLD;;;;;;;;0;;0;3;0;False;1M X;;;;;;2SA;2SA;par,5,3;True;;2SA Truscott
-81;ROACA;;6-10H;;;;;;;;0;;0;4;0;False;1M X;;;;support;3;;3M;M,5,4;False;;Barrage
+81;ROACA;;6-10H;;;;;;;;0;;0;4;0;False;1M X;;;;support;3;;3M;par,5,4;False;;Barrage
 82;ROACA;;>=11HLD;;;mineure;>=5;;;;0;;0;>=4;0;False;1M X;;;;long_suit;3CL1;;3m;par,5,4;False;;Enchère de rencontre
 83;ROACA;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M X;;;;;;3SA;3SA;par,5,4;True;forcing;3 SA fitté
-84;ROACA;;6-9H;;;;;;;;0;;0;5;0;False;1M X;;;;support;4;;4M;M,5,5;False;;
+84;ROACA;;6-9H;;;;;;;;0;;0;5;0;False;1M X;;;;support;4;;4M;par,5,5;False;;
 85;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M X;;suit_length;T<=1;;;4T;4T;par,5,5;True;forcing;Splinter
 86;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1M X;;suit_length;K<=1;;;4K;4K;par,5,5;True;forcing;Splinter
 87;ROACA;;13-15HLD;;;;;;;;0;;0;5;0;False;1P X;;suit_length;C<=1;;;4C;4C;P,5,5;True;forcing;Splinter
@@ -105,9 +105,9 @@ id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2
 104;ROACA;;4-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;4CL1;;4E;;False;;Barrage
 105;ROACA;;8-10HL;semi-régulier;;;;;;;0;;0;;0;False;1m X;;;;;;1SA;1SA;;False;;
 106;ROACA;;>=10H;;;;;;;;0;;0;;0;False;1m X;;;;;;XX;XX;;False;;
-107;ROACA;;7-8H;;;;;;;;0;;0;5;0;False;1m X;;;;support;2;;2m;m,3,5;False;;
-108;ROACA;;7-8H;;;;;;;;0;;0;6;0;False;1m X;;;;support;3;;3m;m,3,6;False;;
-109;ROACA;;7-8H;;;;;;;;0;;0;7;0;False;1m X;;;;support;4;;4m;m,3,7;False;;
+107;ROACA;;7-8H;;;;;;;;0;;0;5;0;False;1m X;;;;support;2;;2m;par,3,5;False;;
+108;ROACA;;7-8H;;;;;;;;0;;0;6;0;False;1m X;;;;support;3;;3m;par,3,6;False;;
+109;ROACA;;7-8H;;;;;;;;0;;0;7;0;False;1m X;;;;support;4;;4m;par,3,7;False;;
 110;ROACA;;>=9H;;;;;;;;0;;0;5;0;False;1m X;;;;;;2SA;2SA;par,3,5;True;;2SA Truscott
 111;ROAIC;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1C 1P;;;;;;2C;2C;C,5,3;False;;
 112;ROAIC;;11-15HLD;;;;;;;;0;;0;3;0;False;1C 1P;;;;;;2SA;2SA;C,5,3;True;forcing;2SA fitté
@@ -122,11 +122,11 @@ id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2
 121;ROAIC;;4-10H;;;;>=8;;;;0;;0;<3;0;False;1C 1P;long_suit_1_unnamed;;;long_suit;4CL1;;4E;;False;;Barrage
 122;ROAIC;;8-10HL;semi-régulier;;;;;;;0;;0;<3;1;False;1C 1P;;;;;;1SA;1SA;;False;;
 123;ROAIC;;>=8HL;;;;;;;;0;;0;<3;0;False;1C 1P;;;;;;X;X;;False;;Contre Spoutnik généralisé
-124;ROAIC;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M 2E;;;;support;2;;2M;M,5,3;False;;
-125;ROAIC;;11-15HLD;;;;;;;;0;;0;3;0;False;1M 2E;;;;;;2SA;2SA;M,5,3;True;forcing;2SA fitté
-126;ROAIC;;11-12HLD;;;;;;;;0;;0;4;0;False;1M 2E;;;;support;3;;3M;M,5,4;False;;
-127;ROAIC;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M 2E;;;;;;3SA;3SA;M,5,4;True;forcing;3 SA fitté
-128;ROAIC;;6-9H;;;;;;;;0;;0;5;0;False;1M 2E;;;;support;4;;4M;M,5,5;False;;
+124;ROAIC;;6-10HLD;;;;;;;;0;;0;>=3;0;False;1M 2E;;;;support;2;;2M;par,5,3;False;;
+125;ROAIC;;11-15HLD;;;;;;;;0;;0;3;0;False;1M 2E;;;;;;2SA;2SA;par,5,3;True;forcing;2SA fitté
+126;ROAIC;;11-12HLD;;;;;;;;0;;0;4;0;False;1M 2E;;;;support;3;;3M;par,5,4;False;;
+127;ROAIC;;13-15HLD;semi-régulier;;;;;;;0;;0;4;0;False;1M 2E;;;;;;3SA;3SA;par,5,4;True;forcing;3 SA fitté
+128;ROAIC;;6-9H;;;;;;;;0;;0;5;0;False;1M 2E;;;;support;4;;4M;par,5,5;False;;
 129;ROAIC;;13-15HLD;;;;;;;;0;;0;5;0;False;1M 2E;short_in_interv_color;;;cuebid;4;;4E;par,5,5;True;forcing;Splinter
 130;ROAIC;;13-15HLD;;;mineure;>=5;;;;0;;0;>=4;0;False;1M 2E;long_suit_1_unnamed;long_color_points_H;>=5;long_suit;4CL1;;4m;par,5,4;False;;Enchère de rencontre
 131;ROAIC;;13-15HLD;;;coeur;>=5;;;;0;;0;>=4;0;False;1P 2E;long_suit_1_unnamed;long_color_points_H;>=5;;;4C;4C;P,5,4;False;;Enchère de rencontre
@@ -165,9 +165,9 @@ id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2
 164;ROAIC;;13-15HL;semi-régulier;;;;;;;0;;0;;1;False;1K 2T;;longuest_major;<4;;;3SA;3SA;;False;;
 165;ROAIC;;6-8H;;;;;;;;0;;0;>=4;0;False;1K 2T;;;;;;2K;2K;K,3,4;False;;
 166;ROAIC;;9-11H;;;;;;;;0;;0;>=4;0;False;1K 2T;;;;;;3K;3K;K,3,4;False;;
-167;ROA1SA;;8-10HLD;;;;;;;;0;;0;3;0;False;1M 1SA;;;;support;2;;2M;M,5,3;False;;
-168;ROA1SA;;5-10H;;;;;;;;0;;0;4;0;False;1M 1SA;;;;support;3;;3M;M,5,4;False;;Barrage
-169;ROA1SA;;5-10H;;;;;;;;0;;0;5;0;False;1M 1SA;;;;support;4;;4M;M,5,5;False;;Barrage
+167;ROA1SA;;8-10HLD;;;;;;;;0;;0;3;0;False;1M 1SA;;;;support;2;;2M;par,5,3;False;;
+168;ROA1SA;;5-10H;;;;;;;;0;;0;4;0;False;1M 1SA;;;;support;3;;3M;par,5,4;False;;Barrage
+169;ROA1SA;;5-10H;;;;;;;;0;;0;5;0;False;1M 1SA;;;;support;4;;4M;par,5,5;False;;Barrage
 170;ROA1SA;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1M 1SA;;;;;;2SA;2SA;par,5,4;True;;Cuebid
 171;ROA1SA;;>=11H;unicolore;;;>=6;;;;0;;0;;0;False;1M 1SA;long_suit_1_unnamed;;;long_suit;2CL1;;2E;;False;;
 172;ROA1SA;;>=11HLD;;;;>=5;;;;0;;0;>=4;0;False;1M 1SA;long_suit_1_unnamed;;;long_suit;3CL1;;3E;par,5,4;False;;Enchère de rencontre
@@ -313,8 +313,8 @@ id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2
 312;STAYMAN;PASS;22-25HL;régulier;;;;;;;0;;0;;0;False;2T passe 2K passe;;;;;;7SA;7SA;;False;passe;
 313;STAYMAN;PASS;<=9HL;irrégulier;;Majeure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;2CL1;;2M;;False;passe;Misère dorée
 314;STAYMAN;STAYMAN;>=10HL;;;Majeure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;3CL1;;3M;;True;manche;Chassé-croisé
-315;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;3;;3M;M,4,4;False;;Stayman
-316;STAYMAN;PASS;11-16HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;4;;4M;M,4,4;False;passe;Stayman
+315;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;3;;3M;par,4,4;False;;Stayman
+316;STAYMAN;PASS;11-16HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;4;;4M;par,4,4;False;passe;Stayman
 317;STAYMAN;CHELEM;>=17HLD;;;;;;;;0;;0;;0;False;2T passe 2C passe;;suit_length;C>=4;;;3P;3P;C,4,4;True;forcing;Convention 2012
 318;STAYMAN;CHELEM;>=17HLD;;;;;;;;0;;0;;0;False;2T passe 2P passe;;suit_length;P>=4;;;3C;3C;P,4,4;True;forcing;Convention 2012
 319;STAYMAN;STAYMAN;<=15H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2M passe;;short_color;;long_suit;3CL1;;3m;;False;manche;Stayman
@@ -375,7 +375,9 @@ id;step;next_step_open;points;distribution;bicolor;suit1;suit1_count;suit2;suit2
 374;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;5SA;5SA;;False;;Proposition de grand chelem
 375;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;7SA;7SA;;False;passe;
 376;CHELEM;PASS;;;;;;;;;0;;0;;0;False;passe passe;;;;;;passe;passe;;False;passe;
-378;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;3P passe;;;;control;;;;;False;;
-379;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4E passe;;;;control;;;;;False;;
-380;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe;;;;blackwood;;;;;False;;
-381;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe 5E passe;;;;blackwood;;;;;False;;
+377;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;3P passe;;;;control;;;;;True;;
+378;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4E passe;;;;control;;;;;True;;
+379;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe;;;;blackwood;;;;;True;;
+380;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe 5E passe;;;;blackwood;;;;;False;;
+381;CHELEM;PASS;;;;;;;;;0;;0;;0;False;6E passe;;;;;;passe;passe;;False;passe;
+382;CHELEM;PASS;;;;;;;;;0;;0;;0;False;7E passe;;;;;;passe;passe;;False;passe;

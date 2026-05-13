@@ -28,6 +28,11 @@ class Camp(Enum):
 
    def contains(self, rank: int) -> bool:
       return rank in self.value
+   
+   def other_rank(self, rank: int) -> int:
+      for rk in self.value:
+         if rk != rank:
+            return rk
 
 
 class Bid:
@@ -84,11 +89,24 @@ class Bid:
          return False
       return self.suit_code in self.SUIT_CODES_BY_GROUP[symbolic_bid[1:]]
 
-   def first_bid_value_above_for(self, meta_suit: MetaSuit) -> str:
-      # Returns a bid value in given suit just above self bid
-      level = self.level + (0 if self.meta_suit > meta_suit else 1)
-      return str(level) + meta_suit.code
+   def first_bid_above(self) -> Bid:
+      next_suit_rank = self.meta_suit.rank + 1 if self.meta_suit.rank < 3 else 0
+      suit = MetaSuit.from_rank(next_suit_rank)
+      level = self.level + (1 if next_suit_rank == 0 else 0)
+      return Bid(str(level) + suit.code)
 
+   def first_bid_above_or_pass(self, suit: MetaSuit) -> Bid:
+      # Returns a bid in given suit above self bid, or pass if self suit equals
+      #  given suit.
+      if suit == self.meta_suit:
+         return Bid(SpecialBid.PASS.code)
+      level = self.level + (0 if self.meta_suit > suit else 1)
+      return Bid.compose(level, suit.code)
+
+   @staticmethod
+   def compose(level: int, suit_code: str) -> Bid:
+      return Bid(str(level) + suit_code)
+   
    @staticmethod
    def valid_symbolic_bid(value: str) -> bool:
       if value in [b.code for b in SpecialBid]:

@@ -7,7 +7,7 @@ from bridgebots.deal import PlayerHand
 from bids.bid_rules import BidRule
 from bids.points import PointZone
 from bids.hands import RichHand, MetaSuit
-from bids.bid_records import Bidding, BidRecord
+from bids.bid_records import Bidding, BidRecord, Bid
 from bids.slams import Slam, Fit, Camp
 from bids.steps import Stepping
 
@@ -88,23 +88,18 @@ class BidEngine:
       if rule.next_step_open:
          self._next_step_open = rule.next_step_open
       if rule.fit:
-         self._add_fit(rule.fit, raw_bid, camp)
+         self._add_fit(rule, Bid(raw_bid), camp, second_last.rank)
       if rule.function_bid == "control" and not self.slam:
          self._init_slam(camp)
 
-   def _add_fit(self, rule_fit: str, raw_bid: str, camp: Camp):
-      suit_like, nbr_partner, nbr_player = rule_fit.replace(" ", "").split(",")
-      if suit_like == "par":
-         suit_code = self.record.partner_last_suit_code()
-      elif suit_like in [s.code for s in MetaSuit.real()]:
-         suit_code = suit_like
-      else:
-         suit_code = raw_bid[1]
-      players_nbr_cards = [int(nbr_partner), int(nbr_player)]
-      if self.record.second_last.rank >= 3: 
-         players_nbr_cards.sort(reverse=True)
-      fit = Fit(camp, suit_code, players_nbr_cards)
-      self.fits.append(fit)
+   def _add_fit(self, rule: BidRule, bid: Bid, camp: Camp, partner_rank: int):
+      suit_code, nbr_partner, nbr_player = rule.split_fit(bid.suit_code)
+      suit_code = suit_code if suit_code else bid.suit_code
+      players_nbr_cards = {
+         partner_rank: int(nbr_partner),
+         camp.other_rank(partner_rank): int(nbr_player)
+         }
+      self.fits.append(Fit(camp, suit_code, players_nbr_cards))
 
    def _init_slam(self, camp: Camp):
       possible_fits = [fit for fit in self.fits if fit.camp.name == camp.name]
@@ -116,7 +111,7 @@ class BidEngine:
    def _get_first_satisfied_rule(self, step_name: str) -> BidRule:
       # Returns first satisfied rule or None.
       rules = BidRule.get_rules(step_name)
-      analyzer = RuleAnalyzer(self.record, self.hand)
+      analyzer = RuleAnalyzer(self.record, self.hand, self.fits)
       for rule in rules:
          print(f"--> rule {rule.id}")
          if analyzer.rule_satisfied(rule):
@@ -142,11 +137,13 @@ class RuleAnalyzer:
    Properties
    record:        All bids made since the game starts.
    hand:          The current player's hand, for who a bid should be decided.
+   fits:          List of identified fits in every camp.
    ════════════════════════════════════════════════════════════════════════════
    """
-   def __init__(self, record: BidRecord, hand: RichHand):
+   def __init__(self, record: BidRecord, hand: RichHand, fits: list[Fit]):
       self.record = record
       self.hand = hand
+      self.fits = fits
 
    def rule_satisfied(self, rule: BidRule) -> bool:
       for condition_name in BidRule.condition_names():
@@ -164,10 +161,19 @@ class RuleAnalyzer:
    def _points_check(self, rule: BidRule) -> bool:
       point_zone = PointZone(rule.points)
       if point_zone.is_HLD():
-         return point_zone.contains_HLD(self.hand.points_HLD())
+         return point_zone.contains_HLD(self._get_player_HLD(rule))
       else:
          return point_zone.contains(self.hand.points_H, self.hand.points_HL)
-      
+   
+   def _get_player_HLD(self, rule: BidRule) -> int:
+      if rule.fit:
+         trump_code, count, _ = rule.split_fit(self.record.second_last.suit_code)
+         return self.hand.points_HLD(trump_code, count)
+      else:
+         partner_rank = self.record.second_last.rank
+         fit = [f for f in self.fits if f.camp in partner_rank][0]
+         return self.hand.points_HLD(fit.code, fit.nbr_cards[partner_rank])
+
    def _distribution_check(self, rule: BidRule) -> bool:
       return rule.distribution in self.hand.distribution
 
@@ -382,12 +388,9 @@ class BidComputer:
    def _best_major(self) -> str:
       return self.hand.best_major_code
 
-   def _control(self, arg: str) -> str:
-      return self.slam.next_control(
+   def _slam(self, arg: str) -> str:
+      return self.slam.next_bid(
          partner_last_bid=self.record.second_last.raw,
          rank=self.record.second_last.rank,
          hand=self.hand
          )
-   
-   def _backwood(self, arg: str) -> str:
-      return self.slam.next_blackwood()

@@ -83,6 +83,11 @@ class MetaSuit(Enum):
       return meta_suit[0] if meta_suit else None
 
    @staticmethod
+   def from_rank(suit_rank: int) -> MetaSuit:
+      meta_suit = [s for s in MetaSuit if s.rank == suit_rank]
+      return meta_suit[0] if meta_suit else None
+
+   @staticmethod
    def all_texts() -> list[str]:
       return [s.text for s in MetaSuit]
 
@@ -139,7 +144,7 @@ class RichHand:
          points += max(0, len(ranks) - 4)
       return points
 
-   def points_HLD(self) -> int:
+   def points_HLD(self, trump_code: str, partner_nbr_trumps: int) -> int:
       points = self.points_HL
       # TODO: need to collect trump suit and nbr of cards in trump promised by partner
       return points
@@ -253,6 +258,10 @@ class RichHand:
       if Rank.KING in fit_ranks:
          count += 1
       return (count, Rank.QUEEN in fit_ranks)
+
+   def has_queen(self, suit: MetaSuit) -> bool:
+      ranks = self.suits[suit]
+      return Rank.QUEEN in ranks
 
    def _compute_numeric_distribution(self) -> str:
       # This function returns text with numbers of cards par suit, example: 5422.
