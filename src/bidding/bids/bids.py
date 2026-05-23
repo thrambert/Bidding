@@ -26,6 +26,9 @@ class Camp(Enum):
    def from_rank(cls, rank: int) -> Camp:
       return cls.OPEN if rank in Camp.OPEN.value else cls.INT
 
+   def other_camp(self) -> Camp:
+      return Camp.OPEN if self.name == Camp.INT.name else Camp.INT
+
    def contains(self, rank: int) -> bool:
       return rank in self.value
    
@@ -43,7 +46,7 @@ class Bid:
    raw:        String raw value, Examples: 3SA, 4P, X, passe
    level:      Level of the bid. Example 3SA is level 3, PASSE is level 0.
    suit_code:  1 or 2 caps chr in french or "" for special bid. Examples: C, SA.
-   meta_suit:  MetaSuit instance, or None if special bid.
+   suit:       MetaSuit instance, or None if special bid.
    a_color:    True if bid is related to spade, heart, diamond or club.
    a_special:  True if it is a special bid.
    """
@@ -67,7 +70,7 @@ class Bid:
       self.level = int(value[0]) if value[0].isdigit() else 0
       self.a_special = value in SpecialBid.all_values()
       self.suit_code = value[1:] if self.level >= 1 else ""
-      self.meta_suit = MetaSuit.from_code(self.suit_code) if self.suit_code else None
+      self.suit = MetaSuit.from_code(self.suit_code) if self.suit_code else None
       self.a_color = not self.suit_code in ["", "SA"]
 
    def __eq__(self, bid2) -> bool:
@@ -78,7 +81,7 @@ class Bid:
    
    def __lt__(self, bid2) -> bool:
       if self.level == bid2.level:
-         return self.meta_suit <  bid2.meta_suit
+         return self.suit <  bid2.suit
       else:
          return self.level < bid2.level
 
@@ -90,7 +93,7 @@ class Bid:
       return self.suit_code in self.SUIT_CODES_BY_GROUP[symbolic_bid[1:]]
 
    def first_bid_above(self) -> Bid:
-      next_suit_rank = self.meta_suit.rank + 1 if self.meta_suit.rank < 3 else 0
+      next_suit_rank = self.suit.rank + 1 if self.suit.rank < 3 else 0
       suit = MetaSuit.from_rank(next_suit_rank)
       level = self.level + (1 if next_suit_rank == 0 else 0)
       return Bid(str(level) + suit.code)
@@ -98,9 +101,9 @@ class Bid:
    def first_bid_above_or_pass(self, suit: MetaSuit) -> Bid:
       # Returns a bid in given suit above self bid, or pass if self suit equals
       #  given suit.
-      if suit == self.meta_suit:
+      if suit == self.suit:
          return Bid(SpecialBid.PASS.code)
-      level = self.level + (0 if self.meta_suit > suit else 1)
+      level = self.level + (0 if self.suit > suit else 1)
       return Bid.compose(level, suit.code)
 
    @staticmethod
@@ -122,6 +125,12 @@ class Forcing(Enum):
    AUTO = "autoforcing"
    PASS = "passe"
 
+   @staticmethod
+   def from_value(value: str) -> Forcing:
+      for item in Forcing:
+         if item.value == value:
+            return item
+   
    def __repr__(self) -> str:
       match self:
          case self.ONCE:

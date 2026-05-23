@@ -1,7 +1,7 @@
 from pydantic import computed_field
 from bids.points import PointZone
 from bids.bids import Bid, Camp
-from bids.bid_rules import BidRule
+from bids.bid_senses import BidSense
 
 
 PASS = "passe"
@@ -9,27 +9,31 @@ PASS = "passe"
 
 class Bidding(Bid):
    """
-   This class stores a bid and position of player who made it, and the rule 
-   from which bid has been deducted.
+   This class stores a bid and position of player who made it, and the sense 
+   which gives information deducted from bid.
    
    Properties
    lap:        0 while everyone pass, then 1, then 2 after 4 bids, etc.
    rank:       1 to 4. Starts from dealer while everyone pass, then from opener.
    camp:       Camp of the player who made this bidding.
-   rule:       Rule from which the bid has been deducted or None
+   sense:      Sense of the bid made (Information deducted from bid), or None.
 
-   and properties of mother class.
+   Other properties: See mother class.
    """
-   def __init__(self, lap:int, rank: int, raw_bid: str, rule: BidRule = None):
+   def __init__(self, lap: int, rank: int, sense: BidSense):
       self.lap = lap
       self.rank = rank
       self.camp = Camp.from_rank(rank)
-      self.rule = rule
-      super().__init__(raw_bid)
+      self.sense = sense
+      super().__init__(sense.raw_bid)
 
-   def in_intervention_camp(self) -> bool:
+   def in_interv_camp(self) -> bool:
       return self.rank % 2 == 0
    
+   def is_natural_suit(self) -> bool:
+      # Returns True if bid is on a real suit (not SA) and is natural bid.
+      return self.a_color and not self.sense.artificial
+
 
 class BidRecord:
    """
@@ -58,11 +62,19 @@ class BidRecord:
    def reversed_all(self) -> list[Bidding]:
       return self.all[::-1] if self.all else []
    
-   def add_bidding(self, raw_bid: str, rule: BidRule) -> Bidding:
-      lap, rank = self.get_next_lap_and_rank(raw_bid == PASS)
-      new_bidding = Bidding(lap=lap, rank=rank, raw_bid=raw_bid, rule=rule)
+   def add_bidding(self, bid_sense: BidSense) -> Bidding:
+      lap = self.next_lap(bid_sense.raw_bid == PASS)
+      rank = self.next_rank()
+      new_bidding = Bidding(lap, rank, bid_sense)
       self.all.append(new_bidding)
       return new_bidding
+   
+   def last_normal_bid(self) -> Bidding:
+      if not self.all:
+         return None
+      for bidding in self.reversed_all():
+         if not bidding.a_special:
+            return bidding
 
    def partner_last_suit_code(self) -> str:
       if len(self.all) >= 2 and self.all[-2].suit_code:
@@ -71,29 +83,34 @@ class BidRecord:
          return self.all[-6].suit_code
    
    def partner_splinter_code(self) -> str:
-      if self.second_last.rule.convention == "Splinter":
+      if self.second_last.sense.convention == "Splinter":
          return self.second_last.raw
 
    def opponent_on_right_suit_code(self) -> str:
+      # Returns suit code of opponent on the right if his bid is natural.
       if self.all:
          return self.last.suit_code
 
    def opponent_on_left_suit_code(self) -> str:
+      # Returns suit code of opponent on the left if his bid is natural.
       if len(self.all) >= 3:
          return self.all[-3].suit_code
-      
+   
    def opponents_suit_codes(self) -> list[str]:
-      codes = [self.opponent_on_right_suit_code, self.opponent_on_left_suit_code]
-      return [c for c in codes if c.strip()]
+      # Returns codes of all suits naturally announced by the opponents
+      opp_camp = self.last.camp
+      opp_biddings = [b for b in self.all if b.camp == opp_camp]
+      return [b.suit_code for b in opp_biddings if b.is_natural_suit()]
 
    def first_pass_count(self) -> int:
       return self._first_pass_count_in(self.all)
 
-   def last_pass_count(self) -> int:
-      return self._first_pass_count_in(self.reversed_all())
+   def sleep(self) -> bool:
+      last_pass_count = self._first_pass_count_in(self.reversed_all())
+      return last_pass_count == 2
    
-   def get_intervention_count(self) -> int:
-      # Returns number of bids made by the intervention camp, pass excluding.
+   def nbr_interventions(self) -> int:
+      # Returns number of bids made by the intervention camp, pass excluded.
       bidding = [b for b in self.all if b.camp == Camp.INT and b.raw != PASS]
       return len(bidding)
    
@@ -107,22 +124,20 @@ class BidRecord:
    def get_players_camp_points(self) -> dict:
       camp = Camp.from_rank(self.second_last.rank)
       players_pts = {camp.value[0]: (0, 40), camp.value[1]: (0, 40)}
-      for bidding in [b for b in self.all if b.rank in camp.value and b.rule.points]:
-         points = PointZone(bidding.rule.points)
+      for bidding in [b for b in self.all if b.rank in camp.value and b.sense.points]:
+         points = PointZone(bidding.sense.points)
          mini, maxi = players_pts[bidding.rank]
          players_pts[bidding.rank] = max(points.min, mini), min(points.max, maxi)
       return players_pts
 
-   def get_next_lap_and_rank(self, next_bid_is_PASS: bool = False) -> tuple:
-      if self.all:
-         last_bidding = self.last
-         quotient, rest = divmod(last_bidding.rank, 4)
-         return last_bidding.lap + quotient, 1 + rest
+   def next_lap(self, next_bid_is_PASS: bool) -> int:
+      if self.last:
+         return self.last.lap + self.last.rank // 4
       else:
-         return (0, 1) if next_bid_is_PASS else (1, 1)
-      
-   def _bidding_completed(self) -> bool:
-      return len(self.all) >= 4 and self.last_pass_count() >= 3
+         return 0 if next_bid_is_PASS else 1
+   
+   def next_rank(self) -> int:
+      return self.last.rank % 4 + 1 if self.last else 1
 
    def _first_pass_count_in(self, bidding_list: list[Bidding]) -> int:
       count = 0

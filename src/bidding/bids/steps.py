@@ -11,6 +11,8 @@ INTERVENE:     Steps for interveners depending on intervention count.
 WAKE:          Steps to select after 2 consecutive passes depending on rank.
 ____________________________________________________________________________
 """
+from __future__ import annotations
+
 from enum import Enum, auto
 from utils import MyDataException
 
@@ -43,6 +45,7 @@ class Step(Enum):
    WAKECI = auto()   # réveil du camp en intervention (lap 2 rank 2 ou 4)
    WAKE_N3 = auto()  # réveil du joueur n°3 (lap 2 rank 3)
    CHELEM = auto()   # séquence des controles, backwood et chelem
+   FREE = auto()     # utiliser le bid producer et non le fichier des rules
 
 
 class Stepping:
@@ -88,7 +91,7 @@ class Stepping:
       self.rank = rank
       self.intervene = intervene
 
-   def get_next(self, sleep: bool, intervene_count: int, next_step_open: str) -> str:
+   def get_next(self, sleep: bool, intervene_count: int) -> str:
       # Before opening
       if not self.bid:
          return Step.OPEN.name
@@ -99,14 +102,12 @@ class Stepping:
          return self.WAKE[self.rank - 1].name
       # Intervention
       elif self.intervene:
-         return self._next_step_for_opening_camp(next_step_open).name
+         return self._next_step_for_opening_camp().name
       else:
          return self._next_step_for_interv_camp(intervene_count).name
 
-   def _next_step_for_opening_camp(self, next_step: str) -> Step:
-      if next_step:
-         return next_step
-      elif self.lap == 1:
+   def _next_step_for_opening_camp(self) -> Step:
+      if self.lap == 1:
          return self._get_value(self.R_OPEN if self.rank == 2 else self.REDEM_O)
       elif self.lap == 2 and self.rank == 2:
          return Step.R2
@@ -122,6 +123,6 @@ class Stepping:
          return self.INTERVENE[interv_count]
 
    def _get_value(self, step_dict: dict) -> Step:
-      # Returns a step from step_dict where bid is replaced by other if not found in.
+      # Returns a step from step_dict where bid is replaced by "other" if not found in.
       search_bid = self.bid if self.bid in step_dict else "other"
       return step_dict[search_bid]

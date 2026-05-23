@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from pydantic import AfterValidator, BaseModel, Field, field_validator, ValidationInfo
+from pydantic import AfterValidator, BaseModel, BeforeValidator, Field
 from typing import Annotated
 import re
-from bids.files import BidRuleFile
-from bids.bids import Bid, Forcing
+from bids.files import RuleFile
+from bids.bids import Bid
 from bids.hands import MetaSuit
 from bids.steps import Step
 from deals.distributions import Distribution
@@ -12,22 +12,36 @@ from utils import MyDataException
 
 
 # =============================================================================
-#  VALIDATORS
+#  COMMON VALIDATORS ALSO USED BY SENSE 
+# =============================================================================
+
+def validated_points(value: str) -> str:
+   if value and not re.search("(>=)?[1-2]?[0-9]H?(HL)?-?[1-2]?[0-9]?HL?(LD)?", value):
+      raise MyDataException(f"{value} n'est pas un intervalle de points valide.")
+   return value
+   
+def validated_distrib(value: str) -> str:
+   if value and value not in Distribution.all_including_special():
+      raise MyDataException(f"{value} n'est pas une distribution valide.")
+   return value
+
+def validated_suit(value: str) -> str:
+   if value and not value in MetaSuit.all_texts() + MetaSuit.all_groups():
+      raise MyDataException(f"{value} n'est pas une couleur valide.")
+   return value
+
+def validated_count(value: str) -> str:
+   if value and not re.search(">?<?(>=)?(<=)?[1-9]", value):
+      raise MyDataException(f"{value} n'est pas une condition valide sur un nombre.")
+   return value
+   
+# =============================================================================
+#  PRIVATE VALIDATORS
 # =============================================================================
 
 def _validated_step(value: str) -> str:
    if value and not value in [e.name for e in Step]:
       raise MyDataException(f"{value} n'est pas une étape valide dans le cycle des enchères.")
-   return value
-
-def _validated_points(value: str) -> str:
-   if value and not re.search("(>=)?[1-2]?[0-9]H?(HL)?-?[1-2]?[0-9]?HL?(LD)?", value):
-      raise MyDataException(f"{value} n'est pas un intervalle de points valide.")
-   return value
-   
-def _validated_distribution(value: str) -> str:
-   if value and value not in Distribution.all_including_special():
-      raise MyDataException(f"{value} n'est pas une distribution valide.")
    return value
 
 def _validated_bicolor(value: str) -> str:
@@ -37,16 +51,6 @@ def _validated_bicolor(value: str) -> str:
             raise MyDataException(f"{value} n'est pas un couple de deux couleurs valides.")
    return value
 
-def _validated_color(value: str) -> str:
-   if value and not value in MetaSuit.all_texts() + MetaSuit.all_groups():
-      raise MyDataException(f"{value} n'est pas une couleur valide.")
-   return value
-
-def _validated_count(value: str) -> str:
-   if value and not re.search(">?<?(>=)?(<=)?[1-9]", value):
-      raise MyDataException(f"{value} n'est pas une condition valide sur un nombre.")
-   return value
-   
 def _validated_hist_bid(value: str) -> str:
    if value:
       for bid_raw in value.split(" "):
@@ -54,15 +58,8 @@ def _validated_hist_bid(value: str) -> str:
             raise MyDataException(f"'{value}' ne correspond pas à une suite d'enchères.")
    return value
 
-def _validated_fit(value: str) -> str:
-   if value and not re.fullmatch(r"[TKCPMmEp](ar)?,[1-9],[1-9]", value):
-      raise MyDataException(f"{value} n'est pas une couleur de fit suivie du nbr de cartes des 2 joueurs.")
-   return value
-
-def _validated_forcing(value: str) -> str:
-   if value and not value in [e.value for e in Forcing]:
-      raise MyDataException(f"{value} n'est pas une dénomination de forcing.")
-   return value
+def _ensure_sense_id(value: str) -> int:
+   return 0 if value in ["none", ""] else int(value)
 
 
 class BidRule(BaseModel):
@@ -76,7 +73,7 @@ class BidRule(BaseModel):
 
    id:            Unique id of a rule.
    step:          Bidding context in which the rule is to be applied.
-   next_step_open: Bidding context for the opener's camp. May be empty.
+   next_step:     Bidding context for the next player. If empty, use Stepping.
    ____________________________________________________________________________
    Properties as conditions
 
@@ -101,31 +98,25 @@ class BidRule(BaseModel):
    Properties providing the bid to make if all conditions are satisfied
 
    function_bid:  Name of a function to decide which bid to make in complex case.
-   arg_bid:       Argument for function bid
-   bid:           The bid to make if all conditions of the rule are satisfied.
-   ____________________________________________________________________________
-   Properties which describe the bid
-
-   symbolic_bid:  Generic bid where suit may be replaced by Majeure or mineure.
-   artificial:    True if the bid is not natural but a convention.
-   forcing:       Indicates if the partner must bid in response.
-   convention:    Name of main conventions.
+   arg_bid:       Argument for function bid.
+   raw_bid:       The bid to make if all conditions of the rule are satisfied.
+   sense_id:      Id for sense of bid in SEFsense file.
    """
    id: int
    step: Annotated[str, AfterValidator(_validated_step)]
-   next_step_open: Annotated[str, AfterValidator(_validated_step)]
-   points: Annotated[str, Field(default=""), AfterValidator(_validated_points)]
-   distribution: Annotated[str, Field(default=""), AfterValidator(_validated_distribution)]
+   next_step: Annotated[str, AfterValidator(_validated_step)]
+   points: Annotated[str, Field(default=""), AfterValidator(validated_points)]
+   distribution: Annotated[str, Field(default=""), AfterValidator(validated_distrib)]
    bicolor: Annotated[str, Field(default=""), AfterValidator(_validated_bicolor)]
-   suit1: Annotated[str, Field(default=""), AfterValidator(_validated_color)]
-   suit1_count: Annotated[str, Field(default=""), AfterValidator(_validated_count)]
-   suit2: Annotated[str, Field(default=""), AfterValidator(_validated_color)]
-   suit2_count: Annotated[str, Field(default=""), AfterValidator(_validated_count)]
+   suit1: Annotated[str, Field(default=""), AfterValidator(validated_suit)]
+   suit1_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
+   suit2: Annotated[str, Field(default=""), AfterValidator(validated_suit)]
+   suit2_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
    first_pass: str = ""
    won_tricks: float = 0
-   def_tricks: Annotated[str, Field(default=""), AfterValidator(_validated_count)]
+   def_tricks: Annotated[str, Field(default=""), AfterValidator(validated_count)]
    lost_tricks: int = 0
-   fit_cards: Annotated[str, Field(default=""), AfterValidator(_validated_count)]
+   fit_cards: Annotated[str, Field(default=""), AfterValidator(validated_count)]
    stops: float = 0
    awake: bool = False
    hist_bid: Annotated[str, Field(default=""), AfterValidator(_validated_hist_bid)]
@@ -134,22 +125,9 @@ class BidRule(BaseModel):
    arg2: str = ""
    function_bid: str = ""
    arg_bid: str = ""
-   bid: str = ""
-   symbolic_bid: str = ""
-   fit: Annotated[str, Field(default=""), AfterValidator(_validated_fit)]
-   artificial: bool = False
-   forcing: Annotated[str, Field(default=""), AfterValidator(_validated_forcing)]
-   convention: str = ""
+   raw_bid: str = ""
+   sense_id: Annotated[int, Field(default=""), BeforeValidator(_ensure_sense_id)]
 
-   @field_validator('forcing', mode='after')
-   @classmethod
-   def check_forcing_pass_match_next_step(cls, value: str, info: ValidationInfo) -> str:
-      next_step = info.data['next_step_open']
-      if next_step == "PASS" or value == "passe":
-         if value != (next_step.lower() + "e"):
-            raise ValueError(f"Incohérence entre next_step_open \'{next_step}\' et forcing \'{value}\'.")
-         return value
-   
    @staticmethod
    def condition_names() -> list[str]:
       fields = list(BidRule.model_fields.keys())
@@ -160,7 +138,7 @@ class BidRule(BaseModel):
    @staticmethod
    def get_rules(step_name: str) -> list[BidRule]:
       # This function reads file and sends back bid rules for given arguments.
-      bid_rule_file = BidRuleFile(BidRule.model_fields.keys())
+      bid_rule_file = RuleFile(BidRule.model_fields.keys())
       rows = bid_rule_file.get_rows(step_name)
       return [BidRule(**row) for row in rows]
 
@@ -171,9 +149,8 @@ class BidRule(BaseModel):
       suit_like, nbr_partner, nbr_player = self.fit.replace(" ", "").split(",")
       if suit_like == "par":
          suit_code = partner_suit_code
-      elif suit_like in [s.code for s in MetaSuit.real()]:
+      elif suit_like in [s.code for s in MetaSuit.four_suits()]:
          suit_code = suit_like
       else:
          suit_code = ""
       return suit_code, int(nbr_partner), int(nbr_player)
-

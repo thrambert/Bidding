@@ -44,6 +44,9 @@ class MetaSuit(Enum):
    def is_minor(self):
       return self.group == "mineure"
 
+   def same_rank(self, other_suit: MetaSuit) -> bool:
+      return (self.is_major() == other_suit.is_major())
+   
    def __eq__(self, other) -> bool:
       return self.rank == other.rank
    
@@ -64,9 +67,13 @@ class MetaSuit(Enum):
       return [self.code, self.group_code]
    
    @staticmethod
-   def real() -> list:
+   def four_suits() -> list[MetaSuit]:
       return [s for s in MetaSuit if s != MetaSuit.NO_TRUMP]
    
+   @staticmethod
+   def four_suit_codes() -> list[str]:
+      return [s.code for s in MetaSuit if s != MetaSuit.NO_TRUMP]
+
    @staticmethod
    def from_suit(suit: Suit) -> MetaSuit:
       meta_suit = [s for s in MetaSuit if s.name == suit.name]
@@ -133,7 +140,7 @@ class RichHand:
    @cached_property
    def points_H(self) -> int:
       points = 0
-      for meta_suit in MetaSuit.real():
+      for meta_suit in MetaSuit.four_suits():
          points += self.suit_points_H(meta_suit)
       return points
    

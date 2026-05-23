@@ -10,7 +10,7 @@ class Distribution:
    to determine which bid to make.
    ____________________________________________________________________________
    Properties
-   canonical : One Main enum, see below.
+   canonical : One Main enum, see below
    numeric:    Numeric distribution or "". Example: "6322"
    special:    List of special distrib if any, or []. Example: ["bicolore 5/5"]
    ____________________________________________________________________________
@@ -24,6 +24,7 @@ class Distribution:
       UNICOLOR = "unicolore"
       BICOLOR = "bicolore"
       TRICOLOR = "tricolore"
+      UNDEFINED = "indéfini"
    
 
    NUM_REGULAR = [
@@ -41,18 +42,29 @@ class Distribution:
    NUM_TRICOLOR = [
       "4441", "5440"
       ]
-   SPECIAL = [
-      "bicolore 5/5",      # Bicolor at least 5/5
-      "bicolore 6/5",      # Bicolor at least 6/5
-      "semi-régulier",     # Regular or 5422 or 6322
-      "irrégulier",        # Not regular
-   ]
+   SPECIAL = {
+      "bicolore 5/5":   Main.BICOLOR,     # Bicolor at least 5/5
+      "bicolore 6/5":   Main.BICOLOR,     # Bicolor at least 6/5
+      "semi-régulier":  Main.UNDEFINED,   # Regular or 5422 or 6322
+      "irrégulier":     Main.UNDEFINED,   # Not regular
+   }
 
    def __init__(self, input_value: str):
-      self.canonical = self._get_canonical(input_value).value
+      self.canonical = self._get_canonical(input_value)
       self.numeric: str = input_value if input_value.isdigit() else ""
       self.special: list[str] = self._get_special()
 
+   def get_all_shapes(self) ->list[str]:
+      # Returns all expressions for this distribution, included special if any.
+      shapes = [self.canonical.value]
+      if self.numeric:
+         shapes.append(self.numeric)
+      shapes.extend(self.special)
+      return shapes
+
+   def semi_regular(self) -> bool:
+      return self.canonical == self.Main.REGULAR or self.numeric in ["5422", "6322"]
+   
    def _get_canonical(self, input_value: str) -> Main:
       # Returns a Main enum, or None.
       if input_value in [e.value for e in self.Main]:
@@ -80,7 +92,7 @@ class Distribution:
          if self.numeric and int(self.numeric[:2]) >= 65:
             special_distrib.append("bicolore 6/5")         
       # semi-régulier
-      if self.canonical == self.Main.REGULAR or self.numeric in ["5422", "6322"]:
+      if self.semi_regular():
          special_distrib.append("semi-régulier")
       # irrégulier
       if self.canonical != self.Main.REGULAR:
@@ -89,7 +101,7 @@ class Distribution:
          
    def get_all_shapes(self) ->list[str]:
       # Returns all expressions for this distribution, included special if any.
-      shapes = [self.canonical]
+      shapes = [self.canonical.value]
       if self.numeric:
          shapes.append(self.numeric)
       shapes.extend(self.special)

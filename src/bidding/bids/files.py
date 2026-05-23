@@ -1,6 +1,7 @@
 # This file contains classes to access Excel files
 import openpyxl
 import csv
+from pathlib import Path
 from utils import Asset, MyFileAccessException
 
 
@@ -14,10 +15,10 @@ class SemiColon(csv.Dialect):
     quoting = csv.QUOTE_MINIMAL
 
 
-class BidRuleFile():
-   def __init__(self, fields: list[str]):
+class CsvFile():
+   def __init__(self, file_name: Path, fields: list[str]):
       self.fields = fields
-      self.name = Asset.path("bidtree.csv")
+      self.name = file_name
 
    def recreate(self):
       # This function erase existing file if any and creates empty one with header.
@@ -49,11 +50,21 @@ class BidRuleFile():
       return matching_rows
 
 
-class BidExcelFile:
-   def __init__(self):
-      file_name = Asset.path("bidtree.xlsx")
-      wb = openpyxl.load_workbook(file_name)
-      self.sheet = wb["rules"]
+class RuleFile(CsvFile):
+   def __init__(self, fields: list[str]):
+      name = Asset.path("bid_rules.csv")
+      super().__init__(name, fields)
+
+
+class SenseFile(CsvFile):
+   def __init__(self, fields: list[str]):
+      name = Asset.path("bid_senses.csv")
+      super().__init__(name, fields)
+
+
+class ExcelFile:
+   def __init__(self, wb: openpyxl.Workbook, sheet_name: str):
+      self.sheet = wb[sheet_name]
       self.header = self._get_header(self.sheet)
       self.column_range = range(0, len(self.header))
 
@@ -69,50 +80,102 @@ class BidExcelFile:
       return fields
 
 
-class BidFileConverter:
-   def excel_to_Csv(self, csv_fields: list[str]) -> BidRuleFile:
-      # This function creates csv file from excel file.
-      excel_file = BidExcelFile()
-      csv_file = BidRuleFile(csv_fields)
+class RuleExcelFile(ExcelFile):
+   def __init__(self):
+      file_name = Asset.path("SEFrule.xlsx")
+      wb = openpyxl.load_workbook(file_name)
+      super().__init__(wb=wb, sheet_name="rules")
+
+
+class SenseExcelFile(ExcelFile):
+   def __init__(self):
+      file_name = Asset.path("SEFsense.xlsx")
+      wb = openpyxl.load_workbook(file_name)
+      super().__init__(wb=wb, sheet_name="bids")
+
+
+class ExcelToCsv:
+   ALLOW_BLANK = [
+      "distribution",
+      "hist_bid",
+      "convention",
+      "comment",
+   ]
+   BOOL_FIELDS = [
+      "suit_stop",
+      "suit_control",
+      "suit_force",
+      "opp_stop",
+      "artificial",
+      "awake",
+   ]
+   NUM_OP_FIELDS = [
+      "distribution",
+      "spade_count",
+      "heart_count",
+      "diamond_count",
+      "club_count",
+      "par_suit_count",
+      "suit_count",
+      "suit1_count",
+      "suit2_count",
+      "first_pass",
+      "fit_cards",
+      "arg2",
+      "arg_bid",
+   ]
+   NUMERIC_FIELDS = [
+      "won_tricks",
+      "lost_tricks",
+      "stops",
+      "sense_id",
+   ]
+
+   def convert_rules(self, csv_fields: list[str]) -> RuleFile:
+      excel_file = RuleExcelFile()
+      csv_file = RuleFile(csv_fields)
+      return self._convert(excel_file, csv_file)
+
+   def convert_senses(self, csv_fields: list[str]) -> SenseFile:
+      excel_file = SenseExcelFile()
+      csv_file = SenseFile(csv_fields)
+      return self._convert(excel_file, csv_file)
+
+   def _convert(self, excel_file: ExcelFile, csv_file: CsvFile):
       try:
          csv_file.recreate()
-         self._write_bid_tree_csv(excel_file, csv_file)
+         self._write_csv_row(excel_file, csv_file)
       except Exception as error:
          raise error
       return csv_file
 
-   def _write_bid_tree_csv(self, excel: BidExcelFile, csv_file: BidRuleFile):
+   def _write_csv_row(self, excel_file: ExcelFile, csv_file: CsvFile):
       # Writes a row in csv file for each row read in excel sheet.
+      sheet = excel_file.sheet
       with open(csv_file.name, "a+", newline='') as csvfile:
          writer = csv.DictWriter(csvfile, dialect=SemiColon, fieldnames=csv_file.fields)
          try:
-            for excel_row in excel.sheet.iter_rows(min_row=3, max_row=excel.sheet.max_row, values_only=True):
+            for excel_row in sheet.iter_rows(min_row=2, values_only=True):
                row = {}
-               for col in excel.column_range:
-                  row[excel.header[col]] = self._normalize(excel.header[col], excel_row[col], col)
+               for field in csv_file.fields:
+                  col = excel_file.header.index(field)
+                  row[field] = self._normalize(field, excel_row[col])
                writer.writerow(row)
          except Exception as error:
             raise error
    
-   def _normalize(self, field: str, excel_value, col: int) -> any:
+   def _normalize(self, field: str, excel_value) -> any:
       # This function adapts default values and formats.
-      ALLOW_BLANK = ["distribution", "hist_bid", "convention"]
-      BOOL_FIELDS = ["awake", "artificial"]
-      NUM_OP_FIELDS = ["distribution", "suit1_count", "suit2_count",
-                       "first_pass", "fit_cards", "arg1", "arg_bid"]
-      NUMERIC_FIELDS = ["won_tricks", "lost_tricks", "stops"]
-
-      if isinstance(excel_value, str) and not field in ALLOW_BLANK:
+      if isinstance(excel_value, str) and not field in self.ALLOW_BLANK:
             excel_value = excel_value.replace(" ", "")
             
       if field == "hist_bid" and excel_value:
-         return excel_value.replace("-", "passe")
-      
-      if field in BOOL_FIELDS:
+         return excel_value.replace("-", "passe")      
+      elif field in self.BOOL_FIELDS:
          return True if excel_value == 1 else False
-      elif field in NUM_OP_FIELDS:
+      elif field in self.NUM_OP_FIELDS:
          return str(excel_value) if excel_value else ""
-      elif field in NUMERIC_FIELDS:
+      elif field in self.NUMERIC_FIELDS:
          return excel_value if excel_value else 0
       else:
          return excel_value if excel_value else ""
