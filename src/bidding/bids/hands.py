@@ -219,24 +219,24 @@ class RichHand:
    @cached_property
    def best_minor_code(self) -> str:
       if self.cards_count[MetaSuit.DIAMONDS] > self.cards_count[MetaSuit.CLUBS]:
-         return MetaSuit.DIAMONDS.group_code
+         return MetaSuit.DIAMONDS.code
       elif self.cards_count[MetaSuit.DIAMONDS] < self.cards_count[MetaSuit.CLUBS]:
-         return MetaSuit.CLUBS.group_code
+         return MetaSuit.CLUBS.code
       elif self.cards_count[MetaSuit.DIAMONDS] == 3:
-         return MetaSuit.CLUBS.group_code
+         return MetaSuit.CLUBS.code
       else:
-         return MetaSuit.DIAMONDS.group_code
+         return MetaSuit.DIAMONDS.code
 
    @cached_property
    def best_major_code(self) -> str:
       if self.cards_count[MetaSuit.SPADES] > self.cards_count[MetaSuit.HEARTS]:
-         return MetaSuit.SPADES.group_code
+         return MetaSuit.SPADES.code
       elif self.cards_count[MetaSuit.SPADES] < self.cards_count[MetaSuit.HEARTS]:
-         return MetaSuit.HEARTS.group_code
+         return MetaSuit.HEARTS.code
       elif self.cards_count[MetaSuit.SPADES] <= 4:
-         return MetaSuit.HEARTS.group_code
+         return MetaSuit.HEARTS.code
       else:
-         return MetaSuit.SPADES.group_code
+         return MetaSuit.SPADES.code
 
    def stop_suit(self, suit: MetaSuit) -> bool:
       # Returns True if this hand has one or more stops in given suit.

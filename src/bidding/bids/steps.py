@@ -14,6 +14,7 @@ ____________________________________________________________________________
 from __future__ import annotations
 
 from enum import Enum, auto
+from bids.bids import Camp
 from utils import MyDataException
 
 
@@ -47,8 +48,15 @@ class Step(Enum):
    CHELEM = auto()   # séquence des controles, backwood et chelem
    FREE = auto()     # utiliser le bid producer et non le fichier des rules
 
+   def __eq__(self, other: Step) -> bool:
+      return other.name == self.name
+   
+   @staticmethod
+   def from_name(name: str) -> Step:
+      return Step[name]
 
-class Stepping:
+
+class Stair:
    """
    This class provides a function to get next step.
 
@@ -56,7 +64,7 @@ class Stepping:
    bid:        Value of last bid made, "" if no bid yet made.
    lap:        Last lap in bidding.
    rank:       Rank of last bidding player (1 for opener to 4).
-   intervene:  True when last bidding player is an intervener (rank 2 or 4).
+   rule_steps: Dict {rank: Step} for next steps provided by Excel rules.  
    """
    R_OPEN = {
       PASS:    Step.ROSA,
@@ -85,31 +93,41 @@ class Stepping:
       Step.WAKE_N1,
       ]
 
-   def __init__(self, last_raw_bid: str, lap: int, rank: int, intervene: bool):
-      self.bid = last_raw_bid
+   def __init__(self):
+      self.rule_steps: dict[int, Step] = {rank: None for rank in range(1, 5)}
+   
+   def _update_properties(self, lap: int, player_rank: int):
       self.lap = lap
-      self.rank = rank
-      self.intervene = intervene
+      self.player_rank = player_rank
+      self.player_camp = Camp.from_rank(player_rank)
 
-   def get_next(self, sleep: bool, intervene_count: int) -> str:
-      # Before opening
-      if not self.bid:
+   def get_next(self, last_raw_bid: str, lap: int,
+                player_rank: int, sleep: bool, intervene_count: int) -> str:
+      self._update_properties(lap, player_rank)
+      if self.rule_steps[player_rank]:
+         return self.rule_steps[player_rank].name
+      
+      if not (lap and last_raw_bid):
          return Step.OPEN.name
-      elif self.lap == 0:
-         return Step.OPEN.name
-      # Wake-up after two passes
       elif sleep:
-         return self.WAKE[self.rank - 1].name
-      # Intervention
-      elif self.intervene:
-         return self._next_step_for_opening_camp().name
+         return self.WAKE[self.player_rank - 1].name
+      elif self.player_camp == Camp.OPEN:
+         return self._next_step_for_opening_camp(last_raw_bid).name
       else:
          return self._next_step_for_interv_camp(intervene_count).name
 
-   def _next_step_for_opening_camp(self) -> Step:
+   def set_camp_next_step(self, step_name: str):
+      camp_next_step = Step.from_name(step_name) if step_name else None
+      partner_rank = self.player_camp.other_rank(self.player_rank)
+      self.rule_steps[partner_rank] = camp_next_step
+      free = camp_next_step == Step.FREE if step_name else False
+      self.rule_steps[self.player_rank] = Step.FREE if free else None
+
+   def _next_step_for_opening_camp(self, last_raw_bid: str) -> Step:
       if self.lap == 1:
-         return self._get_value(self.R_OPEN if self.rank == 2 else self.REDEM_O)
-      elif self.lap == 2 and self.rank == 2:
+         step_dict = self.R_OPEN if self.player_rank == 3 else self.REDEM_O
+         return self._get_value(last_raw_bid, step_dict)
+      elif self.lap == 2 and self.player_rank == 3:
          return Step.R2
       else:
          raise MyDataException("Prochaine étape du camp de l'ouvreur " + \
@@ -117,12 +135,13 @@ class Stepping:
       
    def _next_step_for_interv_camp(self, interv_count: int) -> Step:
       if self.lap == 1 and interv_count == 0:
-         return self.INT_LAP1_NO_INT[self.rank // 3]
+         return self.INT_LAP1_NO_INT[self.player_rank // 4]
       else:
          # Rmk: If the 2 interveners pass in first lap, they always pass after.
          return self.INTERVENE[interv_count]
 
-   def _get_value(self, step_dict: dict) -> Step:
+   def _get_value(self, last_raw_bid: str, step_dict: dict) -> Step:
       # Returns a step from step_dict where bid is replaced by "other" if not found in.
-      search_bid = self.bid if self.bid in step_dict else "other"
+      search_bid = last_raw_bid if last_raw_bid in step_dict else "other"
       return step_dict[search_bid]
+   

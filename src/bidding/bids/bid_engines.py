@@ -7,11 +7,12 @@ from bridgebots.deal import PlayerHand
 from bids.bid_rules import BidRule
 from bids.points import PointZone
 from bids.hands import RichHand, MetaSuit
+from bids.bids import Camp
 from bids.bid_records import Bidding, BidRecord
 from bids.bid_senses import BidSense
 from bids.bid_producers import BidProducer
 from bids.hazes import Haze
-from bids.steps import Stepping
+from bids.steps import Stair, Step
 
 
 PASS = "passe"
@@ -27,66 +28,82 @@ class BidEngine:
 
    Properties
    hand:          The current player's hand, for who a bid should be decided.
+   player_rank:   Rank of current player who has to make a bid.
    record:        All bids made since the game starts.
    haze:          Information on each player's hand deducted from bidding.
    producer:      Bid producer when there are no rules, which stores slam sequence.
-   _next_step:    Next step given by Excel rules if any else empty.
+   _camps_step:   A set of tuples (n, str) where n is concerned player rank,
+                  and str is next_step from Excel rules, or ""
    """
    def __init__(self):
       self.hand: RichHand = None
+      self.player_rank = 1
       self.record = BidRecord()
       self.haze = Haze()
       self.producer = BidProducer()
-      self._next_step = ""
+      self.stair = Stair()
+      self._camps_step = set()
+      self._free_mode = False
 
    def provide_bid(self, hand: PlayerHand) -> BidSense:
       # This function returns bid the player has to make as a BidSense instance
       #  in which properties may be empty except bid if no sense to provide.
+      self.hand = RichHand(hand)
+      self.player_rank = self.record.next_rank()
 
-      if not self.record.last or self.record.last.rank == 4:
-         next_lap = self.record.next_lap() if self.record.last else 1
-         print("="*100)
+      if not self.record.last or self.player_rank == 1:
+         next_lap = self.record.next_lap(False) if self.record.last else 1
          print("="*45, f"{next_lap}e TOUR", "="*46)
 
-      self.hand = RichHand(hand)
-      sense = self._get_next_bid(self._next_step)
-      bidding = self.record.add_bidding(sense)
-      self.haze.store(sense, bidding.rank, self.record.partner_last_suit_code(),
+      step = self._get_next_step()
+      sense = self._get_next_bid(step)
+      self.record.add_bidding(sense)
+      self.haze.store(sense, self.player_rank, self.record.partner_last_suit_code(),
                       self.record.opponents_suit_codes())
       return sense
 
-   def _get_next_bid(self, next_step: str) -> BidSense:
-      if next_step == "FREE":
+   def _get_next_bid(self, step: str) -> BidSense:
+      if step == "FREE":
          return self.producer.make_bid(self.hand, self.record, self.haze)
       else:
-         step = next_step if next_step else self._get_next_step(self.record.last)
          return self._run_step(step)
 
-   def _get_next_step(self, last: Bidding) -> str:
-      if last:
-         stp = Stepping(last.raw, last.lap, last.rank, last.in_interv_camp())
+   def _get_next_step(self) -> str:
+      if self.record.last:
+         return self.stair.get_next(
+            self.record.last.raw, self.record.last.lap, self.player_rank,
+            self.record.sleep(),
+            self.record.nbr_interventions()
+            )
       else:
-         stp = Stepping("", 0, 1, False)
-      return stp.get_next(self.record.sleep(), self.record.nbr_interventions())
+         return self.stair.get_next("", 0, 1, False, 0)
 
    def _run_step(self, step_name: str) -> BidSense:
       rule = self._get_first_satisfied_rule(step_name)
-      raw_bid = rule.raw_bid if rule else PASS
-      raw_bid = raw_bid if raw_bid else self._compute_bid(rule.function_bid, rule.arg_bid)
-      self._compile_applied_rule_description(rule)
-      return BidSense.get(rule.sense_id) if rule and rule.sense_id \
-         else BidSense(id=0, raw_bid=raw_bid)
+      self.stair.set_camp_next_step(rule.next_step if rule else "")
+      if rule:
+         return self._get_bid_sense(rule)
+      else:
+         return BidSense.passe()
    
-   def _compile_applied_rule_description(self, rule: BidRule):
-      if rule and rule.next_step:
-         self._next_step = rule.next_step
+   def _get_bid_sense(self, rule: BidRule) -> BidSense:
+      if rule.raw_bid:
+         raw_bid = rule.raw_bid
+      else:
+         raw_bid = self._compute_bid(rule.function_bid, rule.arg_bid)
+      if rule.sense_id:
+         sense = BidSense.get(rule.sense_id)
+         sense.raw_bid = raw_bid
+      else:
+         sense = BidSense(id=0, raw_bid=raw_bid)
+      return sense
 
    def _get_first_satisfied_rule(self, step_name: str) -> BidRule:
       # Returns first satisfied rule or None.
       rules = BidRule.get_rules(step_name)
       analyzer = RuleAnalyzer(self.hand, self.record, self.haze)
       for rule in rules:
-         print(f"--> rule {rule.id}")
+         # print(f"--> rule {rule.id}")
          if analyzer.rule_satisfied(rule):
             print(f"--> rule {rule.id} is fully satisfied.")
             return rule
@@ -218,7 +235,7 @@ class RuleAnalyzer:
       if len(hist_bidding) < len(requested_bids):
          return False
       for i in range(0, len(requested_bids)):
-         if not hist_bidding[i].bid_match(symbolic_bid=requested_bids[i]):
+         if not hist_bidding[i].bid_match(requested_bids[i]):
             return False
       return True
 
@@ -366,8 +383,8 @@ class BidComputer:
          opponents_suit_code = self.record.opponent_on_left_suit_code()
       return level_str + opponents_suit_code
 
-   def _best_minor(self) -> str:
-      return self.hand.best_minor_code
+   def _best_minor(self, level: str) -> str:
+      return level + self.hand.best_minor_code
 
-   def _best_major(self) -> str:
-      return self.hand.best_major_code
+   def _best_major(self, level: str) -> str:
+      return level + self.hand.best_major_code

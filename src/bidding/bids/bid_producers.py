@@ -16,7 +16,7 @@ class BidProducer:
    haze:          Information on each player's hand deducted from bidding.
    rank:          Rank of the current player who has to make a bid
    camp:          Camp the player belongs to.
-   partner_rank:  Rank of currentplayer's partner
+   partner_rank:  Rank of current player's partner
    partner_bid:   Last bid made by partner.
    forcing:       Forcing indication in partner last bid.
    """
@@ -28,8 +28,8 @@ class BidProducer:
       self.rank = record.next_rank()
       self.camp = Camp.from_rank(self.rank)
       self.partner_rank = self.camp.other_rank(self.rank)
-      self.partner_bid = Bid(self.record.second_last.raw)
-      self.forcing = Forcing.from_value(self.record.second_last.sense.forcing)
+      self.partner_bid = Bid(record.second_last.raw)
+      self.forcing = Forcing.from_value(record.second_last.sense.forcing)
    
    def make_bid(self, hand: RichHand, record: BidRecord, haze: Haze) -> BidSense:
       self._update_properties(record, haze)
@@ -47,7 +47,7 @@ class BidProducer:
          self.slam = Slam(fit.suit, fit.total_cards, pts)
       if self.slam:
          declared_controls = self.haze.declared_controls(self.camp)
-         return self.slam.next_bid(hand, self.partner_bid, declared_controls)
+         return self.slam.next_bid(hand, self.partner_rank, self.partner_bid, declared_controls)
       elif (fit.major() and pts >= 26) or (fit.minor() and pts >= 28):
          next_raw_bid = ("4" if fit.major() else "5") + fit.suit.code
          return BidSense(id=0,raw_bid=next_raw_bid,forcing=Forcing.PASS.value)
@@ -75,6 +75,7 @@ class BidProducer:
 
    def _compute_camp_points(self, hand: RichHand, fit: Fit) -> int:
       if fit:
-         return hand.points_HLD(fit.suit.code, fit.partner_count())
+         player_points = hand.points_HLD(fit.suit.code, fit.partner_count())
       else:
-         return hand.points_HL + self.haze.hands[self.partner_rank].points.min
+         player_points = hand.points_HL
+      return player_points + self.haze.hands[self.partner_rank].points.min

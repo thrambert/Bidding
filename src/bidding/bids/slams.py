@@ -51,7 +51,8 @@ class Slam:
       self.ask_for_queen_bid: Bid = None
       self.stage = self.Stage.CTRLS
 
-   def next_bid(self, hand: RichHand, partner_bid: Bid, ctrls: set) -> BidSense:
+   def next_bid(self, hand: RichHand, 
+                partner_rank: int, partner_bid: Bid, ctrls: set) -> BidSense:
       # Arg ctrls gives suit codes that the camp has declared as control.
       match self.stage:
          case self.Stage.STOP:
@@ -81,10 +82,12 @@ class Slam:
             self.stage = self.Stage.STOP
             next_bid = partner_bid.first_bid_above_or_pass(self.fit_suit_code)
             return BidSense(id=0, raw_bid=next_bid.raw)
+         else:
+            return BidSense(id=0, raw_bid=bid.raw)
       
    def _blackwood_answer(self, hand: RichHand) -> BidSense:
          self.stage = self.Stage.KEYS_R
-         nbr_keys, has_queen = hand.blackwood_keys()
+         nbr_keys, has_queen = hand.blackwood_keys(self.trump)
          index = 3 if has_queen and nbr_keys == 2 else nbr_keys % 3
          next_raw_bid = self.BLACKWOOD[index]
          return BidSense(id=0, raw_bid=next_raw_bid)
@@ -127,7 +130,7 @@ class Slam:
    
    def _slam_bid(self, level: int) -> str:
       self.stage = self.Stage.STOP
-      return str(level) + self.fit.code
+      return str(level) + self.trump.code
 
    def _level(self) -> int:
       if self.camp_points >= 37:
@@ -146,7 +149,7 @@ class Slam:
       
    def _get_camp_keys(self, hand: RichHand, partner_raw_bid: str) -> tuple:
       # Returns (camp nbr of keys, True if the camp has trump queen else False)
-      player_keys, player_queen = hand.blackwood_keys()
+      player_keys, player_queen = hand.blackwood_keys(self.trump)
       partner_queen = (self.BLACKWOOD.index(partner_raw_bid) == 3)
       partner_keys = 2 if partner_queen else self.BLACKWOOD.index(partner_raw_bid)
       partner_keys += 3 if player_keys + partner_keys < 3 else 0

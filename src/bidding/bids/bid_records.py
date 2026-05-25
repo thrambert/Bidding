@@ -27,9 +27,6 @@ class Bidding(Bid):
       self.sense = sense
       super().__init__(sense.raw_bid)
 
-   def in_interv_camp(self) -> bool:
-      return self.rank % 2 == 0
-   
    def is_natural_suit(self) -> bool:
       # Returns True if bid is on a real suit (not SA) and is natural bid.
       return self.a_color and not self.sense.artificial
@@ -62,12 +59,11 @@ class BidRecord:
    def reversed_all(self) -> list[Bidding]:
       return self.all[::-1] if self.all else []
    
-   def add_bidding(self, bid_sense: BidSense) -> Bidding:
+   def add_bidding(self, bid_sense: BidSense):
       lap = self.next_lap(bid_sense.raw_bid == PASS)
       rank = self.next_rank()
       new_bidding = Bidding(lap, rank, bid_sense)
       self.all.append(new_bidding)
-      return new_bidding
    
    def last_normal_bid(self) -> Bidding:
       if not self.all:

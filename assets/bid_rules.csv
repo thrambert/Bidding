@@ -294,15 +294,13 @@ id;step;next_step;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_coun
 293;SEQ1SA;TEXAS;10-15H;;;carreau;5;;;;0;;0;;0;False;1SA passe;any_short_color;;;;;3T;1511
 294;SEQ1SA;TEXAS;>=16H;;;trèfle;5;;;;0;;0;;0;False;1SA passe;;;;;;2P;1510
 295;SEQ1SA;TEXAS;>=16H;;;carreau;5;;;;0;;0;;0;False;1SA passe;;;;;;3T;1511
-296;SEQ1SA;SEQ1SA;>=16HLD;unicolore;;;;;;;0;;0;;0;False;1SA passe;;long_color_points_H;>=5;;;3K;1513
-297;SEQ1SA;SEQ1SA;>=16HLD;unicolore;;;;;;;0;;0;;0;False;1SA passe;;long_color_points_H;>=5;;;3M;1514
+296;SEQ1SA;FREE;>=16HLD;unicolore;;;;;;;0;;0;;0;False;1SA passe;;long_color_points_H;>=5;;;3K;1513
+297;SEQ1SA;FREE;>=16HLD;unicolore;;;;;;;0;;0;;0;False;1SA passe;;long_color_points_H;>=5;;;3M;1514
 298;SEQ1SA;PASS;12-15HLD;unicolore;;;;;;;0;;0;;0;False;1SA passe;;;;;;4M;1515
 299;SEQ1SA;FREE;;;;;;;;;0;;0;;0;False;1SA passe 3K passe;;suit_length;K2;;;3SA;1516
 300;SEQ1SA;FREE;;;;;;;;;0;;0;;0;False;1SA passe 3C passe;;suit_length;C2;;;3SA;1517
 301;SEQ1SA;FREE;;;;;;;;;0;;0;;0;False;1SA passe 3P passe;;suit_length;P2;;;3SA;1518
-302;SEQ1SA;CHELEM;;;;;;;;;0;;0;;0;False;1SA passe 3K passe;;;;control;;;none
-303;SEQ1SA;CHELEM;;;;;;;;;0;;0;;0;False;1SA passe 3M passe;;;;control;;;none
-304;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;;;;2K;1601
+304;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;=0;;;2K;1601
 305;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;1;best_major;2;;1602
 306;STAYMAN;STAYMAN;;;;;;;;;0;;0;;0;False;1SA passe 2T passe;;majors_at_least_4;2;;;2SA;1603
 307;STAYMAN;STAYMAN;<=15H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2K passe;any_short_color;;;long_suit;3CL1;;1604
@@ -317,16 +315,16 @@ id;step;next_step;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_coun
 316;STAYMAN;STAYMAN;>=10HL;;;Majeure;>=5;;;;0;;0;;0;False;2T passe 2K passe;;;;long_suit;3CL1;;1606
 317;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;3;;1607
 318;STAYMAN;PASS;11-15HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;suit_length;C>=4;support;4;;1608
-319;STAYMAN;CHELEM;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2C passe;;suit_length;C>=4;;;3P;1609
-320;STAYMAN;CHELEM;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2P passe;;suit_length;P>=4;;;3C;1610
+319;STAYMAN;FREE;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2C passe;;suit_length;C>=4;;;3P;1609
+320;STAYMAN;FREE;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2P passe;;suit_length;P>=4;;;3C;1610
 321;STAYMAN;STAYMAN;<=15H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2M passe;;short_color;;long_suit;3CL1;;1611
 322;STAYMAN;STAYMAN;>=16H;;;mineure;>=5;;;;0;;0;;0;False;2T passe 2M passe;;;;long_suit;3CL1;;1611
 323;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;3T;1612
 324;STAYMAN;STAYMAN;9-10HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;3K;1613
 325;STAYMAN;STAYMAN;11-15HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;4T;1614
 326;STAYMAN;STAYMAN;11-15HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;4K;1615
-327;STAYMAN;CHELEM;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;3C;1616
-328;STAYMAN;CHELEM;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;3P;1617
+327;STAYMAN;FREE;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;C>=4;;;3C;1616
+328;STAYMAN;FREE;>=16HLD;;;;;;;;0;;0;;0;False;2T passe 2SA passe;;suit_length;P>=4;;;3P;1617
 329;STAYMAN;FREE;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;short_color;T;;;4T;1618
 330;STAYMAN;FREE;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2M passe;;short_color;K;;;4K;1618
 331;STAYMAN;FREE;15-17HLD;;;;;;;;0;;0;;0;False;2T passe 2P passe;;short_color;C;;;4C;1619
@@ -383,10 +381,3 @@ id;step;next_step;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_coun
 382;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;6SA;none
 383;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;5SA;none
 384;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;7SA;none
-385;CHELEM;PASS;;;;;;;;;0;;0;;0;False;passe passe;;;;;;passe;none
-386;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;3E passe;;;;control;;;none
-387;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4E passe;;;;control;;;none
-388;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe;;;;blackwood;;;none
-389;CHELEM;CHELEM;;;;;;;;;0;;0;;0;False;4SA passe 5E passe;;;;blackwood;;;none
-390;CHELEM;PASS;;;;;;;;;0;;0;;0;False;6E passe;;;;;;passe;none
-391;CHELEM;PASS;;;;;;;;;0;;0;;0;False;7E passe;;;;;;passe;none

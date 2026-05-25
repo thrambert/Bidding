@@ -175,7 +175,7 @@ class Haze:
       for suit in MetaSuit.four_suits():
          card_counts = [player_cards_count[suit], partner_card_counts[suit]]
          if sum(card_counts) >= 8:
-            possible_fits.append(Fit(suit, card_counts))
+            possible_fits.append(Fit(suit=suit, counts=card_counts))
       return Fit.get_best(possible_fits)
 
    def declared_controls(self, camp: Camp) -> set[str]:
@@ -193,7 +193,7 @@ class Haze:
 
    def _merged_suits(self, camp: Camp) -> dict[MetaSuit, HazySuit]:
       a, b = camp.value
-      a_suits, b_suits = self.hands[a].suits, self.hands[b].suits
+      a_suits, b_suits = self.hands[a].h_suits, self.hands[b].h_suits
       merged = {suit: HazySuit() for suit in MetaSuit.four_suits()}
       for s in MetaSuit.four_suits():
          merged[s].min_nbr = a_suits[s].min_nbr + b_suits[s].min_nbr

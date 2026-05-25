@@ -22,6 +22,9 @@ class Camp(Enum):
    OPEN = (1, 3)
    INT = (2, 4)
 
+   def __eq__(self, other) -> bool:
+      return self.name == other.name
+   
    @classmethod
    def from_rank(cls, rank: int) -> Camp:
       return cls.OPEN if rank in Camp.OPEN.value else cls.INT
@@ -63,6 +66,7 @@ class Bid:
    SUIT_CODES_BY_GROUP = {
       "m": ["T", "K"],
       "M": ["C", "P"],
+      "E": ["T", "K", "C", "P"]
    }
 
    def __init__(self, value: str):
@@ -85,12 +89,15 @@ class Bid:
       else:
          return self.level < bid2.level
 
-   def bid_match(self, symbolic_bid: str) -> bool:
-      if self.raw == symbolic_bid:
-         return True
-      if self.level != int(symbolic_bid[0]):
+   def bid_match(self, symbolic_raw_bid: str) -> bool:
+      symbolic_bid = Bid(symbolic_raw_bid)
+      if self.level != symbolic_bid.level:
          return False
-      return self.suit_code in self.SUIT_CODES_BY_GROUP[symbolic_bid[1:]]
+      if self.suit_code == symbolic_bid.suit_code:
+         return True
+      if symbolic_bid.suit_code in self.SUIT_CODES_BY_GROUP.keys():
+         return self.suit_code in self.SUIT_CODES_BY_GROUP[symbolic_bid.suit_code]
+      return False
 
    def first_bid_above(self) -> Bid:
       next_suit_rank = self.suit.rank + 1 if self.suit.rank < 3 else 0
