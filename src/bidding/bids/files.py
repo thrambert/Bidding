@@ -20,6 +20,9 @@ class CsvFile():
       self.fields = fields
       self.name = file_name
 
+   def exists(self) -> bool:
+      return self.name.exists()
+   
    def recreate(self):
       # This function erase existing file if any and creates empty one with header.
       try:
@@ -30,6 +33,15 @@ class CsvFile():
          print(error)
          raise MyFileAccessException(self.name, *error.__str__())
    
+   def add_row(self, instance_dict):
+      # This function adds a new row with given data at the end of file.
+      try:
+         with open(self.name, "a+", newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, dialect=SemiColon, fieldnames=self.fields)
+            writer.writerow(instance_dict)
+      except Exception as error:
+         raise MyFileAccessException(self.name, *error.__str__())
+
    def get_row(self, id: int) -> dict:
       # This function returns row for given id, or empty if no row found.
       with open(self.name, newline='') as csvfile:
@@ -37,17 +49,21 @@ class CsvFile():
          for row in rows:
             if int(row['id']) == id:
                return row
-  
-   def get_rows(self, step: str) -> list:
-      # This function returns a list of rows which match given argument.
-      #  So far, variants are ignored
+   
+   def get_last_row(self) -> dict[str]:
+      # This function returns last row of file.
       with open(self.name, newline='') as csvfile:
-         matching_rows = []
-         rows = csv.DictReader(csvfile, dialect=SemiColon)
-         for row in rows:
-            if row['step'] == step:
-               matching_rows.append(row)      
-      return matching_rows
+         reader = reversed(list(csv.DictReader(csvfile, dialect=SemiColon)))
+         last_row = self._process_iterator(reader)
+         csvfile.close()
+         return last_row
+             
+   def _process_iterator(self, iterator, default=None):
+      # This function returns next item in given iterator or None if no next
+      try:
+         return next(iterator)
+      except StopIteration:
+         return default
 
 
 class RuleFile(CsvFile):
@@ -55,11 +71,36 @@ class RuleFile(CsvFile):
       name = Asset.path("bid_rules.csv")
       super().__init__(name, fields)
 
+   def get_rows(self, step: str = "") -> list:
+      with open(self.name, newline='') as csvfile:
+         matching_rows = []
+         rows = csv.DictReader(csvfile, dialect=SemiColon)
+         for row in rows:
+            if row['step'] == step or not step:
+               matching_rows.append(row)      
+      return matching_rows
+
 
 class SenseFile(CsvFile):
    def __init__(self, fields: list[str]):
       name = Asset.path("bid_senses.csv")
       super().__init__(name, fields)
+
+
+class BidHistoryFile(CsvFile):
+   def __init__(self, fields: list[str]):
+      name = Asset.path("bid_history.csv")
+      super().__init__(name, fields)
+
+   def get_rule_rows(self) -> list:
+      with open(self.name, newline='') as csvfile:
+         matching_rows = []
+         rows = csv.DictReader(csvfile, dialect=SemiColon)
+         for row in rows:
+            if row['type'] == "RULE":
+               matching_rows.append(row)      
+      return matching_rows
+
 
 
 class ExcelFile:

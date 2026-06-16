@@ -124,6 +124,7 @@ class RichHand:
    best_major_code:  Longest major suit code, or heart if eq 4, or spade if eq 5
    ____________________________________________________________________________
    Detail on suits
+   Suits are sorted from lowest suit (clubs) to highest (spades).
       Ranks in suit are sorted from highest card ACE to lowest TWO.
    Detail on longest_suits and count_longest
       They are sorted by decreasing number of cards. In cas of equality of length,
@@ -179,6 +180,7 @@ class RichHand:
    
    @cached_property
    def cards_count(self) -> dict[MetaSuit, int]:
+      # Returns dict sorted by reverse count and by rank (trèfle, puis carreau...)
       count_per_suit = {MetaSuit.from_suit(k): len(v) for k, v in self.suits.items()}
       sorted_count = sorted(count_per_suit.items(), key=lambda x:x[1], reverse=True)
       return dict(sorted_count)
@@ -238,24 +240,33 @@ class RichHand:
       else:
          return MetaSuit.SPADES.code
 
-   def stop_suit(self, suit: MetaSuit) -> bool:
-      # Returns True if this hand has one or more stops in given suit.
-      count = 0
+   def stops_count(self, suit: MetaSuit) -> float:
+      # Returns number of times the hand can stop opponents in given suit.
+      pts_H = self.suit_points_H(suit)
       ranks = self.suits[suit]
-      if len(ranks) == 0:
-         return False
-      elif ranks[0].value < 11:     # JACK.value = 11
-         return False
+      if pts_H == 10:
+         return 4
+      elif pts_H == 9:
+         return 3
+      elif pts_H >=7:
+         return 2
+      elif pts_H >= 5 and len(ranks) >= 3:
+         return 1.5
+      elif pts_H >= 1 and len(ranks) >= 15 - ranks[0].value[0]:   # ACE.value = 14, KING = 13...
+         return 1
       else:
-         return len(ranks) >= 15 - ranks[0].value  # ACE.value = 14, KING = 13...
-   
-   def controlled_suits(self) -> set[str]:
-      controls = set()
-      for meta_suit, ranks in self.suits.items():
-         king_control = (ranks[0] == Rank.KING and len(ranks) >= 2)
-         if len(ranks) <= 1 or ranks[0] == Rank.ACE or king_control:
-            controls.add(meta_suit.code)
-      return controls
+         return 0
+
+   def controlled_suit_codes(self) -> set[str]:
+      ctrls = [s.code for s in MetaSuit.four_suits() if self.controls(s)]
+      return set(ctrls)
+
+   def controls(self, suit: MetaSuit) -> bool:
+      ranks = self.suits[suit]
+      if len(ranks) <= 1:
+         return True
+      else:
+         return ranks[0] in {Rank.ACE, Rank.KING}
 
    def blackwood_keys(self, fit_suit: MetaSuit) -> tuple[int, bool]:
       # Returns number of keys and True if Queen is in fitted suit.
@@ -270,6 +281,14 @@ class RichHand:
       ranks = self.suits[suit]
       return Rank.QUEEN in ranks
 
+   def king_second(self, suit: MetaSuit) -> bool:
+      # Returns True if 'Roi second' in french for given suit.
+      return 'KING' in self.suits[suit] and self.cards_count[suit] == 2
+
+   def get_suits_having(self, rank : Rank) -> list[MetaSuit]:
+      # Returns list of suits which contains given rank, from clubs to spades.
+      return [s for s in MetaSuit.four_suits() if rank in self.suits[s]]
+   
    def _compute_numeric_distribution(self) -> str:
       # This function returns text with numbers of cards par suit, example: 5422.
       count_per_suit = [str(n) for n in self.cards_count.values()]
@@ -280,7 +299,7 @@ class RichHand:
       """
       Returns 2 longest suits and their number of cards.
       If length is 5 or 6 for each, it returns highest suit first,
-      if length is 4 for each, it returns lowest suit first.
+      if length is <=4 for each, it returns lowest suit first.
       """
       suit_count = self.cards_count
       long = list(suit_count.keys())[:2]
@@ -333,4 +352,11 @@ class RichHand:
       return cards_per_suits
 
    def __repr__(self):
-      return self._player_hand.__repr__()
+      # returns one chr per card from spades to clubs, sorted from highest to lowest.
+      # example "AKQ9-Q9-KQJ98-A4" where AKQ9 are spades, A4 are clubs.
+      suit_cards = []
+      for ranks in reversed(self.suits.values()):
+         if ranks:
+            abbr_ranks = [r.abbreviation() for r in ranks]
+            suit_cards.append(reduce(lambda x, y: x + y, abbr_ranks))
+      return reduce(lambda x, y: x + "-" + y, suit_cards)

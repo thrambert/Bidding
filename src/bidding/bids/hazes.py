@@ -36,8 +36,8 @@ class Fit(BaseModel):
       return self.counts[0]
    
    def _cards_gap(self) -> int:
-      return abs(self.nbr_cards[0] - self.nbr_cards[1])
-
+      return abs(self.counts[0] - self.counts[1])
+   
    @staticmethod
    def get_best(fits: list[Fit]) -> Fit:
       if not fits:
@@ -46,12 +46,12 @@ class Fit(BaseModel):
          return fits[0]
       fit1, fit2 = fits[0], fits[1]
       if fit1.suit.is_major() == fit2.suit.is_major():
-         if fit1.total_cards() == fit2.total_cards():
+         if fit1.total_cards == fit2.total_cards:
             return fit1 if fit1._cards_gap() <= fit2._cards_gap() else fit2
          else:
-            return fit1 if fit1.total_cards() > fit2.total_cards() else fit2
+            return fit1 if fit1.total_cards > fit2.total_cards else fit2
       else:
-         return fit1 if fit1.suit.is_major() and fit1.total_cards() >= 8 else fit2
+         return fit1 if fit1.suit.is_major() and fit1.total_cards >= 8 else fit2
 
 
 class HazySuit(BaseModel):
@@ -111,12 +111,11 @@ class HazyHand:
    def __init__(self, rank: int):
       self.rank = rank
       self.camp = Camp.from_rank(rank)
-      self.points: PointZone = None
+      self.points = PointZone()
       self.distribution: Distribution = None
       self.h_suits = {suit: HazySuit() for suit in MetaSuit.four_suits()}
 
-   def store(self, sense: BidSense, bid: Bid, par_suit_c: str, opp_suits_c: list):
-      partner_suit = MetaSuit.from_code(par_suit_c)
+   def store(self, sense: BidSense, bid: Bid, par_bid: Bid, opp_suits_c: list[str]):
       self._set_suits_length(sense.four_suits_count())
       if sense.points:
          self.points = PointZone(sense.points)
@@ -124,9 +123,9 @@ class HazyHand:
          self.distribution = Distribution(sense.distribution)
          self._apply_distribution()
       if sense.par_suit_count:
-         self.h_suits[partner_suit].set_length(sense.par_suit_count)
-      if sense.suit_count and not sense.suit:
-         self.h_suits[bid.suit].set_length(sense.suit_count)
+         self.h_suits[par_bid.suit].set_length(sense.par_suit_count)
+      if sense.suit_count:
+         self._set_suit_count(bid, sense.suit, sense.suit_count)
       if sense.opp_stop:
          self._set_stopped_opp_suits(opp_suits_c)
       if bid.a_color:
@@ -134,7 +133,7 @@ class HazyHand:
       if bid.a_color and not sense.artificial:
          self.h_suits[bid.suit].announced = True
 
-   def _min_lengths(self) -> dict[MetaSuit, int]:
+   def min_lengths(self) -> dict[MetaSuit, int]:
       return {suit: h_suit.min_nbr for suit, h_suit in self.h_suits.items()}
 
    def _apply_distribution(self):
@@ -149,8 +148,12 @@ class HazyHand:
             suit = MetaSuit.from_rank(suit_rank)
             self.h_suits[suit].set_length(count_expr)
 
-   def _set_stopped_opp_suits(self, opp_suits_codes: list):
-      for suit in [MetaSuit(c) for c in opp_suits_codes]:
+   def _set_suit_count(self, bid: Bid, sense_suit: str, sense_suit_count: str):
+      suit = MetaSuit.from_text(sense_suit) if sense_suit else bid.suit
+      self.h_suits[suit].set_length(sense_suit_count)
+
+   def _set_stopped_opp_suits(self, opp_suits_codes: list[str]):
+      for suit in [MetaSuit.from_code(c) for c in opp_suits_codes]:
          self.h_suits[suit].stop = True
 
 
@@ -164,13 +167,13 @@ class Haze:
    def __init__(self):
       self.hands = {rank: HazyHand(rank) for rank in range(1, 5)}
 
-   def store(self, sense: BidSense, rank: int, par_suit_c: str, opp_suits_c: list):
+   def store(self, sense: BidSense, rank: int, par_bid: Bid, opp_suits_c: list[str]):
       bid = Bid(sense.raw_bid)
-      self.hands[rank].store(sense, bid, par_suit_c, opp_suits_c)
+      self.hands[rank].store(sense, bid, par_bid, opp_suits_c)
 
    def fit(self, player_cards_count: dict[MetaSuit, int], partner_rank: int) -> Fit:
       # Returns suit code and nbr of cards in it if fitted else None
-      partner_card_counts = self.hands[partner_rank]._min_lengths()
+      partner_card_counts = self.hands[partner_rank].min_lengths()
       possible_fits = []
       for suit in MetaSuit.four_suits():
          card_counts = [player_cards_count[suit], partner_card_counts[suit]]

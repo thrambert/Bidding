@@ -22,9 +22,6 @@ class Camp(Enum):
    OPEN = (1, 3)
    INT = (2, 4)
 
-   def __eq__(self, other) -> bool:
-      return self.name == other.name
-   
    @classmethod
    def from_rank(cls, rank: int) -> Camp:
       return cls.OPEN if rank in Camp.OPEN.value else cls.INT
@@ -48,20 +45,17 @@ class Bid:
    Properties
    raw:        String raw value, Examples: 3SA, 4P, X, passe
    level:      Level of the bid. Example 3SA is level 3, PASSE is level 0.
-   suit_code:  1 or 2 caps chr in french or "" for special bid. Examples: C, SA.
-   suit:       MetaSuit instance, or None if special bid.
+   suit_code:  1 or 2 caps chr in french or "" for special bid. Examples: C, SA, M
+   suit:       MetaSuit instance, or None if special bid or symbolic (M, m, E)
    a_color:    True if bid is related to spade, heart, diamond or club.
-   a_special:  True if it is a special bid.
+   a_special:  True if it is a special bid, means in enum SpecialBid.
+   a_symbol:   True if suit_code is a symbolic suit code, see below.
+   any_bid:    True if bid == "o" means it symbolize any bid including special bid.
    """
    SYMBOLIC_SUIT_CODES = [
-      "T",
-      "K",
-      "C",
-      "P",
       "M",  # Majeure
       "m",  # mineure
       "E",  # any of 4 colors
-      "SA",
    ]
    SUIT_CODES_BY_GROUP = {
       "m": ["T", "K"],
@@ -75,7 +69,9 @@ class Bid:
       self.a_special = value in SpecialBid.all_values()
       self.suit_code = value[1:] if self.level >= 1 else ""
       self.suit = MetaSuit.from_code(self.suit_code) if self.suit_code else None
-      self.a_color = not self.suit_code in ["", "SA"]
+      self.a_color = self.suit and self.suit != MetaSuit.NO_TRUMP
+      self.a_symbol = self.suit_code in self.SYMBOLIC_SUIT_CODES
+      self.any_bid = value == "o"
 
    def __eq__(self, bid2) -> bool:
       return self.raw == bid2.raw
@@ -89,14 +85,21 @@ class Bid:
       else:
          return self.level < bid2.level
 
-   def bid_match(self, symbolic_raw_bid: str) -> bool:
-      symbolic_bid = Bid(symbolic_raw_bid)
-      if self.level != symbolic_bid.level:
+   def __gt__(self, bid2) -> bool:
+      if self.level == bid2.level:
+         return self.suit > bid2.suit
+      else:
+         return self.level > bid2.level
+
+   def bid_match(self, other_bid: Bid) -> bool:
+      if self.level != other_bid.level:
          return False
-      if self.suit_code == symbolic_bid.suit_code:
+      if self.suit_code == other_bid.suit_code:
          return True
-      if symbolic_bid.suit_code in self.SUIT_CODES_BY_GROUP.keys():
-         return self.suit_code in self.SUIT_CODES_BY_GROUP[symbolic_bid.suit_code]
+      if other_bid.any_bid:
+         return True
+      if other_bid.suit_code in self.SUIT_CODES_BY_GROUP.keys():
+         return self.suit_code in self.SUIT_CODES_BY_GROUP[other_bid.suit_code]
       return False
 
    def first_bid_above(self) -> Bid:
@@ -110,20 +113,25 @@ class Bid:
       #  given suit.
       if suit == self.suit:
          return Bid(SpecialBid.PASS.code)
-      level = self.level + (0 if self.suit > suit else 1)
-      return Bid.compose(level, suit.code)
+      level = self.level + (0 if self.suit < suit else 1)
+      return Bid(str(level) + suit.code)
+
+   def replace_suit_with(self, suit_code: str) -> Bid:
+      # Returns a new bid in which suit code is replaced by given one
+      if self.level:
+         raw_bid = str(self.level) + suit_code
+      else:
+         raw_bid = self.raw
+      return Bid(raw_bid)
 
    @staticmethod
-   def compose(level: int, suit_code: str) -> Bid:
-      return Bid(str(level) + suit_code)
-   
-   @staticmethod
-   def valid_symbolic_bid(value: str) -> bool:
-      if value in [b.code for b in SpecialBid]:
+   def valid_raw_bid(value: str) -> bool:
+      bid = Bid(value)
+      if bid.a_special or bid.any_bid:
          return True
-      level = int(value[0]) if value[0].isdigit() else 0
-      suit_code = value[1:] if level >= 1 else ""
-      return level in range(1, 8) and suit_code in Bid.SYMBOLIC_SUIT_CODES
+      if not bid.level in range(1, 8):
+         return False
+      return bid.suit or bid.a_symbol
 
 
 class Forcing(Enum):

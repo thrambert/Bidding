@@ -38,12 +38,19 @@ class BidRecord:
    
    Properties
    all:           All bidding made during the game until now.
+   count:         Number of recorded bids.
    last:          Last bidding made or "".
    second_last:   "Avant-dernier" bidding made or "".
+   third_last     "Avant-avant-dernier" bidding or "".
    """
    def __init__(self):
       self.all: list[Bidding] = []
 
+   @computed_field
+   @property
+   def count(self) -> int:
+      return len(self.all)
+   
    @computed_field
    @property
    def last(self) -> Bidding:
@@ -56,12 +63,17 @@ class BidRecord:
       if len(self.all) >= 2:
          return self.all[-2]
 
+   @computed_field
+   @property
+   def third_last(self) -> Bidding:
+      if len(self.all) >= 3:
+         return self.all[-3]
+
    def reversed_all(self) -> list[Bidding]:
       return self.all[::-1] if self.all else []
    
    def add_bidding(self, bid_sense: BidSense):
-      lap = self.next_lap(bid_sense.raw_bid == PASS)
-      rank = self.next_rank()
+      lap, rank = self.next_lap_and_rank(bid_sense.raw_bid == PASS)
       new_bidding = Bidding(lap, rank, bid_sense)
       self.all.append(new_bidding)
    
@@ -72,31 +84,19 @@ class BidRecord:
          if not bidding.a_special:
             return bidding
 
-   def partner_last_suit_code(self) -> str:
-      if len(self.all) >= 2 and self.all[-2].suit_code:
-         return self.all[-2].suit_code
-      elif len(self.all) >= 6:
-         return self.all[-6].suit_code
-   
-   def partner_splinter_code(self) -> str:
-      if self.second_last.sense.convention == "Splinter":
-         return self.second_last.raw
+   def suit_codes(self, camp: Camp) -> list[str]:
+      # Returns codes of all suits naturally announced by given camp,
+      #  without duplicate values and sorted from the oldest to the most recent.
+      suit_codes = []
+      for bid in self.all:
+         if bid.camp == camp and bid.is_natural_suit():
+            if not bid.suit_code in suit_codes:
+               suit_codes.append(bid.suit_code)
+      return suit_codes
 
-   def opponent_on_right_suit_code(self) -> str:
-      # Returns suit code of opponent on the right if his bid is natural.
-      if self.all:
-         return self.last.suit_code
-
-   def opponent_on_left_suit_code(self) -> str:
-      # Returns suit code of opponent on the left if his bid is natural.
-      if len(self.all) >= 3:
-         return self.all[-3].suit_code
-   
-   def opponents_suit_codes(self) -> list[str]:
-      # Returns codes of all suits naturally announced by the opponents
-      opp_camp = self.last.camp
-      opp_biddings = [b for b in self.all if b.camp == opp_camp]
-      return [b.suit_code for b in opp_biddings if b.is_natural_suit()]
+   def last_suit_code(self, camp: Camp) -> str:
+      suit_codes = self.suit_codes(camp)
+      return suit_codes[-1] if suit_codes else ""
 
    def first_pass_count(self) -> int:
       return self._first_pass_count_in(self.all)
@@ -110,13 +110,6 @@ class BidRecord:
       bidding = [b for b in self.all if b.camp == Camp.INT and b.raw != PASS]
       return len(bidding)
    
-   def get_declarer_rank(self) -> int:
-      # Rank of the player who will play contract on given suit.
-      for bidding in self.all:
-         # TODO: openers_fit does not exist and should extend to not only opener camp
-         if bidding.suit_code == self.openers_fit and bidding.rank in [1, 3]:
-            self.openers_rank = bidding.rank
-
    def get_players_camp_points(self) -> dict:
       camp = Camp.from_rank(self.second_last.rank)
       players_pts = {camp.value[0]: (0, 40), camp.value[1]: (0, 40)}
@@ -126,14 +119,51 @@ class BidRecord:
          players_pts[bidding.rank] = max(points.min, mini), min(points.max, maxi)
       return players_pts
 
-   def next_lap(self, next_bid_is_PASS: bool) -> int:
-      if self.last:
-         return self.last.lap + self.last.rank // 4
+   def next_lap_and_rank(self, next_bid_is_PASS: bool) -> tuple[int, int]:
+      if not self.last:
+         lap = 0 if next_bid_is_PASS else 1
+         return lap, 1
+      if self.last.lap == 0 and not next_bid_is_PASS:
+         return 1, 1
       else:
-         return 0 if next_bid_is_PASS else 1
+         quotient, remainder = divmod(self.last.rank, 4)
+         lap = self.last.lap + quotient
+         rank = remainder + 1
+         return lap, rank
+
+   def no_open(self) -> bool:
+      if self.last:
+         return self.last.lap == 0
+      else:
+         return True
    
-   def next_rank(self) -> int:
-      return self.last.rank % 4 + 1 if self.last else 1
+   def comply_with(self, requested_bids: list[Bid]) -> bool:
+      """
+      Returns True if requested bids match with recorded bids. 
+      In requested bids, symbolic suits are managed as below :
+       - if M appears several times, it represents same suit each time, and
+         same for m and E.
+       - E represents a suit which must not be already present in history,
+         nor a suit represented by M or m.
+      """
+      if len(self.all) < len(requested_bids):
+         return False
+      hist_bidding = self.reversed_all()
+      convert = {"M": "", "m": "", "E": ""}
+      real_suit_codes = set()
+          
+      for i, bid in enumerate(requested_bids):
+         if not hist_bidding[i].bid_match(bid):
+            return False
+         symbol_E = (bid.suit_code == "E")
+         if bid.a_symbol:
+            if not convert[bid.suit_code]:
+               convert[bid.suit_code] = hist_bidding[i].suit_code
+            bid = bid.replace_suit_with(convert[bid.suit_code])
+         if not symbol_E:
+            real_suit_codes.add(bid.suit_code)
+
+      return not (convert["E"] and convert["E"] in real_suit_codes)
 
    def _first_pass_count_in(self, bidding_list: list[Bidding]) -> int:
       count = 0

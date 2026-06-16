@@ -54,7 +54,7 @@ def _validated_bicolor(value: str) -> str:
 def _validated_hist_bid(value: str) -> str:
    if value:
       for bid_raw in value.split(" "):
-         if not Bid.valid_symbolic_bid(bid_raw):
+         if not Bid.valid_raw_bid(bid_raw):
             raise MyDataException(f"'{value}' ne correspond pas à une suite d'enchères.")
    return value
 
@@ -87,7 +87,7 @@ class BidRule(BaseModel):
    first_pass:    Condition on number of pass before opening.
    won_tricks:    Minimum number of tricks the player should realize.
    def_tricks:    Condition on number of possible won tricks out of trump.
-   lost_tricks:   3 conditions on possible lost tricks, fct(vulnerability).
+   lost_tricks:   Conditios on possible lost tricks for neutral vulnerability.
    fit_cards:     Condition on number of cards in partner suit.
    stops:         Required min number of stops of opponents' suits.
    awake:         True when current bid follows 2 consecutive PASS.
@@ -136,7 +136,7 @@ class BidRule(BaseModel):
       return fields[lowest:highest]
 
    @staticmethod
-   def get_rules(step_name: str) -> list[BidRule]:
+   def get_rules(step_name: str = "") -> list[BidRule]:
       # This function reads file and sends back bid rules for given arguments.
       bid_rule_file = RuleFile(BidRule.model_fields.keys())
       rows = bid_rule_file.get_rows(step_name)

@@ -60,4 +60,3 @@ class DealMaker:
          i = randint(0, len(deck) - 1)
          given_cards.append(deck.pop(i))
       return PlayerHand.from_cards(given_cards)
-                        

@@ -7,12 +7,14 @@ from bridgebots.deal import PlayerHand
 from bids.bid_rules import BidRule
 from bids.points import PointZone
 from bids.hands import RichHand, MetaSuit
-from bids.bids import Camp
-from bids.bid_records import Bidding, BidRecord
+from deals.deal_engines import Vulnerability
+from bids.bids import Bid
+from bids.bid_records import BidRecord
 from bids.bid_senses import BidSense
 from bids.bid_producers import BidProducer
 from bids.hazes import Haze
-from bids.steps import Stair, Step
+from bids.slams import Slam
+from bids.steps import Stair
 
 
 PASS = "passe"
@@ -28,6 +30,7 @@ class BidEngine:
 
    Properties
    hand:          The current player's hand, for who a bid should be decided.
+   relative_vuln: Player relative vulnerability: 0 neutral, 1 favorable, -1 unf.
    player_rank:   Rank of current player who has to make a bid.
    record:        All bids made since the game starts.
    haze:          Information on each player's hand deducted from bidding.
@@ -37,34 +40,36 @@ class BidEngine:
    """
    def __init__(self):
       self.hand: RichHand = None
+      self.relative_vuln = 0
       self.player_rank = 1
       self.record = BidRecord()
       self.haze = Haze()
-      self.producer = BidProducer()
+      self.producer: BidProducer = None
       self.stair = Stair()
-      self._camps_step = set()
-      self._free_mode = False
 
-   def provide_bid(self, hand: PlayerHand) -> BidSense:
+   def provide_bid(self, hand: PlayerHand, relative_vuln: int) -> BidSense:
       # This function returns bid the player has to make as a BidSense instance
       #  in which properties may be empty except bid if no sense to provide.
       self.hand = RichHand(hand)
-      self.player_rank = self.record.next_rank()
-
-      if not self.record.last or self.player_rank == 1:
-         next_lap = self.record.next_lap(False) if self.record.last else 1
-         print("="*45, f"{next_lap}e TOUR", "="*46)
-
+      self.relative_vuln = relative_vuln
+      _, self.player_rank = self.record.next_lap_and_rank(False)
       step = self._get_next_step()
       sense = self._get_next_bid(step)
+
+      if not sense:
+         print("ALERT Sense is None, and step is", step)
+
       self.record.add_bidding(sense)
-      self.haze.store(sense, self.player_rank, self.record.partner_last_suit_code(),
-                      self.record.opponents_suit_codes())
+      opp_camp = self.record.last.camp.other_camp()
+      self.haze.store(sense, self.player_rank, self.record.third_last,
+                      self.record.suit_codes(opp_camp))
       return sense
 
    def _get_next_bid(self, step: str) -> BidSense:
       if step == "FREE":
-         return self.producer.make_bid(self.hand, self.record, self.haze)
+         if self.producer == None:
+            self.producer = BidProducer(self.haze)
+         return self.producer.make_bid(self.hand, self.record)
       else:
          return self._run_step(step)
 
@@ -79,6 +84,7 @@ class BidEngine:
          return self.stair.get_next("", 0, 1, False, 0)
 
    def _run_step(self, step_name: str) -> BidSense:
+      # print(f"Step {step_name}")
       rule = self._get_first_satisfied_rule(step_name)
       self.stair.set_camp_next_step(rule.next_step if rule else "")
       if rule:
@@ -87,32 +93,24 @@ class BidEngine:
          return BidSense.passe()
    
    def _get_bid_sense(self, rule: BidRule) -> BidSense:
-      if rule.raw_bid:
-         raw_bid = rule.raw_bid
-      else:
-         raw_bid = self._compute_bid(rule.function_bid, rule.arg_bid)
       if rule.sense_id:
          sense = BidSense.get(rule.sense_id)
-         sense.raw_bid = raw_bid
+         sense.raw_bid = rule.raw_bid
       else:
-         sense = BidSense(id=0, raw_bid=raw_bid)
+         sense = BidSense(id=0, raw_bid=rule.raw_bid)
+      sense._rule_id = rule.id
       return sense
 
    def _get_first_satisfied_rule(self, step_name: str) -> BidRule:
-      # Returns first satisfied rule or None.
+      # Returns first satisfied rule in which raw_bid is computed with
+      #  function_bid if required. If no rule satisfies, returns None.
       rules = BidRule.get_rules(step_name)
-      analyzer = RuleAnalyzer(self.hand, self.record, self.haze)
+      analyzer = RuleAnalyzer(self.hand, self.relative_vuln, self.record, self.haze)
       for rule in rules:
-         # print(f"--> rule {rule.id}")
          if analyzer.rule_satisfied(rule):
-            print(f"--> rule {rule.id} is fully satisfied.")
+            # print(f"--> rule {rule.id} is fully satisfied.")
             return rule
             
-   def _compute_bid(self, function_bid: str, arg: str) -> str:
-      bid_computer = BidComputer(self.hand, self.record)
-      raw_bid = bid_computer.run(function_bid, arg)
-      return raw_bid
-
 
 class RuleAnalyzer:
    """
@@ -126,16 +124,23 @@ class RuleAnalyzer:
 
    Properties
    hand:          The current player's hand, for who a bid should be decided.
+   relative_vuln: Player relative vulnerability: 0 neutral, 1 favorable, -1: unf.
    record:        All bids made since the game starts.
    haze:          Information on each player's hand deducted from bidding.
    ════════════════════════════════════════════════════════════════════════════
    """
-   def __init__(self, hand: RichHand, record: BidRecord, haze: Haze):
+   def __init__(self, hand: RichHand, relative_vuln: int, record: BidRecord, haze: Haze):
       self.hand = hand
+      self.relative_vuln = relative_vuln
       self.record = record
       self.haze = haze
 
    def rule_satisfied(self, rule: BidRule) -> bool:
+      """
+      This mutating function modifies rule to load raw_bid from function_bid,
+      and returns True if conditions are satisfied and if computed bid is higher
+      than last bid made.
+      """
       for condition_name in BidRule.condition_names():
          # if attribute is not empty in rule instance:
          if getattr(rule, condition_name):
@@ -143,8 +148,14 @@ class RuleAnalyzer:
             condition_check = getattr(self, function_name)
             if not condition_check(rule):
                return False
-            print(f"      {condition_name} \"{getattr(rule, condition_name)}\" is ok")
-      return True
+      b = rule.raw_bid
+      rule.raw_bid = b if b else self._compute_bid(rule.function_bid, rule.arg_bid)
+      return self.record.no_open() or self.record.last_normal_bid() < Bid(rule.raw_bid)
+   
+   def _compute_bid(self, function_bid: str, arg: str) -> str:
+      bid_computer = BidComputer(self.hand, self.record, self.haze)
+      raw_bid = bid_computer.run(function_bid, arg)
+      return raw_bid
 
    def op_match(self, math_inequality: str, value: int) -> bool:
       """
@@ -167,11 +178,11 @@ class RuleAnalyzer:
    def _points_check(self, rule: BidRule) -> bool:
       point_zone = PointZone(rule.points)
       if point_zone.is_HLD():
-         return point_zone.contains_HLD(self._get_player_HLD(rule))
+         return point_zone.contains_HLD(self._get_player_HLD())
       else:
          return point_zone.contains(self.hand.points_H, self.hand.points_HL)
    
-   def _get_player_HLD(self, rule: BidRule) -> int:
+   def _get_player_HLD(self) -> int:
       fit = self.haze.fit(self.hand.cards_count, self.record.second_last.rank)
       if fit:
          return self.hand.points_HLD(fit.suit.code, fit.counts[0])
@@ -210,19 +221,25 @@ class RuleAnalyzer:
       return self.op_match(rule.def_tricks, self.hand.def_tricks)
 
    def _lost_tricks_check(self, rule: BidRule) -> bool:
-      max_allowed_lost_tricks = rule.lost_tricks + self.relative_vuln()
+      max_allowed_lost_tricks = rule.lost_tricks + self.relative_vuln
       return self.hand.lost_tricks <= max_allowed_lost_tricks
 
    def _fit_cards_check(self, rule: BidRule) -> bool:
-      partner_suit_code = self.record.partner_last_suit_code()
-      if partner_suit_code and partner_suit_code != MetaSuit.NO_TRUMP.code:
-         fit_suit = MetaSuit.from_code(partner_suit_code)
-         player_cards_count = self.hand.cards_count[fit_suit]
-         return self.op_match(rule.fit_cards, player_cards_count)
+      if self.record.second_last:
+         partner_suit = self.record.second_last.suit
+         if partner_suit and partner_suit != MetaSuit.NO_TRUMP:
+            player_cards_count = self.hand.cards_count[partner_suit]
+            return self.op_match(rule.fit_cards, player_cards_count)
 
    def _stops_check(self, rule: BidRule) -> bool:
-      return True
-
+      opp_camp = self.record.last.camp
+      opp_last_suit_code = self.record.last_suit_code(opp_camp)
+      if opp_last_suit_code:
+         suit = MetaSuit.from_code(opp_last_suit_code)
+         return self.hand.stops_count(suit) >= 1
+      else:
+         return True
+   
    def _awake_check(self, rule: BidRule) -> bool:
       if rule.awake:
          return self.record.last_pass_count() == 2
@@ -230,14 +247,10 @@ class RuleAnalyzer:
          return True
          
    def _hist_bid_check(self, rule: BidRule) -> bool:
-      requested_bids = list(reversed(rule.hist_bid.split(" ")))
-      hist_bidding = self.record.reversed_all()
-      if len(hist_bidding) < len(requested_bids):
-         return False
-      for i in range(0, len(requested_bids)):
-         if not hist_bidding[i].bid_match(requested_bids[i]):
-            return False
-      return True
+      requested_raw_bids = list(reversed(rule.hist_bid.split(" ")))
+      requested_bids = [Bid(value) for value in requested_raw_bids]
+      return self.record.comply_with(requested_bids)
+
 
    #  Conditions as functions
 
@@ -274,12 +287,13 @@ class RuleAnalyzer:
    def _honors_in_bicolors_check(self) -> bool:
       pts_H = [self.hand.suit_points_H(s) for s in self.hand.longest_suits]
       points_H_in_bicolors = sum(pts_H)
-      return points_H_in_bicolors >= self.hand.points_H - 3
+      return points_H_in_bicolors >= self.hand.points_H - 2
 
    def _honors_in_short_colors_check(self) -> bool:
       suits = [s for s, count in self.hand.cards_count.items() if count <= 2]
-      for meta_suit in suits:
-         if self.hand.suit_points_H(meta_suit) < 3:
+      for suit in suits:
+         ok = self.hand.suit_points_H(suit) >= 4 or (self.hand.king_second(suit))
+         if not ok:
             return False
       return True
 
@@ -294,16 +308,18 @@ class RuleAnalyzer:
       return suit_code not in named_suits
 
    def _stop_opponents_suits_check(self) -> bool:
-      for suit_code in self.record.opponents_suit_codes():
-         meta_suit = MetaSuit.from_code(suit_code)
-         if not self.hand.stop_suit(meta_suit):
+      opp_camp = self.record.last.camp
+      for suit_code in self.record.suit_codes(opp_camp):
+         suit = MetaSuit.from_code(suit_code)
+         if self.hand.stops_count(suit) < 1:
             return False
       return True
 
    def _takeout_double_check(self) -> bool:
       # Returns True if distribution is ok for a takeout double (contre d'appel)
-      opp_codes = self.record.opponents_suit_codes()
-      requested_suits = [s for s in MetaSuit if s.code not in opp_codes]
+      opp_camp = self.record.last.camp
+      opp_codes = self.record.suit_codes(opp_camp)
+      requested_suits = [s for s in MetaSuit.four_suits() if s.code not in opp_codes]
       majors_cards = []
       for suit in requested_suits:
          suit_cards_count = self.hand.cards_count[suit]
@@ -334,14 +350,33 @@ class RuleAnalyzer:
       return self.op_match(math_inequality=arg, value=count)
 
    def _long_color_points_H_check(self, arg: str) -> bool:
-      longest_count = max(self.hand.count_longest[0])
-      return self.op_match(math_inequality=arg, value=longest_count)
+      # n'importe quoi !
+      longest_suit = self.hand.longest_suits[0]
+      longest_suit_pts_H = self.hand.suit_points_H(longest_suit)
+      return self.op_match(math_inequality=arg, value=longest_suit_pts_H)
 
    def _long_over_interv_check(self, arg: str) -> bool:
       over = (arg == "True")
       longest_suit = self.hand.longest_suits[0]
       interv_suit = MetaSuit.from_code(self.record.last.suit_code)
       return interv_suit < longest_suit if over else longest_suit < interv_suit
+
+   def _stop_suit_check(self, arg: str) -> bool:
+      suit = MetaSuit.from_code(arg)
+      if suit:
+         return self.hand.stops_count(suit) >= 1
+      else:
+         return False
+      
+   def _points_H_check(self, arg: str) -> bool:
+      suit = MetaSuit.from_code(arg[0])
+      math_expr = arg[1:]
+      cards_count = self.hand.cards_count[suit]
+      return self.op_match(math_inequality=math_expr, value=cards_count)
+
+   def _control_check(self, arg: str) -> bool:
+      suit = MetaSuit.from_code(arg)
+      return self.hand.controls(suit)
 
 
 class BidComputer:
@@ -356,11 +391,13 @@ class BidComputer:
    Properties
    hand:          The current player's hand, for who a bid should be decided.
    record:        All bids made since the game starts.
+   haze:          Information on each player's hand deducted from bidding.
    ════════════════════════════════════════════════════════════════════════════
    """
-   def __init__(self, hand: RichHand, record: BidRecord):
+   def __init__(self, hand: RichHand, record: BidRecord, haze: Haze):
       self.record = record
       self.hand = hand
+      self.haze = haze
 
    def run(self, function_bid: str, arg: str = "") -> str:
       function_name = "_" + function_bid
@@ -374,13 +411,16 @@ class BidComputer:
       return level_str + suit_code
 
    def _support(self, level_str: str) -> str:
-      partner_suit_code = self.record.partner_last_suit_code()
-      return level_str + partner_suit_code
+      partner_suit = self.record.second_last.suit
+      return level_str + partner_suit.code
 
    def _cuebid(self, level_str: str) -> str:
-      opponents_suit_code = self.record.opponent_on_right_suit_code()
-      if not opponents_suit_code:
-         opponents_suit_code = self.record.opponent_on_left_suit_code()
+      opponent_on_right_bid = self.record.last
+      if opponent_on_right_bid.a_color:
+         opponents_suit_code = opponent_on_right_bid.suit_code
+      else:
+         opponent_on_left_bid = self.record.third_last
+         opponents_suit_code = opponent_on_left_bid.suit_code
       return level_str + opponents_suit_code
 
    def _best_minor(self, level: str) -> str:
@@ -388,3 +428,10 @@ class BidComputer:
 
    def _best_major(self, level: str) -> str:
       return level + self.hand.best_major_code
+
+   def _first_control(self, arg: str) -> str:
+      fit = self.haze.fit(self.hand.cards_count, self.record.second_last.rank)
+      camp_points = self.hand.points_HLD(fit.suit.code, fit.partner_count())
+      slam = Slam(fit.suit, fit.total_cards, camp_points)
+      bid_sense = slam.next_control(self.hand, self.record.second_last, set())
+      return bid_sense.raw_bid

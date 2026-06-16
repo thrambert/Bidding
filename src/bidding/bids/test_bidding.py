@@ -5,25 +5,35 @@ This module is called by app.py to test bid_engines.
 from bridgebots.deal_enums import Direction
 from deals.deal_engines import DealMaker, Vulnerability
 from views.mats import BidChaining
+from bids.bid_histories import BidHistory
 
 
 # cards by suits spades,...,clubs for test deal:
-TEST_HANDS = [
-   "AKQ9-T92-K9-AJT4",
-   "86-J876-T75-Q982",
-   "JT54-AKQ-A86-K76",
-   "732-543-QJ432-53",
-]
 
-def test_bidding():
-   deal_maker = DealMaker(Direction.NORTH, Vulnerability.NONE)
-   random_wanted = False
-   if random_wanted:
-      bid_chaining = BidChaining(deal_maker.create_random())
+TEST_HANDS = ['86-7-AKQJT98764', '962-QT92-T986-32', '754-AK754-Q5432', 'AKQJT83-J3-AKJ-5']
+
+def test_deals():
+   if TEST_HANDS:
+      test_one_deal()
    else:
-      bid_chaining = BidChaining(deal_maker.create_from_str(TEST_HANDS))
+      test_several_deals(500)
 
-   bid_chaining.run_all()
+def test_one_deal():
+   deal_maker = DealMaker(Direction.NORTH, Vulnerability.NONE)
+   deal = deal_maker.create_from_str(TEST_HANDS)
+   bid_chaining = BidChaining(deal)
+   bid_chaining.run()
+
+def test_several_deals(count: int):
+   deal_maker = DealMaker(Direction.NORTH, Vulnerability.NONE)
+   for _ in range(0, count):
+      deal = deal_maker.create_random()
+      bid_chaining = BidChaining(deal)
+      bid_chaining.run()
+
+   rules_ok = BidHistory.get_all_rules()
+   print(f"--> {len(rules_ok)} satisfied rules: {rules_ok}")
+
 
 #  Unicolor
 # TEST_HANDS = [
@@ -35,8 +45,25 @@ def test_bidding():
 
 # Unicolor
 # TEST_HANDS = [
-#       "AKQ9876-K92-K9-A",
-#       "T-JT876-T7-KT984",
-#       "J54-A5-A865-Q765",
-#       "32-Q43-QJ432-J32",
+#    "AKQ9876-K92-K9-A",
+#    "T-JT876-T7-KT984",
+#    "J54-A5-A865-Q765",
+#    "32-Q43-QJ432-J32",
 # ]
+
+# Slam 6S
+# TEST_HANDS = [
+#    "AKQ9-T92-K9-AJT4",
+#    "86-J876-T75-Q982",
+#    "JT54-AKQ-A86-K76",
+#    "732-543-QJ432-53",
+# ]
+
+# Bicolore cher
+# TEST_HANDS = [
+#    "AKQ9-Q9-KQJ98-A4",
+#    "6-J8763-T75-Q982",
+#    "J854-A2-A6-KJ653",
+#    "T732-KT54-432-T7",
+# ]
+

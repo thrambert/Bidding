@@ -2,7 +2,7 @@
 from PyQt6.QtWidgets import QApplication
 from utils import Asset
 from bids.file_loaders import FileLoader
-from bids.test_bidding import test_bidding
+from bids.test_bidding import test_deals
 
 
 my_app = QApplication([])
@@ -18,7 +18,7 @@ def start():
       return
    print("\nExcel files successfully converted into csv, and compliant with related data models.\n")
    
-   test_bidding()
+   test_deals()
 
    # TODO: Add a_view = instance of mainWindow
    # my_app.exec()

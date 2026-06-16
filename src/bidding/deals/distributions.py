@@ -49,10 +49,12 @@ class Distribution:
       "irrégulier":     Main.UNDEFINED,   # Not regular
    }
 
-   def __init__(self, input_value: str):
-      self.canonical = self._get_canonical(input_value)
-      self.numeric: str = input_value if input_value.isdigit() else ""
-      self.special: list[str] = self._get_special()
+   def __init__(self, value: str):
+      self.canonical = self._get_canonical(value)
+      self.numeric: str = value if value.isdigit() else ""
+      self.special = [value] if value in self.SPECIAL.keys() else []
+      self._complete_special()
+
 
    def get_all_shapes(self) ->list[str]:
       # Returns all expressions for this distribution, included special if any.
@@ -63,7 +65,9 @@ class Distribution:
       return shapes
 
    def semi_regular(self) -> bool:
-      return self.canonical == self.Main.REGULAR or self.numeric in ["5422", "6322"]
+      return self.canonical == self.Main.REGULAR \
+         or self.numeric in ["5422", "6322"] \
+         or "semi-régulier" in self.special
    
    def _get_canonical(self, input_value: str) -> Main:
       # Returns a Main enum, or None.
@@ -82,22 +86,22 @@ class Distribution:
       else:
          raise MyDataException(f"La distribution {input_value} est incorrecte.")
 
-   def _get_special(self) -> list[str]:
-      # This function returns an item from Special.
-      special_distrib = []
+   def _complete_special(self):
+      # This function adds items in self.special.
       # bicolore 5/5
       if self.canonical == self.Main.BICOLOR:
          if self.numeric and int(self.numeric[:2]) >= 55:
-            special_distrib.append("bicolore 5/5")
+            self.special.append("bicolore 5/5")
          if self.numeric and int(self.numeric[:2]) >= 65:
-            special_distrib.append("bicolore 6/5")         
+            self.special.append("bicolore 6/5")         
       # semi-régulier
       if self.semi_regular():
-         special_distrib.append("semi-régulier")
+         self.special.append("semi-régulier")
       # irrégulier
       if self.canonical != self.Main.REGULAR:
-         special_distrib.append("irrégulier")
-      return special_distrib
+         self.special.append("irrégulier")
+      # remove duplicates
+      self.special = list(set(self.special))
          
    def get_all_shapes(self) ->list[str]:
       # Returns all expressions for this distribution, included special if any.

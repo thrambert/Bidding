@@ -11,12 +11,13 @@ class PointZone:
    type_min:   type of points for min value H, HL or HLD
    type_max:   same for max value
    """
-   def __init__(self, zone_of_points: str):
+   def __init__(self, zone_of_points: str = ""):
       self.min: int = 0
       self.max: int = 40
       self.type_min: str = "H"
       self.type_max: str = "H"
-      self._load_attributes(zone_of_points)
+      if zone_of_points:
+         self._load_attributes(zone_of_points)
 
    def _load_attributes(self, zone_of_points: str):
       """

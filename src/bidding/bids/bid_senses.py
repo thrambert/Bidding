@@ -54,6 +54,12 @@ class BidSense(BaseModel):
    forcing:       Indicates if the partner must bid in response.
    convention:    Name of convention.
    comment:       Additional text on bid.
+
+   Private properties
+      remark: Attributes whose name has a leading underscore are not treated as
+      fields by Pydantic, and are not included in the model schema. They are not
+      validated or even set during calls to __init__, model_validate, etc.
+   _rule_id:      Id of rule which provided sense, or 0 if no such rule.
    """
    id: int
    raw_bid: str
@@ -73,6 +79,7 @@ class BidSense(BaseModel):
    artificial: bool = False
    forcing: Annotated[str, Field(default=""), AfterValidator(_validated_forcing)]
    convention: str = ""
+   _rule_id = 0
 
    def four_suits_count(self) -> list[str]:
       return [

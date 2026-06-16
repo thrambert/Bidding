@@ -1,11 +1,12 @@
 """
 This module determines next step in which to compute bid for next player.
+This next step is either given by next_step column in Excel rules, either it
+is computed from bidding history.
 ____________________________________________________________________________
 Constants giving appropriate next steps
 
 PASS:          String value of pass special bid.
 R_OPEN:        Response to opening, depending on player n°2 bid.
-REDEM_O:       Opener redemand in 2nd turn, depending on player n°4 bid.
 INT_LAP1_NO_INT:  Steps for intervener in lap 1 when no intervention before.
 INTERVENE:     Steps for interveners depending on intervention count.
 WAKE:          Steps to select after 2 consecutive passes depending on rank.
@@ -16,9 +17,6 @@ from __future__ import annotations
 from enum import Enum, auto
 from bids.bids import Camp
 from utils import MyDataException
-
-
-PASS = "passe"
 
 
 class Step(Enum):
@@ -36,11 +34,10 @@ class Step(Enum):
    ROAIC = auto()    # autre réponse à ouverture après intervention à la couleur (rank 3)
    ROA1SA = auto()   # autre réponse à ouverture après intervention à 1SA (rank 3)
    INT_N4 = auto()   # intervention du joueur n°4 (rank 4)
-   REDOSA = auto()   # redemande de l'ouvreur dans le silence adverse (lap 2, rank 1)
-   REDO = auto()     # redemande de l'ouvreur autres cas (lap 2, rank 1)
+   REDO = auto()     # redemande de l'ouvreur (lap 2, rank 1)
    REPINT = auto()   # réponse à intervention (lap 1 rank 4, ou lap 2 rank 2)
    REDI = auto()     # redemande de l'intervenant (lap 2 rank 2 ou 4)
-   R2 = auto()       # 2e enchère du répondant après un soutien (lap 2 rank 3)
+   R2 = auto()       # 2e enchère du répondant (lap 2 rank 3)
    INTEND = auto()   # suite du dialogue du camp en intervention, après REDI
    WAKE_N1 = auto()  # réveil du joueur n°1, l'ouvreur (lap 2 rank 1)
    WAKECI = auto()   # réveil du camp en intervention (lap 2 rank 2 ou 4)
@@ -67,14 +64,10 @@ class Stair:
    rule_steps: Dict {rank: Step} for next steps provided by Excel rules.  
    """
    R_OPEN = {
-      PASS:    Step.ROSA,
+      "passe": Step.ROSA,
       "X":     Step.ROACA,
       "1SA":   Step.ROA1SA,
       "other": Step.ROAIC,
-   }
-   REDEM_O = {
-      PASS:    Step.REDOSA,
-      "other": Step.REDO,
    }
    INT_LAP1_NO_INT = [
       Step.INT_N2,
@@ -125,13 +118,15 @@ class Stair:
 
    def _next_step_for_opening_camp(self, last_raw_bid: str) -> Step:
       if self.lap == 1:
-         step_dict = self.R_OPEN if self.player_rank == 3 else self.REDEM_O
-         return self._get_value(last_raw_bid, step_dict)
+         if self.player_rank == 3:
+            return self._get_value(last_raw_bid, self.R_OPEN)
+         else:
+            return Step.REDO
       elif self.lap == 2 and self.player_rank == 3:
          return Step.R2
       else:
-         raise MyDataException("Prochaine étape du camp de l'ouvreur " + \
-                                 "absente après la 2e enchère du répondant")
+         print("On dépasse la 2e enchère du répondant --> Step = FREE")
+         return Step.FREE
       
    def _next_step_for_interv_camp(self, interv_count: int) -> Step:
       if self.lap == 1 and interv_count == 0:
