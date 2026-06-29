@@ -92,15 +92,13 @@ class BidHistoryFile(CsvFile):
       name = Asset.path("bid_history.csv")
       super().__init__(name, fields)
 
-   def get_rule_rows(self) -> list:
+   def get_satisfied_rules(self) -> list[int]:
       with open(self.name, newline='') as csvfile:
-         matching_rows = []
+         satisfied_rules = []
          rows = csv.DictReader(csvfile, dialect=SemiColon)
          for row in rows:
-            if row['type'] == "RULE":
-               matching_rows.append(row)      
-      return matching_rows
-
+            satisfied_rules.append(int(row['id']))      
+      return satisfied_rules
 
 
 class ExcelFile:

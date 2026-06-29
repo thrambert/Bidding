@@ -37,6 +37,7 @@ class DealMaker:
       # Returns a deal where ranks in hands are sorted from highest card to lowest
       #  arg is a list of card codes, as "AKQ9876-K92-K9-A" representing cards
       #  in spades, hearts, diamonds and clubs for a hand.
+      #  Even if a suit has no card, a separator "-" is used.
       hands: dict[Direction, PlayerHand] = {}
       for direction in Direction:
          direction_cards = short_cards[direction.value].split("-")

@@ -9,14 +9,13 @@ from bids.bid_histories import BidHistory
 
 
 # cards by suits spades,...,clubs for test deal:
-
-TEST_HANDS = ['86-7-AKQJT98764', '962-QT92-T986-32', '754-AK754-Q5432', 'AKQJT83-J3-AKJ-5']
+TEST_HANDS = []
 
 def test_deals():
    if TEST_HANDS:
       test_one_deal()
    else:
-      test_several_deals(500)
+      test_several_deals(5000)
 
 def test_one_deal():
    deal_maker = DealMaker(Direction.NORTH, Vulnerability.NONE)
@@ -31,7 +30,7 @@ def test_several_deals(count: int):
       bid_chaining = BidChaining(deal)
       bid_chaining.run()
 
-   rules_ok = BidHistory.get_all_rules()
+   rules_ok = BidHistory.get_all_rules_ids()
    print(f"--> {len(rules_ok)} satisfied rules: {rules_ok}")
 
 

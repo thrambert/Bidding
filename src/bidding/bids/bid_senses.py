@@ -9,7 +9,7 @@ from bids.bid_rules import (
    validated_suit,
    validated_count
 )
-from bids.bids import Forcing
+from bids.bids import Forcing, SuitsToStop
 from utils import MyDataException
 
 
@@ -18,6 +18,11 @@ PASS = "passe"
 # =============================================================================
 #  VALIDATORS
 # =============================================================================
+
+def _validated_stop_suits(value: str) -> str:
+   if value and not value in [e.value for e in SuitsToStop]:
+      raise MyDataException(f"{value} n'est pas une valeur de l'énumération StopSuits.")
+   return value
 
 def _validated_forcing(value: str) -> str:
    if value and not value in [e.value for e in Forcing]:
@@ -49,7 +54,7 @@ class BidSense(BaseModel):
    suit_stop:     True if the player stops the suit he gave in bid or in suit.
    suit_control:  True if the player controls the suit.
    suit_force:    True if the player has a force in the suit
-   opp_stop:      True if the player have a stop in each opponents'suits 
+   stop_suits:    "opp": Stop opponent suits, "unnamed": Stop unnamed and opp suits.
    artificial:    True if the bid is not natural but a convention.
    forcing:       Indicates if the partner must bid in response.
    convention:    Name of convention.
@@ -75,7 +80,7 @@ class BidSense(BaseModel):
    suit_stop: bool = False
    suit_control: bool = False
    suit_force: bool = False
-   opp_stop: bool = False
+   stop_suits: Annotated[str, Field(default=""), AfterValidator(_validated_stop_suits)]
    artificial: bool = False
    forcing: Annotated[str, Field(default=""), AfterValidator(_validated_forcing)]
    convention: str = ""
@@ -95,6 +100,9 @@ class BidSense(BaseModel):
          "control": self.suit_control,
          "force": self.suit_force,
          }
+   
+   def suits_to_stop(self) -> SuitsToStop:
+      return SuitsToStop.from_value(self.stop_suits) if self.stop_suits else None
    
    @classmethod
    def get(cls, id: int) -> BidSense:

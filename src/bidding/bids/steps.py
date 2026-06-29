@@ -38,6 +38,8 @@ class Step(Enum):
    REPINT = auto()   # réponse à intervention (lap 1 rank 4, ou lap 2 rank 2)
    REDI = auto()     # redemande de l'intervenant (lap 2 rank 2 ou 4)
    R2 = auto()       # 2e enchère du répondant (lap 2 rank 3)
+   ROUDI = auto()    # séquence convention Roudi
+   RELMIN = auto()   # séquence relais dans l'autre mineure to ask opener have you 3 cards
    INTEND = auto()   # suite du dialogue du camp en intervention, après REDI
    WAKE_N1 = auto()  # réveil du joueur n°1, l'ouvreur (lap 2 rank 1)
    WAKECI = auto()   # réveil du camp en intervention (lap 2 rank 2 ou 4)
@@ -110,6 +112,7 @@ class Stair:
          return self._next_step_for_interv_camp(intervene_count).name
 
    def set_camp_next_step(self, step_name: str):
+      # Prepare steps of the camp for next bidding.
       camp_next_step = Step.from_name(step_name) if step_name else None
       partner_rank = self.player_camp.other_rank(self.player_rank)
       self.rule_steps[partner_rank] = camp_next_step
@@ -125,7 +128,6 @@ class Stair:
       elif self.lap == 2 and self.player_rank == 3:
          return Step.R2
       else:
-         print("On dépasse la 2e enchère du répondant --> Step = FREE")
          return Step.FREE
       
    def _next_step_for_interv_camp(self, interv_count: int) -> Step:

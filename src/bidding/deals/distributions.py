@@ -11,12 +11,12 @@ class Distribution:
    ____________________________________________________________________________
    Properties
    canonical : One Main enum, see below
-   numeric:    Numeric distribution or "". Example: "6322"
+   ordinal:    Ordinal distribution or "". Example: "6-3-2-2"
    special:    List of special distrib if any, or []. Example: ["bicolore 5/5"]
    ____________________________________________________________________________
    Arg for init
    value :     Either a canonical distribution in french (ex: régulier),
-               either a mumeric distribution(ex: 5422),
+               either a mumeric distribution(ex: 5-4-2-2),
                either a special expression (ex: bicolore 5/5).
    """
    class Main(Enum):
@@ -28,45 +28,45 @@ class Distribution:
    
 
    NUM_REGULAR = [
-      "4333", "4432", "5332"
+      "4-3-3-3", "4-4-3-2", "5-3-3-2"
       ]
    NUM_UNICOLOR = [
-      "6322", "6331", "7222", "7321", "7330", "8221", "8311",
-      "8320", "9211", "9220", "9310"
-   ]
+      "6-3-2-2", "6-3-3-1", "7-2-2-2", "7-3-2-1", "7-3-3-0", "8-2-2-1", "8-3-1-1",
+      "8-3-2-0", "9-2-1-1", "9-2-2-0", "9-3-1-0", "10-1-1-1", "10-2-1-0",
+      "10-3-0-0", "11-1-1-0", "11-2-0-0", "12-1-0-0", "13-0-0-0"
+      ]
    NUM_BICOLOR = [
-      "5422", "5431", "5521", "5530", "6421", "6430", "6511",
-      "6520", "6610", "7411", "7420", "7510", "7600", "8410",
-      "8500", "9400"
+      "5-4-2-2", "5-4-3-1", "5-5-2-1", "5-5-3-0", "6-4-2-1", "6-4-3-0", "6-5-1-1",
+      "6-5-2-0", "6-6-1-0", "7-4-1-1", "7-4-2-0", "7-5-1-0", "7-6-0-0", "8-4-1-0",
+      "8-5-0-0", "9-4-0-0"
       ]
    NUM_TRICOLOR = [
-      "4441", "5440"
+      "4-4-4-1", "5-4-4-0"
       ]
    SPECIAL = {
       "bicolore 5/5":   Main.BICOLOR,     # Bicolor at least 5/5
       "bicolore 6/5":   Main.BICOLOR,     # Bicolor at least 6/5
-      "semi-régulier":  Main.UNDEFINED,   # Regular or 5422 or 6322
+      "semi-régulier":  Main.UNDEFINED,   # Regular or 5-4-2-2 or 6-3-2-2
       "irrégulier":     Main.UNDEFINED,   # Not regular
    }
 
    def __init__(self, value: str):
       self.canonical = self._get_canonical(value)
-      self.numeric: str = value if value.isdigit() else ""
+      self.ordinal: str = value if value[0].isdigit() else ""
       self.special = [value] if value in self.SPECIAL.keys() else []
       self._complete_special()
-
 
    def get_all_shapes(self) ->list[str]:
       # Returns all expressions for this distribution, included special if any.
       shapes = [self.canonical.value]
-      if self.numeric:
-         shapes.append(self.numeric)
+      if self.ordinal:
+         shapes.append(self.ordinal)
       shapes.extend(self.special)
       return shapes
 
    def semi_regular(self) -> bool:
       return self.canonical == self.Main.REGULAR \
-         or self.numeric in ["5422", "6322"] \
+         or self.ordinal in ["5-4-2-2", "6-3-2-2"] \
          or "semi-régulier" in self.special
    
    def _get_canonical(self, input_value: str) -> Main:
@@ -90,9 +90,11 @@ class Distribution:
       # This function adds items in self.special.
       # bicolore 5/5
       if self.canonical == self.Main.BICOLOR:
-         if self.numeric and int(self.numeric[:2]) >= 55:
+         numeric = self.ordinal.replace("-", "")
+         suffix = int(numeric[:2]) if numeric else 0
+         if suffix >= 55:
             self.special.append("bicolore 5/5")
-         if self.numeric and int(self.numeric[:2]) >= 65:
+         if suffix >= 65:
             self.special.append("bicolore 6/5")         
       # semi-régulier
       if self.semi_regular():
@@ -106,8 +108,8 @@ class Distribution:
    def get_all_shapes(self) ->list[str]:
       # Returns all expressions for this distribution, included special if any.
       shapes = [self.canonical.value]
-      if self.numeric:
-         shapes.append(self.numeric)
+      if self.ordinal:
+         shapes.append(self.ordinal)
       shapes.extend(self.special)
       return shapes
 

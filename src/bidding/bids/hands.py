@@ -152,9 +152,15 @@ class RichHand:
          points += max(0, len(ranks) - 4)
       return points
 
-   def points_HLD(self, trump_code: str, partner_nbr_trumps: int) -> int:
+   def points_HLD(self, trump: MetaSuit, partner_nbr_trumps: int) -> int:
       points = self.points_HL
-      # TODO: need to collect trump suit and nbr of cards in trump promised by partner
+      # Trump
+      total_trumps = partner_nbr_trumps + self.cards_count[trump]
+      points += (2 if total_trumps == 9 else 0) + max(0, total_trumps - 9)
+      points -= max(0, self.cards_count[trump] - 4)   # deduct HL pts on trump
+      # Doubleton and short suits
+      for suit in [s for s in MetaSuit.four_suits() if s != trump]:
+         points += max(0, 3 - self.cards_count[suit])
       return points
    
    def suit_points_H(self, meta_suit: MetaSuit) -> int:
@@ -174,7 +180,7 @@ class RichHand:
 
    @cached_property
    def distribution(self) -> list[str]:
-      numeric_distrib = self._compute_numeric_distribution()
+      numeric_distrib = self._compute_ordinal_distribution()
       distribution = Distribution(numeric_distrib)
       return distribution.get_all_shapes()
    
@@ -244,7 +250,9 @@ class RichHand:
       # Returns number of times the hand can stop opponents in given suit.
       pts_H = self.suit_points_H(suit)
       ranks = self.suits[suit]
-      if pts_H == 10:
+      if not ranks:
+         return 0
+      elif pts_H == 10:
          return 4
       elif pts_H == 9:
          return 3
@@ -271,7 +279,7 @@ class RichHand:
    def blackwood_keys(self, fit_suit: MetaSuit) -> tuple[int, bool]:
       # Returns number of keys and True if Queen is in fitted suit.
       fit_ranks = self.suits[fit_suit]
-      aces = ["A" for ranks in self.suits.values() if ranks[0] == Rank.ACE]
+      aces = ["A" for ranks in self.suits.values() if ranks and ranks[0] == Rank.ACE]
       count = len(aces)
       if Rank.KING in fit_ranks:
          count += 1
@@ -289,10 +297,11 @@ class RichHand:
       # Returns list of suits which contains given rank, from clubs to spades.
       return [s for s in MetaSuit.four_suits() if rank in self.suits[s]]
    
-   def _compute_numeric_distribution(self) -> str:
-      # This function returns text with numbers of cards par suit, example: 5422.
+   def _compute_ordinal_distribution(self) -> str:
+      # This function returns numbers of cards per suit separated by "-",
+      #  example: 5-4-2-2.
       count_per_suit = [str(n) for n in self.cards_count.values()]
-      return reduce(lambda x, y: x + y, count_per_suit)
+      return reduce(lambda x, y: x + "-" + y, count_per_suit)
 
    @cached_property
    def _longest_suits_and_counts(self) -> tuple[MetaSuit, MetaSuit, int, int]:
@@ -352,11 +361,16 @@ class RichHand:
       return cards_per_suits
 
    def __repr__(self):
-      # returns one chr per card from spades to clubs, sorted from highest to lowest.
-      # example "AKQ9-Q9-KQJ98-A4" where AKQ9 are spades, A4 are clubs.
+      # Returns one chr per card from spades to clubs, sorted from highest to lowest.
+      #  Each group of cards of same suit are separated by "-" even if no card in suit.
+      #  example a) "AKQ9-Q9-KQJ98-A4" where AKQ9 are spades, A4 are clubs.
+      #  exemple b) "86-7-AKQJT98764-" with no card in clubs.
+      #  exemple c) "86--7-AKQJT98764" with no card in hearts.
       suit_cards = []
       for ranks in reversed(self.suits.values()):
          if ranks:
             abbr_ranks = [r.abbreviation() for r in ranks]
             suit_cards.append(reduce(lambda x, y: x + y, abbr_ranks))
+         else:
+            suit_cards.append("")
       return reduce(lambda x, y: x + "-" + y, suit_cards)

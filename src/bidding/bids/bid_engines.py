@@ -7,8 +7,7 @@ from bridgebots.deal import PlayerHand
 from bids.bid_rules import BidRule
 from bids.points import PointZone
 from bids.hands import RichHand, MetaSuit
-from deals.deal_engines import Vulnerability
-from bids.bids import Bid
+from bids.bids import Bid, SuitsToStop
 from bids.bid_records import BidRecord
 from bids.bid_senses import BidSense
 from bids.bid_producers import BidProducer
@@ -60,10 +59,16 @@ class BidEngine:
          print("ALERT Sense is None, and step is", step)
 
       self.record.add_bidding(sense)
-      opp_camp = self.record.last.camp.other_camp()
-      self.haze.store(sense, self.player_rank, self.record.third_last,
-                      self.record.suit_codes(opp_camp))
+      self._store_in_haze(sense)
       return sense
+   
+   def _store_in_haze(self, sense: BidSense):
+      to_stop = {}
+      opp_camp = self.record.last.camp.other_camp()
+      unnamed = set(MetaSuit.four_suit_codes()) - self.record.suit_codes()
+      to_stop[SuitsToStop.OPP] = self.record.suit_codes(opp_camp)
+      to_stop[SuitsToStop.UNNAMED] = self.record.suit_codes(opp_camp) | unnamed
+      self.haze.store(sense, self.player_rank, self.record.third_last, to_stop)
 
    def _get_next_bid(self, step: str) -> BidSense:
       if step == "FREE":
@@ -148,9 +153,11 @@ class RuleAnalyzer:
             condition_check = getattr(self, function_name)
             if not condition_check(rule):
                return False
-      b = rule.raw_bid
-      rule.raw_bid = b if b else self._compute_bid(rule.function_bid, rule.arg_bid)
-      return self.record.no_open() or self.record.last_normal_bid() < Bid(rule.raw_bid)
+      if not rule.raw_bid:
+         rule.raw_bid = self._compute_bid(rule.function_bid, rule.arg_bid) 
+      bid = Bid(rule.raw_bid)
+      return self.record.no_open() or bid.a_special \
+         or self.record.last_normal_bid() < bid
    
    def _compute_bid(self, function_bid: str, arg: str) -> str:
       bid_computer = BidComputer(self.hand, self.record, self.haze)
@@ -185,7 +192,7 @@ class RuleAnalyzer:
    def _get_player_HLD(self) -> int:
       fit = self.haze.fit(self.hand.cards_count, self.record.second_last.rank)
       if fit:
-         return self.hand.points_HLD(fit.suit.code, fit.counts[0])
+         return self.hand.points_HLD(fit.suit, fit.counts[0])
       else:
          return self.hand.points_HL
 
@@ -315,6 +322,14 @@ class RuleAnalyzer:
             return False
       return True
 
+   def _stop_unnamed_suits_check(self) -> bool:
+      player_camp = self.record.last.camp.other_camp()
+      for suit_code in self.record.suit_codes(player_camp):
+         suit = MetaSuit.from_code(suit_code)
+         if self.hand.stops_count(suit) < 1:
+            return False
+      return self._stop_opponents_suits_check()
+
    def _takeout_double_check(self) -> bool:
       # Returns True if distribution is ok for a takeout double (contre d'appel)
       opp_camp = self.record.last.camp
@@ -378,6 +393,14 @@ class RuleAnalyzer:
       suit = MetaSuit.from_code(arg)
       return self.hand.controls(suit)
 
+   def _cards_gap_2_check(self, arg: str) -> bool:
+      # Returns true if nbr cards in suit C <= nbr D - 2
+      # Expect arg as "C, D" where C and D are suit codes.
+      suit_codes = arg.replace(" ","").split(",")
+      suits = [MetaSuit.from_code(c) for c in suit_codes]
+      card_counts = [self.hand.cards_count[s] for s in suits]
+      return (card_counts[0] <= card_counts[1] - 2)
+
 
 class BidComputer:
    """
@@ -431,7 +454,7 @@ class BidComputer:
 
    def _first_control(self, arg: str) -> str:
       fit = self.haze.fit(self.hand.cards_count, self.record.second_last.rank)
-      camp_points = self.hand.points_HLD(fit.suit.code, fit.partner_count())
+      camp_points = self.hand.points_HLD(fit.suit, fit.partner_count())
       slam = Slam(fit.suit, fit.total_cards, camp_points)
       bid_sense = slam.next_control(self.hand, self.record.second_last, set())
       return bid_sense.raw_bid

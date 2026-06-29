@@ -115,7 +115,8 @@ class HazyHand:
       self.distribution: Distribution = None
       self.h_suits = {suit: HazySuit() for suit in MetaSuit.four_suits()}
 
-   def store(self, sense: BidSense, bid: Bid, par_bid: Bid, opp_suits_c: list[str]):
+   def store(self, sense: BidSense, bid: Bid, par_bid: Bid, to_stop: dict):
+      # Arg to_stop: dict[SuitsToStop, set[str]]
       self._set_suits_length(sense.four_suits_count())
       if sense.points:
          self.points = PointZone(sense.points)
@@ -126,8 +127,8 @@ class HazyHand:
          self.h_suits[par_bid.suit].set_length(sense.par_suit_count)
       if sense.suit_count:
          self._set_suit_count(bid, sense.suit, sense.suit_count)
-      if sense.opp_stop:
-         self._set_stopped_opp_suits(opp_suits_c)
+      if sense.suits_to_stop():
+         self._set_stopped_suits(to_stop[sense.suits_to_stop()])
       if bid.a_color:
          self.h_suits[bid.suit].set_bools(sense.player_suit_type())
       if bid.a_color and not sense.artificial:
@@ -148,12 +149,16 @@ class HazyHand:
             suit = MetaSuit.from_rank(suit_rank)
             self.h_suits[suit].set_length(count_expr)
 
-   def _set_suit_count(self, bid: Bid, sense_suit: str, sense_suit_count: str):
-      suit = MetaSuit.from_text(sense_suit) if sense_suit else bid.suit
-      self.h_suits[suit].set_length(sense_suit_count)
+   def _set_suit_count(self, bid: Bid, suit_text: str, count: str):
+      suit = MetaSuit.from_text(suit_text) if suit_text else bid.suit
+      self.h_suits[suit].set_length(count)
 
    def _set_stopped_opp_suits(self, opp_suits_codes: list[str]):
       for suit in [MetaSuit.from_code(c) for c in opp_suits_codes]:
+         self.h_suits[suit].stop = True
+
+   def _set_stopped_suits(self, suits_codes: set[str]):
+      for suit in [MetaSuit.from_code(c) for c in suits_codes]:
          self.h_suits[suit].stop = True
 
 
@@ -167,9 +172,21 @@ class Haze:
    def __init__(self):
       self.hands = {rank: HazyHand(rank) for rank in range(1, 5)}
 
-   def store(self, sense: BidSense, rank: int, par_bid: Bid, opp_suits_c: list[str]):
+   def cards_count(self, player_rank: int, suit: MetaSuit) -> int:
+      return self.hands[player_rank].h_suits[suit].min_nbr
+   
+   def store(self, sense: BidSense, rank: int, par_bid: Bid, to_stop: dict):
+      # Arg to_stop: dict[SuitsToStop, set[str]
       bid = Bid(sense.raw_bid)
-      self.hands[rank].store(sense, bid, par_bid, opp_suits_c)
+      self.hands[rank].store(sense, bid, par_bid, to_stop)
+
+   def set_implicit_fit(self, suit: MetaSuit, camp: Camp, partner_rank: int):
+      # arg partner_rank corresponds to the player whose number of cards is known.
+      player_rank = camp.other_rank(partner_rank)
+      partner_nbr_cards = self.cards_count(partner_rank, suit)
+      player_nbr_cards = self.cards_count(player_rank, suit)
+      player_nbr_min = max(player_nbr_cards, 8 - partner_nbr_cards)
+      self.hands[player_rank].h_suits[suit].set_length(f">={player_nbr_min}")
 
    def fit(self, player_cards_count: dict[MetaSuit, int], partner_rank: int) -> Fit:
       # Returns suit code and nbr of cards in it if fitted else None

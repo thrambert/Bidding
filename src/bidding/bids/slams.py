@@ -147,7 +147,7 @@ class Slam:
       if partner_has_king:
          ranks = hand.suits[partner_bid.suit]
          save_a_loss = len(ranks) >= 2 and ranks[0] in {Rank.ACE, Rank.QUEEN} \
-            and ranks[1].value <= 10
+            and ranks[1].value[0] <= 10
          next_raw_bid = ("7" if save_a_loss else "6") + self.trump.code
          return BidSense(id=0, raw_bid=next_raw_bid)
       else:

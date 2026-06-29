@@ -39,8 +39,9 @@ class BidChaining:
 
    def run(self):
       # This function is used for test only. In real life, UI will ask for a bid.
+      print()
       print(self._deal_cards_repr())
-      print("="*100)
+      print("="*80)
 
       count = 0
       while not self._bidding_completed():
@@ -51,14 +52,14 @@ class BidChaining:
          player_hand = self.deal.hands[self.current_player]
          bid_sense = self._bid_engine.provide_bid(player_hand, self._relative_vuln())
 
-         print(f"{self.current_player.name} fait l'enchère {bid_sense.raw_bid},  sense id {bid_sense.id}")
+         pbid = "-" if bid_sense.raw_bid == "passe" else bid_sense.raw_bid
+         print(f"{self.current_player.name:<5}  {pbid:<3}   ", f"sense {bid_sense.id}" if bid_sense.id else "")
 
          self._pass_count = self._pass_count + 1 if bid_sense.raw_bid == PASS else 0
          self.bid_chain[self.current_player].append(bid_sense)
          self.current_player = self.current_player.next()
 
-      self._write_deal_bids_in_file()
-      print()
+      self._write_satisfied_rule_ids_in_file()
 
    def _bidding_completed(self) -> bool:
       dealer_bids = self.bid_chain[self.deal.dealer]
@@ -74,13 +75,12 @@ class BidChaining:
       else:
          return int(self.deal.ns_vulnerable) - int(self.deal.ew_vulnerable)
 
-   def _write_deal_bids_in_file(self):
-      BidHistory.add_deal_to_file(self._deal_cards_repr())
-      BidHistory.add_dirs_title_to_file()
+   def _write_satisfied_rule_ids_in_file(self):
       bid_senses = self._get_bid_senses_chronology()
-      raw_bids = [s.raw_bid for s in bid_senses]
-      rules_id = [s._rule_id for s in bid_senses]
-      BidHistory.add_bids_and_rules_to_file(raw_bids, rules_id)
+      rule_ids = [s._rule_id for s in bid_senses if s._rule_id]
+      for id in rule_ids:
+         bid_history = BidHistory(id=id)
+         bid_history.add_in_file()
 
    def _get_bid_senses_chronology(self) -> list[BidSense]:
       bid_sense_history = []

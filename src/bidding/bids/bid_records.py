@@ -84,19 +84,27 @@ class BidRecord:
          if not bidding.a_special:
             return bidding
 
-   def suit_codes(self, camp: Camp) -> list[str]:
-      # Returns codes of all suits naturally announced by given camp,
-      #  without duplicate values and sorted from the oldest to the most recent.
-      suit_codes = []
-      for bid in self.all:
-         if bid.camp == camp and bid.is_natural_suit():
-            if not bid.suit_code in suit_codes:
-               suit_codes.append(bid.suit_code)
-      return suit_codes
+   # def suit_codes(self, camp: Camp) -> list[str]:
+   #    # Returns codes of all suits naturally announced by given camp,
+   #    #  without duplicate values and sorted from the oldest to the most recent.
+   #    suit_codes = []
+   #    for bid in self.all:
+   #       if bid.camp == camp and bid.is_natural_suit():
+   #          if not bid.suit_code in suit_codes:
+   #             suit_codes.append(bid.suit_code)
+   #    return suit_codes
+
+   def suit_codes(self, camp: Camp = None) -> set[str]:
+      # Returns codes of all suits naturally announced by given camp, or by all.
+      if camp:
+         return set([b.suit_code for b in self.all if b.is_natural_suit() and b.camp == camp])
+      else:
+         return set([b.suit_code for b in self.all if b.is_natural_suit()])
 
    def last_suit_code(self, camp: Camp) -> str:
-      suit_codes = self.suit_codes(camp)
-      return suit_codes[-1] if suit_codes else ""
+      for bid in self.reversed_all():
+         if bid.is_natural_suit() and bid.camp == camp:
+            return bid.suit_code
 
    def first_pass_count(self) -> int:
       return self._first_pass_count_in(self.all)

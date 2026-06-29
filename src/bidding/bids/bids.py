@@ -158,3 +158,12 @@ class Forcing(Enum):
             return "forcing passe"
 
 
+class SuitsToStop(Enum):
+   OPP = "opp"
+   UNNAMED = "unnamed"
+
+   @staticmethod
+   def from_value(value: str) -> SuitsToStop:
+      for item in SuitsToStop:
+         if item.value == value:
+            return item

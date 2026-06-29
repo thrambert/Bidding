@@ -9,10 +9,10 @@ id;step;next_step;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_coun
 8;OPEN;;17H-23HL;bicolore 5/5;;Majeure;;Majeure;;;0;;3;;0;False;;;;;;;2T;2
 9;OPEN;;20-21H;semi-régulier;;;;;;;0;;0;;0;False;;no_good_major_5;;;;;2SA;3
 10;OPEN;SEQ1SA;15H-17H;régulier;;;;;;;0;;0;;0;False;;no_good_major_5;;;;;1SA;4
-11;OPEN;SEQ1SA;15-16H;5422;;mineure;;coeur;;;0;;0;;0;False;;;;;;;1SA;4
-12;OPEN;SEQ1SA;15-16H;5422;;mineure;;carreau;;;0;;0;;0;False;;;;;;;1SA;4
-13;OPEN;SEQ1SA;15-16H;6322;;mineure;;;;;0;;0;;0;False;;honors_in_short_colors;;;;;1SA;4
-14;OPEN;SEQ1SA;15-16H;5332;;;;;;;0;;0;;0;False;;honors_in_short_colors;;;;;1SA;4
+11;OPEN;SEQ1SA;15-16H;5-4-2-2;;mineure;;coeur;;;0;;0;;0;False;;;;;;;1SA;4
+12;OPEN;SEQ1SA;15-16H;5-4-2-2;;mineure;;carreau;;;0;;0;;0;False;;;;;;;1SA;4
+13;OPEN;SEQ1SA;15-16H;6-3-2-2;;mineure;;;;;0;;0;;0;False;;honors_in_short_colors;;;;;1SA;4
+14;OPEN;SEQ1SA;15-16H;5-3-3-2;;;;;;;0;;0;;0;False;;honors_in_short_colors;;;;;1SA;4
 15;OPEN;;13H-23HL;bicolore;;mineure;>=6;Majeure;5;;0;;0;;0;False;;;;;long_suit;1CL1;;6
 16;OPEN;;12H-23HL;;;Majeure;>=5;;;;0;;0;;0;False;;;;;long_suit;1CL1;;5
 17;OPEN;;12H-23HL;;;;;;;;0;;0;;0;False;;;;;best_minor;1;;6
@@ -52,14 +52,14 @@ id;step;next_step;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_coun
 51;ROSA;;6-12HL;;;mineure;>=5;Majeure;>=4;>=2;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;235
 52;ROSA;;13-23HL;;;carreau;>=5;Majeure;4;>=2;0;;0;;0;False;1T passe;;;;;;1K;235
 53;ROSA;;13-23HL;;;trèfle;>=5;Majeure;4;>=2;0;;0;;0;False;1K passe;;;;;;2T;236
-54;ROSA;;6-23HL;4441;;;;;;>=2;0;;0;;0;False;1m passe;;;;best_major;1;;235
-55;ROSA;;6-23HL;4432;;;;Majeure;4;>=2;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;235
+54;ROSA;;6-23HL;4-4-4-1;;;;;;>=2;0;;0;;0;False;1m passe;;;;best_major;1;;235
+55;ROSA;;6-23HL;4-4-3-2;;;;Majeure;4;>=2;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;235
 56;ROSA;;6-23HL;;;;>=5;;;>=2;0;;0;;0;False;1m passe;long_suit_1_unnamed;;;long_suit;1CL1;;235
 57;ROSA;;6-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;221
 58;ROSA;;13-23HL;;;carreau;>=5;Majeure;4;;0;;0;;0;False;1T passe;;;;;;1K;221
 59;ROSA;;12-23HL;;;trèfle;>=5;;;;0;;0;;0;False;1K passe;;;;;;2T;222
-60;ROSA;;6-23HL;4441;;;;;;;0;;0;;0;False;1m passe;;;;best_major;1;;221
-61;ROSA;;6-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;221
+60;ROSA;;6-23HL;4-4-4-1;;;;;;;0;;0;;0;False;1m passe;;;;best_major;1;;221
+61;ROSA;;6-23HL;4-4-3-2;;;;Majeure;4;;0;;0;;0;False;1m passe;;;;long_suit;1CL2;;221
 62;ROSA;;6-23HL;;;;>=5;;;;0;;0;;0;False;1m passe;long_suit_1_unnamed;;;long_suit;1CL1;;221
 63;ROSA;;8-11H;bicolore;;Majeure;>=5;;;>=2;0;;0;>=4;0;False;1m passe;;long_color_points_H;>=4;long_suit;2CL1;;237
 64;ROSA;;8-11H;bicolore;;carreau;>=5;;;>=2;0;;0;>=4;0;False;1T passe;;long_color_points_H;>=4;;;2K;238
@@ -96,8 +96,8 @@ id;step;next_step;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_coun
 95;ROACA;;7-10H;;;trèfle;>=6;;;;0;;0;;0;False;1K X;;;;;;2T;276
 96;ROACA;;7-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m X;;;;long_suit;1CL2;;275
 97;ROACA;;13-23HL;;;carreau;>=5;Majeure;4;;0;;0;;0;False;1T X;;;;;;1K;275
-98;ROACA;;7-23HL;4441;;;;;;;0;;0;;0;False;1m X;;;;best_major;1;;275
-99;ROACA;;7-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m X;;;;long_suit;1CL2;;275
+98;ROACA;;7-23HL;4-4-4-1;;;;;;;0;;0;;0;False;1m X;;;;best_major;1;;275
+99;ROACA;;7-23HL;4-4-3-2;;;;Majeure;4;;0;;0;;0;False;1m X;;;;long_suit;1CL2;;275
 100;ROACA;;7-23HL;;;;>=5;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;1CL1;;275
 101;ROACA;;4-10H;unicolore;;;7;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;3CL1;;277
 102;ROACA;;4-10H;unicolore;;;>=8;;;;0;;0;;0;False;1m X;long_suit_1_unnamed;;;long_suit;4CL1;;278
@@ -139,8 +139,8 @@ id;step;next_step;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_coun
 138;ROAIC;;7-12HL;;;mineure;>=5;Majeure;>=4;;0;;0;;0;False;1m 1E;long_suit_2_unnamed;;;long_suit;1CL2;;338
 139;ROAIC;;13-23HL;;;carreau;>=5;;;;0;;0;;0;False;1T 1E;long_suit_1_unnamed;;;;;2K;339
 140;ROAIC;;>=11HL;;;trèfle;>=5;;;;0;;0;;0;False;1K 1E;long_suit_1_unnamed;;;;;2T;339
-141;ROAIC;;7-23HL;4441;;;;;;;0;;0;;0;False;1m 1E;;;;best_major;1;;338
-142;ROAIC;;7-23HL;4432;;;;Majeure;4;;0;;0;;0;False;1m 1E;long_suit_2_unnamed;;;long_suit;1CL2;;338
+141;ROAIC;;7-23HL;4-4-4-1;;;;;;;0;;0;;0;False;1m 1E;;;;best_major;1;;338
+142;ROAIC;;7-23HL;4-4-3-2;;;;Majeure;4;;0;;0;;0;False;1m 1E;long_suit_2_unnamed;;;long_suit;1CL2;;338
 143;ROAIC;;7-23HL;;;;>=5;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;;;long_suit;1CL1;;338
 144;ROAIC;;4-10H;;;;>=7;;;;0;;0;;0;False;1m 1E;long_suit_1_unnamed;;;long_suit;3CL1;;340
 145;ROAIC;;8-10HL;semi-régulier;;;;;;;0;;0;;1;False;1m 1E;;longest_major;<4;;;1SA;341
@@ -378,393 +378,677 @@ id;step;next_step;points;distribution;bicolor;suit1;suit1_count;suit2;suit2_coun
 377;TEXAS;FREE;>=16H;;;trèfle;>=6;;;;0;;0;;0;False;2P passe 3T passe;;;;;;4T;1721
 378;TEXAS;FREE;>=16H;;;carreau;>=6;;;;0;;0;;0;False;3T passe 3K passe;;;;;;4K;1722
 379;TEXAS;FREE;>=16H;bicolore 5/5;carreau,trèfle;;;;;;0;;0;;0;False;2P passe 3T passe;;;;;;3K;1723
-380;TEXAS;SEQ1SA;8-9H;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;2SA;none
-381;TEXAS;PASS;10-15H;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3SA;none
-382;TEXAS;SEQ1SA;9HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;2SA;none
-383;TEXAS;PASS;10-15HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3SA;none
-384;TEXAS;SEQ1SA;16-17HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;4SA;none
-385;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;6SA;none
-386;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;5SA;none
-387;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;7SA;none
-388;TEXAS;SEQ1SA;8-9H;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;2SA;none
-389;TEXAS;PASS;10-15H;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3SA;none
-390;TEXAS;SEQ1SA;9HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;2SA;none
-391;TEXAS;PASS;10-15HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3SA;none
-392;TEXAS;SEQ1SA;16-17HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;4SA;none
-393;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;6SA;none
-394;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;5SA;none
-395;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;7SA;none
-396;REDO;PASS;15-16HLD;;;;;;;;0;;0;;0;False;1M o 2M o;;;;support;3;;2001
-397;REDO;;>=17HLD;irrégulier;;;;trèfle;4;;0;;0;;0;False;1M o 2M o;long_suit_2_unnamed;points_H;T<=2;long_suit;3CL2;3T;2002
-398;REDO;;>=17HLD;irrégulier;;;;carreau;4;;0;;0;;0;False;1M o 2M o;long_suit_2_unnamed;points_H;K<=2;long_suit;3CL2;3K;2003
-399;REDO;;>=17HLD;irrégulier;;;;coeur;4;;0;;0;;0;False;1P o 2P o;long_suit_2_unnamed;points_H;C<=2;long_suit;3CL2;3C;2004
-400;REDO;;>=17HLD;irrégulier;;;;pique;4;;0;;0;;0;False;1C o 2C o;long_suit_2_unnamed;points_H;P<=2;long_suit;2CL2;2P;2005
-401;REDO;;>=17HLD;;;;;;;;0;;0;;0;False;1M o 2M o;;;;;;2SA;2006
-402;REDO;PASS;>=20HLD;;;;;;;;0;;0;;0;False;1M o 2M o;;;;support;4;;2007
-403;REDO;;>=15H;;;;;pique;>=4;;0;;0;;0;False;1C passe 2C 2P;any_short_color;;;;;X;2008
-404;REDO;;>=15H;;;;;pique;>=4;;0;;0;;0;False;1C 2m 2C 2P;any_short_color;;;;;X;2009
-405;REDO;;>=17HLD;irrégulier;;;;;;;0;;0;;0;False;1C 1P 2C 2P;;;;;;X;2010
-406;REDO;;>=17HLD;irrégulier;;;;;;;0;;0;;0;False;1P 2E 2P 3E;;;;;;X;2011
-407;REDO;;>=17HLD;irrégulier;;;;;;;0;;0;;0;False;1P o 2P 3C;;;;;;X;2012
-408;REDO;PASS;14-16HL;régulier;;;;;;;0;;0;;0;False;1M o 2SA o;honors_in_short_colors;;;;;3SA;2013
-409;REDO;PASS;12-14HLD;;;;;;;;0;;0;;0;False;1M o 2SA o;;;;long_suit;3CL1;;2014
-410;REDO;PASS;15-16HLD;;;;;;;;0;;0;;0;False;1M o 2SA o;;;;long_suit;4CL1;;2015
-411;REDO;;>=17HLD;;;;;mineure;>=4;;0;;0;;0;False;1M o 2SA o;;;;long_suit;3CL2;;2016
-412;REDO;;>=17HLD;;;;;coeur;>=4;;0;;0;;0;False;1C o 2SA o;;;;;;2P;2017
-413;REDO;;>=17HLD;;;;;pique;>=4;;0;;0;;0;False;1P o 2SA o;;;;;;3C;2018
-414;REDO;PASS;<=14HLD;;;;;;;;0;;0;;0;False;1M o 3M o;;;;;;passe;none
-415;REDO;PASS;15-16HLD;;;;;;;;0;;0;;0;False;1M o 3M o;;;;long_suit;4CL1;;2019
-416;REDO;FREE;>=17HLD;;;;;;;;0;;0;;0;False;1C o 3C o;;control;P;;;3P;2020
-417;REDO;FREE;>=17HLD;;;;;;;;0;;0;;0;False;1M o 3M o;;;;first_control;;;2021
-418;REDO;FREE;>=17HLD;;;;;;;;0;;0;;0;False;1M o 3SA o;;;;first_control;;;2022
-419;REDO;;<=16HLD;;;;;;;;0;;0;;0;False;1M o 3SA o;;;;long_suit;4CL1;;2023
-420;REDO;PASS;<=16HLD;;;;;;;;0;;0;;0;False;1T o 2T o;;;;;;3T;2024
-421;REDO;PASS;<=16HLD;;;;;;;;0;;0;;0;False;1K o 2K o;;;;;;3K;2024
-422;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1T o 2T o;honors_in_short_colors;;;;;2SA;2025
-423;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1K o 2K o;honors_in_short_colors;;;;;2SA;2025
-424;REDO;;18-19H;régulier;;;>=5;;;;0;;0;;0;False;1T o 2T o;honors_in_short_colors;;;;;3SA;2026
-425;REDO;;18-19H;régulier;;;>=5;;;;0;;0;;0;False;1K o 2K o;honors_in_short_colors;;;;;3SA;2026
-426;REDO;;>=15H;;;;;;;;0;;0;;0;False;1T o 2T o;;stop_suit;K;;;2K;2027
-427;REDO;;>=15H;;;;;;;;0;;0;;0;False;1T o 2T o;;stop_suit;C;;;2C;2027
-428;REDO;;>=15H;;;;;;;;0;;0;;0;False;1K o 2K o;;stop_suit;C;;;2C;2027
-429;REDO;;>=15H;;;;;;;;0;;0;;0;False;1T o 2T o;;stop_suit;P;;;2P;2027
-430;REDO;;>=15H;;;;;;;;0;;0;;0;False;1K o 2K o;;stop_suit;P;;;2P;2027
-431;REDO;;>=15H;;;;;;;;0;;0;;0;False;1K o 2K o;;stop_suit;T;;;3T;2028
-432;REDO;;14-18H;régulier;;;;;;;0;;0;;0;False;1m o 3m o;honors_in_short_colors;;;;;3SA;2029
-433;REDO;;>=14H;;;;;;;;0;;0;;0;False;1m o 3m o;;stop_suit;C;;;3C;2030
-434;REDO;;>=14H;;;;;;;;0;;0;;0;False;1m o 3m o;;stop_suit;P;;;3P;2023
-435;REDO;;12-16HLD;;;;;;;;0;;0;>=4;0;False;1E o 1M o;;;;support;2;;2051
-436;REDO;;12-16HLD;;;;;;;;0;;0;>=4;0;False;1E o 1M 3m;;;;support;3;;2060
-437;REDO;;17-19HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1E o 1M o;;;;support;3;;2052
-438;REDO;;17-19H;5422;;;;;;;0;;0;4;0;False;1E o 1M o;;;;support;4;;2053
-439;REDO;;18-19H;régulier;;;;;;;0;;0;>=4;0;False;1E o 1M o;;;;;;3SA;2054
-440;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1K passe 1M passe;;suit_length;T<=1;;;4T;2055
-441;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1C passe 1P passe;;suit_length;T<=1;;;4T;2055
-442;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1T passe 1M passe;;suit_length;K<=1;;;4K;2056
-443;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1C passe 1P passe;;suit_length;K<=1;;;4K;2056
-444;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1m passe 1P passe;;suit_length;C<=1;;;4C;2057
-445;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1m passe 1C passe;;suit_length;P<=1;;;3P;2058
-446;REDO;;20-22HLD;;;mineure;>=6;;4;;0;;0;4;0;False;1m o 1M o;;long_color_points_H;>=5;long_suit;4CL1;;2059
-447;REDO;;12-16HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1m passe 1C 1P;;;;;;3C;2061
-448;REDO;;17-19HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1m passe 1C 1P;;;;;;4C;2062
-449;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1m o 1C 1P;;;;;;2P;2063
-450;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1E o 1M 2m;;;;cuebid;3;;2064
-451;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1m o 1P 2C;;;;;;3C;2064
-452;REDO;FREE;17-19H;irrégulier;;;;;;;0;;0;<=3;1;False;1m X 1M passe;honors_in_short_colors;;;;;3SA;2065
-453;REDO;FREE;17-19H;irrégulier;;;;;;;0;;0;<=3;1;False;1m 1C 1P passe;honors_in_short_colors;;;;;3SA;2066
-454;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T passe 1M X;;suit_length;K<=1;;;4K;2067
-455;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1K passe 1M X;;suit_length;T<=1;;;4T;2068
-456;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T passe 1C 1P;;suit_length;K<=1;;;4K;2069
-457;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1K passe 1C 1P;;suit_length;T<=1;;;4T;2070
-458;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T 1C 1P passe;;suit_length;K<=1;;;4K;2071
-459;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1K 1C 1P passe;;suit_length;T<=1;;;4T;2072
-460;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T passe 1C 1P;;suit_length;P<=1;;;3P;2073
-461;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T 1C 1P 2C;;suit_length;K<=1;;;4K;2074
-462;REDO;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1C passe 1P 2T;;;;;;3K;2075
-463;REDO;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1C passe 1P 2K;;;;;;4T;2076
-464;REDO;;;bicolore 5/5;trèfle,carreau;;;;;;0;;6;;0;False;1K 1C 1P 2C;;;;;;4T;2077
-465;REDO;;12-14H;irrégulier;;;;;;;0;;0;>=4;0;False;1T passe 1K o;;;;;;2K;2078
-466;REDO;;15-17H;irrégulier;;;;;;;0;;0;>=5;0;False;1T passe 1K passe;;;;;;3K;2079
-467;REDO;;15-17H;irrégulier;;;;;;;0;;0;>=5;0;False;1T passe 1K 1M;;;;;;3K;2079
-468;REDO;;15-17H;irrégulier;;;;;;;0;;0;>=5;0;False;1T passe 1K X;;;;;;3K;2079
-469;REDO;;20-22HLD;;;;;;;;0;;0;>=5;0;False;1T passe 1K passe;;suit_length;C<=1;;;3C;2080
-470;REDO;;20-22HLD;;;;;;;;0;;0;>=5;0;False;1T passe 1K passe;;suit_length;P<=1;;;3P;2080
-471;REDO;;15-19HLD;;;;;;;>=2;0;;0;>=4;0;False;1M passe 2m o;;;;support;3;;2081
-472;REDO;;15-19HLD;;;;;;;;0;;0;>=4;0;False;1M passe 2m passe;;;;support;3;;2082
-473;REDO;;>=20HLD;;;;;;;;0;;0;>=4;0;False;1M passe 2m passe;;;;support;4;;2083
-474;REDO;;<=17H;;;;;;;;0;;0;>=4;0;False;1M X 2m o;;;;support;3;;2084
-475;REDO;;<=17H;;;;;;;;0;;0;>=4;0;False;1C 1P 2m o;;;;support;3;;2085
-476;REDO;;<=17H;;;;;;;;0;;0;>=4;0;False;1M passe 2m 2E;;;;support;3;;2086
-477;REDO;;<=17H;;;;;;;;0;;0;>=4;0;False;1M passe 2m X;;;;support;3;;2087
-478;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1M X 2m 2E;;;;cuebid;3;;2088
-479;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1C 1P 2m passe;;;;cuebid;3;;2089
-480;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1C 1P 2m 2P;;;;cuebid;3;;2090
-481;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1M passe 2m 2E;;;;cuebid;3;;2091
-482;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1M passe 2m X;;;;cuebid;;XX;2092
-483;REDO;;>=15HLD;;;;;;;;0;;0;>=3;0;False;1P passe 2C passe;;;;;;3C;2093
-484;REDO;;>=15HLD;;;;;;;;0;;0;>=3;0;False;1P passe 2C 3m;;;;;;3C;2094
-485;REDO;;17-19HLD;5422;;;;;;;0;;0;>=3;0;False;1P passe 2C o;;;;;;4C;2095
-486;REDO;;17-19HLD;;;;;;;;0;;0;>=3;0;False;1P passe 2C o;any_short_color;;;;;4C;2095
-487;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1P passe 2C passe;;suit_length;T<=1;;;4T;2096
-488;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1P passe 2C passe;;suit_length;K<=1;;;4K;2096
-489;REDO;;12-14HLD;;;;;;;;0;;0;>=3;0;False;1P passe 2C passe;;;;;;2P;2097
-490;REDO;;12-14H;semi-régulier;;;;;;;0;;0;<4;0;False;1m passe 1P passe;;majors_at_least_4;1;;;1SA;2121
-491;REDO;;12-14H;semi-régulier;;;;;;;0;;0;;0;False;1m passe 1E passe;;majors_at_least_4;=0;;;1SA;2122
-492;REDO;;12-14H;semi-régulier;;;;;;;0;;0;<4;0;False;1C passe 1P passe;;majors_at_least_4;1;;;1SA;2123
-493;REDO;;18-19HL;régulier;;;;;;;0;;0;<4;0;False;1m passe 1P passe;;majors_at_least_4;1;;;2SA;2124
-494;REDO;;18-19HL;régulier;;;;;;;0;;0;;0;False;1m passe 1E passe;;majors_at_least_4;=0;;;2SA;2125
-495;REDO;;18-19HL;régulier;;;;;;;0;;0;<4;0;False;1C passe 1P passe;;majors_at_least_4;1;;;2SA;2126
-496;REDO;;15-17H;irrégulier;;;;;;;0;;0;;0;False;1T passe 1SA passe;;;;;;2SA;2127
-497;REDO;;15-17H;irrégulier;;;;;;;0;;0;;0;False;1K passe 1SA passe;;;;;;2SA;2128
-498;REDO;;17-18H;régulier;;;;;;;0;;0;;0;False;1M passe 1SA passe;;;;;;2SA;2129
-499;REDO;;15-17H;régulier;;;;;;;0;;0;;0;False;1M passe 2E passe;;;;;;2SA;2130
-500;REDO;;12-14H;régulier;;;;;;;0;;0;;0;False;1K passe 2T passe;;;;;;2SA;2131
-501;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1K passe 2T passe;;;;;;2SA;2131
-502;REDO;;15-17H;tricolore;;;;;;;0;;0;;0;False;1K passe 2T passe;;suit_length;T<=1;;;3SA;2132
-503;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1T passe 1K;;;;;;3SA;2133
-504;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1T passe 1M;;;;;;3SA;2133
-505;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1K passe 1M;;;;;;3SA;2133
-506;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1C passe 1P;;;;;;3SA;2133
-507;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1M passe 2E passe;;;;;;3SA;2134
-508;REDO;;12-19HL;;;;;;;;0;;0;<4;0;False;1T passe 1K passe;;suit_length;C4;;;1C;2161
-509;REDO;;12-19HL;;;;;;;;0;;0;<4;0;False;1T passe 1K passe;;suit_length;P4;;;1P;2161
-510;REDO;;12-19HL;;;;;;;;0;;0;<3;0;False;1T passe 1C passe;;suit_length;P4;;;1P;2162
-511;REDO;;12-19HL;;;;;;;;0;;0;<3;0;False;1K passe 1C passe;;suit_length;P4;;;1P;2162
-512;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1M passe;;;;;;2T;2163
-513;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1SA passe;;;;;;2T;2164
-514;REDO;;12-19HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C passe 1P passe;;;;;;2T;2165
-515;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C passe 1P passe;;;;;;2K;2165
-516;REDO;;12-19HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C passe 1SA passe;;;;;;2T;2166
-517;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C passe 1SA passe;;;;;;2K;2166
-518;REDO;;12-19HL;bicolore;;pique;>=5;trèfle;>=4;;0;;0;;0;False;1P passe 1SA passe;;;;;;2T;2167
-519;REDO;;12-19HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P passe 1SA passe;;;;;;2K;2167
-520;REDO;;12-19HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P passe 1SA passe;;;;;;2C;2168
-521;REDO;;20-23HL;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T passe 1K passe;;;;;;2C;2169
-522;REDO;;20-23HL;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T passe 1K passe;;;;;;2P;2169
-523;REDO;;20-23HL;;;carreau;>=5;pique;>=3;;0;;0;;0;False;1K passe 1C passe;;;;;;2P;2170
-524;REDO;;20-23HL;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K passe 1M passe;;;;;;3T;2171
-525;REDO;;17-23HL;bicolore 5/5;coeur,carreau;;;;;;0;;0;;0;False;1C passe 2T passe;honors_in_bicolors;;;;;3K;2172
-526;REDO;;17-23HL;bicolore 5/5;pique,carreau;;;;;;0;;0;;0;False;1P passe 2T passe;honors_in_bicolors;;;;;3K;2173
-527;REDO;;17-23HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1P passe 2m passe;honors_in_bicolors;;;;;3C;2174
-528;REDO;;18-23HL;;;trèfle;>=5;carreau;>=3;;0;;0;;0;False;1T passe 1M passe;;;;;;2K;2175
-529;REDO;;18-23HL;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T passe 1P passe;;;;;;2C;2176
-530;REDO;;19-23HL;;;trèfle;>=5;carreau;>=3;;0;;0;;0;False;1T passe 1SA passe;;;;;;2K;2177
-531;REDO;;19-23HL;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T passe 1SA passe;;;;;;2C;2178
-532;REDO;;19-23HL;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T passe 1SA passe;;;;;;2P;2179
-533;REDO;;18-23HL;;;carreau;>=5;coeur;>=3;;0;;0;;0;False;1K passe 1P passe;;;;;;2C;2180
-534;REDO;;>=17HL;;;carreau;>=5;Majeure;>=3;;0;;0;;0;False;1K passe 2T passe;;;;long_suit;2CL2;;2181
-535;REDO;;19-23HL;;;carreau;>=5;coeur;>=3;;0;;0;;0;False;1K passe 1SA passe;;;;;;2C;2182
-536;REDO;;19-23HL;;;carreau;>=5;pique;>=3;;0;;0;;0;False;1K passe 1SA passe;;;;;;2P;2183
-537;REDO;;17-23HL;bicolore;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K passe 2SA passe;;;;;;3T;2184
-538;REDO;;19-23HL;;;coeur;>=5;pique;>=3;;0;;0;;0;False;1C passe 1SA passe;;;;;;2P;2185
-539;REDO;;>=17HL;;;coeur;>=5;pique;>=3;;0;;0;;0;False;1C passe 2m passe;;;;;;2P;2186
-540;REDO;;17-23HL;bicolore;;coeur;>=5;trèfle;>=3;;0;;0;;0;False;1C passe 2K passe;;;;;;3T;2187
-541;REDO;;17-23HL;bicolore;;pique;>=5;trèfle;>=3;;0;;0;;0;False;1P passe 2K passe;;;;;;3T;2188
-542;REDO;;17-23HL;bicolore;;pique;>=5;trèfle;>=3;;0;;0;;0;False;1P passe 2C passe;;;;;;3T;2189
-543;REDO;;17-23HL;bicolore;;pique;>=5;carreau;>=3;;0;;0;;0;False;1P passe 2C passe;;;;;;3K;2189
-544;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1K passe;;;;;;2T;2190
-545;REDO;;13-17HL;;;trèfle;>=5;;;;0;;0;;0;False;1T passe 1M passe;;;;;;2T;2191
-546;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C passe;;;;;;2K;2192
-547;REDO;;13-17HL;;;carreau;>=5;;;;0;;0;;0;False;1K passe 1P passe;;;;;;2K;2193
-548;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1P passe;;;;;;2C;2194
-549;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1SA passe;;;;;;2T;2195
-550;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1SA passe;;;;;;2K;2195
-551;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1SA passe;;;;;;2C;2195
-552;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA passe;;;;;;2P;2195
-553;REDO;;13-17HL;;;carreau;>=5;;;;0;;0;;0;False;1K passe 2T passe;;;;;;2K;2196
-554;REDO;;13-17HL;;;coeur;>=5;;;;0;;0;;0;False;1C passe 2m passe;;;;;;2C;2197
-555;REDO;;13-17HL;;;pique;>=5;;;;0;;0;;0;False;1P passe 2m passe;;;;;;2P;2197
-556;REDO;;13-17HL;;;pique;>=5;;;;0;;0;;0;False;1P passe 2C passe;;;;;;2P;2198
-557;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1K passe;;;;;;3T;2199
-558;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1M passe;;;;;;3T;2200
-559;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C passe;;;;;;3K;2201
-560;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1P passe;;;;;;3K;2202
-561;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1P passe;;;;;;3C;2203
-562;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1SA passe;;;;;;3T;2204
-563;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1SA passe;;;;;;3K;2204
-564;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1SA passe;;;;;;3C;2204
-565;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA passe;;;;;;3P;2204
-566;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 2T passe;;;;;;3K;2205
-567;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 2m passe;;;;;;3C;2206
-568;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 2m passe;;;;;;3P;2206
-569;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 2C passe;;;;;;3P;2207
-570;REDO;;12-14H;semi-régulier;;;;;;;0;;0;<4;0;False;1m 1E 1P passe;;majors_at_least_4;1;;;1SA;2231
-571;REDO;;12-14H;semi-régulier;;;;;;;0;;0;<4;0;False;1m 1E 1M passe;;majors_at_least_4;=0;;;1SA;2232
-572;REDO;;18-19HL;régulier;;;;;;;0;;0;<4;1;False;1m 1E 1P passe;;majors_at_least_4;1;;;2SA;2233
-573;REDO;;18-19HL;régulier;;;;;;;0;;0;<4;1;False;1m 1E 1M passe;;majors_at_least_4;=0;;;2SA;2234
-574;REDO;;15-17H;irrégulier;;;;;;;0;;0;;1;False;1m 1E 1SA passe;;;;;;2SA;2235
-575;REDO;;17-18H;régulier;;;;;;;0;;0;;1;False;1C 1P 1SA passe;;;;;;2SA;2236
-576;REDO;;15-17H;régulier;;;;;;;0;;0;;1;False;1C 1P 2m passe;;;;;;2SA;2237
-577;REDO;;15-17H;régulier;;;;;;;0;;0;<3;1;False;1C 2m 2P passe;;;;;;2SA;2238
-578;REDO;;15-17H;régulier;;;;;;;0;;0;<3;1;False;1P 2m 2C passe;;;;;;2SA;2239
-579;REDO;;12-14H;régulier;;;;;;;0;;0;;1;False;1K 1M 2T passe;;;;;;2SA;2240
-580;REDO;;18-19H;régulier;;;;;;;0;;0;;1;False;1K 1M 2T passe;;;;;;2SA;2240
-581;REDO;;12-19HL;;;;;;;;0;;0;<3;0;False;1T 1K 1C passe;;suit_length;P4;;;1P;2241
-582;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K 1C 1P passe;;;;;;2T;2242
-583;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K 1M 1SA passe;;;;;;2T;2243
-584;REDO;;12-19HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C 1P 1SA passe;;;;;;2T;2244
-585;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C 1P 1SA passe;;;;;;2K;2245
-586;REDO;;20-23HL;bicolore;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K 1C 1P passe;;;;;;3T;2246
-587;REDO;;17-23HL;bicolore 5/5;coeur,carreau;;;;;;0;;0;;0;False;1C 1P 2T passe;honors_in_bicolors;;;;;3K;2247
-588;REDO;;17-23HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1P 2T 2K passe;honors_in_bicolors;;;;;3C;2248
-589;REDO;;>=15H;;;trèfle;>=5;carreau;>=3;;0;;0;;0;False;1T 1C 1P passe;;;;;;2K;2249
-590;REDO;;>=15H;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T 1K 1P passe;;;;;;2C;2250
-591;REDO;;>=15H;;;trèfle;>=5;carreau;>=3;;0;;0;;0;False;1T 1M 1SA passe;;;;;;2K;2251
-592;REDO;;>=15H;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T 1K 1SA passe;;;;;;2C;2252
-593;REDO;;>=15H;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T 1P 1SA passe;;;;;;2C;2253
-594;REDO;;>=15H;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T 1K 1SA passe;;;;;;2P;2254
-595;REDO;;>=15H;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T 1C 1SA passe;;;;;;2P;2255
-596;REDO;;>=15H;;;carreau;>=5;coeur;>=3;;0;;0;;0;False;1K 1P 1SA passe;;;;;;2C;2256
-597;REDO;;>=15H;;;carreau;>=5;pique;>=3;;0;;0;;0;False;1K 1C 1SA passe;;;;;;2P;2257
-598;REDO;;>=15H;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K 1M 2SA passe;;;;;;3T;2258
-599;REDO;;>=15H;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K 2K 2SA passe;;;;;;3T;2259
-600;REDO;;>=15H;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K 2M 2SA passe;;;;;;3T;2260
-601;REDO;;>=15H;;;coeur;>=5;pique;>=3;;0;;0;;0;False;1C 2T 2K passe;;;;;;2P;2261
-602;REDO;;>=15H;;;coeur;>=5;trèfle;>=3;;0;;0;;0;False;1C 1P 2K passe;;;;;;3T;2262
-603;REDO;;>=15H;;;pique;>=5;trèfle;>=3;;0;;0;;0;False;1P 2K 2C passe;;;;;;3T;2263
-604;REDO;;>=15H;;;pique;>=5;carreau;>=3;;0;;0;;0;False;1P 2T 2C passe;;;;;;3K;2264
-605;REDO;;>=12H;;;;;;;;0;;0;;0;False;1C 1P 2T passe;;;;;;2K;2265
-606;REDO;;>=12H;;;;;;;;0;;0;;0;False;1P 2T 2K passe;;;;;;2C;2266
-607;REDO;;13-17HL;;;trèfle;>=5;;;;0;;0;;0;False;1T 1E 1M passe;;;;;;2T;2267
-608;REDO;;13-17HL;;;carreau;>=5;;;;0;;0;;0;False;1K 1C 1P passe;;;;;;2K;2268
-609;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1E 1SA passe;;;;;;2T;2269
-610;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M 1SA passe;;;;;;2K;2270
-611;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P 1SA passe;;;;;;2C;2271
-612;REDO;;13-17HL;;;carreau;>=5;;;;0;;0;;0;False;1K 1M 2T passe;;;;;;2K;2272
-613;REDO;;13-17HL;;;coeur;>=5;;;;0;;0;;0;False;1C 1P 2m passe;;;;;;2C;2273
-614;REDO;;13-17HL;;;coeur;>=5;;;;0;;0;;0;False;1C 2T 2K passe;;;;;;2C;2274
-615;REDO;;13-17HL;;;pique;>=5;;;;0;;0;;0;False;1P 2T 2K passe;;;;;;2P;2275
-616;REDO;;13-17HL;;;pique;>=5;;;;0;;0;;0;False;1P 2m 2C passe;;;;;;2P;2276
-617;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1E 1M passe;;;;;;3T;2277
-618;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1C 1P passe;;;;;;3K;2278
-619;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1E 1SA passe;;;;;;3T;2279
-620;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M 1SA passe;;;;;;3K;2280
-621;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P 1SA passe;;;;;;3C;2281
-622;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M 2T passe;;;;;;3K;2282
-623;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P 2m passe;;;;;;3C;2283
-624;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2T 2K passe;;;;;;3P;2284
-625;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2m 2C passe;;;;;;3P;2285
-626;REDO;;>=18H;;;;;;;;0;;0;;0;False;1T 1K 1M passe;;;;;;2K;2286
-627;REDO;;>=18H;;;;;;;;0;;0;;0;False;1m 1C 1P passe;;;;;;2C;2287
-628;REDO;;>=18H;;;;;;;;0;;0;;0;False;1C 1P 2m passe;;;;;;2P;2288
-629;REDO;;>=18H;;;;;;;;0;;0;;0;False;1C 2T 2K passe;;;;;;3T;2289
-630;REDO;;>=18H;;;;;;;;0;;0;;0;False;1P 2T 2K passe;;;;;;3T;2290
-631;REDO;;>=18H;;;;;;;;0;;0;;0;False;1P 2m 2C passe;;;;cuebid;3;;2291
-632;REDO;;>=18H;;;;;;;;0;;0;;0;False;1K 1M 2T passe;;;;cuebid;2;;2292
-633;REDO;;;;;;;;;;0;;0;;0;False;1T 1M 2K passe;;;;cuebid;2;;2293
-634;REDO;;;;;;;;;;0;;0;;0;False;1K 2T 2M passe;;;;;;3T;2294
-635;REDO;;;;;;;;;;0;;0;;0;False;1C 2K 2P passe;;;;;;3K;2295
-636;REDO;;;;;;;;;;0;;0;;0;False;1P 2C 3m passe;;;;;;3C;2296
-637;REDO;;;irrégulier;;;;;;;0;;0;;0;False;1T o 1K 1C;;suit_length;P4;;;1P;2297
-638;REDO;;12-19HL;bicolore 5/5;carreau,trèfle;;;;;;0;;0;;0;False;1K passe 1C 1P;;;;;;2T;2298
-639;REDO;;12-19HL;bicolore 5/5;coeur,carreau;;;;;;0;;0;;0;False;1C passe 1P 2T;;;;;;2K;2299
-640;REDO;;12-19HL;bicolore 5/5;coeur,carreau;;;;;;0;;0;;0;False;1C o 1SA 2T;;;;;;2K;2300
-641;REDO;;12-19HL;bicolore 5/5;pique,carreau;;;;;;0;;0;;0;False;1P o 1SA 2T;;;;;;2K;2301
-642;REDO;;12-19HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1P passe 1SA 2m;;;;;;2C;2302
-643;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1C 1P;honors_in_bicolors;;;;;2T;2298
-644;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C passe 1P 2T;honors_in_bicolors;;;;;2K;2299
-645;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C o 1SA 2T;honors_in_bicolors;;;;;2K;2300
-646;REDO;;12-19HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P o 1SA 2T;honors_in_bicolors;;;;;2K;2301
-647;REDO;;12-19HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P passe 1SA 2m;honors_in_bicolors;;;;;2C;2302
-648;REDO;;15-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1C 1P;;;;;;2T;2298
-649;REDO;;15-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C passe 1P 2T;;;;;;2K;2299
-650;REDO;;15-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C o 1SA 2T;;;;;;2K;2300
-651;REDO;;15-19HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P o 1SA 2T;;;;;;2K;2301
-652;REDO;;15-19HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P passe 1SA 2m;;;;;;2C;2302
-653;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T passe 1K 1C;;;;;;2P;2303
-654;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T passe 1K 2m;;;;;;2P;2304
-655;REDO;;18-23HL;bicolore;;carreau;>=5;pique;>=4;;0;;0;;0;False;1K passe 1C 2m;;;;;;2P;2305
-656;REDO;;18-23HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1C 1P;;;;;;3T;2306
-657;REDO;;18-23HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K o 1M 2E;;;;;;3T;2307
-658;REDO;;18-23HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C o 2T 2P;;;;;;3K;2308
-659;REDO;;18-23HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P passe 2T 2C;;;;;;3K;2309
-660;REDO;;18-23HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P passe 2T 2K;;;;;;3C;2310
-661;REDO;;18-23HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P o 2K 3T;;;;;;3C;2311
-662;REDO;;18-23HL;bicolore;;trèfle;>=5;carreau;>=4;;0;;0;;0;False;1T o 1C 1P;;;;;;2K;2312
-663;REDO;;18-23HL;bicolore;;trèfle;>=5;coeur;>=4;;0;;0;;0;False;1T o 1P 2T;;;;;;2C;2313
-664;REDO;;18-23HL;bicolore;;trèfle;>=5;coeur;>=4;;0;;0;;0;False;1T o 1SA 2K;;;;;;2C;2314
-665;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T o 1SA 2K;;;;;;2P;2315
-666;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T o 1SA 2C;;;;;;2P;2316
-667;REDO;;18-23HL;bicolore;;carreau;>=5;coeur;>=4;;0;;0;;0;False;1K o 1P 2T;;;;;;2C;2317
-668;REDO;;18-23HL;bicolore;;carreau;>=5;coeur;>=4;;0;;0;;0;False;1K o 1SA 2T;;;;;;2C;2318
-669;REDO;;18-23HL;bicolore;;carreau;>=5;pique;>=4;;0;;0;;0;False;1K o 1SA 2T;;;;;;2P;2319
-670;REDO;;18-23HL;bicolore;;carreau;>=5;pique;>=4;;0;;0;;0;False;1K o 1SA 2C;;;;;;2P;2320
-671;REDO;;18-23HL;bicolore;;coeur;>=5;pique;>=4;;0;;0;;0;False;1C o 1SA 2m;;;;;;2P;2321
-672;REDO;;18-23HL;bicolore;;coeur;>=5;pique;>=4;;0;;0;;0;False;1C o 2T 2K;;;;;;2P;2322
-673;REDO;;18-23HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C o 2K 2P;;;;;;3T;2323
-674;REDO;;18-23HL;bicolore;;pique;>=5;trèfle;>=4;;0;;0;;0;False;1P o 2K 2C;;;;;;3T;2324
-675;REDO;;18-23HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P o 2C 3T;;;;;;3K;2325
-676;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1K 1P;;;;;;2T;2326
-677;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T o 1C 1P;;;;;;2T;2327
-678;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C 1P;;;;;;2K;2328
-679;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C 2T;;;;;;2K;2329
-680;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K o 1P 2T;;;;;;2K;2330
-681;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1P 2m;;;;;;2C;2331
-682;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1SA 2T;;;;;;2K;2332
-683;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C o 1SA 2m;;;;;;2C;2333
-684;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA 2m;;;;;;2P;2334
-685;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA 2C;;;;;;2P;2335
-686;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C o 2T 2K;;;;;;2C;2336
-687;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 2T 2K;;;;;;2P;2337
-688;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P o 2m 2C;;;;;;2P;2338
-689;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1K 1M;;;;;;3T;2339
-690;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T o 1C 1P;;;;;;3T;2340
-691;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C 1P;;;;;;3K;2341
-692;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C 2T;;;;;;3K;2342
-693;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K o 1P 2m;;;;;;3K;2343
-694;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1P 2m;;;;;;3C;2344
-695;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T o 1SA 2E;;;;;;3T;2345
-696;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K o 1SA 2M;;;;;;3K;2346
-697;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C o 1SA 2m;;;;;;3C;2347
-698;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA 2m;;;;;;3P;2348
-699;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA 2C;;;;;;3P;2349
-700;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K o 2T 2M;;;;;;3K;2350
-701;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C o 2m 2E;;;;;;3C;2351
-702;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 2T 2K;;;;;;3P;2352
-703;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P o 2m 2C;;;;;;3P;2353
-704;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P o 2C 3m;;;;;;3P;2354
-705;REDO;;;irrégulier;;;;;;;0;;0;;0;False;1T 1K X 1M;;suit_length;P4;;;1P;2355
-706;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C 1P X 2T;honors_in_bicolors;;;;;2K;2356
-707;REDO;;12-19HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P 2T X 2K;honors_in_bicolors;;;;;2C;2357
-708;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T 1K X 1C;;;;;;2P;2358
-709;REDO;;18-23HL;bicolore;;carreau;>=5;pique;>=4;;0;;0;;0;False;1K 1C X 2m;;;;;;2P;2359
-710;REDO;;18-23HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K 1M X 2M;;;;;;3T;2360
-711;REDO;;18-23HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C 2T X 2P;;;;;;3K;2361
-712;REDO;;18-23HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C 2T X 3T;;;;;;3K;2362
-713;REDO;;18-23HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P 2T X 2K;;;;;;3K;2363
-714;REDO;;18-23HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P 2T X 3T;;;;;;3C;2364
-715;REDO;;18-23HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P 2K X 3m;;;;;;3C;2365
-716;REDO;;18-23HL;bicolore;;trèfle;>=5;carreau;>=4;;0;;0;;0;False;1T 1C X 2T;;;;;;2K;2366
-717;REDO;;18-23HL;bicolore;;trèfle;>=5;coeur;>=4;;0;;0;;0;False;1T 1P X 2K;;;;;;2C;2367
-718;REDO;;18-23HL;bicolore;;carreau;>=5;coeur;>=4;;0;;0;;0;False;1K 1P X 2T;;;;;;2C;2368
-719;REDO;;18-23HL;bicolore;;coeur;>=5;pique;>=4;;0;;0;;0;False;1C 2T X 2K;;;;;;2P;2369
-720;REDO;;18-23HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C 1E X 2E;;;;;;3T;2370
-721;REDO;;18-23HL;bicolore;;pique;>=5;trèfle;>=4;;0;;0;;0;False;1P 2K X 2C;;;;;;3T;2371
-722;REDO;;18-23HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P 2C X 3T;;;;;;3K;2372
-723;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1K X 1M;;;;;;2T;2373
-724;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1C X 1P;;;;;;2K;2374
-725;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M X 2T;;;;;;2K;2375
-726;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P X 2m;;;;;;2C;2376
-727;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 2T X 2K;;;;;;2C;2377
-728;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2T X 2K;;;;;;2P;2378
-729;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2m X 2C;;;;;;2P;2379
-730;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1K X 2K;;;;;;3T;2380
-731;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1M X 2M;;;;;;3T;2381
-732;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1K X 2M;;;;;;3T;2382
-733;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1M X 2K;;;;;;3T;2383
-734;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M X 2M;;;;;;3K;2384
-735;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 2T X 2M;;;;;;3K;2385
-736;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 2T X 3T;;;;;;3K;2386
-737;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P X 2P;;;;;;3C;2387
-738;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P X 2m;;;;;;3C;2388
-739;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 2m X 3m;;;;;;3C;2389
-740;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 2T X 3K;;;;;;3C;2390
-741;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 2K X 3T;;;;;;3C;2391
-742;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2m X 3m;;;;;;3P;2392
-743;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2C X 3C;;;;;;3P;2393
-744;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2m X 2C;;;;;;3P;2394
-745;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2C X 3m;;;;;;3P;2395
-746;REDO;;;;;;;;;;0;;0;;0;False;1T passe 1C 2K;;suit_length;C3;;;X;2421
-747;REDO;;;;;;;;;;0;;0;;0;False;1T passe 1P 2K;;suit_length;P3;;;X;2421
-748;REDO;;;;;;;;;;0;;0;;0;False;1K passe 1C 2T;;suit_length;C3;;;X;2422
-749;REDO;;;;;;;;;;0;;0;;0;False;1K passe 1P 2T;;suit_length;P3;;;X;2422
-750;REDO;;;;;;;;;;0;;0;;0;False;1m passe 1C X;;suit_length;C3;;;XX;2423
-751;REDO;;;;;;;;;;0;;0;;0;False;1m passe 1P X;;suit_length;P3;;;XX;2423
-752;REDO;;>=18H;;;;;;;;0;;0;;0;False;1T passe 1K 1M;;;;;;X;2424
-753;REDO;;15-17H;;;;;;;;0;;0;;0;False;1C passe 1SA 2P;takeout_double;suit_length;P<=1;;;X;2425
-754;REDO;;15-17H;;;;;;;;0;;0;;0;False;1P passe 1SA 2C;takeout_double;suit_length;C<=1;;;X;2426
-755;REDO;;15-17H;;;;;;;;0;;0;;0;False;1K passe 2T 2C;takeout_double;suit_length;C<=1;;;X;2427
-756;REDO;;15-17H;;;;;;;;0;;0;;0;False;1K passe 2T 2P;takeout_double;suit_length;P<=1;;;X;2428
-757;REDO;;15-17H;;;;;;;;0;;0;;0;False;1K passe 2T 2C;takeout_double;suit_length;C<=1;;;X;2429
-758;REDO;;15-17H;;;;;;;;0;;0;;0;False;1K passe 2T 2P;takeout_double;suit_length;P<=1;;;X;2430
-759;R2;;>=8HL;;;;;;;;0;;0;;0;False;1T passe 1M passe 2M passe;;suit_length;T>=4;;;3T;2701
-760;R2;;>=8HL;;;;;;;;0;;0;;0;False;1K passe 1M passe 2M passe;;suit_length;K>=4;;;3K;2701
-761;R2;;>=8HL;irrégulier;;;;;;;0;;0;;0;False;1T passe 1M passe 2M passe;;suit_length;K>=4;;;3K;2702
-762;R2;;>=8HL;irrégulier;;;;;;;0;;0;;0;False;1K passe 1M passe 2M passe;;suit_length;K>=4;;;3K;2702
-763;R2;;>=8HL;irrégulier;;;;;;;0;;0;;0;False;1T passe 1C passe 2C passe;;suit_length;P>=4;;;2P;2703
-764;R2;;>=8HL;irrégulier;;;;;;;0;;0;;0;False;1K passe 1C passe 2C passe;;suit_length;P>=4;;;2P;2703
-765;R2;;>=12HLD;;;;;;;;0;;0;;0;False;1m passe 1M passe 2M passe;;;;;;2SA;2704
-766;R2;PASS;<8HLD;;;;;;;;0;;0;;0;False;1m passe 1M passe 3M passe;;;;;;passe;2705
-767;R2;PASS;8-15HLD;;;;;;;;0;;0;;0;False;1m passe 1M passe 3M passe;;;;support;4;;2706
-768;R2;FREE;>=16HLD;;;;;;;;0;;0;;0;False;1m passe 1C passe 3C passe;;;;;;3P;2707
-769;R2;FREE;>=16HLD;;;;;;;;0;;0;;0;False;1m passe 1M passe 3M passe;;;;first_control;;;2708
+380;TEXAS;SEQ1SA;9HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;2SA;none
+381;TEXAS;PASS;10-15HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;3SA;none
+382;TEXAS;SEQ1SA;16-17HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;4SA;none
+383;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;6SA;none
+384;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;5SA;none
+385;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2K passe 2C passe;;;;;;7SA;none
+386;TEXAS;SEQ1SA;9HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;2SA;none
+387;TEXAS;PASS;10-15HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;3SA;none
+388;TEXAS;SEQ1SA;16-17HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;4SA;none
+389;TEXAS;PASS;18-19HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;6SA;none
+390;TEXAS;SEQ1SA;20-21HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;5SA;none
+391;TEXAS;PASS;22-25HL;;;;;;;;0;;0;;0;False;2C passe 2P passe;;;;;;7SA;none
+392;REDO;PASS;15-16HLD;;;;;;;;0;;0;;0;False;1M o 2M o;;;;support;3;;2001
+393;REDO;;>=17HLD;irrégulier;;;;trèfle;4;;0;;0;;0;False;1M o 2M o;long_suit_2_unnamed;points_H;T<=2;long_suit;3CL2;3T;2002
+394;REDO;;>=17HLD;irrégulier;;;;carreau;4;;0;;0;;0;False;1M o 2M o;long_suit_2_unnamed;points_H;K<=2;long_suit;3CL2;3K;2003
+395;REDO;;>=17HLD;irrégulier;;;;coeur;4;;0;;0;;0;False;1P o 2P o;long_suit_2_unnamed;points_H;C<=2;long_suit;3CL2;3C;2004
+396;REDO;;>=17HLD;irrégulier;;;;pique;4;;0;;0;;0;False;1C o 2C o;long_suit_2_unnamed;points_H;P<=2;long_suit;2CL2;2P;2005
+397;REDO;;>=17HLD;;;;;;;;0;;0;;0;False;1M o 2M o;;;;;;2SA;2006
+398;REDO;PASS;>=20HLD;;;;;;;;0;;0;;0;False;1M o 2M o;;;;support;4;;2007
+399;REDO;;>=15H;;;;;pique;>=4;;0;;0;;0;False;1C passe 2C 2P;any_short_color;;;;;X;2008
+400;REDO;;>=15H;;;;;pique;>=4;;0;;0;;0;False;1C 2m 2C 2P;any_short_color;;;;;X;2009
+401;REDO;;>=17HLD;irrégulier;;;;;;;0;;0;;0;False;1C 1P 2C 2P;;;;;;X;2010
+402;REDO;;>=17HLD;irrégulier;;;;;;;0;;0;;0;False;1P 2E 2P 3E;;;;;;X;2011
+403;REDO;;>=17HLD;irrégulier;;;;;;;0;;0;;0;False;1P o 2P 3C;;;;;;X;2012
+404;REDO;PASS;14-16HL;régulier;;;;;;;0;;0;;0;False;1M o 2SA o;honors_in_short_colors;;;;;3SA;2013
+405;REDO;PASS;12-14HLD;;;;;;;;0;;0;;0;False;1M o 2SA o;;;;long_suit;3CL1;;2014
+406;REDO;PASS;15-16HLD;;;;;;;;0;;0;;0;False;1M o 2SA o;;;;long_suit;4CL1;;2015
+407;REDO;;>=17HLD;;;;;mineure;>=4;;0;;0;;0;False;1M o 2SA o;;;;long_suit;3CL2;;2016
+408;REDO;;>=17HLD;;;;;coeur;>=4;;0;;0;;0;False;1C o 2SA o;;;;;;2P;2017
+409;REDO;;>=17HLD;;;;;pique;>=4;;0;;0;;0;False;1P o 2SA o;;;;;;3C;2018
+410;REDO;PASS;<=14HLD;;;;;;;;0;;0;;0;False;1M o 3M o;;;;;;passe;none
+411;REDO;PASS;15-16HLD;;;;;;;;0;;0;;0;False;1M o 3M o;;;;long_suit;4CL1;;2019
+412;REDO;FREE;>=17HLD;;;;;;;;0;;0;;0;False;1C o 3C o;;control;P;;;3P;2020
+413;REDO;FREE;>=17HLD;;;;;;;;0;;0;;0;False;1M o 3M o;;;;first_control;;;2021
+414;REDO;FREE;>=17HLD;;;;;;;;0;;0;;0;False;1M o 3SA o;;;;first_control;;;2022
+415;REDO;;<=16HLD;;;;;;;;0;;0;;0;False;1M o 3SA o;;;;long_suit;4CL1;;2023
+416;REDO;PASS;<=16HLD;;;;;;;;0;;0;;0;False;1T o 2T o;;;;;;3T;2024
+417;REDO;PASS;<=16HLD;;;;;;;;0;;0;;0;False;1K o 2K o;;;;;;3K;2024
+418;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1T o 2T o;honors_in_short_colors;;;;;2SA;2025
+419;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1K o 2K o;honors_in_short_colors;;;;;2SA;2025
+420;REDO;;18-19H;régulier;;;>=5;;;;0;;0;;0;False;1T o 2T o;honors_in_short_colors;;;;;3SA;2026
+421;REDO;;18-19H;régulier;;;>=5;;;;0;;0;;0;False;1K o 2K o;honors_in_short_colors;;;;;3SA;2026
+422;REDO;;>=15H;;;;;;;;0;;0;;0;False;1T o 2T o;;stop_suit;K;;;2K;2027
+423;REDO;;>=15H;;;;;;;;0;;0;;0;False;1T o 2T o;;stop_suit;C;;;2C;2027
+424;REDO;;>=15H;;;;;;;;0;;0;;0;False;1K o 2K o;;stop_suit;C;;;2C;2027
+425;REDO;;>=15H;;;;;;;;0;;0;;0;False;1T o 2T o;;stop_suit;P;;;2P;2027
+426;REDO;;>=15H;;;;;;;;0;;0;;0;False;1K o 2K o;;stop_suit;P;;;2P;2027
+427;REDO;;>=15H;;;;;;;;0;;0;;0;False;1K o 2K o;;stop_suit;T;;;3T;2028
+428;REDO;;14-18H;régulier;;;;;;;0;;0;;0;False;1m o 3m o;honors_in_short_colors;;;;;3SA;2029
+429;REDO;;>=14H;;;;;;;;0;;0;;0;False;1m o 3m o;;stop_suit;C;;;3C;2030
+430;REDO;;>=14H;;;;;;;;0;;0;;0;False;1m o 3m o;;stop_suit;P;;;3P;2023
+431;REDO;;12-16HLD;;;;;;;;0;;0;>=4;0;False;1E o 1M o;;;;support;2;;2051
+432;REDO;;12-16HLD;;;;;;;;0;;0;>=4;0;False;1E o 1M 3m;;;;support;3;;2060
+433;REDO;;17-19HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1E o 1M o;;;;support;3;;2052
+434;REDO;;17-19H;5-4-2-2;;;;;;;0;;0;4;0;False;1E o 1M o;;;;support;4;;2053
+435;REDO;;18-19H;régulier;;;;;;;0;;0;>=4;0;False;1E o 1M o;;;;;;3SA;2054
+436;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1K passe 1M passe;;suit_length;T<=1;;;4T;2055
+437;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1C passe 1P passe;;suit_length;T<=1;;;4T;2055
+438;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1T passe 1M passe;;suit_length;K<=1;;;4K;2056
+439;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1C passe 1P passe;;suit_length;K<=1;;;4K;2056
+440;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1m passe 1P passe;;suit_length;C<=1;;;4C;2057
+441;REDO;;20-21HLD;;;;;;;;0;;0;>=4;0;False;1m passe 1C passe;;suit_length;P<=1;;;3P;2058
+442;REDO;;20-22HLD;;;mineure;>=6;;4;;0;;0;4;0;False;1m o 1M o;;long_color_points_H;>=5;long_suit;4CL1;;2059
+443;REDO;;12-16HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1m passe 1C 1P;;;;;;3C;2061
+444;REDO;;17-19HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1m passe 1C 1P;;;;;;4C;2062
+445;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1m o 1C 1P;;;;;;2P;2063
+446;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1E o 1M 2m;;;;cuebid;3;;2064
+447;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1m o 1P 2C;;;;;;3C;2064
+448;REDO;FREE;17-19H;irrégulier;;;;;;;0;;0;<=3;1;False;1m X 1M passe;honors_in_short_colors;;;;;3SA;2065
+449;REDO;FREE;17-19H;irrégulier;;;;;;;0;;0;<=3;1;False;1m 1C 1P passe;honors_in_short_colors;;;;;3SA;2066
+450;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T passe 1M X;;suit_length;K<=1;;;4K;2067
+451;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1K passe 1M X;;suit_length;T<=1;;;4T;2068
+452;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T passe 1C 1P;;suit_length;K<=1;;;4K;2069
+453;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1K passe 1C 1P;;suit_length;T<=1;;;4T;2070
+454;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T 1C 1P passe;;suit_length;K<=1;;;4K;2071
+455;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1K 1C 1P passe;;suit_length;T<=1;;;4T;2072
+456;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T passe 1C 1P;;suit_length;P<=1;;;3P;2073
+457;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1T 1C 1P 2C;;suit_length;K<=1;;;4K;2074
+458;REDO;;;bicolore 5/5;coeur,carreau;;;;;;0;;6;;0;False;1C passe 1P 2T;;;;;;3K;2075
+459;REDO;;;bicolore 5/5;coeur,trèfle;;;;;;0;;6;;0;False;1C passe 1P 2K;;;;;;4T;2076
+460;REDO;;;bicolore 5/5;trèfle,carreau;;;;;;0;;6;;0;False;1K 1C 1P 2C;;;;;;4T;2077
+461;REDO;;12-14H;irrégulier;;;;;;;0;;0;>=4;0;False;1T passe 1K o;;;;;;2K;2078
+462;REDO;;15-17H;irrégulier;;;;;;;0;;0;>=5;0;False;1T passe 1K passe;;;;;;3K;2079
+463;REDO;;15-17H;irrégulier;;;;;;;0;;0;>=5;0;False;1T passe 1K 1M;;;;;;3K;2079
+464;REDO;;15-17H;irrégulier;;;;;;;0;;0;>=5;0;False;1T passe 1K X;;;;;;3K;2079
+465;REDO;;20-22HLD;;;;;;;;0;;0;>=5;0;False;1T passe 1K passe;;suit_length;C<=1;;;3C;2080
+466;REDO;;20-22HLD;;;;;;;;0;;0;>=5;0;False;1T passe 1K passe;;suit_length;P<=1;;;3P;2080
+467;REDO;;15-19HLD;;;;;;;>=2;0;;0;>=4;0;False;1M passe 2m o;;;;support;3;;2081
+468;REDO;;15-19HLD;;;;;;;;0;;0;>=4;0;False;1M passe 2m passe;;;;support;3;;2082
+469;REDO;;>=20HLD;;;;;;;;0;;0;>=4;0;False;1M passe 2m passe;;;;support;4;;2083
+470;REDO;;<=17H;;;;;;;;0;;0;>=4;0;False;1M X 2m o;;;;support;3;;2084
+471;REDO;;<=17H;;;;;;;;0;;0;>=4;0;False;1C 1P 2m o;;;;support;3;;2085
+472;REDO;;<=17H;;;;;;;;0;;0;>=4;0;False;1M passe 2m 2E;;;;support;3;;2086
+473;REDO;;<=17H;;;;;;;;0;;0;>=4;0;False;1M passe 2m X;;;;support;3;;2087
+474;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1M X 2m 2E;;;;cuebid;3;;2088
+475;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1C 1P 2m passe;;;;cuebid;3;;2089
+476;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1C 1P 2m 2P;;;;cuebid;3;;2090
+477;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1M passe 2m 2E;;;;cuebid;3;;2091
+478;REDO;;>=18H;;;;;;;;0;;0;>=4;0;False;1M passe 2m X;;;;cuebid;;XX;2092
+479;REDO;;>=15HLD;;;;;;;;0;;0;>=3;0;False;1P passe 2C passe;;;;;;3C;2093
+480;REDO;;>=15HLD;;;;;;;;0;;0;>=3;0;False;1P passe 2C 3m;;;;;;3C;2094
+481;REDO;;17-19HLD;5-4-2-2;;;;;;;0;;0;>=3;0;False;1P passe 2C o;;;;;;4C;2095
+482;REDO;;17-19HLD;;;;;;;;0;;0;>=3;0;False;1P passe 2C o;any_short_color;;;;;4C;2095
+483;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1P passe 2C passe;;suit_length;T<=1;;;4T;2096
+484;REDO;;20-22HLD;;;;;;;;0;;0;>=4;0;False;1P passe 2C passe;;suit_length;K<=1;;;4K;2096
+485;REDO;;12-14HLD;;;;;;;;0;;0;>=3;0;False;1P passe 2C passe;;;;;;2P;2097
+486;REDO;;12-14H;semi-régulier;;;;;;;0;;0;<4;0;False;1m passe 1P passe;;majors_at_least_4;1;;;1SA;2121
+487;REDO;;12-14H;semi-régulier;;;;;;;0;;0;;0;False;1m passe 1E passe;;majors_at_least_4;=0;;;1SA;2122
+488;REDO;;12-14H;semi-régulier;;;;;;;0;;0;<4;0;False;1C passe 1P passe;;majors_at_least_4;1;;;1SA;2123
+489;REDO;;18-19HL;régulier;;;;;;;0;;0;<4;0;False;1m passe 1P passe;;majors_at_least_4;1;;;2SA;2124
+490;REDO;;18-19HL;régulier;;;;;;;0;;0;;0;False;1m passe 1E passe;;majors_at_least_4;=0;;;2SA;2125
+491;REDO;;18-19HL;régulier;;;;;;;0;;0;<4;0;False;1C passe 1P passe;;majors_at_least_4;1;;;2SA;2126
+492;REDO;;15-17H;irrégulier;;;;;;;0;;0;;0;False;1T passe 1SA passe;;;;;;2SA;2127
+493;REDO;;15-17H;irrégulier;;;;;;;0;;0;;0;False;1K passe 1SA passe;;;;;;2SA;2128
+494;REDO;;17-18H;régulier;;;;;;;0;;0;;0;False;1M passe 1SA passe;;;;;;2SA;2129
+495;REDO;;15-17H;régulier;;;;;;;0;;0;;0;False;1M passe 2E passe;;;;;;2SA;2130
+496;REDO;;12-14H;régulier;;;;;;;0;;0;;0;False;1K passe 2T passe;;;;;;2SA;2131
+497;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1K passe 2T passe;;;;;;2SA;2131
+498;REDO;;15-17H;tricolore;;;;;;;0;;0;;0;False;1K passe 2T passe;;suit_length;T<=1;;;3SA;2132
+499;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1T passe 1K;;;;;;3SA;2133
+500;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1T passe 1M;;;;;;3SA;2133
+501;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1K passe 1M;;;;;;3SA;2133
+502;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1C passe 1P;;;;;;3SA;2133
+503;REDO;;18-19H;régulier;;;;;;;0;;0;;0;False;1M passe 2E passe;;;;;;3SA;2134
+504;REDO;;12-19HL;;;;;;;;0;;0;<4;0;False;1T passe 1K passe;;suit_length;C4;;;1C;2161
+505;REDO;;12-19HL;;;;;;;;0;;0;<4;0;False;1T passe 1K passe;;suit_length;P4;;;1P;2161
+506;REDO;;12-19HL;;;;;;;;0;;0;<3;0;False;1T passe 1C passe;;suit_length;P4;;;1P;2162
+507;REDO;;12-19HL;;;;;;;;0;;0;<3;0;False;1K passe 1C passe;;suit_length;P4;;;1P;2162
+508;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1M passe;;;;;;2T;2163
+509;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1SA passe;;;;;;2T;2164
+510;REDO;;12-19HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C passe 1P passe;;;;;;2T;2165
+511;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C passe 1P passe;;;;;;2K;2165
+512;REDO;;12-19HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C passe 1SA passe;;;;;;2T;2166
+513;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C passe 1SA passe;;;;;;2K;2166
+514;REDO;;12-19HL;bicolore;;pique;>=5;trèfle;>=4;;0;;0;;0;False;1P passe 1SA passe;;;;;;2T;2167
+515;REDO;;12-19HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P passe 1SA passe;;;;;;2K;2167
+516;REDO;;12-19HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P passe 1SA passe;;;;;;2C;2168
+517;REDO;;20-23HL;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T o 1K passe;;;;;;2C;2169
+518;REDO;;20-23HL;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T o 1K passe;;;;;;2P;2169
+519;REDO;;20-23HL;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T o 1C passe;;;;;;2P;2170
+520;REDO;;20-23HL;;;carreau;>=5;pique;>=3;;0;;0;;0;False;1K o 1C passe;;;;;;2P;2171
+521;REDO;;20-23HL;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K o 1M passe;;;;;;3T;2172
+522;REDO;;20-23HL;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K o 1SA passe;;;;;;3T;2173
+523;REDO;;20-23HL;;;coeur;>=5;trèfle;>=3;;0;;0;;0;False;1C o 1P passe;;;;;;3T;2174
+524;REDO;;20-23HL;;;coeur;>=5;carreau;>=3;;0;;0;;0;False;1C o 1P passe;;;;;;3K;2175
+525;REDO;;20-23HL;;;coeur;>=5;trèfle;>=3;;0;;0;;0;False;1C o 1SA passe;;;;;;3T;2176
+526;REDO;;20-23HL;;;coeur;>=5;carreau;>=3;;0;;0;;0;False;1C o 1SA passe;;;;;;3K;2176
+527;REDO;;20-23HL;;;pique;>=5;trèfle;>=3;;0;;0;;0;False;1P o 1SA passe;;;;;;3T;2177
+528;REDO;;20-23HL;;;pique;>=5;carreau;>=3;;0;;0;;0;False;1P o 1SA passe;;;;;;3K;2177
+529;REDO;;17-23HL;bicolore 5/5;coeur,carreau;;;;;;0;;0;;0;False;1C o 2T passe;honors_in_bicolors;;;;;3K;2178
+530;REDO;;17-23HL;bicolore 5/5;pique,carreau;;;;;;0;;0;;0;False;1P o 2T passe;honors_in_bicolors;;;;;3K;2179
+531;REDO;;17-23HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1P o 2m passe;honors_in_bicolors;;;;;3C;2180
+532;REDO;;18-23HL;;;trèfle;>=5;carreau;>=3;;0;;0;;0;False;1T passe 1M passe;;;;;;2K;2181
+533;REDO;;18-23HL;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T passe 1P passe;;;;;;2C;2182
+534;REDO;;19-23HL;;;trèfle;>=5;carreau;>=3;;0;;0;;0;False;1T passe 1SA passe;;;;;;2K;2183
+535;REDO;;19-23HL;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T passe 1SA passe;;;;;;2C;2184
+536;REDO;;19-23HL;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T passe 1SA passe;;;;;;2P;2185
+537;REDO;;18-23HL;;;carreau;>=5;coeur;>=3;;0;;0;;0;False;1K passe 1P passe;;;;;;2C;2186
+538;REDO;;>=17HL;;;carreau;>=5;Majeure;>=3;;0;;0;;0;False;1K passe 2T passe;;;;long_suit;2CL2;;2187
+539;REDO;;19-23HL;;;carreau;>=5;coeur;>=3;;0;;0;;0;False;1K passe 1SA passe;;;;;;2C;2188
+540;REDO;;19-23HL;;;carreau;>=5;pique;>=3;;0;;0;;0;False;1K passe 1SA passe;;;;;;2P;2189
+541;REDO;;17-23HL;bicolore;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K passe 2SA passe;;;;;;3T;2190
+542;REDO;;19-23HL;;;coeur;>=5;pique;>=3;;0;;0;;0;False;1C passe 1SA passe;;;;;;2P;2191
+543;REDO;;>=17HL;;;coeur;>=5;pique;>=3;;0;;0;;0;False;1C passe 2m passe;;;;;;2P;2192
+544;REDO;;17-23HL;bicolore;;coeur;>=5;trèfle;>=3;;0;;0;;0;False;1C passe 2K passe;;;;;;3T;2193
+545;REDO;;17-23HL;bicolore;;pique;>=5;trèfle;>=3;;0;;0;;0;False;1P passe 2K passe;;;;;;3T;2194
+546;REDO;;17-23HL;bicolore;;pique;>=5;trèfle;>=3;;0;;0;;0;False;1P passe 2C passe;;;;;;3T;2195
+547;REDO;;17-23HL;bicolore;;pique;>=5;carreau;>=3;;0;;0;;0;False;1P passe 2C passe;;;;;;3K;2195
+548;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1K passe;;;;;;2T;2196
+549;REDO;;13-17HL;;;trèfle;>=5;;;;0;;0;;0;False;1T passe 1M passe;;;;;;2T;2197
+550;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C passe;;;;;;2K;2198
+551;REDO;;13-17HL;;;carreau;>=5;;;;0;;0;;0;False;1K passe 1P passe;;;;;;2K;2199
+552;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1P passe;;;;;;2C;2200
+553;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1SA passe;;;;;;2T;2201
+554;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1SA passe;;;;;;2K;2201
+555;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1SA passe;;;;;;2C;2201
+556;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA passe;;;;;;2P;2201
+557;REDO;;13-17HL;;;carreau;>=5;;;;0;;0;;0;False;1K passe 2T passe;;;;;;2K;2202
+558;REDO;;13-17HL;;;coeur;>=5;;;;0;;0;;0;False;1C passe 2m passe;;;;;;2C;2203
+559;REDO;;13-17HL;;;pique;>=5;;;;0;;0;;0;False;1P passe 2m passe;;;;;;2P;2203
+560;REDO;;13-17HL;;;pique;>=5;;;;0;;0;;0;False;1P passe 2C passe;;;;;;2P;2204
+561;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1K passe;;;;;;3T;2205
+562;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1M passe;;;;;;3T;2206
+563;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C passe;;;;;;3K;2207
+564;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1P passe;;;;;;3K;2208
+565;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1P passe;;;;;;3C;2209
+566;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1SA passe;;;;;;3T;2210
+567;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1SA passe;;;;;;3K;2210
+568;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1SA passe;;;;;;3C;2210
+569;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA passe;;;;;;3P;2210
+570;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 2T passe;;;;;;3K;2211
+571;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 2m passe;;;;;;3C;2212
+572;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 2m passe;;;;;;3P;2212
+573;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 2C passe;;;;;;3P;2213
+574;REDO;;12-14H;semi-régulier;;;;;;;0;;0;<4;0;False;1m 1E 1P passe;;majors_at_least_4;1;;;1SA;2231
+575;REDO;;12-14H;semi-régulier;;;;;;;0;;0;<4;0;False;1m 1E 1M passe;;majors_at_least_4;=0;;;1SA;2232
+576;REDO;;18-19HL;régulier;;;;;;;0;;0;<4;1;False;1m 1E 1P passe;;majors_at_least_4;1;;;2SA;2233
+577;REDO;;18-19HL;régulier;;;;;;;0;;0;<4;1;False;1m 1E 1M passe;;majors_at_least_4;=0;;;2SA;2234
+578;REDO;;15-17H;irrégulier;;;;;;;0;;0;;1;False;1m 1E 1SA passe;;;;;;2SA;2235
+579;REDO;;17-18H;régulier;;;;;;;0;;0;;1;False;1C 1P 1SA passe;;;;;;2SA;2236
+580;REDO;;15-17H;régulier;;;;;;;0;;0;;1;False;1C 1P 2m passe;;;;;;2SA;2237
+581;REDO;;15-17H;régulier;;;;;;;0;;0;<3;1;False;1C 2m 2P passe;;;;;;2SA;2238
+582;REDO;;15-17H;régulier;;;;;;;0;;0;<3;1;False;1P 2m 2C passe;;;;;;2SA;2239
+583;REDO;;12-14H;régulier;;;;;;;0;;0;;1;False;1K 1M 2T passe;;;;;;2SA;2240
+584;REDO;;18-19H;régulier;;;;;;;0;;0;;1;False;1K 1M 2T passe;;;;;;2SA;2240
+585;REDO;;12-19HL;;;;;;;;0;;0;<3;0;False;1T 1K 1C passe;;suit_length;P4;;;1P;2241
+586;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K 1C 1P passe;;;;;;2T;2242
+587;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K 1M 1SA passe;;;;;;2T;2243
+588;REDO;;12-19HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C 1P 1SA passe;;;;;;2T;2244
+589;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C 1P 1SA passe;;;;;;2K;2245
+590;REDO;;>=15H;;;trèfle;>=5;carreau;>=3;;0;;0;;0;False;1T 1C 1P passe;;;;;;2K;2246
+591;REDO;;>=15H;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T 1K 1P passe;;;;;;2C;2247
+592;REDO;;>=15H;;;trèfle;>=5;carreau;>=3;;0;;0;;0;False;1T 1M 1SA passe;;;;;;2K;2248
+593;REDO;;>=15H;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T 1K 1SA passe;;;;;;2C;2249
+594;REDO;;>=15H;;;trèfle;>=5;coeur;>=3;;0;;0;;0;False;1T 1P 1SA passe;;;;;;2C;2250
+595;REDO;;>=15H;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T 1K 1SA passe;;;;;;2P;2251
+596;REDO;;>=15H;;;trèfle;>=5;pique;>=3;;0;;0;;0;False;1T 1C 1SA passe;;;;;;2P;2252
+597;REDO;;>=15H;;;carreau;>=5;coeur;>=3;;0;;0;;0;False;1K 1P 1SA passe;;;;;;2C;2253
+598;REDO;;>=15H;;;carreau;>=5;pique;>=3;;0;;0;;0;False;1K 1C 1SA passe;;;;;;2P;2254
+599;REDO;;>=15H;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K 1M 2SA passe;;;;;;3T;2255
+600;REDO;;>=15H;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K 2K 2SA passe;;;;;;3T;2256
+601;REDO;;>=15H;;;carreau;>=5;trèfle;>=3;;0;;0;;0;False;1K 2M 2SA passe;;;;;;3T;2257
+602;REDO;;>=15H;;;coeur;>=5;pique;>=3;;0;;0;;0;False;1C 2T 2K passe;;;;;;2P;2258
+603;REDO;;>=15H;;;coeur;>=5;trèfle;>=3;;0;;0;;0;False;1C 1P 2K passe;;;;;;3T;2259
+604;REDO;;>=15H;;;pique;>=5;trèfle;>=3;;0;;0;;0;False;1P 2K 2C passe;;;;;;3T;2260
+605;REDO;;>=15H;;;pique;>=5;carreau;>=3;;0;;0;;0;False;1P 2T 2C passe;;;;;;3K;2261
+606;REDO;;>=12H;;;;;;;;0;;0;;0;False;1C 1P 2T passe;;;;;;2K;2262
+607;REDO;;>=12H;;;;;;;;0;;0;;0;False;1P 2T 2K passe;;;;;;2C;2263
+608;REDO;;13-17HL;;;trèfle;>=5;;;;0;;0;;0;False;1T 1E 1M passe;;;;;;2T;2264
+609;REDO;;13-17HL;;;carreau;>=5;;;;0;;0;;0;False;1K 1C 1P passe;;;;;;2K;2265
+610;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1E 1SA passe;;;;;;2T;2266
+611;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M 1SA passe;;;;;;2K;2267
+612;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P 1SA passe;;;;;;2C;2268
+613;REDO;;13-17HL;;;carreau;>=5;;;;0;;0;;0;False;1K 1M 2T passe;;;;;;2K;2269
+614;REDO;;13-17HL;;;coeur;>=5;;;;0;;0;;0;False;1C 1P 2m passe;;;;;;2C;2270
+615;REDO;;13-17HL;;;coeur;>=5;;;;0;;0;;0;False;1C 2T 2K passe;;;;;;2C;2271
+616;REDO;;13-17HL;;;pique;>=5;;;;0;;0;;0;False;1P 2T 2K passe;;;;;;2P;2272
+617;REDO;;13-17HL;;;pique;>=5;;;;0;;0;;0;False;1P 2m 2C passe;;;;;;2P;2273
+618;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1E 1M passe;;;;;;3T;2274
+619;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1C 1P passe;;;;;;3K;2275
+620;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1E 1SA passe;;;;;;3T;2276
+621;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M 1SA passe;;;;;;3K;2277
+622;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P 1SA passe;;;;;;3C;2278
+623;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M 2T passe;;;;;;3K;2279
+624;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P 2m passe;;;;;;3C;2280
+625;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2T 2K passe;;;;;;3P;2281
+626;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2m 2C passe;;;;;;3P;2282
+627;REDO;;>=18H;;;;;;;;0;;0;;0;False;1T 1K 1M passe;;;;;;2K;2283
+628;REDO;;>=18H;;;;;;;;0;;0;;0;False;1m 1C 1P passe;;;;;;2C;2284
+629;REDO;;>=18H;;;;;;;;0;;0;;0;False;1C 1P 2m passe;;;;;;2P;2285
+630;REDO;;>=18H;;;;;;;;0;;0;;0;False;1C 2T 2K passe;;;;;;3T;2286
+631;REDO;;>=18H;;;;;;;;0;;0;;0;False;1P 2T 2K passe;;;;;;3T;2287
+632;REDO;;>=18H;;;;;;;;0;;0;;0;False;1P 2m 2C passe;;;;cuebid;3;;2288
+633;REDO;;>=18H;;;;;;;;0;;0;;0;False;1K 1M 2T passe;;;;cuebid;2;;2289
+634;REDO;;;;;;;;;;0;;0;;0;False;1T 1M 2K passe;;;;cuebid;2;;2290
+635;REDO;;;;;;;;;;0;;0;;0;False;1K 2T 2M passe;;;;;;3T;2291
+636;REDO;;;;;;;;;;0;;0;;0;False;1C 2K 2P passe;;;;;;3K;2292
+637;REDO;;;;;;;;;;0;;0;;0;False;1P 2C 3m passe;;;;;;3C;2293
+638;REDO;;;irrégulier;;;;;;;0;;0;;0;False;1T passe 1K 1C;;suit_length;P4;;;1P;2294
+639;REDO;;12-19HL;bicolore 5/5;carreau,trèfle;;;;;;0;;0;;0;False;1K passe 1C 1P;;;;;;2T;2295
+640;REDO;;12-19HL;bicolore 5/5;coeur,carreau;;;;;;0;;0;;0;False;1C passe 1P 2T;;;;;;2K;2296
+641;REDO;;12-19HL;bicolore 5/5;coeur,carreau;;;;;;0;;0;;0;False;1C o 1SA 2T;;;;;;2K;2297
+642;REDO;;12-19HL;bicolore 5/5;pique,carreau;;;;;;0;;0;;0;False;1P o 1SA 2T;;;;;;2K;2298
+643;REDO;;12-19HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1P passe 1SA 2m;;;;;;2C;2299
+644;REDO;;12-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1C 1P;honors_in_bicolors;;;;;2T;2295
+645;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C passe 1P 2T;honors_in_bicolors;;;;;2K;2296
+646;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C o 1SA 2T;honors_in_bicolors;;;;;2K;2297
+647;REDO;;12-19HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P o 1SA 2T;honors_in_bicolors;;;;;2K;2298
+648;REDO;;12-19HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P passe 1SA 2m;honors_in_bicolors;;;;;2C;2299
+649;REDO;;15-19HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1C 1P;;;;;;2T;2295
+650;REDO;;15-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C passe 1P 2T;;;;;;2K;2296
+651;REDO;;15-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C o 1SA 2T;;;;;;2K;2297
+652;REDO;;15-19HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P o 1SA 2T;;;;;;2K;2298
+653;REDO;;15-19HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P passe 1SA 2m;;;;;;2C;2299
+654;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T passe 1K 1C;;;;;;2P;2300
+655;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T passe 1K 2m;;;;;;2P;2301
+656;REDO;;18-23HL;bicolore;;carreau;>=5;pique;>=4;;0;;0;;0;False;1K passe 1C 2m;;;;;;2P;2302
+657;REDO;;18-23HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K passe 1C 1P;;;;;;3T;2303
+658;REDO;;18-23HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K o 1M 2E;;;;;;3T;2304
+659;REDO;;18-23HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C o 2T 2P;;;;;;3K;2305
+660;REDO;;18-23HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P passe 2T 2C;;;;;;3K;2306
+661;REDO;;18-23HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P passe 2T 2K;;;;;;3C;2307
+662;REDO;;18-23HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P o 2K 3T;;;;;;3C;2308
+663;REDO;;18-23HL;bicolore;;trèfle;>=5;carreau;>=4;;0;;0;;0;False;1T o 1C 1P;;;;;;2K;2309
+664;REDO;;18-23HL;bicolore;;trèfle;>=5;coeur;>=4;;0;;0;;0;False;1T o 1P 2T;;;;;;2C;2310
+665;REDO;;18-23HL;bicolore;;trèfle;>=5;coeur;>=4;;0;;0;;0;False;1T o 1SA 2K;;;;;;2C;2311
+666;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T o 1SA 2K;;;;;;2P;2312
+667;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T o 1SA 2C;;;;;;2P;2313
+668;REDO;;18-23HL;bicolore;;carreau;>=5;coeur;>=4;;0;;0;;0;False;1K o 1P 2T;;;;;;2C;2314
+669;REDO;;18-23HL;bicolore;;carreau;>=5;coeur;>=4;;0;;0;;0;False;1K o 1SA 2T;;;;;;2C;2315
+670;REDO;;18-23HL;bicolore;;carreau;>=5;pique;>=4;;0;;0;;0;False;1K o 1SA 2T;;;;;;2P;2316
+671;REDO;;18-23HL;bicolore;;carreau;>=5;pique;>=4;;0;;0;;0;False;1K o 1SA 2C;;;;;;2P;2317
+672;REDO;;18-23HL;bicolore;;coeur;>=5;pique;>=4;;0;;0;;0;False;1C o 1SA 2m;;;;;;2P;2318
+673;REDO;;18-23HL;bicolore;;coeur;>=5;pique;>=4;;0;;0;;0;False;1C o 2T 2K;;;;;;2P;2319
+674;REDO;;18-23HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C o 2K 2P;;;;;;3T;2320
+675;REDO;;18-23HL;bicolore;;pique;>=5;trèfle;>=4;;0;;0;;0;False;1P o 2K 2C;;;;;;3T;2321
+676;REDO;;18-23HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P o 2C 3T;;;;;;3K;2322
+677;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1K 1P;;;;;;2T;2323
+678;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T o 1C 1P;;;;;;2T;2324
+679;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C 1P;;;;;;2K;2325
+680;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C 2T;;;;;;2K;2326
+681;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K o 1P 2T;;;;;;2K;2327
+682;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1P 2m;;;;;;2C;2328
+683;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1SA 2T;;;;;;2K;2329
+684;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C o 1SA 2m;;;;;;2C;2330
+685;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA 2m;;;;;;2P;2331
+686;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA 2C;;;;;;2P;2332
+687;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C o 2T 2K;;;;;;2C;2333
+688;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 2T 2K;;;;;;2P;2334
+689;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P o 2m 2C;;;;;;2P;2335
+690;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T passe 1K 1M;;;;;;3T;2336
+691;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T o 1C 1P;;;;;;3T;2337
+692;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C 1P;;;;;;3K;2338
+693;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K passe 1C 2T;;;;;;3K;2339
+694;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K o 1P 2m;;;;;;3K;2340
+695;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C passe 1P 2m;;;;;;3C;2341
+696;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T o 1SA 2E;;;;;;3T;2342
+697;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K o 1SA 2M;;;;;;3K;2343
+698;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C o 1SA 2m;;;;;;3C;2344
+699;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA 2m;;;;;;3P;2345
+700;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 1SA 2C;;;;;;3P;2346
+701;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K o 2T 2M;;;;;;3K;2347
+702;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C o 2m 2E;;;;;;3C;2348
+703;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P passe 2T 2K;;;;;;3P;2349
+704;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P o 2m 2C;;;;;;3P;2350
+705;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P o 2C 3m;;;;;;3P;2351
+706;REDO;;;irrégulier;;;;;;;0;;0;;0;False;1T 1K X 1M;;suit_length;P4;;;1P;2352
+707;REDO;;12-19HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C 1P X 2T;honors_in_bicolors;;;;;2K;2353
+708;REDO;;12-19HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P 2T X 2K;honors_in_bicolors;;;;;2C;2354
+709;REDO;;18-23HL;bicolore;;trèfle;>=5;pique;>=4;;0;;0;;0;False;1T 1K X 1C;;;;;;2P;2355
+710;REDO;;18-23HL;bicolore;;carreau;>=5;pique;>=4;;0;;0;;0;False;1K 1C X 2m;;;;;;2P;2356
+711;REDO;;18-23HL;bicolore;;carreau;>=5;trèfle;>=4;;0;;0;;0;False;1K 1M X 2M;;;;;;3T;2357
+712;REDO;;18-23HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C 2T X 2P;;;;;;3K;2358
+713;REDO;;18-23HL;bicolore;;coeur;>=5;carreau;>=4;;0;;0;;0;False;1C 2T X 3T;;;;;;3K;2359
+714;REDO;;18-23HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P 2T X 2K;;;;;;3K;2360
+715;REDO;;18-23HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P 2T X 3T;;;;;;3C;2361
+716;REDO;;18-23HL;bicolore;;pique;>=5;coeur;>=4;;0;;0;;0;False;1P 2K X 3m;;;;;;3C;2362
+717;REDO;;18-23HL;bicolore;;trèfle;>=5;carreau;>=4;;0;;0;;0;False;1T 1C X 2T;;;;;;2K;2363
+718;REDO;;18-23HL;bicolore;;trèfle;>=5;coeur;>=4;;0;;0;;0;False;1T 1P X 2K;;;;;;2C;2364
+719;REDO;;18-23HL;bicolore;;carreau;>=5;coeur;>=4;;0;;0;;0;False;1K 1P X 2T;;;;;;2C;2365
+720;REDO;;18-23HL;bicolore;;coeur;>=5;pique;>=4;;0;;0;;0;False;1C 2T X 2K;;;;;;2P;2366
+721;REDO;;18-23HL;bicolore;;coeur;>=5;trèfle;>=4;;0;;0;;0;False;1C 1E X 2E;;;;;;3T;2367
+722;REDO;;18-23HL;bicolore;;pique;>=5;trèfle;>=4;;0;;0;;0;False;1P 2K X 2C;;;;;;3T;2368
+723;REDO;;18-23HL;bicolore;;pique;>=5;carreau;>=4;;0;;0;;0;False;1P 2C X 3T;;;;;;3K;2369
+724;REDO;;13-17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1K X 1M;;;;;;2T;2370
+725;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1C X 1P;;;;;;2K;2371
+726;REDO;;13-17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M X 2T;;;;;;2K;2372
+727;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P X 2m;;;;;;2C;2373
+728;REDO;;13-17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 2T X 2K;;;;;;2C;2374
+729;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2T X 2K;;;;;;2P;2375
+730;REDO;;13-17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2m X 2C;;;;;;2P;2376
+731;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1K X 2K;;;;;;3T;2377
+732;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1M X 2M;;;;;;3T;2378
+733;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1K X 2M;;;;;;3T;2379
+734;REDO;;>=17HL;;;trèfle;>=6;;;;0;;0;;0;False;1T 1M X 2K;;;;;;3T;2380
+735;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 1M X 2M;;;;;;3K;2381
+736;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 2T X 2M;;;;;;3K;2382
+737;REDO;;>=17HL;;;carreau;>=6;;;;0;;0;;0;False;1K 2T X 3T;;;;;;3K;2383
+738;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P X 2P;;;;;;3C;2384
+739;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 1P X 2m;;;;;;3C;2385
+740;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 2m X 3m;;;;;;3C;2386
+741;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 2T X 3K;;;;;;3C;2387
+742;REDO;;>=17HL;;;coeur;>=6;;;;0;;0;;0;False;1C 2K X 3T;;;;;;3C;2388
+743;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2m X 3m;;;;;;3P;2389
+744;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2C X 3C;;;;;;3P;2390
+745;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2m X 2C;;;;;;3P;2391
+746;REDO;;>=17HL;;;pique;>=6;;;;0;;0;;0;False;1P 2C X 3m;;;;;;3P;2392
+747;REDO;;;;;;;;;;0;;0;;0;False;1T passe 1C 2K;;suit_length;C3;;;X;2421
+748;REDO;;;;;;;;;;0;;0;;0;False;1T passe 1P 2K;;suit_length;P3;;;X;2421
+749;REDO;;;;;;;;;;0;;0;;0;False;1K passe 1C 2T;;suit_length;C3;;;X;2422
+750;REDO;;;;;;;;;;0;;0;;0;False;1K passe 1P 2T;;suit_length;P3;;;X;2422
+751;REDO;;;;;;;;;;0;;0;;0;False;1m passe 1C X;;suit_length;C3;;;XX;2423
+752;REDO;;;;;;;;;;0;;0;;0;False;1m passe 1P X;;suit_length;P3;;;XX;2423
+753;REDO;;>=18H;;;;;;;;0;;0;;0;False;1T passe 1K 1M;;;;;;X;2424
+754;REDO;;15-17H;;;;;;;;0;;0;;0;False;1C passe 1SA 2P;takeout_double;suit_length;P<=1;;;X;2425
+755;REDO;;15-17H;;;;;;;;0;;0;;0;False;1P passe 1SA 2C;takeout_double;suit_length;C<=1;;;X;2426
+756;REDO;;15-17H;;;;;;;;0;;0;;0;False;1K passe 2T 2C;takeout_double;suit_length;C<=1;;;X;2427
+757;REDO;;15-17H;;;;;;;;0;;0;;0;False;1K passe 2T 2P;takeout_double;suit_length;P<=1;;;X;2428
+758;REDO;;15-17H;;;;;;;;0;;0;;0;False;1K passe 2T 2C;takeout_double;suit_length;C<=1;;;X;2429
+759;REDO;;15-17H;;;;;;;;0;;0;;0;False;1K passe 2T 2P;takeout_double;suit_length;P<=1;;;X;2430
+760;R2;;>=8HL;;;;;;;;0;;0;;0;False;1T passe 1M passe 2M passe;;suit_length;T>=4;;;3T;2701
+761;R2;;>=8HL;;;;;;;;0;;0;;0;False;1K passe 1M passe 2M passe;;suit_length;K>=4;;;3K;2701
+762;R2;;>=8HL;irrégulier;;;;;;;0;;0;;0;False;1T passe 1M passe 2M passe;;suit_length;K>=4;;;3K;2702
+763;R2;;>=8HL;irrégulier;;;;;;;0;;0;;0;False;1K passe 1M passe 2M passe;;suit_length;K>=4;;;3K;2702
+764;R2;;>=8HL;irrégulier;;;;;;;0;;0;;0;False;1T passe 1C passe 2C passe;;suit_length;P>=4;;;2P;2703
+765;R2;;>=8HL;irrégulier;;;;;;;0;;0;;0;False;1K passe 1C passe 2C passe;;suit_length;P>=4;;;2P;2703
+766;R2;;>=12HLD;;;;;;;;0;;0;;0;False;1m passe 1M passe 2M passe;;;;;;2SA;2704
+767;R2;PASS;<8HLD;;;;;;;;0;;0;;0;False;1m passe 1M passe 3M passe;;;;;;passe;2705
+768;R2;PASS;8-15HLD;;;;;;;;0;;0;;0;False;1m passe 1M passe 3M passe;;;;support;4;;2706
+769;R2;;>=16HLD;;;;;;;;0;;0;;0;False;1m passe 1C passe 3C passe;;;;;;3P;2707
+770;R2;;>=16HLD;;;;;;;;0;;0;;0;False;1m passe 1M passe 3M passe;;;;first_control;;;2708
+771;R2;;>=17HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1T passe 1K o 2K o;;;;;;4K;2709
+772;R2;;11H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 2K o;stop_opponents_suits;;;;;2SA;2710
+773;R2;;>=12H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 2K o;stop_opponents_suits;;;;;3SA;2711
+774;R2;;>=11H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 2K o;;stop-suit;C;;;2C;2712
+775;R2;;>=11H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 2K o;;stop-suit;P;;;2P;2712
+776;R2;;>=12H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 2K 2M;;stop-suit;C;;;3C;2713
+777;R2;;>=12H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 2K 2P;;stop-suit;P;;;3P;2713
+778;R2;;12-16HLD;;;;;;;;0;;0;;0;False;1T passe 1K o 2K o;;;;;;3K;2714
+779;R2;;>=17HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1T passe 1K o 3K o;;;;;;4K;2715
+780;R2;;>=10H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 3K o;stop_opponents_suits;;;;;3SA;2716
+781;R2;;>=10H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 3K o;;stop-suit;C;;;3C;2717
+782;R2;;>=10H;semi-régulier;;;;;;;0;;0;;0;False;1T passe 1K o 3K o;;stop-suit;P;;;3P;2717
+783;R2;;>=12H;semi-régulier;;;;;;;0;;0;;0;False;1M o 2m o 3m o;stop_opponents_suits;;;;;3SA;2718
+784;R2;;>=12H;semi-régulier;;;;;;;0;;0;;0;False;1M o 2T o 3T o;;stop-suit;K;;;3K;2719
+785;R2;;>=12H;semi-régulier;;;;;;;0;;0;;0;False;1C o 2m o 3m o;;stop-suit;P;;;3P;2719
+786;R2;;>=12H;semi-régulier;;;;;;;0;;0;;0;False;1P o 2m o 3m o;;stop-suit;C;;;3C;2719
+787;R2;;>=17HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1M o 2T o 3T o;;;;;;4T;2720
+788;R2;;>=17HLD;irrégulier;;;;;;;0;;0;>=4;0;False;1M o 2K o 3K o;;;;;;4K;2720
+789;R2;;13-14HLD;;;;;;;;0;;0;;0;False;1C o 2m o 3m o;;suit_length;C>=3;;;4C;2721
+790;R2;;13-14HLD;;;;;;;;0;;0;;0;False;1P o 2m o 3m o;;suit_length;P>=3;;;4P;2721
+791;R2;;>=15HLD;irrégulier;;;;;;;0;;0;;0;False;1C o 2m o 3m o;;suit_length;C>=3;;;3C;2722
+792;R2;;>=15HLD;irrégulier;;;;;;;0;;0;;0;False;1P o 2m o 3m o;;suit_length;P>=3;;;3P;2722
+793;R2;;<=10H;bicolore 5/5;;coeur;>=5;carreau;>=5;;0;;0;;0;False;1T o 1C o 1SA passe;;;;;;2K;2723
+794;R2;;<=10H;bicolore 5/5;;pique;>=5;carreau;>=5;;0;;0;;0;False;1T o 1P o 1SA passe;;;;;;2K;2723
+795;R2;;<=10H;;;carreau;>=4;coeur;4;;0;;0;;0;False;1K passe 1C o 1SA passe;;;;;;2K;2723
+796;R2;;<=10H;;;carreau;>=4;pique;4;;0;;0;;0;False;1K o 1P o 1SA passe;;;;;;2K;2723
+797;R2;;<=10H;;;carreau;>=5;pique;4;;0;;0;;0;False;1C passe 1P passe 1SA passe;;;;;;2K;2723
+798;R2;;<=10H;bicolore;;coeur;>=5;pique;>=4;;0;;0;;0;False;1m o 1P passe 1SA passe;;;;;;2C;2724
+799;R2;;<=10H;;;coeur;>=5;;;;0;;0;;0;False;1m o 1C o 1SA passe;;;;;;2C;2725
+800;R2;;<=10H;;;pique;>=5;;;;0;;0;;0;False;1E o 1P passe 1SA passe;;;;;;2P;2725
+801;R2;;>=14HLD;bicolore;;trèfle;>=5;;;;0;;0;;0;False;1T o 1M o 1SA passe;;;;;;3T;2726
+802;R2;;>=14HLD;bicolore;;carreau;>=5;;;;0;;0;;0;False;1K o 1M o 1SA passe;;;;;;3K;2726
+803;R2;;>=17HLD;;;;;;;;0;;0;;0;False;1C passe 1P o 1SA passe;;suit_length;C>=3;;;3C;2727
+804;R2;;>=12H;bicolore 5/5;;;;;;;0;;0;;0;False;1T o 1M o 1SA passe;;;;long_suit;3CL2;;2728
+805;R2;;>=12H;bicolore 5/5;;;;;;;0;;0;;0;False;1K o 1M o 1SA passe;;;;long_suit;3CL2;;2729
+806;R2;;>=12H;bicolore 5/5;;;;;;;0;;0;;0;False;1C passe 1P passe 1SA passe;;;;long_suit;3CL2;;2730
+807;R2;;>=12H;;;;;;;;0;;0;;0;False;1E o 1C o 1SA passe;;suit_length;C>=6;;;3C;2731
+808;R2;;>=12H;;;;;;;;0;;0;;0;False;1E o 1P passe 1SA passe;;suit_length;P>=6;;;3P;2731
+809;R2;;12H-18HL;bicolore 5/5;;;>=5;coeur;>=5;;0;;0;;0;False;1T o 1P passe 1SA passe;;;;;;4C;2732
+810;R2;;12H-18HL;bicolore 5/5;;;>=5;coeur;>=5;;0;;0;;0;False;1K o 1P passe 1SA passe;;;;;;4C;2733
+811;R2;;11-12HL;;;;;;;;0;;0;;0;False;1E o 1C o 1SA passe;;suit_length;C<5;;;2SA;2734
+812;R2;;11-12HL;;;;;;;;0;;0;;0;False;1E o 1P o 1SA passe;;suit_length;P<5;;;2SA;2734
+813;R2;;13-18HL;;;;;;;;0;;0;;0;False;1E o 1C o 1SA passe;;suit_length;C<5;;;3SA;2735
+814;R2;;13-18HL;;;;;;;;0;;0;;0;False;1E o 1P passe 1SA passe;;suit_length;P<5;;;3SA;2735
+815;R2;;19-20HL;;;;;;;;0;;0;;0;False;1E o 1M o 1SA passe;;;;;;4SA;2736
+816;R2;PASS;>=21HL;;;;;;;;0;;0;;0;False;1E o 1M o 1SA passe;;;;;;6SA;2737
+817;R2;ROUDI;>=11HL;;;;;;;;0;;0;;0;False;1E o 1C o 1SA passe;;suit_length;C>=5;;;2T;2738
+818;R2;ROUDI;>=11HL;;;;;;;;0;;0;;0;False;1E o 1P passe 1SA passe;;suit_length;P>=5;;;2T;2739
+819;R2;RELMIN;;;;;;;;;0;;0;;0;False;1T o 1M passe 2SA passe;;;;;;3K;2740
+820;R2;RELMIN;;;;;;;;;0;;0;;0;False;1K o 1M passe 2SA passe;;;;;;3T;2741
+821;R2;;<14HL;;;mineure;>=4;;;;0;;0;;0;False;1m o 1E passe 2SA passe;any_short_color;;;long_suit;3CL1;;2742
+822;R2;;;;;mineure;>=4;;;;0;;0;;0;False;1m o 1E passe 2SA passe;;;;long_suit;3CL1;;2742
+823;R2;;<14HLD;;;Majeure;>=6;;;;0;;0;;0;False;1E o 1M passe 2SA passe;;;;long_suit;4CL1;;2743
+824;R2;;>=14HLD;;;Majeure;>=6;;;;0;;0;;0;False;1E o 1M passe 2SA passe;;;;long_suit;3CL1;;2744
+825;R2;;;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1T passe 1K passe 2SA passe;;;;;;4C;2745
+826;R2;;>=14HL;bicolore 5/5;pique,coeur;;;;;;0;;0;;0;False;1T passe 1K passe 2SA passe;;;;;;3C;2746
+827;R2;PASS;>=8H;régulier;;;;;;;0;;0;;0;False;1E o 1SA o 2SA passe;;;;;;3SA;2747
+828;R2;;;;;mineure;>=6;;;;0;;0;;0;False;1E o 2m o 2SA passe;;;;long_suit;3CL1;;2748
+829;R2;;;;;coeur;>=6;;;;0;;0;;0;False;1P o 2C passe 2SA passe;;;;;;3C;2749
+830;R2;;;;;pique;>=6;;;;0;;0;;0;False;1P o 2E o 2SA passe;;;;;;3P;2750
+831;R2;;<6H;;;;;;;;0;;0;;0;False;1m o 1E o 1M passe;;;;;;passe;2751
+832;R2;;6-11H;;;trèfle;>=5;;;;0;;0;;0;False;1T o 1E o 1M passe;;;;;;2T;2752
+833;R2;;6-11H;;;carreau;>=4;;;;0;;0;;0;False;1K passe 1C passe 1P passe;;;;;;2K;2752
+834;R2;;>=12H;irrégulier;;trèfle;>=5;;;;0;;0;;0;False;1T o 1E o 1C passe;;suit_length;C<5;;;3T;2753
+835;R2;;>=12H;irrégulier;;trèfle;>=5;;;;0;;0;;0;False;1T o 1E o 1P passe;;suit_length;P<5;;;3T;2753
+836;R2;;>=12H;irrégulier;;carreau;>=4;;;;0;;0;;0;False;1K passe 1C passe 1P passe;;suit_length;P<5;;;3K;2753
+837;R2;;6-10HLD;;;;;;;;0;;0;;0;False;1m o 1E o 1C passe;;suit_length;C>=4;;;2C;2754
+838;R2;;6-10HLD;;;;;;;;0;;0;;0;False;1m o 1E o 1P passe;;suit_length;P>=4;;;2P;2754
+839;R2;;11-12HLD;;;;;;;;0;;0;;0;False;1m o 1E o 1C passe;;suit_length;C>=4;;;3C;2755
+840;R2;;11-12HLD;;;;;;;;0;;0;;0;False;1m o 1E o 1P passe;;suit_length;P>=4;;;3P;2755
+841;R2;;13-15HLD;;;;;;;;0;;0;;0;False;1m o 1E o 1C passe;;suit_length;C>=4;;;4C;2756
+842;R2;;13-15HLD;;;;;;;;0;;0;;0;False;1m o 1E o 1P passe;;suit_length;P>=4;;;4P;2756
+843;R2;;6-10HL;;;;>=6;;;;0;;0;;0;False;1m o 1E o 1M passe;;;;long_suit;2CL1;;2757
+844;R2;;11-12HL;;;;>=6;;;;0;;0;;0;False;1m o 1E o 1M passe;;long_color_points_H;>=6;long_suit;3CL1;;2758
+845;R2;;6-10HL;;;;;;;;0;;0;;0;False;1m o 1E o 1M passe;;;;;;1SA;2759
+846;R2;;11-12HL;;;;;;;;0;;0;;0;False;1T passe 1K passe 1P passe;;stop_suit;C;;;2SA;2760
+847;R2;;11-12HL;;;;;;;;0;;0;;0;False;1T passe 1C passe 1P passe;;stop_suit;K;;;2SA;2760
+848;R2;;11-12HL;;;;;;;;0;;0;;0;False;1K passe 1C passe 1P passe;;stop_suit;T;;;2SA;2760
+849;R2;;13-15HL;;;;;;;;0;;0;;0;False;1T passe 1K passe 1P passe;;stop_suit;C;;;3SA;2761
+850;R2;;13-15HL;;;;;;;;0;;0;;0;False;1T passe 1C passe 1P passe;;stop_suit;K;;;3SA;2761
+851;R2;;13-15HL;;;;;;;;0;;0;;0;False;1K passe 1C passe 1P passe;;stop_suit;T;;;3SA;2761
+852;R2;;>=11H;;;;;;;;0;;0;;0;False;1K passe 1C passe 1P passe;;;;;;2T;2762
+853;R2;;>=11H;;;;;;;;0;;0;;0;False;1T passe 1C passe 1P passe;;;;;;2K;2763
+854;R2;;>=11H;;;;;;;;0;;0;;0;False;1T passe 1K passe 1P passe;;;;;;2C;2764
+855;R2;;>=8HL;;;;;;;;0;;0;;0;False;1T passe 1K passe 1C passe;;suit_length;P4;;;1P;2765
+856;R2;;>=11H;;;;;;;;0;;0;;0;False;1T passe 1K passe 1C passe;;;;;;1P;2765
+857;R2;;>=13HL;bicolore 5/5;pique,carreau;;>=5;;>=5;;0;;0;;0;False;1T passe 1K passe 1C passe;honors_in_bicolors;;;;;2P;2766
+858;R2;;>=13HL;bicolore 5/5;coeur,carreau;;>=5;;>=5;;0;;0;;0;False;1T passe 1C passe 1P passe;honors_in_bicolors;;;;;3K;2767
+859;R2;;>=13HL;bicolore 5/5;coeur,carreau;;>=5;;>=5;;0;;0;;0;False;1T passe 1K passe 1P passe;honors_in_bicolors;;;;;3C;2768
+860;R2;;>=13HL;bicolore 5/5;pique,coeur;;>=5;;>=5;;0;;0;;0;False;1K passe 1P passe 2T passe;honors_in_bicolors;;;;;3C;2769
+861;R2;;>=13HL;bicolore 5/5;pique,coeur;;>=5;;>=5;;0;;0;;0;False;1K passe 1C passe 2T passe;honors_in_bicolors;;;;;3P;2770
+862;R2;;>=13HL;bicolore 5/5;pique,coeur;;>=5;;>=5;;0;;0;;0;False;1T passe 1P passe 2K passe;honors_in_bicolors;;;;;3C;2771
+863;R2;;>=13HL;bicolore 5/5;pique,coeur;;>=5;;>=5;;0;;0;;0;False;1T passe 1C passe 2K passe;honors_in_bicolors;;;;;3P;2772
+864;R2;;>=13HL;bicolore 5/5;pique,trèfle;;>=5;;>=5;;0;;0;;0;False;1K passe 2T passe 2C passe;honors_in_bicolors;;;;;3P;2773
+865;R2;PASS;6-10HL;;;;;;;;0;;0;;0;False;1K o 1M o 2T o;;cards_gap_2;K,T;;;passe;2901
+866;R2;PASS;6-10HL;;;;;;;;0;;0;;0;False;1C passe 1P o 2T o;;cards_gap_2;C,T;;;passe;2902
+867;R2;PASS;6-10HL;;;;;;;;0;;0;;0;False;1C passe 1P o 2K o;;cards_gap_2;C,K;;;passe;2902
+868;R2;;6-10HL;;;;;;;;0;;0;;0;False;1K o 1M o 2T passe;;suit_length;K>=2;;;2K;2903
+869;R2;;6-10HL;;;;;;;;0;;0;;0;False;1C passe 1P o 2m o;;suit_length;C2;;;2C;2904
+870;R2;;6-10HL;;;;>=6;;;;0;;0;;0;False;1K passe 1C o 2T passe;;;;;;2C;2905
+871;R2;;6-10HL;;;;>=6;;;;0;;0;;0;False;1K o 1P o 2T passe;;;;;;2P;2905
+872;R2;;6-10HL;;;;>=6;;;;0;;0;;0;False;1C passe 1P o 2m o;;;;;;2P;2906
+873;R2;;11-12HLD;;;;;;;;0;;0;>=4;0;False;1K o 1M o 2T passe;;;;;;3T;2907
+874;R2;;11-12HLD;;;;;;;;0;;0;>=4;0;False;1C passe 1P o 2m o;;;;support;3;;2908
+875;R2;;11HL-11H;;;;;;;;0;;0;;0;False;1K passe 1C o 2T passe;;stop_suit;P;;;2SA;2909
+876;R2;;11HL-11H;;;;;;;;0;;0;;0;False;1K o 1P o 2T passe;;stop_suit;C;;;2SA;2909
+877;R2;;11HL-11H;;;;;;;;0;;0;;0;False;1C passe 1P o 2T o;;stop_suit;K;;;2SA;2910
+878;R2;;11HL-11H;;;;;;;;0;;0;;0;False;1C passe 1P o 2K o;;stop_suit;T;;;2SA;2910
+879;R2;;11-12HL;;;;>=6;;;;0;;0;;0;False;1K passe 1C o 2T passe;;long_color_points_H;>=5;;;3C;2911
+880;R2;;11-12HL;;;;>=6;;;;0;;0;;0;False;1K o 1P o 2T passe;;long_color_points_H;>=5;;;3P;2911
+881;R2;;11-12HL;;;;>=6;;;;0;;0;;0;False;1C passe 1P o 2m o;;long_color_points_H;>=5;;;3P;2912
+882;R2;;>=13HLD;irrégulier;;;;;;;0;;0;;0;False;1K o 1M o 2T passe;;suit_length;K>=3;;;3K;2913
+883;R2;;13-15HLD;;;;;;;;0;;0;;0;False;1C passe 1P o 2m o;;suit_length;C>=3;;;4C;2914
+884;R2;;>=16HLD;;;;;;;;0;;0;;0;False;1C passe 1P o 2m o;;suit_length;C>=3;;;3C;2915
+885;R2;;12H-15HL;régulier;;;;;;;0;;0;;0;False;1K passe 1C o 2T passe;;stop_suit;P;;;3SA;2916
+886;R2;;12H-15HL;régulier;;;;;;;0;;0;;0;False;1K o 1P o 2T passe;;stop_suit;C;;;3SA;2916
+887;R2;;12H-15HL;régulier;;;;;;;0;;0;;0;False;1C passe 1P o 2T o;;stop_suit;K;;;3SA;2917
+888;R2;;12H-15HL;régulier;;;;;;;0;;0;;0;False;1C passe 1P o 2K o;;stop_suit;T;;;3SA;2917
+889;R2;;>=12HL;;;;;;;;0;;0;;0;False;1K passe 1C o 2T passe;;;;;;2P;2918
+890;R2;;>=12HL;;;;;;;;0;;0;;0;False;1K o 1P o 2T passe;;;;;;2C;2919
+891;R2;;>=12HL;;;;;;;;0;;0;;0;False;1C passe 1P o 2T o;;;;;;2K;2920
+892;R2;;>=12HL;;;;;;;;0;;0;;0;False;1C passe 1P o 2K o;;;;;;3T;2921
+893;R2;PASS;6-10HL;;;;;;;;0;;0;;0;False;1K o 1SA passe 2T passe;;cards_gap_2;K,T;;;passe;2922
+894;R2;PASS;6-10HL;;;;;;;;0;;0;;0;False;1C o 1SA passe 2T o;;cards_gap_2;C,T;;;passe;2923
+895;R2;PASS;6-10HL;;;;;;;;0;;0;;0;False;1C o 1SA o 2K o;;cards_gap_2;C,K;;;passe;2923
+896;R2;;6-10HL;;;;;;;;0;;0;;0;False;1K o 1SA passe 2T passe;;suit_length;K>=2;;;2K;2924
+897;R2;;6-10HL;;;;;;;;0;;0;;0;False;1C o 1SA o 2m o;;suit_length;C2;;;2C;2925
+898;R2;;;;;;>=5;;;;0;;0;;0;False;1C o 1SA passe 2T passe;;;;;;2K;2926
+899;R2;;;;;;>=6;;;;0;;0;;0;False;1C o 1SA o 2K o;;;;;;3T;2927
+900;R2;;<=10H;;;;;;;;0;;0;>=5;0;False;1C o 1SA passe 2m o;;points_H;P>=4;;;2P;2928
+901;R2;;<=10H;;;;;;;;0;;0;>=5;0;False;1C o 1SA passe 2T o;;points_H;K>=4;;;3K;2929
+902;R2;;<=10H;;;;;;;;0;;0;>=5;0;False;1K o 1SA passe 2T o;;points_H;C>=4;;;2C;2930
+903;R2;;<=10H;;;;;;;;0;;0;>=5;0;False;1K o 1SA passe 2T o;;points_H;P>=4;;;2P;2931
+904;R2;;>=13HLD;;;;;;;;0;;0;>=4;0;False;1M passe 2T passe 2K o;;;;support;3;;2932
+905;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1C o 2T passe 2K o;;;C>=3;;;3C;2933
+906;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1P passe 2T passe 2K o;;suit_length;P>=3;;;3P;2933
+907;R2;;>=13HLD;;;;;;;;0;;0;>=4;0;False;1P o 2m o 2C o;;;;support;3;;2934
+908;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1P o 2m o 2C o;;suit_length;P>=3;;;3P;2935
+909;R2;;11-12HL;;;;;;;;0;;0;;0;False;1M passe 2T passe 2K o;stop_unnamed_suits;;;;;2SA;2936
+910;R2;;11-12HL;;;;;;;;0;;0;;0;False;1P passe 2m o 2C o;stop_unnamed_suits;;;;;2SA;2937
+911;R2;;12H-15HL;;;;;;;;0;;0;;0;False;1M passe 2T passe 2K o;stop_unnamed_suits;;;;;3SA;2938
+912;R2;;12H-15HL;;;;;;;;0;;0;;0;False;1P passe 2m o 2C o;stop_unnamed_suits;;;;;3SA;2939
+913;R2;;11-12HL;;;;>=6;;;;0;;0;;0;False;1M passe 2T passe 2K o;;;;;;3T;2940
+914;R2;;11-12HL;;;;>=6;;;;0;;0;;0;False;1P passe 2T o 2C o;;;;;;3T;2941
+915;R2;;11-12HL;;;;>=6;;;;0;;0;;0;False;1P passe 2K o 2C o;;;;;;3K;2942
+916;R2;;>=11H;;;;;;;;0;;0;;0;False;1C passe 2T passe 2K o;;;;;;2P;2943
+917;R2;;>=11H;;;;;;;;0;;0;;0;False;1P passe 2T passe 2K o;;;;;;2C;2944
+918;R2;;>=13HL;bicolore 5/5;pique,trèfle;;>=5;;>=5;;0;;0;;0;False;1C passe 2T passe 2K o;honors_in_bicolors;;;;;3P;2945
+919;R2;;>=13HL;bicolore 5/5;coeur,trèfle;;>=5;;>=5;;0;;0;;0;False;1P passe 2T passe 2K o;honors_in_bicolors;;;;;3C;2946
+920;R2;;>=13HL;;;;;;;;0;;0;;0;False;1P passe 2T o 2C o;;;;;;3K;2947
+921;R2;;>=13HL;;;;;;;;0;;0;;0;False;1P passe 2K o 2C o;;;;;;3T;2948
+922;R2;;11-12HL;;;;;;;;0;;0;;0;False;1C passe 2T passe 2K o;;suit_length;C2;;;2C;2949
+923;R2;;11-12HL;;;;;;;;0;;0;;0;False;1P passe 2T passe 2K o;;suit_length;P2;;;2P;2949
+924;R2;;11-12HL;;;;;;;;0;;0;;0;False;1P passe 2m o 2C o;;suit_length;P2;;;2P;2950
+925;R2;;11-13HLD;;;;;;;;0;;0;;0;False;1T o 1M o 2K o;;suit_length;T>=4;;;3T;2981
+926;R2;;11-13HLD;;;;;;;;0;;0;;0;False;1T o 1P o 2C o;;suit_length;T>=4;;;3T;2982
+927;R2;;11-13HLD;;;;;;;;0;;0;;0;False;1K o 1P o 2C o;;suit_length;K>=4;;;3K;2983
+928;R2;;11-13HLD;;;;;;;;0;;0;;0;False;1T o 1SA o 2E o;;suit_length;T>=4;;;3T;2984
+929;R2;;11-13HLD;;;;;;;;0;;0;;0;False;1K o 1SA o 2M o;;suit_length;K>=4;;;3K;2985
+930;R2;;11-13HLD;;;;;;;;0;;0;;0;False;1C o 1SA o 2P o;;suit_length;C>=3;;;3C;2986
+931;R2;;11-13HLD;;;;;;;;0;;0;;0;False;1K o 2T o 2M o;;suit_length;K>=4;;;3K;2987
+932;R2;;11-13HLD;;;;;;;;0;;0;;0;False;1C o 2m o 2P o;;suit_length;C>=3;;;3C;2988
+933;R2;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1T o 1M o 2K o;;;;;;3K;2989
+934;R2;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1m o 1P o 2C o;;;;;;3C;2990
+935;R2;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1T o 1SA o 2E o;;;;support;3;;2991
+936;R2;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1K o 1SA o 2M o;;;;support;3;;2992
+937;R2;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1C o 1SA o 2P o;;;;;;3P;2993
+938;R2;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1K o 2T o 2M o;;;;support;3;;2994
+939;R2;;>=11HLD;;;;;;;;0;;0;>=4;0;False;1C o 2m o 2P o;;;;;;3P;2995
+940;R2;;>=14HLD;;;;;;;;0;;0;;0;False;1T o 1M o 2K o;;suit_length;T>=4;;;4T;2996
+941;R2;;>=14HLD;;;;;;;;0;;0;;0;False;1T o 1P o 2C o;;suit_length;T>=4;;;4T;2997
+942;R2;;>=14HLD;;;;;;;;0;;0;;0;False;1K o 1P o 2C o;;suit_length;K>=4;;;4K;2998
+943;R2;;>=14HLD;;;;;;;;0;;0;;0;False;1T o 1SA o 2E o;;suit_length;T>=4;;;4T;2999
+944;R2;;>=14HLD;;;;;;;;0;;0;;0;False;1K o 1SA o 2M o;;suit_length;K>=4;;;4K;3000
+945;R2;PASS;8-10HLD;;;;;;;;0;;0;;0;False;1C o 1SA o 2P o;;suit_length;C>=3;;;4C;3001
+946;R2;;>=14HLD;;;;;;;;0;;0;;0;False;1K o 2T o 2M o;;suit_length;K>=4;;;4K;3002
+947;R2;PASS;8-10HLD;;;;;;;;0;;0;;0;False;1C o 2m o 2P o;;suit_length;C>=3;;;4C;3003
+948;R2;;>=14HLD;;;;;;;;0;;0;>=4;0;False;1T o 1M o 2K o;;;;;;4K;3004
+949;R2;PASS;8-10HLD;;;;;;;;0;;0;>=4;0;False;1m o 1P o 2C o;;;;;;4C;3005
+950;R2;;>=14HLD;;;;;;;;0;;0;>=4;0;False;1T o 1SA o 2E o;;;;support;4;;3006
+951;R2;PASS;8-10HLD;;;;;;;;0;;0;>=4;0;False;1m o 1SA o 2M o;;;;support;4;;3007
+952;R2;PASS;8-10HLD;;;;;;;;0;;0;>=4;0;False;1C o 1SA o 2P o;;;;;;4P;3008
+953;R2;PASS;8-10HLD;;;;;;;;0;;0;>=4;0;False;1K o 2T o 2M o;;;;support;4;;3009
+954;R2;PASS;8-10HLD;;;;;;;;0;;0;>=4;0;False;1C o 2m o 2P o;;;;;;4P;3010
+955;R2;;10-12H;;;;;;;;0;;0;;0;False;1T o 1M o 2K o;stop_unnamed_suits;;;;;3SA;3011
+956;R2;;10-12H;;;;;;;;0;;0;;0;False;1m o 1P o 2C o;stop_unnamed_suits;;;;;3SA;3012
+957;R2;;10-12H;;;;;;;;0;;0;;0;False;1T o 1SA o 2E o;stop_unnamed_suits;;;;;3SA;3013
+958;R2;;10-12H;;;;;;;;0;;0;;0;False;1K o 1SA o 2M o;stop_unnamed_suits;;;;;3SA;3014
+959;R2;;10-12H;;;;;;;;0;;0;;0;False;1C o 1SA o 2P o;stop_unnamed_suits;;;;;3SA;3015
+960;R2;;10-12H;;;;;;;;0;;0;;0;False;1K o 2T o 2M o;stop_unnamed_suits;;;;;3SA;3016
+961;R2;;10-12H;;;;;;;;0;;0;;0;False;1C o 2m o 2P o;stop_unnamed_suits;;;;;3SA;3017
+962;R2;;>=12HL;;;;>=6;;;;0;;0;;0;False;1T o 1C o 2K o;;long_color_points_H;>=6;;;3C;3018
+963;R2;;>=12HL;;;;>=6;;;;0;;0;;0;False;1T o 1P o 2K o;;long_color_points_H;>=6;;;3P;3018
+964;R2;;>=12HL;;;;>=6;;;;0;;0;;0;False;1m o 1P o 2C o;;long_color_points_H;>=6;;;3P;3019
+965;R2;;>=12HL;;;;>=6;;;;0;;0;;0;False;1K o 2T o 2M o;;long_color_points_H;>=6;;;3T;3020
+966;R2;;>=12HL;;;;>=6;;;;0;;0;;0;False;1C o 2T o 2P o;;long_color_points_H;>=6;;;3T;3021
+967;R2;;>=12HL;;;;>=6;;;;0;;0;;0;False;1C o 2K o 2P o;;long_color_points_H;>=6;;;3K;3022
+968;R2;;;;;;;;;;0;;0;;0;False;1T o 1C o 2K o;;suit_length;C>=5;;;2C;3023
+969;R2;;;;;;;;;;0;;0;;0;False;1T o 1P o 2K o;;suit_length;P>=5;;;2P;3023
+970;R2;;;;;;;;;;0;;0;;0;False;1m o 1P o 2C o;;suit_length;P>=5;;;2P;3024
+971;R2;;>=8H;;;;;;;;0;;0;;0;False;1T o 1C o 2K o;;suit_length;C<=4;;;2P;3025
+972;R2;;>=8H;;;;;;;;0;;0;;0;False;1T o 1P o 2K o;;suit_length;P<=4;;;2C;3026
+973;R2;;>=8H;;;;;;;;0;;0;;0;False;1T o 1P o 2C o;;suit_length;P<=4;;;3K;3027
+974;R2;;>=8H;;;;;;;;0;;0;;0;False;1K o 1P o 2C o;;suit_length;P<=4;;;3T;3028
+975;R2;;>=8H;;;;;;;;0;;0;;0;False;1K o 2T o 2C o;;;;;;2P;3029
+976;R2;;>=8H;;;;;;;;0;;0;;0;False;1K o 2T o 2P o;;;;;;3C;3030
+977;R2;;>=8H;;;;;;;;0;;0;;0;False;1C o 2T o 2P o;;;;;;3K;3031
+978;R2;;>=8H;;;;;;;;0;;0;;0;False;1C o 2K o 2P o;;;;;;3T;3032
+979;R2;;;;;;;;;;0;;0;;0;False;1T o 1M o 2K o;;;;;;2SA;3033
+980;R2;;;;;;;;;;0;;0;;0;False;1m o 1P o 2C o;;;;;;2SA;3034
+981;R2;;;;;;;;;;0;;0;;0;False;1K o 2T o 2M o;;;;;;2SA;3035
+982;R2;;;;;;;;;;0;;0;;0;False;1C o 2m o 2P o;;;;;;2SA;3036
+983;R2;;;;;;;;;;0;;0;;0;False;1T o 1K passe 2M passe;;suit_length;T>=3;;;3T;3037
+984;R2;;;;;;;;;;0;;0;;0;False;1T o 1C passe 2P passe;;suit_length;T>=3;;;3T;3038
+985;R2;;;;;;;;;;0;;0;;0;False;1K o 1C passe 2P passe;;suit_length;K>=3;;;3K;3038
+986;R2;;;;;;;;;;0;;0;;0;False;1K o 1M passe 3T passe;;suit_length;K>=3;;;3K;3039
+987;R2;;;;;;;;;;0;;0;;0;False;1K o 1SA passe 3T passe;;suit_length;K>=3;;;3K;3040
+988;R2;;;;;;;;;;0;;0;;0;False;1C o 1P passe 3m passe;;suit_length;C>=3;;;3C;3041
+989;R2;;;;;;;;;;0;;0;;0;False;1C o 1SA passe 3m passe;;suit_length;C>=3;;;3C;3042
+990;R2;;;;;;;;;;0;;0;;0;False;1P o 1SA passe 3m passe;;suit_length;P>=3;;;3P;3043
+991;R2;;;;;;;;;;0;;0;;0;False;1C o 2T passe 3K passe;;suit_length;C>=3;;;3C;3044
+992;R2;;;;;;;;;;0;;0;;0;False;1P o 2T passe 3K passe;;suit_length;P>=3;;;3P;3044
+993;R2;;;;;;;;;;0;;0;;0;False;1P o 2m passe 3C passe;;suit_length;P>=3;;;3P;3045
+994;R2;;;;;;;;;;0;;0;;0;False;1T o 1K passe 2M passe;;suit_length;T>=4;;;4T;3046
+995;R2;;;;;;;;;;0;;0;;0;False;1T o 1C passe 2P passe;;suit_length;T>=4;;;4T;3047
+996;R2;;;;;;;;;;0;;0;;0;False;1K o 1C passe 2P passe;;suit_length;K>=4;;;4K;3047
+997;R2;;;;;;;;;;0;;0;;0;False;1K o 1M passe 3T passe;;suit_length;K>=4;;;4K;3048
+998;R2;;;;;;;;;;0;;0;;0;False;1K o 1SA passe 3T passe;;suit_length;K>=4;;;4K;3049
+999;R2;;;;;;;;;;0;;0;;0;False;1T o 1K passe 2C passe;;suit_length;C>=4;;;3C;3050
+1000;R2;;;;;;;;;;0;;0;;0;False;1T o 1K passe 2P passe;;suit_length;P>=4;;;3P;3050
+1001;R2;;;;;;;;;;0;;0;;0;False;1m o 1C passe 2P passe;;suit_length;P>=4;;;3P;3051
+1002;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1K o 1M passe 3T passe;;suit_length;T>=4;;;4T;3052
+1003;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1K o 1SA passe 3T passe;;suit_length;T>=4;;;4T;3053
+1004;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1C o 1P passe 3T passe;;suit_length;T>=4;;;4T;3054
+1005;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1C o 1P passe 3K passe;;suit_length;K>=4;;;4K;3054
+1006;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1C o 1SA passe 3T passe;;suit_length;T>=4;;;4T;3055
+1007;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1C o 1SA passe 3K passe;;suit_length;K>=4;;;4K;3055
+1008;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1P o 1SA passe 3T passe;;suit_length;T>=4;;;4T;3055
+1009;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1P o 1SA passe 3K passe;;suit_length;K>=4;;;4K;3055
+1010;R2;;>=13HLD;;;;;;;;0;;0;;0;False;1M o 2T passe 3K passe;;suit_length;K>=4;;;4K;3056
+1011;R2;;;;;;;;;;0;;0;;0;False;1P o 2m passe 3C passe;;suit_length;C>=4;;;4C;3057
+1012;R2;;;;;;;;;;0;;0;;0;False;1T o 1K passe 2M passe;stop_unnamed_suits;;;;;2SA;3058
+1013;R2;;;;;;;;;;0;;0;;0;False;1m o 1C passe 2P passe;stop_unnamed_suits;;;;;2SA;3059
+1014;R2;;10-11H;;;;;;;;0;;0;;0;False;1T o 1K passe 2M passe;stop_unnamed_suits;;;;;3SA;3060
+1015;R2;;10-11H;;;;;;;;0;;0;;0;False;1m o 1C passe 2P passe;stop_unnamed_suits;;;;;3SA;3061
+1016;R2;;10-11H;;;;;;;;0;;0;;0;False;1K o 1M passe 3T passe;stop_unnamed_suits;;;;;3SA;3062
+1017;R2;;10-11H;;;;;;;;0;;0;;0;False;1K o 1SA passe 3T passe;stop_unnamed_suits;;;;;3SA;3063
+1018;R2;;10-11H;;;;;;;;0;;0;;0;False;1C o 1P passe 3m passe;stop_unnamed_suits;;;;;3SA;3064
+1019;R2;;10-11H;;;;;;;;0;;0;;0;False;1M o 1SA passe 3m passe;stop_unnamed_suits;;;;;3SA;3065
+1020;R2;;10-11H;;;;;;;;0;;0;;0;False;1M o 2T passe 3K passe;stop_unnamed_suits;;;;;3SA;3066
+1021;R2;;10-11H;;;;;;;;0;;0;;0;False;1P o 2m passe 3C passe;stop_unnamed_suits;;;;;3SA;3067
+1022;R2;;;;;;>=5;;;;0;;0;;0;False;1T o 1K passe 2M passe;;long_color_points_H;>=6;;;3K;3068
+1023;R2;;;;;;>=5;;;;0;;0;;0;False;1m o 1C passe 2P passe;;long_color_points_H;>=6;;;3C;3069
+1024;R2;;;;;;>=5;;;;0;;0;;0;False;1K o 1C passe 3T passe;;long_color_points_H;>=6;;;3C;3070
+1025;R2;;;;;;>=5;;;;0;;0;;0;False;1K o 1P passe 3T passe;;long_color_points_H;>=6;;;3P;3070
+1026;R2;;;;;;>=5;;;;0;;0;;0;False;1C o 1P passe 3m passe;;long_color_points_H;>=6;;;3P;3071
+1027;R2;;;;;;>=6;;;;0;;0;;0;False;1M o 2T passe 3K passe;;long_color_points_H;>=6;;;4T;3072
+1028;R2;;;;;;>=6;;;;0;;0;;0;False;1P o 2T passe 3C passe;;long_color_points_H;>=6;;;4T;3073
+1029;R2;;;;;;>=6;;;;0;;0;;0;False;1P o 2K passe 3C passe;;long_color_points_H;>=6;;;4K;3073
+1030;R2;;;;;;;;;;0;;0;;0;False;1T o 1K passe 2C passe;;;;;;2P;3074
+1031;R2;;;;;;;;;;0;;0;;0;False;1T o 1K passe 2P passe;;;;;;3C;3075
+1032;R2;;;;;;;;;;0;;0;;0;False;1T o 1C passe 2P passe;;;;;;3K;3076
+1033;R2;;;;;;;;;;0;;0;;0;False;1K o 1C passe 2P passe;;;;;;3T;3077
+1034;R2;;;;;;;;;;0;;0;;0;False;1K o 1C passe 3T passe;;;;;;3P;3078
+1035;R2;;;;;;;;;;0;;0;;0;False;1K o 1P passe 3T passe;;;;;;3C;3079
+1036;R2;;;;;;;;;;0;;0;;0;False;1C o 1P passe 3T passe;;;;;;3K;3080
+1037;R2;;;;;;;;;;0;;0;;0;False;1C o 1P passe 3K passe;;;;;;4T;3081
+1038;R2;;;;;;;;;;0;;0;;0;False;1C o 2T passe 3K passe;;;;;;3P;3082
+1039;R2;;;;;;;;;;0;;0;;0;False;1P o 2T passe 3K passe;;;;;;3C;3083
+1040;R2;;;;;;;;;;0;;0;;0;False;1P o 2T passe 3C passe;;;;;;4K;3084
+1041;R2;;;;;;;;;;0;;0;;0;False;1P o 2K passe 3C passe;;;;;;4T;3085
+1042;ROUDI;FREE;;;;;;;;;0;;0;;0;False;1C o 1SA passe 2T passe;;suit_length;C2;;;2K;3201
+1043;ROUDI;FREE;;;;;;;;;0;;0;;0;False;1P passe 1SA passe 2T passe;;suit_length;P2;;;2K;3202
+1044;ROUDI;FREE;12H-13HL;;;;;;;;0;;0;;0;False;1C o 1SA passe 2T passe;;suit_length;C>=3;;;2C;3203
+1045;ROUDI;FREE;12H-13HL;;;;;;;;0;;0;;0;False;1P passe 1SA passe 2T passe;;suit_length;P>=3;;;2C;3204
+1046;ROUDI;FREE;14HL-14H;;;;;;;;0;;0;;0;False;1C o 1SA passe 2T passe;;suit_length;C>=3;;;2P;3205
+1047;ROUDI;FREE;14HL-14H;;;;;;;;0;;0;;0;False;1P passe 1SA passe 2T passe;;suit_length;P>=3;;;2P;3206
+1048;RELMIN;FREE;;;;;;;;;0;;0;;0;False;1C passe 2SA passe 3m passe;;suit_length;C>=3;;;3C;3231
+1049;RELMIN;FREE;;;;;;;;;0;;0;;0;False;1P passe 2SA passe 3m passe;;suit_length;P>=3;;;3P;3231
+1050;RELMIN;FREE;;;;;>=5;;;;0;;0;;0;False;1C passe 2SA passe 3m passe;;suit_length;C<3;long_suit;3CL1;;3232
+1051;RELMIN;FREE;;;;;;;;;0;;0;;0;False;1C passe 2SA passe 3m passe;;suit_length;C<3;;;3SA;3233
+1052;RELMIN;FREE;;;;;;;;;0;;0;;0;False;1P passe 2SA passe 3m passe;;suit_length;C>=4;;;3C;3234
+1053;RELMIN;FREE;;;;;;;;;0;;0;;0;False;1P passe 2SA passe 3m passe;;suit_length;P<3;;;3SA;3235

@@ -1,7 +1,7 @@
 from bids.bid_senses import BidSense
 from bids.bids import Bid, Camp, Forcing
 from bids.bid_records import BidRecord
-from bids.hands import RichHand
+from bids.hands import MetaSuit, RichHand
 from bids.hazes import Fit, Haze
 from bids.slams import Slam
 
@@ -62,6 +62,7 @@ class BidProducer:
    def _make_fitted_bid(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
       if pts >= 31 and not self.slam:
          self.slam = Slam(fit.suit, fit.total_cards, pts)
+         self.haze.set_implicit_fit(fit.suit, self.camp, self.partner_rank)
       if self.slam:
          declared_controls = self.haze.declared_controls(self.camp)
          return self.slam.next_bid(hand, self.partner_raw_bid, declared_controls)
@@ -96,7 +97,7 @@ class BidProducer:
 
    def _compute_camp_points(self, hand: RichHand, fit: Fit) -> int:
       if fit:
-         player_points = hand.points_HLD(fit.suit.code, fit.partner_count())
+         player_points = hand.points_HLD(fit.suit, fit.partner_count())
       else:
          player_points = hand.points_HL
       return player_points + self.haze.hands[self.partner_rank].points.min
