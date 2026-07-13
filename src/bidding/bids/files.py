@@ -58,6 +58,14 @@ class CsvFile():
          csvfile.close()
          return last_row
              
+   def get_rows(self) -> list:
+      with open(self.name, newline='') as csvfile:
+         all_rows = []
+         rows = csv.DictReader(csvfile, dialect=SemiColon)
+         for row in rows:
+            all_rows.append(row)     
+      return all_rows
+
    def _process_iterator(self, iterator, default=None):
       # This function returns next item in given iterator or None if no next
       try:
@@ -118,6 +126,16 @@ class ExcelFile:
             fields.append(title)
       return fields
 
+   def get_rows(self) -> list:
+      # Only used by class Dna
+      all_rows = []
+      try:
+         for row in self.sheet.iter_rows(min_row=2, values_only=True):
+            all_rows.append(row)
+      except Exception as error:
+         raise error
+      return all_rows
+
 
 class RuleExcelFile(ExcelFile):
    def __init__(self):
@@ -137,6 +155,7 @@ class ExcelToCsv:
    ALLOW_BLANK = [
       "distribution",
       "hist_bid",
+      "family",
       "convention",
       "comment",
    ]

@@ -218,11 +218,14 @@ class RichHand:
 
    @cached_property
    def lost_tricks(self) -> int:
-      tricks = 0
+      lost_tricks = 0
       for suit_string_cards in self._string_cards.values():
-         matched = re.findall('[AKQ]', suit_string_cards)
-         tricks += 3 - len(matched)
-      return tricks
+         if suit_string_cards:
+            count = min(3, len(suit_string_cards))
+            magic_cards = '[' + 'AKQ'[0:count] + ']'
+            matched = re.findall(magic_cards, suit_string_cards)
+            lost_tricks += count - len(matched)
+      return lost_tricks
 
    @cached_property
    def best_minor_code(self) -> str:

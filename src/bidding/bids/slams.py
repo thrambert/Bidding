@@ -22,10 +22,10 @@ class Slam:
    trump:               Trump suit for which camp players are fitted.
    trumps_count:        Number of trump cards the camp has.
    camp_points:         Min HLD points for camp.
-   ctrlled_suit_codes:  Suit codes the players declared control on except fit suit.
+   last_normal_bid:     Last bid made which was not a special one (X, XX, passe).
    ask_for_queen_bid:   The bid made to ask if the partner has trump queen.
    stage:               Stage in blackwood process.
-   _cached_bids:        CONTROLS mapped in bids, excluding trump suit. 
+   _ctrl_bids:          CONTROLS mapped in bids, excluding trump suit. 
    """
    CONTROLS = [
       "3P",
@@ -59,14 +59,14 @@ class Slam:
    def _ctrl_bids(self) -> list[Bid]:
       return [Bid(r) for r in self.CONTROLS if r[1] != self.trump.code]
 
-   def next_bid(self, hand: RichHand, partner_raw_bid: str, ctrls: set) -> BidSense:
-      # Arg ctrls gives suit codes that the camp has declared as control.
-      partner_bid = Bid(partner_raw_bid)
+   def next_bid(self, hand: RichHand, partner_bid: Bid, last_normal_bid: Bid, ctrls: set) -> BidSense:
+      # Arg ctrls: Suit codes that the camp has already declared as control.
+      self.last_normal_bid = last_normal_bid
       match self.stage:
          case self.Stage.STOP:
             return BidSense.passe()
          case self.Stage.CTRLS:
-            return self.next_control(hand, partner_bid, ctrls)
+            return self._next_control(hand, partner_bid, ctrls)
          case self.Stage.KEYS_ASK:
             return self._blackwood_answer(hand)
          case self.Stage.KEYS_R:
@@ -76,7 +76,7 @@ class Slam:
          case self.Stage.QUEEN_R:
             return self._bid_after_queen_answer(hand, partner_bid)
 
-   def next_control(self, hand: RichHand, partner_bid: Bid, ctrls: set) -> BidSense:
+   def _next_control(self, hand: RichHand, partner_bid: Bid, ctrls: set) -> BidSense:
       # Arg ctrls gives suit codes that the camp has declared as control.
       hand_ctrls: set[str] = hand.controlled_suit_codes()
       if ctrls | hand_ctrls | {self.trump.code} == set(MetaSuit.four_suit_codes()):
@@ -85,22 +85,34 @@ class Slam:
             self.stage = self.Stage.KEYS_ASK
             return BidSense(id=0, raw_bid="4SA")
          else:
-            return BidSense(id=0, raw_bid=self._trump_mini_bid(partner_bid))
+            return BidSense(id=0, raw_bid=self._trump_mini_raw_bid())
       else:
          bid = self._new_ctrl(partner_bid, ctrls, hand_ctrls)
-         raw_bid = bid.raw if bid else self._trump_mini_bid(partner_bid)
+         raw_bid = bid.raw if bid else self._trump_mini_raw_bid()
          return BidSense(id=0, raw_bid=raw_bid, suit_control=True)
+
+   # def _new_ctrl(self, partner_bid: Bid, ctrls: set, hand_ctrls: set) -> Bid:
+   #    uncontrolled = self._remaining_controls(ctrls) - hand_ctrls
+   #    hand_ctrls_not_declared = hand_ctrls - ctrls
+   #    for bid in self._ctrl_bids:
+   #       if bid < partner_bid:
+   #          if bid.suit_code in uncontrolled and bid > self._ctrl_bids[0]:
+   #             # A control is skipped and missing --> stop to game (manche):
+   #             return None
+   #       elif bid in hand_ctrls_not_declared:
+   #          return bid
 
    def _new_ctrl(self, partner_bid: Bid, ctrls: set, hand_ctrls: set) -> Bid:
       uncontrolled = self._remaining_controls(ctrls) - hand_ctrls
       hand_ctrls_not_declared = hand_ctrls - ctrls
       for bid in self._ctrl_bids:
-         if bid < partner_bid:
-            if bid.suit_code in uncontrolled and bid > self._ctrl_bids[0]:
-               # A control is skipped and missing --> stop to game (manche):
-               return None
-         elif bid in hand_ctrls_not_declared:
-            return bid
+         if partner_bid.a_special or bid > partner_bid:
+            # We consider that last normal bid < 3P if partner_bid is special.
+            if bid.suit_code in hand_ctrls_not_declared:
+               return bid
+         elif bid.suit_code in uncontrolled and bid > self._ctrl_bids[0]:
+            # A control is skipped and missing --> stop to game (manche):
+            return None
 
    def _blackwood_answer(self, hand: RichHand) -> BidSense:
          self.stage = self.Stage.KEYS_R
@@ -112,7 +124,7 @@ class Slam:
    def _blackwood_redemand(self, hand: RichHand, partner_bid: Bid) -> BidSense:
       camp_nbr_keys, camp_has_queen = self._get_camp_keys(hand, partner_bid.raw)
       if camp_nbr_keys <=3:
-         next_raw_bid = self._trump_mini_bid(partner_bid)
+         next_raw_bid = self._trump_mini_raw_bid()
       if camp_nbr_keys == 5:
          next_raw_bid = self._slam_bid(self._possible_level())
       # Camp has 4 keys:
@@ -153,9 +165,9 @@ class Slam:
       else:
          return BidSense.passe()
 
-   def _trump_mini_bid(self, partner_bid: Bid) -> str:
+   def _trump_mini_raw_bid(self) -> str:
       self.stage = self.Stage.STOP
-      return partner_bid.first_bid_above_or_pass(self.trump).raw
+      return self.last_normal_bid.first_bid_above_or_pass(self.trump).raw
    
    def _slam_bid(self, level: int) -> str:
       self.stage = self.Stage.STOP
@@ -190,7 +202,7 @@ class Slam:
          self.ask_for_queen_bid = next_bid
          return next_bid.raw
       else:
-         return self._trump_mini_bid(partner_bid)
+         return self._trump_mini_raw_bid()
 
    def _get_most_economical_king_suit_wo_trump(self, hand: RichHand) -> str:
       # Returns lowest suit code except trump which has a king, from given hand.

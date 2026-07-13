@@ -158,6 +158,11 @@ class Forcing(Enum):
             return "forcing passe"
 
 
+class Family(Enum):
+   BI_N2 = "Michael's cuebid précisé"
+   BI_N4 = "Intervention bicolore du N°4"
+
+   
 class SuitsToStop(Enum):
    OPP = "opp"
    UNNAMED = "unnamed"

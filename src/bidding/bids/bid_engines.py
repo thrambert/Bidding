@@ -81,15 +81,17 @@ class BidEngine:
    def _get_next_step(self) -> str:
       if self.record.last:
          return self.stair.get_next(
-            self.record.last.raw, self.record.last.lap, self.player_rank,
+            self.record.last.raw,
+            self.record.last.sense.family,
+            self.record.last.lap,
+            self.player_rank,
             self.record.sleep(),
             self.record.nbr_interventions()
             )
       else:
-         return self.stair.get_next("", 0, 1, False, 0)
+         return self.stair.get_next("", "", 0, 1, False, 0)
 
    def _run_step(self, step_name: str) -> BidSense:
-      # print(f"Step {step_name}")
       rule = self._get_first_satisfied_rule(step_name)
       self.stair.set_camp_next_step(rule.next_step if rule else "")
       if rule:
@@ -180,7 +182,9 @@ class RuleAnalyzer:
          expression = str(value) + math_inequality
       return eval(expression)
 
+   #  ═════════════════════════════════════════════════════════════════════════
    #  Basic conditions
+   #  ═════════════════════════════════════════════════════════════════════════
 
    def _points_check(self, rule: BidRule) -> bool:
       point_zone = PointZone(rule.points)
@@ -258,8 +262,9 @@ class RuleAnalyzer:
       requested_bids = [Bid(value) for value in requested_raw_bids]
       return self.record.comply_with(requested_bids)
 
-
+   #  ═════════════════════════════════════════════════════════════════════════
    #  Conditions as functions
+   #  ═════════════════════════════════════════════════════════════════════════
 
    def _function1_check(self, rule: BidRule) -> bool:
       function_name = "_" + rule.function1 + "_check"
@@ -376,12 +381,12 @@ class RuleAnalyzer:
       interv_suit = MetaSuit.from_code(self.record.last.suit_code)
       return interv_suit < longest_suit if over else longest_suit < interv_suit
 
-   def _stop_suit_check(self, arg: str) -> bool:
-      suit = MetaSuit.from_code(arg)
-      if suit:
-         return self.hand.stops_count(suit) >= 1
-      else:
-         return False
+   def _stop_suits_check(self, arg: str) -> bool:
+      suits_codes_to_stop = arg.replace(" ", "").split(",")
+      for suit in [MetaSuit.from_code(c) for c in suits_codes_to_stop]:
+         if self.hand.stops_count(suit) < 1:
+            return False
+      return True
       
    def _points_H_check(self, arg: str) -> bool:
       suit = MetaSuit.from_code(arg[0])
@@ -400,7 +405,13 @@ class RuleAnalyzer:
       suits = [MetaSuit.from_code(c) for c in suit_codes]
       card_counts = [self.hand.cards_count[s] for s in suits]
       return (card_counts[0] <= card_counts[1] - 2)
-
+   
+   def _ace_check(self, arg: str) -> bool:
+      suit = MetaSuit.from_code(arg[0])
+      wished_nbr = int(arg[1])
+      ranks_in_suit = self.hand.suits[suit]
+      return len(ranks_in_suit) >= wished_nbr and ranks_in_suit[0] == "ACE"
+   
 
 class BidComputer:
    """
@@ -456,5 +467,7 @@ class BidComputer:
       fit = self.haze.fit(self.hand.cards_count, self.record.second_last.rank)
       camp_points = self.hand.points_HLD(fit.suit, fit.partner_count())
       slam = Slam(fit.suit, fit.total_cards, camp_points)
-      bid_sense = slam.next_control(self.hand, self.record.second_last, set())
+      bid_sense = slam.next_bid(
+         self.hand, self.record.second_last, self.record.last_normal_bid(), set()
+         )
       return bid_sense.raw_bid

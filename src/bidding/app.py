@@ -20,5 +20,7 @@ def start():
    
    test_deals()
 
+
+
    # TODO: Add a_view = instance of mainWindow
    # my_app.exec()

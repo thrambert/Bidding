@@ -9,7 +9,7 @@ from bids.bid_rules import (
    validated_suit,
    validated_count
 )
-from bids.bids import Forcing, SuitsToStop
+from bids.bids import Family, Forcing, SuitsToStop
 from utils import MyDataException
 
 
@@ -27,6 +27,11 @@ def _validated_stop_suits(value: str) -> str:
 def _validated_forcing(value: str) -> str:
    if value and not value in [e.value for e in Forcing]:
       raise MyDataException(f"{value} n'est pas une dénomination de forcing.")
+   return value
+
+def _validated_family(value: str) -> str:
+   if value and not value in [e.name for e in Family]:
+      raise MyDataException(f"{value} n'est pas une famille d'enchères répertoriée.")
    return value
 
 
@@ -57,6 +62,7 @@ class BidSense(BaseModel):
    stop_suits:    "opp": Stop opponent suits, "unnamed": Stop unnamed and opp suits.
    artificial:    True if the bid is not natural but a convention.
    forcing:       Indicates if the partner must bid in response.
+   family:        Family of bids (ex: Mickael's cuebids).
    convention:    Name of convention.
    comment:       Additional text on bid.
 
@@ -83,6 +89,7 @@ class BidSense(BaseModel):
    stop_suits: Annotated[str, Field(default=""), AfterValidator(_validated_stop_suits)]
    artificial: bool = False
    forcing: Annotated[str, Field(default=""), AfterValidator(_validated_forcing)]
+   family: Annotated[str, Field(default=""), AfterValidator(_validated_family)]
    convention: str = ""
    _rule_id = 0
 

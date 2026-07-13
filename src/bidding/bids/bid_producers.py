@@ -1,7 +1,7 @@
 from bids.bid_senses import BidSense
 from bids.bids import Bid, Camp, Forcing
 from bids.bid_records import BidRecord
-from bids.hands import MetaSuit, RichHand
+from bids.hands import RichHand
 from bids.hazes import Fit, Haze
 from bids.slams import Slam
 
@@ -12,13 +12,14 @@ class BidProducer:
    information gathered along previous bidding.
 
    Properties
-   slam:          An instance to manage bids sequences in a slam perspective.
-   haze:          Information on each player's hand deducted from bidding.
-   rank:          Rank of the current player who has to make a bid
-   camp:          Camp the player belongs to.
-   partner_rank:  Rank of current player's partner
-   partner_raw_bid:   Last raw bid made by partner.
-   forcing:       Forcing indication in partner last bid.
+   slam:             An instance to manage bids sequences in a slam perspective.
+   haze:             Information on each player's hand deducted from bidding.
+   rank:             Rank of the current player who has to make a bid
+   camp:             Camp the player belongs to.
+   partner_rank:     Rank of current player's partner
+   partner_bid:      Last bid made by partner.
+   last_normal_bid:  Last bid made which was not a special one (X, XX, passe).
+   forcing:          Forcing indication in partner last bid.
    """
    def __init__(self, haze: Haze):
       self.haze = haze
@@ -28,14 +29,15 @@ class BidProducer:
       _, self.rank = record.next_lap_and_rank(False)
       self.camp = Camp.from_rank(self.rank)
       self.partner_rank = self.camp.other_rank(self.rank)
-      self.partner_raw_bid = record.second_last.raw
+      self.partner_bid = Bid(record.second_last.raw)
       self.last_normal_bid = record.last_normal_bid()
       self.forcing = Forcing.from_value(record.second_last.sense.forcing)
    
    def make_bid(self, hand: RichHand, record: BidRecord) -> BidSense:
       # TODO Manage additional cases :
-      #      - when opponents talk or take double
-      #      - after 2 passes (en réveil)
+      #   - IMPORTANT --> when fitted, always check camp pts with min required for bid (ex: 5T required 29 HLD)
+      #   - when opponents talk or take double
+      #   - after 2 passes (en réveil)
       self._update_properties(record)
       if self.forcing == Forcing.PASS:
          return BidSense.passe()
@@ -64,8 +66,12 @@ class BidProducer:
          self.slam = Slam(fit.suit, fit.total_cards, pts)
          self.haze.set_implicit_fit(fit.suit, self.camp, self.partner_rank)
       if self.slam:
-         declared_controls = self.haze.declared_controls(self.camp)
-         return self.slam.next_bid(hand, self.partner_raw_bid, declared_controls)
+         return self.slam.next_bid(
+            hand, 
+            self.partner_bid, 
+            self.last_normal_bid,
+            self.haze.declared_controls(self.camp)
+            )
       elif (fit.major() and pts >= 26) or (fit.minor() and pts >= 28):
          next_raw_bid = ("4" if fit.major() else "5") + fit.suit.code
          return BidSense(id=0,raw_bid=next_raw_bid,forcing=Forcing.PASS.value)

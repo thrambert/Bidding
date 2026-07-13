@@ -6,16 +6,25 @@ from bridgebots.deal_enums import Direction
 from deals.deal_engines import DealMaker, Vulnerability
 from views.mats import BidChaining
 from bids.bid_histories import BidHistory
+from bids.dna import Dna
 
 
 # cards by suits spades,...,clubs for test deal:
 TEST_HANDS = []
 
+
 def test_deals():
+   # List all sequences into dna.csv
+
+   # dna = Dna(sort_by_length=False)
+   # dna.write_in_file()
+
+   # Test bidding while generating deals
+
    if TEST_HANDS:
       test_one_deal()
    else:
-      test_several_deals(5000)
+      test_several_deals(500)
 
 def test_one_deal():
    deal_maker = DealMaker(Direction.NORTH, Vulnerability.NONE)
@@ -66,3 +75,18 @@ def test_several_deals(count: int):
 #    "T732-KT54-432-T7",
 # ]
 
+# Intervention bicolore Michael cuebid
+# TEST_HANDS = [
+#    "AKQ98-Q9-T987-J4",
+#    "6-AKJ87-65-AKQ98",
+#    "J54-2-AK432-6532",
+#    "T732-T6543-QJ-T7",
+# ]
+
+# Intervention bicolore Michael cuebid suivie d'une défense par joueur N°3 à 3SA
+# TEST_HANDS = [
+#    "AKQ98-Q9-J987-64",
+#    "6-KJ872-65-AKJ98",
+#    "J54-A3-AK432-Q53",
+#    "T732-T654-QT-T72",
+# ]

@@ -6,7 +6,7 @@ ____________________________________________________________________________
 Constants giving appropriate next steps
 
 PASS:          String value of pass special bid.
-R_OPEN:        Response to opening, depending on player n°2 bid.
+R_OPEN:        Response to opening, fct(player n°2 bid or family of last bid).
 INT_LAP1_NO_INT:  Steps for intervener in lap 1 when no intervention before.
 INTERVENE:     Steps for interveners depending on intervention count.
 WAKE:          Steps to select after 2 consecutive passes depending on rank.
@@ -16,7 +16,6 @@ from __future__ import annotations
 
 from enum import Enum, auto
 from bids.bids import Camp
-from utils import MyDataException
 
 
 class Step(Enum):
@@ -29,10 +28,15 @@ class Step(Enum):
    SEQ2K = auto()    # séquence du camp de l'ouvreur suite ouverture de 2K
    STAYMAN = auto()  # séquence du camp de l'ouvreur selon convention Stayman
    TEXAS = auto()    # séquence du camp de l'ouvreur selon convention Texas
+   RUBEN = auto()    # séquence Rubensohl: Défense suite ouverture 1SA et interv du N°2
    ROSA = auto()     # autre réponse à ouverture dans le silence adverse (rank 3)
+   DRURY = auto()    # séquence en réponse à 2T Drury
    ROACA = auto()    # autre réponse à ouverture après un contre d'appel (rank 3)
    ROAIC = auto()    # autre réponse à ouverture après intervention à la couleur (rank 3)
+   SPOUTNIK = auto() # réponse au contre Spoutnik simple
+   K2TX = auto()     # réponse à 1K 2T X
    ROA1SA = auto()   # autre réponse à ouverture après intervention à 1SA (rank 3)
+   ROABI = auto()    # autre réponse à ouverture après intervention bicolore
    INT_N4 = auto()   # intervention du joueur n°4 (rank 4)
    REDO = auto()     # redemande de l'ouvreur (lap 2, rank 1)
    REPINT = auto()   # réponse à intervention (lap 1 rank 4, ou lap 2 rank 2)
@@ -40,6 +44,9 @@ class Step(Enum):
    R2 = auto()       # 2e enchère du répondant (lap 2 rank 3)
    ROUDI = auto()    # séquence convention Roudi
    RELMIN = auto()   # séquence relais dans l'autre mineure to ask opener have you 3 cards
+   SAMODER = auto()  # séquence suite à 2SA modérateur
+   SUIT4F = auto()   # séquence suite à 4e couleur forcing
+   SUIT3F = auto()   # séquence suite à 3e couleur forcing
    INTEND = auto()   # suite du dialogue du camp en intervention, après REDI
    WAKE_N1 = auto()  # réveil du joueur n°1, l'ouvreur (lap 2 rank 1)
    WAKECI = auto()   # réveil du camp en intervention (lap 2 rank 2 ou 4)
@@ -60,15 +67,15 @@ class Stair:
    This class provides a function to get next step.
 
    Properties
-   bid:        Value of last bid made, "" if no bid yet made.
-   lap:        Last lap in bidding.
-   rank:       Rank of last bidding player (1 for opener to 4).
-   rule_steps: Dict {rank: Step} for next steps provided by Excel rules.  
+   player_rank:   Rank of player who has to make a bid.
+   player_camp:   Camp of the player who has to make a bid.
+   rule_steps:    Dict {rank: Step} for next steps provided by Excel rules.  
    """
    R_OPEN = {
       "passe": Step.ROSA,
       "X":     Step.ROACA,
       "1SA":   Step.ROA1SA,
+      "BI_N2": Step.ROABI,
       "other": Step.ROAIC,
    }
    INT_LAP1_NO_INT = [
@@ -91,14 +98,38 @@ class Stair:
    def __init__(self):
       self.rule_steps: dict[int, Step] = {rank: None for rank in range(1, 5)}
    
-   def _update_properties(self, lap: int, player_rank: int):
-      self.lap = lap
+   # def _update_properties(self, lap: int, player_rank: int):
+   #    self.lap = lap
+   #    self.player_rank = player_rank
+   #    self.player_camp = Camp.from_rank(player_rank)
+
+   # def get_next(self, last_raw_bid: str, lap: int,
+   #              player_rank: int, sleep: bool, intervene_count: int) -> str:
+   #    self._update_properties(lap, player_rank)
+   #    if self.rule_steps[player_rank]:
+   #       return self.rule_steps[player_rank].name
+      
+   #    if not (lap and last_raw_bid):
+   #       return Step.OPEN.name
+   #    elif sleep:
+   #       return self.WAKE[self.player_rank - 1].name
+   #    elif self.player_camp == Camp.OPEN:
+   #       return self._next_step_for_opening_camp(last_raw_bid).name
+   #    else:
+   #       return self._next_step_for_interv_camp(intervene_count).name
+
+   # def _update_properties(self, last_bidding: Bidding, player_rank: int):
+   #    self.raw_bid = last_bidding.raw
+   #    self.family = last_bidding.sense.family
+   #    self.lap = last_bidding.lap
+   #    self.player_rank = player_rank
+   #    self.player_camp = Camp.from_rank(player_rank)
+
+   def get_next(self, last_raw_bid: str, family: str, lap: int,
+                player_rank: int, sleep: bool, intervene_count: int) -> str:
       self.player_rank = player_rank
       self.player_camp = Camp.from_rank(player_rank)
 
-   def get_next(self, last_raw_bid: str, lap: int,
-                player_rank: int, sleep: bool, intervene_count: int) -> str:
-      self._update_properties(lap, player_rank)
       if self.rule_steps[player_rank]:
          return self.rule_steps[player_rank].name
       
@@ -107,9 +138,9 @@ class Stair:
       elif sleep:
          return self.WAKE[self.player_rank - 1].name
       elif self.player_camp == Camp.OPEN:
-         return self._next_step_for_opening_camp(last_raw_bid).name
+         return self._next_step_for_opening_camp(last_raw_bid, family, lap).name
       else:
-         return self._next_step_for_interv_camp(intervene_count).name
+         return self._next_step_for_interv_camp(lap, intervene_count).name
 
    def set_camp_next_step(self, step_name: str):
       # Prepare steps of the camp for next bidding.
@@ -119,26 +150,32 @@ class Stair:
       free = camp_next_step == Step.FREE if step_name else False
       self.rule_steps[self.player_rank] = Step.FREE if free else None
 
-   def _next_step_for_opening_camp(self, last_raw_bid: str) -> Step:
-      if self.lap == 1:
+   def _next_step_for_opening_camp(self, last_raw_bid: str, family: str, lap: int) -> Step:
+      if lap == 1:
          if self.player_rank == 3:
-            return self._get_value(last_raw_bid, self.R_OPEN)
+            return self._get_opening_response(last_raw_bid, family)
          else:
             return Step.REDO
-      elif self.lap == 2 and self.player_rank == 3:
+      elif lap == 2 and self.player_rank == 3:
          return Step.R2
       else:
          return Step.FREE
       
-   def _next_step_for_interv_camp(self, interv_count: int) -> Step:
-      if self.lap == 1 and interv_count == 0:
-         return self.INT_LAP1_NO_INT[self.player_rank // 4]
-      else:
+   def _next_step_for_interv_camp(self, lap: int, interv_count: int) -> Step:
+      if lap == 1 and interv_count == 0:
          # Rmk: If the 2 interveners pass in first lap, they always pass after.
+         return self.INT_LAP1_NO_INT[self.player_rank // 4]
+      elif interv_count <= 3:
          return self.INTERVENE[interv_count]
+      else:
+         return Step.FREE
 
-   def _get_value(self, last_raw_bid: str, step_dict: dict) -> Step:
+   def _get_opening_response(self, last_raw_bid: str, family: str) -> Step:
       # Returns a step from step_dict where bid is replaced by "other" if not found in.
-      search_bid = last_raw_bid if last_raw_bid in step_dict else "other"
-      return step_dict[search_bid]
+      if family:
+         return self.R_OPEN[family]
+      elif last_raw_bid in self.R_OPEN:
+         return self.R_OPEN[last_raw_bid]
+      else:
+         return self.R_OPEN["other"]
    
