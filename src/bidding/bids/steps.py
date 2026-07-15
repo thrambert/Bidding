@@ -98,33 +98,6 @@ class Stair:
    def __init__(self):
       self.rule_steps: dict[int, Step] = {rank: None for rank in range(1, 5)}
    
-   # def _update_properties(self, lap: int, player_rank: int):
-   #    self.lap = lap
-   #    self.player_rank = player_rank
-   #    self.player_camp = Camp.from_rank(player_rank)
-
-   # def get_next(self, last_raw_bid: str, lap: int,
-   #              player_rank: int, sleep: bool, intervene_count: int) -> str:
-   #    self._update_properties(lap, player_rank)
-   #    if self.rule_steps[player_rank]:
-   #       return self.rule_steps[player_rank].name
-      
-   #    if not (lap and last_raw_bid):
-   #       return Step.OPEN.name
-   #    elif sleep:
-   #       return self.WAKE[self.player_rank - 1].name
-   #    elif self.player_camp == Camp.OPEN:
-   #       return self._next_step_for_opening_camp(last_raw_bid).name
-   #    else:
-   #       return self._next_step_for_interv_camp(intervene_count).name
-
-   # def _update_properties(self, last_bidding: Bidding, player_rank: int):
-   #    self.raw_bid = last_bidding.raw
-   #    self.family = last_bidding.sense.family
-   #    self.lap = last_bidding.lap
-   #    self.player_rank = player_rank
-   #    self.player_camp = Camp.from_rank(player_rank)
-
    def get_next(self, last_raw_bid: str, family: str, lap: int,
                 player_rank: int, sleep: bool, intervene_count: int) -> str:
       self.player_rank = player_rank

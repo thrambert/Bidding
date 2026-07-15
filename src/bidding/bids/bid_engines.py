@@ -319,22 +319,6 @@ class RuleAnalyzer:
       named_suits = [b.suit_code for b in self.record.all if b.a_color]
       return suit_code not in named_suits
 
-   def _stop_opponents_suits_check(self) -> bool:
-      opp_camp = self.record.last.camp
-      for suit_code in self.record.suit_codes(opp_camp):
-         suit = MetaSuit.from_code(suit_code)
-         if self.hand.stops_count(suit) < 1:
-            return False
-      return True
-
-   def _stop_unnamed_suits_check(self) -> bool:
-      player_camp = self.record.last.camp.other_camp()
-      for suit_code in self.record.suit_codes(player_camp):
-         suit = MetaSuit.from_code(suit_code)
-         if self.hand.stops_count(suit) < 1:
-            return False
-      return self._stop_opponents_suits_check()
-
    def _takeout_double_check(self) -> bool:
       # Returns True if distribution is ok for a takeout double (contre d'appel)
       opp_camp = self.record.last.camp
@@ -353,6 +337,28 @@ class RuleAnalyzer:
          return majors_cards[0] >= 4
       else:
          return True
+
+   def _stop_opponents_suits_check(self) -> bool:
+      opp_camp = self.record.last.camp
+      for suit_code in self.record.suit_codes(opp_camp):
+         suit = MetaSuit.from_code(suit_code)
+         if self.hand.stops_count(suit) < 1:
+            return False
+      return True
+
+   def _stop_unnamed_suits_check(self) -> bool:
+      player_camp = self.record.last.camp.other_camp()
+      for suit_code in self.record.suit_codes(player_camp):
+         suit = MetaSuit.from_code(suit_code)
+         if self.hand.stops_count(suit) < 1:
+            return False
+      return self._stop_opponents_suits_check()
+
+   def _stop_suit_check(self, arg: str) -> bool:
+      raw_arg = arg.replace(" ", "")
+      suit = MetaSuit.from_code(raw_arg[0])
+      nbr_stops = raw_arg[1:].replace(",", ".")
+      return self.hand.stops_count(suit) >= nbr_stops
 
    def _suit_length_check(self, arg: str) -> bool:
       meta_suit = MetaSuit.from_code(arg[0])
