@@ -34,8 +34,6 @@ class BidEngine:
    record:        All bids made since the game starts.
    haze:          Information on each player's hand deducted from bidding.
    producer:      Bid producer when there are no rules, which stores slam sequence.
-   _camps_step:   A set of tuples (n, str) where n is concerned player rank,
-                  and str is next_step from Excel rules, or ""
    """
    def __init__(self):
       self.hand: RichHand = None
@@ -44,6 +42,7 @@ class BidEngine:
       self.record = BidRecord()
       self.haze = Haze()
       self.producer: BidProducer = None
+      self._opp_next_step = ""
       self.stair = Stair()
 
    def provide_bid(self, hand: PlayerHand, relative_vuln: int) -> BidSense:
@@ -51,8 +50,8 @@ class BidEngine:
       #  in which properties may be empty except bid if no sense to provide.
       self.hand = RichHand(hand)
       self.relative_vuln = relative_vuln
-      _, self.player_rank = self.record.next_lap_and_rank(False)
-      step = self._get_next_step()
+      player_lap, self.player_rank = self.record.next_lap_and_rank(False)
+      step = self._get_next_step(10 * player_lap + self.player_rank)
       sense = self._get_next_bid(step)
 
       if not sense:
@@ -78,22 +77,26 @@ class BidEngine:
       else:
          return self._run_step(step)
 
-   def _get_next_step(self) -> str:
+   def _get_next_step(self, lap_rank: int) -> str:
       if self.record.last:
          return self.stair.get_next(
-            self.record.last.raw,
-            self.record.last.sense.family,
-            self.record.last.lap,
-            self.player_rank,
-            self.record.sleep(),
-            self.record.nbr_interventions()
+            self.record.no_bid_wo_pass(),
+            lap_rank,
+            self.record.sleep()
             )
       else:
-         return self.stair.get_next("", "", 0, 1, False, 0)
+         return self.stair.get_next(True, 1, False)
+
+   def _set_next_steps(self, rule: BidRule):
+      next_opp_rank = BidRecord.next_rank(self.player_rank)
+      partner_rank = BidRecord.next_rank(next_opp_rank)
+      self.stair.set_next_step(partner_rank, rule.camp_next_step if rule else "")
+      if rule and rule.opp_next_step:
+         self.stair.set_next_step(next_opp_rank, rule.opp_next_step)
 
    def _run_step(self, step_name: str) -> BidSense:
       rule = self._get_first_satisfied_rule(step_name)
-      self.stair.set_camp_next_step(rule.next_step if rule else "")
+      self._set_next_steps(rule)
       if rule:
          return self._get_bid_sense(rule)
       else:
@@ -153,9 +156,19 @@ class RuleAnalyzer:
          if getattr(rule, condition_name):
             function_name = "_" + condition_name + "_check"
             condition_check = getattr(self, function_name)
+            
+
+
+            if rule.id in range(803, 813):
+               print(f"   --> Rule {rule.id} {condition_name} is {"OK" if condition_check(rule) else "ko"}")
+
+
+            # print(f"   --> Rule {rule.id} {condition_name} is {"OK" if condition_check(rule) else "ko"}")
+
             if not condition_check(rule):
                return False
       if not rule.raw_bid:
+         print(f"No rule bid for rule id {rule.id} --> compute bid")
          rule.raw_bid = self._compute_bid(rule.function_bid, rule.arg_bid) 
       bid = Bid(rule.raw_bid)
       return self.record.no_open() or bid.a_special \
@@ -261,7 +274,7 @@ class RuleAnalyzer:
       requested_raw_bids = list(reversed(rule.hist_bid.split(" ")))
       requested_bids = [Bid(value) for value in requested_raw_bids]
       return self.record.comply_with(requested_bids)
-
+   
    #  ═════════════════════════════════════════════════════════════════════════
    #  Conditions as functions
    #  ═════════════════════════════════════════════════════════════════════════
@@ -354,17 +367,27 @@ class RuleAnalyzer:
             return False
       return self._stop_opponents_suits_check()
 
-   def _stop_suit_check(self, arg: str) -> bool:
-      raw_arg = arg.replace(" ", "")
-      suit = MetaSuit.from_code(raw_arg[0])
-      nbr_stops = raw_arg[1:].replace(",", ".")
-      return self.hand.stops_count(suit) >= nbr_stops
+   def _has_strength_check(self) -> bool:
+      camp_suits = self.record.suit_codes(self.record.second_last.camp)
+      strengths = [s for s in self.hand.strong_suits if s not in camp_suits]
+      return len(strengths) >= 1
 
    def _suit_length_check(self, arg: str) -> bool:
       meta_suit = MetaSuit.from_code(arg[0])
       suit_length = self.hand.cards_count[meta_suit]
       condition = arg[1:]
       return self.op_match(math_inequality=condition, value=suit_length)
+
+   def _no_short_suit_check (self, arg: str) -> bool:
+      # Returns True if every given suits have 2 cards at least
+      #  Arg = "CD..." or "", where CD... are suit codes.
+      #  If arg = "", all suits are concerned.
+      suit_codes = list(arg) if arg else ["T", "K", "C", "P"]
+      suits_to_check = [MetaSuit.from_code(s) for s in suit_codes]
+      for suit in suits_to_check:
+         if self.hand.cards_count[suit] < 2:
+            return False
+      return True
 
    def _longest_major_check(self, arg: str) -> bool:
       longest_count = max(self.hand.majors_count.values())
@@ -387,6 +410,12 @@ class RuleAnalyzer:
       interv_suit = MetaSuit.from_code(self.record.last.suit_code)
       return interv_suit < longest_suit if over else longest_suit < interv_suit
 
+   def _stop_suit_check(self, arg: str) -> bool:
+      raw_arg = arg.replace(" ", "")
+      suit = MetaSuit.from_code(raw_arg[0])
+      nbr_stops = int(raw_arg[1:].replace(",", "."))
+      return self.hand.stops_count(suit) >= nbr_stops
+
    def _stop_suits_check(self, arg: str) -> bool:
       suits_codes_to_stop = arg.replace(" ", "").split(",")
       for suit in [MetaSuit.from_code(c) for c in suits_codes_to_stop]:
@@ -404,13 +433,14 @@ class RuleAnalyzer:
       suit = MetaSuit.from_code(arg)
       return self.hand.controls(suit)
 
-   def _cards_gap_2_check(self, arg: str) -> bool:
-      # Returns true if nbr cards in suit C <= nbr D - 2
-      # Expect arg as "C, D" where C and D are suit codes.
-      suit_codes = arg.replace(" ","").split(",")
+   def _cards_gap_check(self, arg: str) -> bool:
+      # Returns true if nbr cards in suit C <= nbr D - n, with
+      #  arg = "CDn" where C and D are suit codes and n >= 0
+      suit_codes = [arg[0], arg[1]]
+      gap = int(arg[2])
       suits = [MetaSuit.from_code(c) for c in suit_codes]
       card_counts = [self.hand.cards_count[s] for s in suits]
-      return (card_counts[0] <= card_counts[1] - 2)
+      return (card_counts[0] <= card_counts[1] - gap)
    
    def _ace_check(self, arg: str) -> bool:
       suit = MetaSuit.from_code(arg[0])
@@ -468,12 +498,28 @@ class BidComputer:
 
    def _best_major(self, level: str) -> str:
       return level + self.hand.best_major_code
+   
+   def _strength(self, level: str) -> str:
+      camp_suits = self.record.suit_codes(self.record.second_last.camp)
+      for suit in self.hand.strong_suits:
+         if suit not in camp_suits:
+            return level + suit.code
+         
+   def _short_suit(self, level: str) -> str:
+      for suit, length in self.hand.cards_count.items():
+         if length <=1:
+            return level + suit.code
 
-   def _first_control(self, arg: str) -> str:
+   def _first_control(self, level: str) -> str:
       fit = self.haze.fit(self.hand.cards_count, self.record.second_last.rank)
       camp_points = self.hand.points_HLD(fit.suit, fit.partner_count())
-      slam = Slam(fit.suit, fit.total_cards, camp_points)
+      bid_to_exceed = self.record.last_normal_bid()
+      # First control must be at level 4 when level is 4, else it can be 3P
+      if level == "4" and bid_to_exceed < Bid("3P"):
+         bid_to_exceed = Bid("3P")
+
+      slam = Slam(fit.suit, fit.total_cards, camp_points, self.record.second_last)
       bid_sense = slam.next_bid(
-         self.hand, self.record.second_last, self.record.last_normal_bid(), set()
+         self.hand, self.record.second_last, bid_to_exceed, set()
          )
       return bid_sense.raw_bid

@@ -77,6 +77,12 @@ class BidRecord:
       new_bidding = Bidding(lap, rank, bid_sense)
       self.all.append(new_bidding)
    
+   def no_bid_wo_pass(self) -> bool:
+      for bidding in self.all:
+         if not bidding.raw == PASS:
+            return False
+      return True
+
    def last_normal_bid(self) -> Bidding:
       if not self.all:
          return None
@@ -98,6 +104,9 @@ class BidRecord:
 
    def first_pass_count(self) -> int:
       return self._first_pass_count_in(self.all)
+   
+   def last_pass_count(self) -> int:
+      return self._first_pass_count_in(self.reversed_all())
 
    def sleep(self) -> bool:
       last_pass_count = self._first_pass_count_in(self.reversed_all())
@@ -134,34 +143,39 @@ class BidRecord:
          return self.last.lap == 0
       else:
          return True
-   
+
    def comply_with(self, requested_bids: list[Bid]) -> bool:
       """
       Returns True if requested bids match with recorded bids. 
       In requested bids, symbolic suits are managed as below :
+       - o can replace any bid
        - if M appears several times, it represents same suit each time, and
          same for m and E.
-       - E represents a suit which must not be already present in history,
+       - E represents a real suit which must not be already present in history,
          nor a suit represented by M or m.
       """
       if len(self.all) < len(requested_bids):
          return False
       hist_bidding = self.reversed_all()
-      convert = {"M": "", "m": "", "E": ""}
+      converted = {"M": "", "m": "", "E": ""}
       real_suit_codes = set()
           
       for i, bid in enumerate(requested_bids):
          if not hist_bidding[i].bid_match(bid):
             return False
-         symbol_E = (bid.suit_code == "E")
          if bid.a_symbol:
-            if not convert[bid.suit_code]:
-               convert[bid.suit_code] = hist_bidding[i].suit_code
-            bid = bid.replace_suit_with(convert[bid.suit_code])
-         if not symbol_E:
+            if not converted[bid.suit_code] and hist_bidding[i].a_color:
+               converted[bid.suit_code] = hist_bidding[i].suit_code
+            bid = bid.replace_suit_with(converted[bid.suit_code])
+            if hist_bidding[i].suit_code != bid.suit_code:
+               return False
+         if bid.suit_code != "E":
             real_suit_codes.add(bid.suit_code)
 
-      return not (convert["E"] and convert["E"] in real_suit_codes)
+      if converted["E"] and converted["E"] not in real_suit_codes:
+         return False
+      else:
+         return True
 
    def _first_pass_count_in(self, bidding_list: list[Bidding]) -> int:
       count = 0
@@ -171,3 +185,7 @@ class BidRecord:
          else:
             break
       return count
+
+   @staticmethod
+   def next_rank(rank: int) -> int:
+      return 1 if rank == 4 else rank + 1

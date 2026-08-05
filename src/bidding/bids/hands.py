@@ -122,6 +122,7 @@ class RichHand:
    lost_tricks:   French: Perdantes
    best_minor_code:  Longest minor suit code, or club if eq 3, or diamond if eq 4
    best_major_code:  Longest major suit code, or heart if eq 4, or spade if eq 5
+   strong_suits:     Suits which a strength, which means containing ace or king
    ____________________________________________________________________________
    Detail on suits
    Suits are sorted from lowest suit (clubs) to highest (spades).
@@ -249,6 +250,38 @@ class RichHand:
       else:
          return MetaSuit.SPADES.code
 
+   @cached_property
+   def strong_suits(self) -> list[MetaSuit]:
+      # Returns suits which a strength, which means containing ace or king
+      strong_cards = [Rank.ACE, Rank.KING]
+      return [s for s in MetaSuit.four_suits() if self.suits[s][0] in strong_cards]
+
+   @cached_property
+   def _longest_suits_and_counts(self) -> tuple[MetaSuit, MetaSuit, int, int]:
+      """
+      Returns 2 longest suits and their number of cards.
+      If length is 5 or 6 for each, it returns highest suit first,
+      if length is <=4 for each, it returns lowest suit first.
+      """
+      suit_count = self.cards_count
+      long = list(suit_count.keys())[:2]
+      count = list(suit_count.values())
+      if count[0] == count[1]:
+         five_or_six_cards = (count[0] >= 5)
+         long.sort(key=lambda suit: suit.value, reverse=five_or_six_cards)
+      return (long[0], long[1], suit_count[long[0]], suit_count[long[1]])
+
+   @cached_property
+   def _string_cards(self) -> dict[Suit, str]:
+      # Returns cards of suits in reverse order, as "AKQ94".
+      cards_per_suits = {}
+      for suit, ranks in self.suits.items():
+         sorted_ranks = sorted(ranks, reverse=True)
+         short_cards = [r.abbreviation() for r in sorted_ranks]
+         string_cards = "".join(c for c in short_cards)
+         cards_per_suits[suit] = string_cards
+      return cards_per_suits
+
    def stops_count(self, suit: MetaSuit) -> float:
       # Returns number of times the hand can stop opponents in given suit.
       pts_H = self.suit_points_H(suit)
@@ -306,21 +339,6 @@ class RichHand:
       count_per_suit = [str(n) for n in self.cards_count.values()]
       return reduce(lambda x, y: x + "-" + y, count_per_suit)
 
-   @cached_property
-   def _longest_suits_and_counts(self) -> tuple[MetaSuit, MetaSuit, int, int]:
-      """
-      Returns 2 longest suits and their number of cards.
-      If length is 5 or 6 for each, it returns highest suit first,
-      if length is <=4 for each, it returns lowest suit first.
-      """
-      suit_count = self.cards_count
-      long = list(suit_count.keys())[:2]
-      count = list(suit_count.values())
-      if count[0] == count[1]:
-         five_or_six_cards = (count[0] >= 5)
-         long.sort(key=lambda suit: suit.value, reverse=five_or_six_cards)
-      return (long[0], long[1], suit_count[long[0]], suit_count[long[1]])
-
    def _won_tricks_length(self, count: int) -> float:
       if count == 4:
          return 0.5
@@ -351,17 +369,6 @@ class RichHand:
             return value
          else:
             return 0
-
-   @cached_property
-   def _string_cards(self) -> dict[Suit, str]:
-      # Returns cards of suits in reverse order, as "AKQ94".
-      cards_per_suits = {}
-      for suit, ranks in self.suits.items():
-         sorted_ranks = sorted(ranks, reverse=True)
-         short_cards = [r.abbreviation() for r in sorted_ranks]
-         string_cards = "".join(c for c in short_cards)
-         cards_per_suits[suit] = string_cards
-      return cards_per_suits
 
    def __repr__(self):
       # Returns one chr per card from spades to clubs, sorted from highest to lowest.

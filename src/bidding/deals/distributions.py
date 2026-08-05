@@ -88,14 +88,12 @@ class Distribution:
 
    def _complete_special(self):
       # This function adds items in self.special.
-      # bicolore 5/5
-      if self.canonical == self.Main.BICOLOR:
-         numeric = self.ordinal.replace("-", "")
-         suffix = int(numeric[:2]) if numeric else 0
-         if suffix >= 55:
+      # bicolores
+      if self.canonical == self.Main.BICOLOR and self.ordinal:
+         if int(self.ordinal[2]) >=5:
             self.special.append("bicolore 5/5")
-         if suffix >= 65:
-            self.special.append("bicolore 6/5")         
+            if int(self.ordinal[0]) >=6:
+               self.special.append("bicolore 6/5")         
       # semi-régulier
       if self.semi_regular():
          self.special.append("semi-régulier")

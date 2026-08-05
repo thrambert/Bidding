@@ -73,7 +73,8 @@ class BidRule(BaseModel):
 
    id:            Unique id of a rule.
    step:          Bidding context in which the rule is to be applied.
-   next_step:     Bidding context for the next player. If empty, use Stepping.
+   opp_next_step: Bidding context for the player just after the current one.
+   camp_next_step: Bidding context for next bid of player's partner.
    ____________________________________________________________________________
    Properties as conditions
 
@@ -104,7 +105,8 @@ class BidRule(BaseModel):
    """
    id: int
    step: Annotated[str, AfterValidator(_validated_step)]
-   next_step: Annotated[str, AfterValidator(_validated_step)]
+   opp_next_step: Annotated[str, AfterValidator(_validated_step)]
+   camp_next_step: Annotated[str, AfterValidator(_validated_step)]
    points: Annotated[str, Field(default=""), AfterValidator(validated_points)]
    distribution: Annotated[str, Field(default=""), AfterValidator(validated_distrib)]
    bicolor: Annotated[str, Field(default=""), AfterValidator(_validated_bicolor)]

@@ -48,12 +48,12 @@ class Slam:
       QUEEN_R = 4,   # response
       STOP = 5
 
-   def __init__(self, trump: MetaSuit, camp_nbr_trumps: int, camp_points: int):
+   def __init__(self, trump: MetaSuit, camp_nbr_trumps: int, camp_points: int, partner_bid: Bid):
       self.trump = trump
       self.trumps_count = camp_nbr_trumps
       self.camp_points = camp_points
       self.ask_for_queen_bid: Bid = None
-      self.stage = self.Stage.CTRLS
+      self.stage = self.Stage.KEYS_ASK if partner_bid.raw == "4SA" else self.Stage.CTRLS
 
    @cached_property
    def _ctrl_bids(self) -> list[Bid]:
@@ -90,17 +90,6 @@ class Slam:
          bid = self._new_ctrl(partner_bid, ctrls, hand_ctrls)
          raw_bid = bid.raw if bid else self._trump_mini_raw_bid()
          return BidSense(id=0, raw_bid=raw_bid, suit_control=True)
-
-   # def _new_ctrl(self, partner_bid: Bid, ctrls: set, hand_ctrls: set) -> Bid:
-   #    uncontrolled = self._remaining_controls(ctrls) - hand_ctrls
-   #    hand_ctrls_not_declared = hand_ctrls - ctrls
-   #    for bid in self._ctrl_bids:
-   #       if bid < partner_bid:
-   #          if bid.suit_code in uncontrolled and bid > self._ctrl_bids[0]:
-   #             # A control is skipped and missing --> stop to game (manche):
-   #             return None
-   #       elif bid in hand_ctrls_not_declared:
-   #          return bid
 
    def _new_ctrl(self, partner_bid: Bid, ctrls: set, hand_ctrls: set) -> Bid:
       uncontrolled = self._remaining_controls(ctrls) - hand_ctrls

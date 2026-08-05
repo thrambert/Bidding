@@ -21,6 +21,30 @@ class BidProducer:
    last_normal_bid:  Last bid made which was not a special one (X, XX, passe).
    forcing:          Forcing indication in partner last bid.
    """
+   POINTS_TABLE = {
+      20: 1,
+      21: 1,
+      22: 1,
+      23: 2,
+      24: 2,
+      25: 3,
+      26: 3,
+      27: 4,
+      28: 4,
+      29: 4,
+      30: 5,
+      31: 5,
+      32: 5,
+      33: 6,
+      34: 6,
+      35: 6,
+      36: 6,
+      37: 7,
+      38: 7,
+      39: 7,
+      40: 7,
+   }
+
    def __init__(self, haze: Haze):
       self.haze = haze
       self.slam: Slam = None
@@ -29,7 +53,9 @@ class BidProducer:
       _, self.rank = record.next_lap_and_rank(False)
       self.camp = Camp.from_rank(self.rank)
       self.partner_rank = self.camp.other_rank(self.rank)
-      self.partner_bid = Bid(record.second_last.raw)
+      # TODO: Next line can be removed after some test 05-08-2026
+      # self.partner_bid = Bid(record.second_last.raw)
+      self.partner_bid = record.second_last
       self.last_normal_bid = record.last_normal_bid()
       self.forcing = Forcing.from_value(record.second_last.sense.forcing)
    
@@ -39,12 +65,20 @@ class BidProducer:
       #   - when opponents talk or take double
       #   - after 2 passes (en réveil)
       self._update_properties(record)
-      if self.forcing == Forcing.PASS:
-         return BidSense.passe()
       fit = self.haze.fit(hand.cards_count, self.partner_rank)
       camp_points = self._compute_camp_points(hand, fit)
-      return self._steer_bid_to_make(hand, fit, camp_points)
-      
+      over = self.last_normal_bid.level > self._max_possible_level(camp_points)
+
+      # if fit:
+      #    print(f"BidProducer, fit de {fit.total_cards} {fit.suit.text} et {camp_points} points.")
+      # else:
+      #    print("No fit")
+
+      if self.forcing == Forcing.PASS or over:
+         return BidSense.passe()
+      else:
+         return self._steer_bid_to_make(hand, fit, camp_points)
+
    def _steer_bid_to_make(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
       if fit:
          return self._steer_fitted(hand, fit, pts)
@@ -63,7 +97,7 @@ class BidProducer:
 
    def _make_fitted_bid(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
       if pts >= 31 and not self.slam:
-         self.slam = Slam(fit.suit, fit.total_cards, pts)
+         self.slam = Slam(fit.suit, fit.total_cards, pts, self.partner_bid)
          self.haze.set_implicit_fit(fit.suit, self.camp, self.partner_rank)
       if self.slam:
          return self.slam.next_bid(
@@ -74,7 +108,11 @@ class BidProducer:
             )
       elif (fit.major() and pts >= 26) or (fit.minor() and pts >= 28):
          next_raw_bid = ("4" if fit.major() else "5") + fit.suit.code
-         return BidSense(id=0,raw_bid=next_raw_bid,forcing=Forcing.PASS.value)
+         next_bid = Bid(next_raw_bid)
+         if next_bid > self.last_normal_bid:
+            return BidSense(id=0,raw_bid=next_raw_bid,forcing=Forcing.PASS.value)
+         else:
+            return BidSense.passe()
       else:
          next_raw_bid = self.last_normal_bid.first_bid_above_or_pass(fit.suit).raw
          return BidSense(id=0,raw_bid=next_raw_bid)
@@ -107,3 +145,11 @@ class BidProducer:
       else:
          player_points = hand.points_HL
       return player_points + self.haze.hands[self.partner_rank].points.min
+
+   def _max_possible_level(self, points: int) -> int:
+      if points < 20:
+         return 0
+      elif points > 40:
+         return 7
+      else:
+         return self.POINTS_TABLE[points]

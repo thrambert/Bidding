@@ -25,6 +25,10 @@ class Camp(Enum):
    @classmethod
    def from_rank(cls, rank: int) -> Camp:
       return cls.OPEN if rank in Camp.OPEN.value else cls.INT
+   
+   @staticmethod
+   def partner_rank(player_rank: int) -> int:
+      return player_rank + (2 if player_rank <= 2 else -2)
 
    def other_camp(self) -> Camp:
       return Camp.OPEN if self.name == Camp.INT.name else Camp.INT
@@ -36,7 +40,7 @@ class Camp(Enum):
       for rk in self.value:
          if rk != rank:
             return rk
-
+         
 
 class Bid:
    """
@@ -92,11 +96,11 @@ class Bid:
          return self.level > bid2.level
 
    def bid_match(self, other_bid: Bid) -> bool:
+      if other_bid.any_bid:
+         return True
       if self.level != other_bid.level:
          return False
       if self.suit_code == other_bid.suit_code:
-         return True
-      if other_bid.any_bid:
          return True
       if other_bid.suit_code in self.SUIT_CODES_BY_GROUP.keys():
          return self.suit_code in self.SUIT_CODES_BY_GROUP[other_bid.suit_code]
@@ -159,8 +163,9 @@ class Forcing(Enum):
 
 
 class Family(Enum):
-   BI_N2 = "Michael's cuebid précisé"
-   BI_N4 = "Intervention bicolore du N°4"
+   MICHAEL = "Michael's cuebid précisé"
+   BICOL_N4 = "Intervention bicolore du N°4"
+   RUBEN = "Rubensohl"
 
    
 class SuitsToStop(Enum):

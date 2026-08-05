@@ -191,14 +191,14 @@ id;raw_bid;points;distribution;spade_count;heart_count;diamond_count;club_count;
 415;2SA;11HL-11H;semi-régulier;;;;;;;;False;False;False;;False;;;
 416;2SA;11HL-11H;semi-régulier;;;;;;;;False;False;False;;False;;;
 417;2SA;11HL-11H;semi-régulier;;;;;;;;False;False;False;;False;;;
-418;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;;;
-419;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;;;
-420;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;;;
-421;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;;;
-422;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;;;
-423;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;;;
-424;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;;;
-425;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;;;
+418;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;passe;;
+419;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;passe;;
+420;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;passe;;
+421;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;passe;;
+422;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;passe;;
+423;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;passe;;
+424;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;passe;;
+425;3SA;>=12H;semi-régulier;;;;;;;;False;False;False;;False;passe;;
 426;2C;>=16HLD;;;;;;>=5;;;False;False;False;;False;manche;;Cuebid
 427;2C;>=16HLD;;;;;;>=5;;;False;False;False;;False;manche;;Cuebid
 428;3K;>=16HLD;;;;;;>=5;;;False;False;False;;False;manche;;Cuebid
@@ -220,6 +220,59 @@ id;raw_bid;points;distribution;spade_count;heart_count;diamond_count;club_count;
 444;X;;;;;;>=4;;;;False;False;False;;False;;;
 445;X;;;>=4;;;;;;;False;False;False;;False;;;
 446;X;;;;>=4;;;;;;False;False;False;;False;;;
+447;3M;10-16HLD;irrégulier;;;;;3;;;False;False;False;;False;passe;;
+448;4M;10-20HLD;;;;;;>=3;;;False;False;False;;False;passe;;
+449;2P;>=15HL;;;;;;;;>=5;False;False;False;;False;forcing;;
+450;3C;>=17HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+451;3m;>=17HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+452;3SA;15-20HL;régulier;;;;;;;;False;False;False;;False;passe;;
+453;2SA;15-20HLD;;;;;;;;;False;False;False;;True;forcing;;
+454;3C;10-16HLD;irrégulier;;;;;3;;;False;False;False;;False;passe;;
+455;3M;10-16HLD;irrégulier;;;;;3;;;False;False;False;;False;passe;;
+456;3P;10-16HLD;irrégulier;;;;;3;;;False;False;False;;False;passe;;
+457;4C;>=10HLD;;;;;;>=3;;;False;False;False;;False;passe;;
+458;4M;>=10HLD;;;;;;>=3;;;False;False;False;;False;passe;;
+459;4P;>=10HLD;;;;;;>=3;;;False;False;False;;False;passe;;
+460;X;>=14HL;irrégulier;>=5;;;;<3;;;False;False;False;;False;passe;;
+461;X;>=14HL;irrégulier;;;;>=5;<3;;;False;False;False;;False;passe;;
+462;X;>=14HL;irrégulier;;;>=5;;<3;;;False;False;False;;False;passe;;
+463;X;>=14HL;irrégulier;;>=5;;;<3;;;False;False;False;;False;passe;;
+464;3m;>=17HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+465;3C;>=17HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+466;3K;>=17HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+467;3P;>=17HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+468;3SA;15-20HL;régulier;;;;;;;;False;False;False;opp;False;passe;;
+469;3SA;15-20HL;régulier;;;;;;;;False;False;False;opp;False;passe;;
+470;3SA;15-20HL;régulier;;;;;;;;False;False;False;opp;False;passe;;
+471;2SA;>=15HLD;;;;;;>=3;;;False;False;False;;True;forcing;;
+472;4E;10-20HLD;;;;;;>=2;;;False;False;False;;False;passe;;
+473;3K;>=19HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+474;3E;>=19HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+475;3P;>=19HL;;;;;;;;>=6;False;False;False;;False;forcing;;
+476;FC;>=21HLD;;;;;;>=2;;;False;False;False;;True;forcing;;
+477;3SA;15-20HL;régulier;;;;;>=2;;;False;False;False;;False;passe;;
+478;4SA;>=25HLD;;;;;;>=2;;;False;False;False;;True;forcing;;Fit implicite et Blackwood
+479;X;>=14HL;irrégulier;>=5;;;;<2;;;False;False;False;;False;passe;;
+480;X;>=14HL;irrégulier;;;;>=5;<2;;;False;False;False;;False;passe;;
+481;X;>=14HL;irrégulier;;;>=5;;<2;;;False;False;False;;False;passe;;
+482;X;>=14HL;irrégulier;;;>=5;;<2;;;False;False;False;;False;passe;;
+483;X;>=14HL;irrégulier;;>=5;;;<2;;;False;False;False;;False;passe;;
+484;X;>=14HL;irrégulier;;>=5;;;<2;;;False;False;False;;False;passe;;
+485;4m;>=12HLD;;;;;;>=2;;;False;False;False;;False;passe;;
+486;4M;>=12HLD;;;;;;>=2;;;False;False;False;;False;passe;;
+487;4P;>=12HLD;;;;;;>=2;;;False;False;False;;False;passe;;
+488;4M;>=17HL;;;;;;2;;;False;False;False;;False;forcing;;
+489;4SA;>=25HLD;;;;;;;;;False;False;False;;True;forcing;;Fit implicite et Blackwood
+490;X;>=14HL;irrégulier;;;;;;;;False;False;False;;False;passe;;
+491;X;>=14HL;irrégulier;;;;;;;;False;False;False;;False;passe;;
+492;X;>=14HL;irrégulier;;;;;;;;False;False;False;;False;passe;;
+493;X;>=14HL;irrégulier;;;;;;;;False;False;False;;False;passe;;
+494;X;>=14HL;irrégulier;;;;;;;;False;False;False;;False;passe;;
+495;X;>=14HL;irrégulier;;;;;;;;False;False;False;;False;passe;;
+496;4T;12-15HLD;irrégulier;;;>=2;>=2;;;;False;False;False;;False;;;
+497;5T;16-19HLD;;;;>=2;>=2;;;;False;False;False;;False;;;
+498;4K;>=20HLD;;;;>=2;>=2;;;;False;False;False;;True;;;
+499;4M;>=14HL;;;;;;;;>=6;False;False;False;;False;passe;;
 1001;1F;8-18HL;;;;;;;;>=5;False;False;False;;False;;;
 1002;2F;11-18HL;;;;;;;;>=5;False;False;False;;False;;;
 1003;2M;5-10H;;;;;;;;6;False;False;False;;False;;;Barrage
@@ -227,14 +280,14 @@ id;raw_bid;points;distribution;spade_count;heart_count;diamond_count;club_count;
 1005;3F;5-10H;;;;;;;;7;False;False;False;;False;;;Barrage
 1006;4F;5-10H;;;;;;;;8;False;False;False;;False;;;Barrage
 1007;1SA;16-18HL;régulier;;;;;;;;False;False;False;opp;False;;;
-1008;2C;;bicolore 5/5;>=5;;;>=5;;;;False;False;False;;True;;BI_N2;Michael's cuebids précisés
-1009;2P;;bicolore 5/5;;>=5;;>=5;;;;False;False;False;;True;;BI_N2;Michael's cuebids précisés
-1010;2SA;;bicolore 5/5;;;>=5;>=5;;;;False;False;False;;True;;BI_N2;Michael's cuebids précisés
-1011;3T;;bicolore 5/5;>=5;;>=5;;;;;False;False;False;;True;;BI_N2;Michael's cuebids précisés
-1012;3T;;bicolore 5/5;;>=5;>=5;;;;;False;False;False;;True;;BI_N2;Michael's cuebids précisés
-1013;2K;;bicolore 5/5;>=5;>=5;;;;;;False;False;False;;True;;BI_N2;Michael's cuebids précisés
-1014;2SA;;bicolore 5/5;;>=5;>=5;;;;;False;False;False;;True;;BI_N2;Michael's cuebids précisés
-1015;2SA;;bicolore 5/5;;>=5;;>=5;;;;False;False;False;;True;;BI_N2;Michael's cuebids précisés
+1008;2C;;bicolore 5/5;>=5;;;>=5;;;;False;False;False;;True;;MICHAEL;Michael's cuebids précisés
+1009;2P;;bicolore 5/5;;>=5;;>=5;;;;False;False;False;;True;;MICHAEL;Michael's cuebids précisés
+1010;2SA;;bicolore 5/5;;;>=5;>=5;;;;False;False;False;;True;;MICHAEL;Michael's cuebids précisés
+1011;3T;;bicolore 5/5;>=5;;>=5;;;;;False;False;False;;True;;MICHAEL;Michael's cuebids précisés
+1012;3T;;bicolore 5/5;;>=5;>=5;;;;;False;False;False;;True;;MICHAEL;Michael's cuebids précisés
+1013;2K;;bicolore 5/5;>=5;>=5;;;;;;False;False;False;;True;;MICHAEL;Michael's cuebids précisés
+1014;2SA;;bicolore 5/5;;>=5;>=5;;;;;False;False;False;;True;;MICHAEL;Michael's cuebids précisés
+1015;2SA;;bicolore 5/5;;>=5;;>=5;;;;False;False;False;;True;;MICHAEL;Michael's cuebids précisés
 1016;4SA;;bicolore 5/5;;;>=5;>=5;;;;False;False;False;;True;;;
 1017;3E;;;;;;;;;;False;False;False;;True;;;Cuebid
 1018;3SA;;;;;;;;;;False;False;False;opp;True;;;
@@ -247,36 +300,36 @@ id;raw_bid;points;distribution;spade_count;heart_count;diamond_count;club_count;
 1046;4F;5-10H;;;;;;;;8;False;False;False;;False;;;Barrage
 1047;X;12-23HL;;;;;;;;;False;False;False;;False;;;Contre d'appel
 1048;1SA;16-18HL;régulier;;;;;;;;False;False;False;opp;False;;;
-1049;2T;;bicolore 5/5;>=5;>=5;;;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1050;2T;;bicolore 5/5;>=5;;>=5;;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1051;2K;;bicolore 5/5;>=5;;;>=5;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1052;2T;;bicolore 5/5;;>=5;>=5;;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1053;2K;;bicolore 5/5;;>=5;;>=5;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1054;2C;;bicolore 5/5;;;>=5;>=5;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1055;2K;;bicolore 5/5;>=5;>=5;;;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1056;2C;;bicolore 5/5;>=5;;>=5;;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1057;2C;;bicolore 5/5;>=5;;;>=5;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1058;2P;;bicolore 5/5;;>=5;>=5;;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1059;2P;;bicolore 5/5;;>=5;;>=5;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
-1060;2P;;bicolore 5/5;;;>=5;>=5;;;;False;False;False;;True;;BI_N4;Cuebid couleur d'ouverture
+1049;2T;;bicolore 5/5;>=5;>=5;;;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1050;2T;;bicolore 5/5;>=5;;>=5;;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1051;2K;;bicolore 5/5;>=5;;;>=5;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1052;2T;;bicolore 5/5;;>=5;>=5;;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1053;2K;;bicolore 5/5;;>=5;;>=5;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1054;2C;;bicolore 5/5;;;>=5;>=5;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1055;2K;;bicolore 5/5;>=5;>=5;;;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1056;2C;;bicolore 5/5;>=5;;>=5;;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1057;2C;;bicolore 5/5;>=5;;;>=5;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1058;2P;;bicolore 5/5;;>=5;>=5;;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1059;2P;;bicolore 5/5;;>=5;;>=5;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
+1060;2P;;bicolore 5/5;;;>=5;>=5;;;;False;False;False;;True;;BICOL_N4;Cuebid couleur d'ouverture
 1061;2K;>=13HL;unicolore;;;;;;;>=6;True;True;True;;True;;;Cuebid couleur de réponse
 1062;2C;>=13HL;unicolore;;;;;;;>=6;True;True;True;;True;;;Cuebid couleur de réponse
 1063;2P;>=13HL;unicolore;;;;;;;>=6;True;True;True;;True;;;Cuebid couleur de réponse
 1064;3T;>=13HL;unicolore;;;;;;;>=6;True;True;True;;True;;;Cuebid couleur de réponse
 1065;3K;>=13HL;unicolore;;;;;;;>=6;True;True;True;;True;;;Cuebid couleur de réponse
 1066;3C;>=13HL;unicolore;;;;;;;>=6;True;True;True;;True;;;Cuebid couleur de réponse
-1067;2SA;;bicolore 6/5;>=5;>=5;;;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1068;2SA;;bicolore 6/5;>=5;;>=5;;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1069;2SA;;bicolore 6/5;>=5;;;>=5;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1070;2SA;;bicolore 6/5;;>=5;>=5;;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1071;2SA;;bicolore 6/5;;>=5;;>=5;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1072;2SA;;bicolore 6/5;;;>=5;>=5;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1073;2SA;;bicolore 6/5;>=5;>=5;;;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1074;2SA;;bicolore 6/5;>=5;;>=5;;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1075;2SA;;bicolore 6/5;>=5;;;>=5;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1076;2SA;;bicolore 6/5;;>=5;>=5;;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1077;2SA;;bicolore 6/5;;>=5;;>=5;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
-1078;2SA;;bicolore 6/5;;;>=5;>=5;;;;False;False;False;;True;;BI_N4;Bicolore 6/5
+1067;2SA;;bicolore 6/5;>=5;>=5;;;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1068;2SA;;bicolore 6/5;>=5;;>=5;;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1069;2SA;;bicolore 6/5;>=5;;;>=5;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1070;2SA;;bicolore 6/5;;>=5;>=5;;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1071;2SA;;bicolore 6/5;;>=5;;>=5;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1072;2SA;;bicolore 6/5;;;>=5;>=5;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1073;2SA;;bicolore 6/5;>=5;>=5;;;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1074;2SA;;bicolore 6/5;>=5;;>=5;;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1075;2SA;;bicolore 6/5;>=5;;;>=5;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1076;2SA;;bicolore 6/5;;>=5;>=5;;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1077;2SA;;bicolore 6/5;;>=5;;>=5;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
+1078;2SA;;bicolore 6/5;;;>=5;>=5;;;;False;False;False;;True;;BICOL_N4;Bicolore 6/5
 1079;2m;;bicolore 5/5;>=5;>=5;;;;;;False;False;False;;True;;;Cuebid couleur d'ouverture
 1080;2P;;bicolore 5/5;;>=5;;;;;;False;False;False;;True;;;Cuebid couleur d'ouverture
 1081;2C;;bicolore 5/5;>=5;;;;;;;False;False;False;;True;;;Cuebid couleur d'ouverture
@@ -306,9 +359,12 @@ id;raw_bid;points;distribution;spade_count;heart_count;diamond_count;club_count;
 1513;3K;>=16HLD;unicolore;;;;;;;>=6;True;True;True;;False;;;
 1514;3M;>=16HLD;unicolore;;;;;;;>=6;True;True;True;;False;;;
 1515;4M;12-15HLD;unicolore;;;;;;;>=6;False;False;False;;False;passe;;
-1516;3SA;;;;;2;;;;;False;False;False;;False;;;
-1517;3SA;;;;2;;;;;;False;False;False;;False;;;
-1518;3SA;;;2;;;;;;;False;False;False;;False;;;
+1516;3SA;;;;;;;2;;;False;False;False;;False;;;
+1517;3SA;;;;;;;2;;;False;False;False;;False;;;
+1518;3SA;;;;;;;2;;;False;False;False;;False;;;
+1519;FC;;;;;;;>=3;;;False;True;False;;True;;;
+1520;FC;;;;;;;>=3;;;False;True;False;;True;;;
+1521;4E;;;;;;;>=3;;;False;True;False;;True;;;
 1601;2K;;;<=3;<=3;;;;;;False;False;False;;True;;;Stayman
 1602;2M;;;;;;;;;>=4;False;False;False;;False;;;Stayman
 1603;2SA;;;4;4;;;;;;False;False;False;;True;;;Stayman
@@ -404,6 +460,45 @@ id;raw_bid;points;distribution;spade_count;heart_count;diamond_count;club_count;
 1771;3T;;;;;;;;;;False;False;False;;False;;;
 1772;3K;;;;;;;;;;False;False;False;;False;;;
 1773;3SA;;;;;;;;;;False;False;False;;False;;;
+1774;XX;;;;;;>=6;;;;False;False;False;;False;passe;;
+1775;2K;;;;;>=5;;;;;False;False;False;;False;;;
+1776;2C;;;>=4;;;;;;;False;False;False;;True;;;
+1777;2P;;;;>=4;;;;;;False;False;False;;True;;;
+1778;2SA;;;;;;;;;;False;False;False;;False;;;
+1779;3T;;;4;4;;;;;;False;False;False;;True;;;
+1780;XX;;;;>=3;;;;;;False;False;False;;True;;;
+1781;XX;;;>=3;;;;;;;False;False;False;;True;;;
+1782;XX;;;;;;>=3;;;;False;False;False;;True;;;
+1783;XX;;;;;>=3;;;;;False;False;False;;True;;;
+1784;2C;;;;>=3;;;;;;False;False;False;;False;;;
+1785;2P;;;>=3;;;;;;;False;False;False;;False;;;
+1786;3T;;;;;;>=3;;;;False;False;False;;False;;;
+1787;3K;;;;;>=3;;;;;False;False;False;;False;;;
+1788;X;;;;;>=4;;;;;False;False;False;;False;passe;;
+1789;X;;;;>=4;;;;;;False;False;False;;False;passe;;
+1790;X;;;>=4;;;;;;;False;False;False;;False;passe;;
+1791;X;;;;;;>=4;;;;False;False;False;;False;passe;;
+1792;X;;;;;>=4;;;;;False;False;False;;False;passe;;
+1793;X;;;;>=4;;;;;;False;False;False;;False;passe;;
+1794;X;;;>=4;;;;;;;False;False;False;;False;passe;;
+1795;X;;;;;>=4;;;;;False;False;False;;False;passe;;
+1796;X;;;;>=4;;;;;;False;False;False;;False;passe;;
+1797;X;;;>=4;;;;;;;False;False;False;;False;passe;;
+1798;2P;<12HLD;;;;;;;;;False;False;False;;False;passe;;
+1799;4P;>=12HLD;;;;;;;;;False;False;False;;False;passe;;
+1800;3C;<12HLD;;;;;;;;;False;False;False;;False;passe;;
+1801;4C;>=12HLD;;;;;;;;;False;False;False;;False;passe;;
+1802;3SA;>=10H;;;;;;;;;False;False;False;;False;passe;;
+1803;3M;<12HLD;;;;;;;;;False;False;False;;False;passe;;
+1804;4M;>=12HLD;;;;;;;;;False;False;False;;False;passe;;
+1805;2C;<12HLD;;;;;;;;;False;False;False;;False;passe;;
+1806;4C;>=12HLD;;;;;;;;;False;False;False;;False;passe;;
+1807;2P;<12HLD;;;;;;;;;False;False;False;;False;passe;;
+1808;4P;>=12HLD;;;;;;;;;False;False;False;;False;passe;;
+1809;3T;<14HLD;;;;;;;;;False;False;False;;False;passe;;
+1810;5T;>=14HLD;;;;;;;;;False;False;False;;False;passe;;
+1811;3K;<14HLD;;;;;;;;;False;False;False;;False;passe;;
+1812;5K;>=14HLD;;;;;;;;;False;False;False;;False;passe;;
 2001;3M;<=16HLD;;;;;;;;;False;False;False;;False;passe;;
 2002;3T;>=17HLD;irrégulier;;;;4;;;;False;False;False;;False;;;
 2003;3K;>=17HLD;irrégulier;;;4;;;;;False;False;False;;False;;;
@@ -721,6 +816,22 @@ id;raw_bid;points;distribution;spade_count;heart_count;diamond_count;club_count;
 2428;X;15-17H;;<=1;>=4;>=3;>=3;;;;False;False;False;;False;;;
 2429;X;15-17H;;>=4;<=1;>=3;>=3;;;;False;False;False;;False;;;
 2430;X;15-17H;;<=1;>=4;>=3;>=3;;;;False;False;False;;False;;;
+2431;3M;<8H;;;;;;;;;False;False;False;;False;;;
+2432;3G;>=8H;;;;;;;;;False;False;True;;True;;;
+2433;4P;>=8H;;;;;;;;<=1;False;True;False;;True;;;
+2434;4G;>=8H;;;;;;;;<=1;False;True;False;;True;;;
+2435;3SA;>=8H;semi-régulier;;;;;;;;False;False;False;;False;;;
+2436;3M;<8H;;;;;;;;;False;False;False;;False;;;
+2437;3G;>=8H;;;;;;;;;False;False;True;;True;;;
+2438;4P;>=8H;;;;;;;;<=1;False;True;False;;True;;;
+2439;4G;>=8H;;;;;;;;<=1;False;True;False;;True;;;
+2440;3SA;>=8H;semi-régulier;;;;;;;;False;False;False;;False;;;
+2441;4K;;;;;;;;;;False;False;False;;False;;;
+2442;5K;;;;;;;;;;False;False;False;;False;;;
+2443;4C;;;;;;;;;<=1;False;True;False;;False;;;
+2444;4P;;;;;;;;;<=1;False;True;False;;False;;;
+2445;4SA;;;>=2;>=2;>=2;>=2;;;;False;False;False;;False;;;
+2446;5T;;;;;;;;;;False;False;False;;False;;;
 2701;3M;;;;;;<=1;;;;False;False;False;;True;;;
 2702;3K;;;;;<=1;;;;;False;False;False;;True;;;
 2703;3C;;;;<=1;;;;;;False;False;False;;True;;;

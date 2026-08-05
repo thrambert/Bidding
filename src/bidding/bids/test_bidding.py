@@ -24,7 +24,7 @@ def test_deals():
    if TEST_HANDS:
       test_one_deal()
    else:
-      test_several_deals(500)
+      test_several_deals(5000)
 
 def test_one_deal():
    deal_maker = DealMaker(Direction.NORTH, Vulnerability.NONE)
@@ -42,6 +42,9 @@ def test_several_deals(count: int):
    rules_ok = BidHistory.get_all_rules_ids()
    print(f"--> {len(rules_ok)} satisfied rules: {rules_ok}")
 
+
+#  Distribution très intéressante vue le 16-07-2026, pour approfondir BidProducer et résoudre des bugs:
+# TEST_HANDS = ['Q65432-Q-T7432-8', '87-AK-AKQJ9865-Q', 'AKJT9-T983--T965', '-J76542--AKJ7432']
 
 #  Unicolor
 # TEST_HANDS = [
