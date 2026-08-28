@@ -88,7 +88,7 @@ class BidRule(BaseModel):
    first_pass:    Condition on number of pass before opening.
    won_tricks:    Minimum number of tricks the player should realize.
    def_tricks:    Condition on number of possible won tricks out of trump.
-   lost_tricks:   Conditios on possible lost tricks for neutral vulnerability.
+   lost_tricks:   Condition on possible lost tricks. Depends on vuln if suffix V
    fit_cards:     Condition on number of cards in partner suit.
    stops:         Required min number of stops of opponents' suits.
    awake:         True when current bid follows 2 consecutive PASS.
@@ -117,7 +117,7 @@ class BidRule(BaseModel):
    first_pass: str = ""
    won_tricks: float = 0
    def_tricks: Annotated[str, Field(default=""), AfterValidator(validated_count)]
-   lost_tricks: int = 0
+   lost_tricks: str = ""
    fit_cards: Annotated[str, Field(default=""), AfterValidator(validated_count)]
    stops: float = 0
    awake: bool = False

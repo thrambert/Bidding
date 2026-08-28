@@ -53,6 +53,9 @@ class MetaSuit(Enum):
    def __lt__(self, other) -> bool:
       return self.rank < other.rank
 
+   def __le__(self, other) -> bool:
+      return self.rank <= other.rank
+
    def __hash__(self):
       # Required when you declare __eq__ to keep the object hashable
       return hash(self.rank)
@@ -282,6 +285,18 @@ class RichHand:
          cards_per_suits[suit] = string_cards
       return cards_per_suits
 
+   def longest_suit(self, except_suit_codes: set[str]) -> MetaSuit:
+      """
+      Returns longest suit which is not in given set.
+      If several suits have same length, returns major prior.
+      """
+      suits = [s for s in self.cards_count.keys() if s.code not in except_suit_codes]
+      if self.cards_count[suits[1]] == self.cards_count[suits[0]]:
+         longest = suits[1] if suits[0].is_minor else suits[0]
+         if self.cards_count[suits[2]] == self.cards_count[longest]:
+            longest = suits[2] if longest.is_minor() else longest
+      return longest
+            
    def stops_count(self, suit: MetaSuit) -> float:
       # Returns number of times the hand can stop opponents in given suit.
       pts_H = self.suit_points_H(suit)
@@ -315,11 +330,17 @@ class RichHand:
    def blackwood_keys(self, fit_suit: MetaSuit) -> tuple[int, bool]:
       # Returns number of keys and True if Queen is in fitted suit.
       fit_ranks = self.suits[fit_suit]
-      aces = ["A" for ranks in self.suits.values() if ranks and ranks[0] == Rank.ACE]
-      count = len(aces)
-      if Rank.KING in fit_ranks:
-         count += 1
+      count = self.aces_count() + (1 if Rank.KING in fit_ranks else 0)
       return (count, Rank.QUEEN in fit_ranks)
+
+   def aces_count(self) -> int:
+      aces = ["A" for ranks in self.suits.values() if ranks and ranks[0] == Rank.ACE]
+      return len(aces)
+
+   def has_one_major_ace_and_no_minor(self) -> bool:
+      major_ranks = [ranks for s, ranks in self.suits.items() if s.is_major()]
+      major_aces = ["A" for ranks in major_ranks if ranks and ranks[0] == Rank.ACE]
+      return len(major_aces) == 1 and self.aces_count == 1
 
    def has_queen(self, suit: MetaSuit) -> bool:
       ranks = self.suits[suit]
@@ -333,6 +354,18 @@ class RichHand:
       # Returns list of suits which contains given rank, from clubs to spades.
       return [s for s in MetaSuit.four_suits() if rank in self.suits[s]]
    
+   def covering_count(self, bicolor: list[MetaSuit]) -> int:
+      # Returns number of aces, kings and queens in bicolor suits and number of
+      #  aces and pairs (king, queen) in other suits.
+      count = 0
+      for suit in MetaSuit.four_suits():
+         ranks = set(self.suits[suit])
+         honors = {'ACE', 'KING', 'QUEEN'} if suit in bicolor else {'ACE'}
+         count += len(ranks & honors)
+         if suit not in bicolor and len(ranks & {'KING', 'QUEEN'}) == 2:
+            count += 1
+      return count
+
    def _compute_ordinal_distribution(self) -> str:
       # This function returns numbers of cards per suit separated by "-",
       #  example: 5-4-2-2.

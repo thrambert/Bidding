@@ -6,6 +6,7 @@ from bridgebots.deal_enums import Direction
 from deals.deal_engines import DealMaker, Vulnerability
 from views.mats import BidChaining
 from bids.bid_histories import BidHistory
+from datetime import datetime
 from bids.dna import Dna
 
 
@@ -19,6 +20,7 @@ def test_deals():
    # dna = Dna(sort_by_length=False)
    # dna.write_in_file()
 
+
    # Test bidding while generating deals
 
    if TEST_HANDS:
@@ -30,14 +32,23 @@ def test_one_deal():
    deal_maker = DealMaker(Direction.NORTH, Vulnerability.NONE)
    deal = deal_maker.create_from_str(TEST_HANDS)
    bid_chaining = BidChaining(deal)
-   bid_chaining.run()
+   bid_chaining.run(debug=True)
 
 def test_several_deals(count: int):
    deal_maker = DealMaker(Direction.NORTH, Vulnerability.NONE)
-   for _ in range(0, count):
+   start_time = datetime.now()
+   for i in range(1, count + 1):
       deal = deal_maker.create_random()
       bid_chaining = BidChaining(deal)
-      bid_chaining.run()
+      bid_chaining.run(debug=False)
+      if i == 1:
+         print(f"          {i:>4} bid")          
+      elif i % 200 == 0:
+         delay = datetime.now() - start_time
+         delay_for_1000 = delay.seconds * 1000 / i
+         print(f"          {i:>4} bids, average time for one bid (millisec): {delay_for_1000:.2f}")
+      if i == count:
+         print()
 
    rules_ok = BidHistory.get_all_rules_ids()
    print(f"--> {len(rules_ok)} satisfied rules: {rules_ok}")
@@ -93,3 +104,11 @@ def test_several_deals(count: int):
 #    "J54-A3-AK432-Q53",
 #    "T732-T654-QT-T72",
 # ]
+
+# Contre d'appel et réponse au contre d'appel avec un double saut au palier de 3
+# TEST_HANDS = [
+#    "J56-AKQ23-Q23-78",
+#    "AKQ9-T9-AJ45-Q32",
+#    "4-45-K6789-456T9",
+#    "T2378-J876-T-AKJ",
+#    ]

@@ -12,7 +12,18 @@ class Step(Enum):
    REPOUV = auto()   # réponse à ouverture du joueur n°3
    RUBEN = auto()    # séquence Rubensohl (joueur n°3 et suite)
    INT_N4 = auto()   # intervention du joueur n°4
-   REPINT = auto()   # réponse à intervention (lap 1 rank 4, ou lap 2 rank 2)
+   RI_CO_N2 = auto() # réponse à intervention à la couleur du joueur 2
+   RI_BI_N2 = auto() # réponse à intervention bicolore du joueur 2
+   RI_UP_N2 = auto() # réponse à intervention à saut à la couleur du joueur 2
+   RI_SA_N2 = auto() # réponse à intervention par 1SA du joueur 2
+   RI_X_N2 = auto()  # réponse à intervention par contre d'appel du joueur 2
+   RI_BI_N4 = auto() # réponse à intervention bicolore du joueur 4
+   RI_UP_N4 = auto() # réponse à intervention à saut à la couleur du joueur 4
+   RI_SA_N4 = auto() # réponse à intervention par 1SA du joueur 4
+   RI_X_N4 = auto()  # réponse à intervention par contre d'appel du joueur 4
+   REDI_N2 = auto()  # redemande de l'intervenant (joueur 2, lap 2)
+   REDI_N4 = auto()  # redemande de l'intervenant (joueur 4, lap 2)
+   RI2_N2 = auto()   # 2e enchère du répondant en intervention (joueur 4, lap 2)
    REDEMO = auto()   # redemande de l'ouvreur (lap 2, rank 1)
    STAYMAN = auto()  # séquence du camp de l'ouvreur selon convention Stayman
    TEXAS = auto()    # séquence du camp de l'ouvreur selon convention Texas
@@ -21,7 +32,6 @@ class Step(Enum):
    SPOUTNIK = auto() # réponse au contre Spoutnik simple
    K2TX = auto()     # réponse à 1K 2T X
    RUBEN4 = auto()   # séquence redemande ouvreur après ouv 1SA et interv du N°4
-   REDI = auto()     # redemande de l'intervenant (lap 2 rank 2 ou 4)
    R2REP = auto()    # 2e enchère du répondant (lap 2 rank 3)
    ROUDI = auto()    # séquence convention Roudi
    RELMIN = auto()   # séquence relais dans l'autre mineure to ask opener have you 3 cards
@@ -31,6 +41,9 @@ class Step(Enum):
    WAKE_N1 = auto()  # réveil du joueur n°1, l'ouvreur (lap 2 rank 1)
    WAKECI = auto()   # réveil du camp en intervention (lap 2 rank 2 ou 4)
    WAKE_N3 = auto()  # réveil du joueur n°3 (lap 2 rank 3)
+   OUV_2K = auto()   # séquence du camp de l'ouvreur suite ouverture de 2K
+   OUV_2T = auto()   # séquence du camp de l'ouvreur suite ouverture de 2T
+   OUV_2SA = auto()  # séquence du camp de l'ouvreur suite ouverture de 2SA
    FREE = auto()     # utiliser le bid producer et non le fichier des rules
 
    def __eq__(self, other: Step) -> bool:
@@ -74,7 +87,7 @@ class Stair:
       13: Step.REPOUV,
       14: Step.INT_N4,
       21: Step.REDEMO,
-      22: Step.REPINT,
+      22: Step.FREE,
       23: Step.R2REP,
       24: Step.FREE,
    }

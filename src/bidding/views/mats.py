@@ -37,12 +37,9 @@ class BidChaining:
       self._pass_count = 0
       self._bid_engine = BidEngine()
 
-   def run(self):
+   def run(self, debug: bool):
       # This function is used for test only. In real life, UI will ask for a bid.
-      print()
-      print(self._deal_cards_repr())
-      print("="*80)
-
+      self._print_header_to_terminal(debug)
       count = 0
       while not self._bidding_completed():
          count += 1
@@ -51,10 +48,7 @@ class BidChaining:
          
          player_hand = self.deal.hands[self.current_player]
          bid_sense = self._bid_engine.provide_bid(player_hand, self._relative_vuln())
-
-         pbid = "-" if bid_sense.raw_bid == "passe" else bid_sense.raw_bid
-         print(f"{self.current_player.name:<5}  {pbid:<3}   ", f"sense {bid_sense.id}" if bid_sense.id else "")
-
+         self._print_bid_to_terminal(debug, bid_sense)
          self._pass_count = self._pass_count + 1 if bid_sense.raw_bid == PASS else 0
          self.bid_chain[self.current_player].append(bid_sense)
          self.current_player = self.current_player.next()
@@ -90,9 +84,21 @@ class BidChaining:
                return bid_sense_history
             bid_sense_history.append(self.bid_chain[dir][i])
 
+   def _print_header_to_terminal(self, debug: bool):
+      if debug:
+         print()
+         print(self._deal_cards_repr())
+         print("="*80)
+
+   def _print_bid_to_terminal(self, debug: bool, bid_sense: BidSense):
+      if debug:
+         id = bid_sense.id
+         pbid = "-" if bid_sense.raw_bid == "passe" else bid_sense.raw_bid
+         print(f"{self.current_player.name:<5}  {pbid:<3}   ", f"sense {id}" if id else "")
+
    def _deal_cards_repr(self) -> list[str]:
       # Returns list of rich hands repr sorted from North to West
       hands = [v for k, v in sorted(self.deal.hands.items(), key=lambda item: item[0])]
       rich_hands_repr = [f"{RichHand(h)}" for h in hands]
       return rich_hands_repr
-   
+

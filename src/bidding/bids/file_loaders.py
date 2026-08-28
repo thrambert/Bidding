@@ -7,28 +7,49 @@ from utils import MyDataException
 
 class FileLoader:
    CONVERTER = {
-      "Rule": (ExcelToCsv().convert_rules, BidRule),
-      "Bid":  (ExcelToCsv().convert_senses, BidSense),
+      "Rule":  (ExcelToCsv().convert_rules, BidRule),
+      "Sense": (ExcelToCsv().convert_senses, BidSense),
    }
 
    def run(self):
       self._create_bid_history_file_if_none()
       for name, value in self.CONVERTER.items():
          self._create_csv_file_from_excel(name, value[0], value[1])
+      self._check_Rule_ids_sequence()
+
+   # TODO: Remove next lines after 30-11-2026
+   # def _create_csv_file_from_excel(self, name: str, convert_fct: any, a_class: type) -> str:
+   #    id = 1
+   #    try:
+   #       csv_file = convert_fct(a_class.model_fields.keys())
+   #       while id:
+   #          row = csv_file.get_row(id)
+   #          if row:
+   #             a_class.model_validate(row)
+   #             id += 1
+   #          else:
+   #             id = 0
+   #    except Exception as error:
+   #       raise MyDataException(f"File loader exception for {name} {id}: {error.__str__()}")
 
    def _create_csv_file_from_excel(self, name: str, convert_fct: any, a_class: type) -> str:
-      id = 1
+      row_id = 1
       try:
          csv_file = convert_fct(a_class.model_fields.keys())
-         while id:
-            row = csv_file.get_row(id)
-            if row:
-               a_class.model_validate(row)
-               id += 1
-            else:
-               id = 0
+         for row in csv_file.get_rows():
+            a_class.model_validate(row)
+            row_id = row['id']
       except Exception as error:
-         raise MyDataException(f"File loader exception for {name} {id}: {error.__str__()}")
+         raise MyDataException(f"File loader exception for {name} at id {row_id} --> {error.__str__()}")
+
+   def _check_Rule_ids_sequence(self):
+      id = 1
+      gap_msg = "File loader exception for Rule: Gap between"
+      for rule in BidRule.get_rules():
+         if rule.id != id:
+            raise MyDataException(f"{gap_msg} lines of id {id-1} and {rule.id}.")
+         else:
+            id +=1
 
    def _create_bid_history_file_if_none(self):
       bid_history_file = BidHistoryFile(BidHistory.model_fields.keys())

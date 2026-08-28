@@ -14,6 +14,7 @@ from bids.bid_producers import BidProducer
 from bids.hazes import Haze
 from bids.slams import Slam
 from bids.steps import Stair
+from bids.takeout_double import TakeoutDouble
 
 
 PASS = "passe"
@@ -117,6 +118,7 @@ class BidEngine:
       rules = BidRule.get_rules(step_name)
       analyzer = RuleAnalyzer(self.hand, self.relative_vuln, self.record, self.haze)
       for rule in rules:
+         # print (f"rule {rule.id}")
          if analyzer.rule_satisfied(rule):
             # print(f"--> rule {rule.id} is fully satisfied.")
             return rule
@@ -156,19 +158,13 @@ class RuleAnalyzer:
          if getattr(rule, condition_name):
             function_name = "_" + condition_name + "_check"
             condition_check = getattr(self, function_name)
-            
-
-
-            if rule.id in range(803, 813):
-               print(f"   --> Rule {rule.id} {condition_name} is {"OK" if condition_check(rule) else "ko"}")
-
 
             # print(f"   --> Rule {rule.id} {condition_name} is {"OK" if condition_check(rule) else "ko"}")
 
             if not condition_check(rule):
                return False
       if not rule.raw_bid:
-         print(f"No rule bid for rule id {rule.id} --> compute bid")
+         # print("rule id with bid computing", rule.id)
          rule.raw_bid = self._compute_bid(rule.function_bid, rule.arg_bid) 
       bid = Bid(rule.raw_bid)
       return self.record.no_open() or bid.a_special \
@@ -245,8 +241,9 @@ class RuleAnalyzer:
       return self.op_match(rule.def_tricks, self.hand.def_tricks)
 
    def _lost_tricks_check(self, rule: BidRule) -> bool:
-      max_allowed_lost_tricks = rule.lost_tricks + self.relative_vuln
-      return self.hand.lost_tricks <= max_allowed_lost_tricks
+      lost_tricks = int(rule.lost_tricks[0])
+      adjustment = self.relative_vuln if rule.lost_tricks[-1] == "V" else 0
+      return self.hand.lost_tricks <= lost_tricks + adjustment
 
    def _fit_cards_check(self, rule: BidRule) -> bool:
       if self.record.second_last:
@@ -334,22 +331,36 @@ class RuleAnalyzer:
 
    def _takeout_double_check(self) -> bool:
       # Returns True if distribution is ok for a takeout double (contre d'appel)
-      opp_camp = self.record.last.camp
-      opp_codes = self.record.suit_codes(opp_camp)
-      requested_suits = [s for s in MetaSuit.four_suits() if s.code not in opp_codes]
-      majors_cards = []
-      for suit in requested_suits:
-         suit_cards_count = self.hand.cards_count[suit]
-         if suit_cards_count < 3:
+      opp_suit_codes = self.record.suit_codes(self.record.last.camp)
+      takeout_double = TakeoutDouble(self.hand.cards_count, opp_suit_codes)
+      return takeout_double.allowed()
+
+   # TODO: Remove next function after 30-11-2026
+   # def _takeout_double_check(self) -> bool:
+   #    # Returns True if distribution is ok for a takeout double (contre d'appel)
+   #    opp_camp = self.record.last.camp
+   #    opp_codes = self.record.suit_codes(opp_camp)
+   #    requested_suits = [s for s in MetaSuit.four_suits() if s.code not in opp_codes]
+   #    majors_cards = []
+   #    for suit in requested_suits:
+   #       suit_cards_count = self.hand.cards_count[suit]
+   #       if suit_cards_count < 3:
+   #          return False
+   #       if suit.is_major():
+   #          majors_cards.append(suit_cards_count)
+   #    if len(majors_cards) == 2:
+   #       return majors_cards[0] + majors_cards[1] >= 7
+   #    elif len(majors_cards) == 1:
+   #       return majors_cards[0] >= 4
+   #    else:
+   #       return True
+
+   def _no_unnamed_major_4_check(self) -> bool:
+      opp_suit_codes = self.record.suit_codes(self.record.last.camp)
+      for suit, nbr in self.hand.cards_count.items():
+         if suit.is_major() and nbr >= 4 and suit.code not in opp_suit_codes:
             return False
-         if suit.is_major():
-            majors_cards.append(suit_cards_count)
-      if len(majors_cards) == 2:
-         return majors_cards[0] + majors_cards[1] >= 7
-      elif len(majors_cards) == 1:
-         return majors_cards[0] >= 4
-      else:
-         return True
+      return True
 
    def _stop_opponents_suits_check(self) -> bool:
       opp_camp = self.record.last.camp
@@ -371,6 +382,9 @@ class RuleAnalyzer:
       camp_suits = self.record.suit_codes(self.record.second_last.camp)
       strengths = [s for s in self.hand.strong_suits if s not in camp_suits]
       return len(strengths) >= 1
+
+   def _one_major_ace_check(self) -> bool:
+      return self.hand.has_one_major_ace_and_no_minor()
 
    def _suit_length_check(self, arg: str) -> bool:
       meta_suit = MetaSuit.from_code(arg[0])
@@ -404,11 +418,11 @@ class RuleAnalyzer:
       longest_suit_pts_H = self.hand.suit_points_H(longest_suit)
       return self.op_match(math_inequality=arg, value=longest_suit_pts_H)
 
-   def _long_over_interv_check(self, arg: str) -> bool:
+   def _long_over_previous_check(self, arg: str) -> bool:
       over = (arg == "True")
       longest_suit = self.hand.longest_suits[0]
-      interv_suit = MetaSuit.from_code(self.record.last.suit_code)
-      return interv_suit < longest_suit if over else longest_suit < interv_suit
+      previous_suit = MetaSuit.from_code(self.record.last_normal_bid().suit_code)
+      return previous_suit < longest_suit if over else longest_suit < previous_suit
 
    def _stop_suit_check(self, arg: str) -> bool:
       raw_arg = arg.replace(" ", "")
@@ -448,6 +462,17 @@ class RuleAnalyzer:
       ranks_in_suit = self.hand.suits[suit]
       return len(ranks_in_suit) >= wished_nbr and ranks_in_suit[0] == "ACE"
    
+   def _aces_count_check(self, arg: str) -> bool:
+      math_expr = arg
+      return self.op_match(math_inequality=math_expr, value=self.hand.aces_count())
+
+   def _covering_count_check(self, arg: str) -> bool:
+      suit_codes = list(arg[:2])
+      math_expr = arg[2:]
+      suits = [MetaSuit.from_code(c) for c in suit_codes]
+      covering_count = self.hand.covering_count(suits)
+      return self.op_match(math_inequality=math_expr, value=covering_count)
+
 
 class BidComputer:
    """
@@ -510,15 +535,45 @@ class BidComputer:
          if length <=1:
             return level + suit.code
 
+   def _best_bi_suit(self, arg: str) -> str:
+      """
+      This function returns longest of given suits at given level.
+      arg = pC[q]D with p:level, C:suit1, q:level2, D:suit2.
+      when level2 is omitted, same level is applied for both suits.
+      When suits have same length, choose the one with lowest level; 
+      If same level, choose lowest suit.
+      """
+      level1 = arg[0]
+      level2 = arg[2] if arg[2].isnumeric() else level1
+      suit1 = MetaSuit.from_code(arg[1])
+      suit2 = MetaSuit.from_code(arg[-1])
+      length_gap = self.hand.cards_count[suit1] - self.hand.cards_count[suit2]
+      if length_gap > 0 or (length_gap == 0 and level1 <= level2):
+         return level1 + suit1.code
+      elif length_gap < 0 or (length_gap == 0 and level2 < level1):
+         return level2 + suit2.code
+      else:
+         # case same length and same level
+         return level1 + suit1.code if suit1 < suit2 else level2 + suit2.code 
+
+   def _unnamed_longest(self, arg: str) -> str:
+      # This function returns bid with player's longest suit except opp suits,
+      #  with a jump if arg is jump, or without if arg is no_jump.
+      jump: bool = (arg == "jump")
+      opp_suit_codes = self.record.suit_codes(self.record.last.camp)
+      takeout_double = TakeoutDouble(self.hand.cards_count, opp_suit_codes)
+      return takeout_double.answer(self.record.last_normal_bid(), jump)
+
    def _first_control(self, level: str) -> str:
-      fit = self.haze.fit(self.hand.cards_count, self.record.second_last.rank)
+      partner_bid = self.record.second_last
+      fit = self.haze.fit(self.hand.cards_count, partner_bid.rank)
       camp_points = self.hand.points_HLD(fit.suit, fit.partner_count())
       bid_to_exceed = self.record.last_normal_bid()
       # First control must be at level 4 when level is 4, else it can be 3P
       if level == "4" and bid_to_exceed < Bid("3P"):
          bid_to_exceed = Bid("3P")
 
-      slam = Slam(fit.suit, fit.total_cards, camp_points, self.record.second_last)
+      slam = Slam(partner_bid.camp, fit.suit, fit.total_cards, camp_points, partner_bid)
       bid_sense = slam.next_bid(
          self.hand, self.record.second_last, bid_to_exceed, set()
          )

@@ -4,7 +4,7 @@ from enum import Enum
 from functools import cached_property
 from bridgebots import Rank
 from bids.hands import RichHand, MetaSuit
-from bids.bids import Bid
+from bids.bids import Bid, Camp
 from bids.bid_senses import BidSense
 
 
@@ -19,6 +19,7 @@ class Slam:
    IS PASSING.
    
    Properties
+   camp:                Camp of players who envisage a slam.
    trump:               Trump suit for which camp players are fitted.
    trumps_count:        Number of trump cards the camp has.
    camp_points:         Min HLD points for camp.
@@ -48,10 +49,11 @@ class Slam:
       QUEEN_R = 4,   # response
       STOP = 5
 
-   def __init__(self, trump: MetaSuit, camp_nbr_trumps: int, camp_points: int, partner_bid: Bid):
+   def __init__(self, camp: Camp, trump: MetaSuit, nbr_trumps: int, points: int, partner_bid: Bid):
+      self.camp = camp
       self.trump = trump
-      self.trumps_count = camp_nbr_trumps
-      self.camp_points = camp_points
+      self.trumps_count = nbr_trumps
+      self.camp_points = points
       self.ask_for_queen_bid: Bid = None
       self.stage = self.Stage.KEYS_ASK if partner_bid.raw == "4SA" else self.Stage.CTRLS
 
@@ -104,11 +106,11 @@ class Slam:
             return None
 
    def _blackwood_answer(self, hand: RichHand) -> BidSense:
-         self.stage = self.Stage.KEYS_R
-         nbr_keys, has_queen = hand.blackwood_keys(self.trump)
-         index = 3 if has_queen and nbr_keys == 2 else nbr_keys % 3
-         next_raw_bid = self.BLACKWOOD[index]
-         return BidSense(id=0, raw_bid=next_raw_bid)
+      self.stage = self.Stage.KEYS_R
+      nbr_keys, has_queen = hand.blackwood_keys(self.trump)
+      index = 3 if has_queen and nbr_keys == 2 else nbr_keys % 3
+      next_raw_bid = self.BLACKWOOD[index]
+      return BidSense(id=0, raw_bid=next_raw_bid)
    
    def _blackwood_redemand(self, hand: RichHand, partner_bid: Bid) -> BidSense:
       camp_nbr_keys, camp_has_queen = self._get_camp_keys(hand, partner_bid.raw)

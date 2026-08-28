@@ -12,7 +12,8 @@ class BidProducer:
    information gathered along previous bidding.
 
    Properties
-   slam:             An instance to manage bids sequences in a slam perspective.
+   slam:             An instance to manage slam bids sequences for a given camp.
+                     Only 1st camp starting controls or blackwood gets slam instance.
    haze:             Information on each player's hand deducted from bidding.
    rank:             Rank of the current player who has to make a bid
    camp:             Camp the player belongs to.
@@ -53,8 +54,6 @@ class BidProducer:
       _, self.rank = record.next_lap_and_rank(False)
       self.camp = Camp.from_rank(self.rank)
       self.partner_rank = self.camp.other_rank(self.rank)
-      # TODO: Next line can be removed after some test 05-08-2026
-      # self.partner_bid = Bid(record.second_last.raw)
       self.partner_bid = record.second_last
       self.last_normal_bid = record.last_normal_bid()
       self.forcing = Forcing.from_value(record.second_last.sense.forcing)
@@ -97,9 +96,9 @@ class BidProducer:
 
    def _make_fitted_bid(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
       if pts >= 31 and not self.slam:
-         self.slam = Slam(fit.suit, fit.total_cards, pts, self.partner_bid)
+         self.slam = Slam(self.camp, fit.suit, fit.total_cards, pts, self.partner_bid)
          self.haze.set_implicit_fit(fit.suit, self.camp, self.partner_rank)
-      if self.slam:
+      if self.slam and self.slam.camp == self.camp:
          return self.slam.next_bid(
             hand, 
             self.partner_bid, 
@@ -116,6 +115,29 @@ class BidProducer:
       else:
          next_raw_bid = self.last_normal_bid.first_bid_above_or_pass(fit.suit).raw
          return BidSense(id=0,raw_bid=next_raw_bid)
+      
+   # TODO: Remove next function after 30-11-2026
+   # def _make_fitted_bid(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
+   #    if pts >= 31 and not self.slam:
+   #       self.slam = Slam(fit.suit, fit.total_cards, pts, self.partner_bid)
+   #       self.haze.set_implicit_fit(fit.suit, self.camp, self.partner_rank)
+   #    if self.slam:
+   #       return self.slam.next_bid(
+   #          hand, 
+   #          self.partner_bid, 
+   #          self.last_normal_bid,
+   #          self.haze.declared_controls(self.camp)
+   #          )
+   #    elif (fit.major() and pts >= 26) or (fit.minor() and pts >= 28):
+   #       next_raw_bid = ("4" if fit.major() else "5") + fit.suit.code
+   #       next_bid = Bid(next_raw_bid)
+   #       if next_bid > self.last_normal_bid:
+   #          return BidSense(id=0,raw_bid=next_raw_bid,forcing=Forcing.PASS.value)
+   #       else:
+   #          return BidSense.passe()
+   #    else:
+   #       next_raw_bid = self.last_normal_bid.first_bid_above_or_pass(fit.suit).raw
+   #       return BidSense(id=0,raw_bid=next_raw_bid)
       
    def _make_unfitted_bid(self, last_normal_bid: Bid, pts: int) -> BidSense:
       if self.haze.stop_opp_suits(self.camp):

@@ -152,7 +152,8 @@ class BidRecord:
        - if M appears several times, it represents same suit each time, and
          same for m and E.
        - E represents a real suit which must not be already present in history,
-         nor a suit represented by M or m.
+         nor a suit represented by M or m. 
+         Nevertheless, E can replace a suit used in an artificial bid.
       """
       if len(self.all) < len(requested_bids):
          return False
@@ -166,16 +167,21 @@ class BidRecord:
          if bid.a_symbol:
             if not converted[bid.suit_code] and hist_bidding[i].a_color:
                converted[bid.suit_code] = hist_bidding[i].suit_code
-            bid = bid.replace_suit_with(converted[bid.suit_code])
-            if hist_bidding[i].suit_code != bid.suit_code:
+            if hist_bidding[i].suit_code != converted[bid.suit_code]:
                return False
-         if bid.suit_code != "E":
-            real_suit_codes.add(bid.suit_code)
+         # TODO : Remove next line after 30-11-2026
+         # Line has been modified to allow E to replace a suit used in an artificial bid.
+         # if bid.suit_code != "E":
+         if bid.suit_code != "E" and hist_bidding[i].sense.artificial == False:
+            real_suit_codes.add(converted[bid.suit_code] if bid.a_symbol else bid.suit_code)
 
-      if converted["E"] and converted["E"] not in real_suit_codes:
-         return False
-      else:
-         return True
+      # TODO : Remove next lines after 30-11-2026
+      # if converted["E"] and converted["E"] not in real_suit_codes:
+      #    return False
+      # else:
+      #    return True
+      not_E_comply = converted["E"] and converted["E"] in real_suit_codes
+      return not not_E_comply
 
    def _first_pass_count_in(self, bidding_list: list[Bidding]) -> int:
       count = 0

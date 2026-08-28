@@ -106,10 +106,10 @@ class Bid:
          return self.suit_code in self.SUIT_CODES_BY_GROUP[other_bid.suit_code]
       return False
 
-   def first_bid_above(self) -> Bid:
+   def first_bid_above(self, for_suit: MetaSuit = None) -> Bid:
       next_suit_rank = self.suit.rank + 1 if self.suit.rank < 3 else 0
-      suit = MetaSuit.from_rank(next_suit_rank)
-      level = self.level + (1 if next_suit_rank == 0 else 0)
+      suit = for_suit if for_suit else MetaSuit.from_rank(next_suit_rank)
+      level = self.level + (1 if suit <= self.suit else 0)
       return Bid(str(level) + suit.code)
 
    def first_bid_above_or_pass(self, suit: MetaSuit) -> Bid:

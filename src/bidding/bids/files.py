@@ -154,6 +154,7 @@ class SenseExcelFile(ExcelFile):
 class ExcelToCsv:
    ALLOW_BLANK = [
       "distribution",
+      "lost_tricks",
       "hist_bid",
       "family",
       "convention",
@@ -184,7 +185,6 @@ class ExcelToCsv:
    ]
    NUMERIC_FIELDS = [
       "won_tricks",
-      "lost_tricks",
       "stops",
       "sense_id",
    ]
