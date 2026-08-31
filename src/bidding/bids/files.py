@@ -166,7 +166,6 @@ class ExcelToCsv:
       "suit_force",
       "opp_stop",
       "artificial",
-      "awake",
    ]
    NUM_OP_FIELDS = [
       "distribution",

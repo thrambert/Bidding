@@ -1,3 +1,5 @@
+from pydantic import ValidationError
+
 from bids.files import BidHistoryFile, ExcelToCsv
 from bids.bid_rules import BidRule
 from bids.bid_senses import BidSense
@@ -37,8 +39,8 @@ class FileLoader:
       try:
          csv_file = convert_fct(a_class.model_fields.keys())
          for row in csv_file.get_rows():
-            a_class.model_validate(row)
             row_id = row['id']
+            a_class.model_validate(row)
       except Exception as error:
          raise MyDataException(f"File loader exception for {name} at id {row_id} --> {error.__str__()}")
 

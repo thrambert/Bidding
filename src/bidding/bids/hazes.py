@@ -126,7 +126,7 @@ class HazyHand:
       if sense.par_suit_count:
          self.h_suits[par_bid.suit].set_length(sense.par_suit_count)
       if sense.suit_count:
-         self._set_suit_count(bid, sense.suit, sense.suit_count)
+         self.h_suits[bid.suit].set_length(sense.suit_count)
       if sense.suits_to_stop():
          self._set_stopped_suits(to_stop[sense.suits_to_stop()])
       if bid.a_color:
@@ -148,10 +148,6 @@ class HazyHand:
          if count_expr:
             suit = MetaSuit.from_rank(suit_rank)
             self.h_suits[suit].set_length(count_expr)
-
-   def _set_suit_count(self, bid: Bid, suit_text: str, count: str):
-      suit = MetaSuit.from_text(suit_text) if suit_text else bid.suit
-      self.h_suits[suit].set_length(count)
 
    def _set_stopped_opp_suits(self, opp_suits_codes: list[str]):
       for suit in [MetaSuit.from_code(c) for c in opp_suits_codes]:

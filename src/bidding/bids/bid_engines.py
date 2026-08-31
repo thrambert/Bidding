@@ -163,6 +163,7 @@ class RuleAnalyzer:
 
             if not condition_check(rule):
                return False
+
       if not rule.raw_bid:
          # print("rule id with bid computing", rule.id)
          rule.raw_bid = self._compute_bid(rule.function_bid, rule.arg_bid) 
@@ -293,6 +294,10 @@ class RuleAnalyzer:
             if self.hand.suit_points_H(longest_suit) >= 6:
                return False
       return True
+
+   def _major_3_check(self) -> bool:
+      majors_3 = [n for n in self.hand.majors_count.values() if n == 3]
+      return (len(majors_3) >= 1)
 
    def _major_4_check(self) -> bool:
       majors_4 = [n for n in self.hand.majors_count.values() if n == 4]
@@ -510,13 +515,18 @@ class BidComputer:
       return level_str + partner_suit.code
 
    def _cuebid(self, level_str: str) -> str:
-      opponent_on_right_bid = self.record.last
-      if opponent_on_right_bid.a_color:
-         opponents_suit_code = opponent_on_right_bid.suit_code
-      else:
-         opponent_on_left_bid = self.record.third_last
-         opponents_suit_code = opponent_on_left_bid.suit_code
-      return level_str + opponents_suit_code
+      opp_camp = self.record.last.camp
+      return level_str + self.record.last_suit_code(opp_camp)
+
+   # TODO: Remove next function after 30-11-2026
+   # def _cuebid(self, level_str: str) -> str:
+   #    opponent_on_right_bid = self.record.last
+   #    if opponent_on_right_bid.a_color:
+   #       opponents_suit_code = opponent_on_right_bid.suit_code
+   #    else:
+   #       opponent_on_left_bid = self.record.third_last
+   #       opponents_suit_code = opponent_on_left_bid.suit_code
+   #    return level_str + opponents_suit_code
 
    def _best_minor(self, level: str) -> str:
       return level + self.hand.best_minor_code

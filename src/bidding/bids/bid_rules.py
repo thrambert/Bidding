@@ -91,7 +91,6 @@ class BidRule(BaseModel):
    lost_tricks:   Condition on possible lost tricks. Depends on vuln if suffix V
    fit_cards:     Condition on number of cards in partner suit.
    stops:         Required min number of stops of opponents' suits.
-   awake:         True when current bid follows 2 consecutive PASS.
    hist_bid:      Required consecutive last bids.
    function'n':   Name of a function which contains a specific condition.
    arg1:          Argument for function 1
@@ -120,7 +119,6 @@ class BidRule(BaseModel):
    lost_tricks: str = ""
    fit_cards: Annotated[str, Field(default=""), AfterValidator(validated_count)]
    stops: float = 0
-   awake: bool = False
    hist_bid: Annotated[str, Field(default=""), AfterValidator(_validated_hist_bid)]
    function1: str = ""
    function2: str = ""

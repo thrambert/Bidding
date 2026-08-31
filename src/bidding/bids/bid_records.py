@@ -90,6 +90,11 @@ class BidRecord:
          if not bidding.a_special:
             return bidding
 
+   def open_bid(self) -> Bidding:
+      for bidding in self.all:
+         if bidding.raw == PASS:
+            return bidding
+
    def suit_codes(self, camp: Camp = None) -> set[str]:
       # Returns codes of all suits naturally announced by given camp, or by all.
       if camp:

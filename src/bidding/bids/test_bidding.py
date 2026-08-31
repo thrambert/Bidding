@@ -40,7 +40,7 @@ def test_several_deals(count: int):
    for i in range(1, count + 1):
       deal = deal_maker.create_random()
       bid_chaining = BidChaining(deal)
-      bid_chaining.run(debug=False)
+      bid_chaining.run(debug=True)
       if i == 1:
          print(f"          {i:>4} bid")          
       elif i % 200 == 0:

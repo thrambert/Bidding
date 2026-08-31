@@ -6,7 +6,6 @@ from bids.files import SenseFile
 from bids.bid_rules import (
    validated_points,
    validated_distrib,
-   validated_suit,
    validated_count
 )
 from bids.bids import Family, Forcing, SuitsToStop
@@ -54,7 +53,6 @@ class BidSense(BaseModel):
    diamond_count: Idem
    club_count:    Idem
    par_suit_count:Number of cards into last suit bidded by the partner.
-   suit:          Suit or symbolic suit text when bid does not reveal suit.
    suit_count:    Number of cards in player suit given by his bid or by suit.
    suit_stop:     True if the player stops the suit he gave in bid or in suit.
    suit_control:  True if the player controls the suit.
@@ -81,7 +79,6 @@ class BidSense(BaseModel):
    diamond_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
    club_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
    par_suit_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
-   suit: Annotated[str, Field(default=""), AfterValidator(validated_suit)]
    suit_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
    suit_stop: bool = False
    suit_control: bool = False

@@ -21,6 +21,7 @@ class Step(Enum):
    RI_UP_N4 = auto() # réponse à intervention à saut à la couleur du joueur 4
    RI_SA_N4 = auto() # réponse à intervention par 1SA du joueur 4
    RI_X_N4 = auto()  # réponse à intervention par contre d'appel du joueur 4
+   RI_OSPE = auto() # réponse à intervention suite ouverture spéciale: 1SA, 2M, 3E, 4E
    REDI_N2 = auto()  # redemande de l'intervenant (joueur 2, lap 2)
    REDI_N4 = auto()  # redemande de l'intervenant (joueur 4, lap 2)
    RI2_N2 = auto()   # 2e enchère du répondant en intervention (joueur 4, lap 2)
@@ -38,9 +39,7 @@ class Step(Enum):
    SAMODER = auto()  # séquence suite à 2SA modérateur
    FORCING4 = auto() # séquence suite à 4e couleur forcing
    FORCING3 = auto() # séquence suite à 3e couleur forcing
-   WAKE_N1 = auto()  # réveil du joueur n°1, l'ouvreur (lap 2 rank 1)
-   WAKECI = auto()   # réveil du camp en intervention (lap 2 rank 2 ou 4)
-   WAKE_N3 = auto()  # réveil du joueur n°3 (lap 2 rank 3)
+   WAKE = auto()     # séquence de réveil
    OUV_2K = auto()   # séquence du camp de l'ouvreur suite ouverture de 2K
    OUV_2T = auto()   # séquence du camp de l'ouvreur suite ouverture de 2T
    OUV_2SA = auto()  # séquence du camp de l'ouvreur suite ouverture de 2SA
@@ -79,7 +78,6 @@ class Stair:
 
    Constants
    LAP_RANK_STEP  Step for lap and rank. Ex lap 1, rank 3 -> 13
-   WAKE:          Steps to select after 2 consecutive passes depending on rank.
    """
    LAP_RANK_STEP = {
       11: Step.OPEN,
@@ -91,12 +89,6 @@ class Stair:
       23: Step.R2REP,
       24: Step.FREE,
    }
-   WAKE = [
-      Step.WAKECI,
-      Step.WAKE_N3,
-      Step.WAKECI,
-      Step.WAKE_N1,
-      ]
 
    def __init__(self):
       self.rule_steps: dict[int, Step] = {rank: None for rank in range(1, 5)}
@@ -115,7 +107,7 @@ class Stair:
       elif self.rule_steps[player_rank]:
          return self.rule_steps[player_rank].name
       elif sleep:
-         return self.WAKE[player_rank - 1].name
+         return Step.WAKE.name
       elif lap_rank >= 24:
          return Step.FREE.name
       else:

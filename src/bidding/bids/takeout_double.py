@@ -26,7 +26,13 @@ class TakeoutDouble:
       self.sorted_suits = sorted(suits, key=lambda s: cards_count[s], reverse=True)
 
    def allowed(self) -> bool:
-      # Returns True if distribution is ok for a takeout double
+      """
+      This function returns True if distribution is ok for a takeout double
+      """
+      # Case only 2 suits unnamed by opponents (X by player N°4 and 2 suits named by opp)
+      if len(self.sorted_suits) <= 2 and self.length[self.sorted_suits[-1]] < 4:
+         return False
+      # Case 3 suits unnamed by opponents
       if self.length[self.sorted_suits[-1]] < 3:
          return False
       major_length = [nbr for s, nbr in self.length.items() if s.is_major()]
