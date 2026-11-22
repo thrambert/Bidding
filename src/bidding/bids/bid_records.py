@@ -149,9 +149,10 @@ class BidRecord:
       else:
          return True
 
-   def comply_with(self, requested_bids: list[Bid]) -> bool:
+   def comply_with(self, requested_bids: list[Bid], hist_partial: bool) -> bool:
       """
       Returns True if requested bids match with recorded bids. 
+      hist_partial : True if historic bids may not contains first bids.
       In requested bids, symbolic suits are managed as below :
        - o can replace any bid
        - if M appears several times, it represents same suit each time, and
@@ -162,10 +163,13 @@ class BidRecord:
       """
       if len(self.all) < len(requested_bids):
          return False
+      if not hist_partial and len(self.all) != len(requested_bids):
+         return False
+      
       hist_bidding = self.reversed_all()
       converted = {"M": "", "m": "", "E": ""}
       real_suit_codes = set()
-          
+      
       for i, bid in enumerate(requested_bids):
          if not hist_bidding[i].bid_match(bid):
             return False

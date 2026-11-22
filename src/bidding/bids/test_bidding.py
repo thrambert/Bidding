@@ -5,6 +5,7 @@ This module is called by app.py to test bid_engines.
 from bridgebots.deal_enums import Direction
 from deals.deal_engines import DealMaker, Vulnerability
 from views.mats import BidChaining
+from bids.bid_rules import BidRule
 from bids.bid_histories import BidHistory
 from datetime import datetime
 from bids.dna import Dna
@@ -50,9 +51,25 @@ def test_several_deals(count: int):
       if i == count:
          print()
 
-   rules_ok = BidHistory.get_all_rules_ids()
-   print(f"--> {len(rules_ok)} satisfied rules: {rules_ok}")
+   write_summary(rules_ids=BidHistory.get_all_rules_ids())
 
+
+def write_summary(rules_ids: list[int]):
+   size = 20
+   intervals = []
+   previous_id = 0
+   for id in rules_ids:
+      if id > previous_id + size:
+         intervals.append(f"{str(previous_id + 1)} - {str(id - 1)}, ")
+      previous_id = id
+   if BidRule.get_last_id() > previous_id + size:
+      intervals.append(f"{str(previous_id + 1)} - {BidRule.get_last_id()}")
+
+   print(f"--> {len(rules_ids)} satisfied rules: {rules_ids}")
+   print()
+   print(f"--> {len(intervals)} intervals >= {size} of non applied rules:")
+   for interval in intervals:
+      print(f"      {interval}")
 
 #  Distribution très intéressante vue le 16-07-2026, pour approfondir BidProducer et résoudre des bugs:
 # TEST_HANDS = ['Q65432-Q-T7432-8', '87-AK-AKQJ9865-Q', 'AKJT9-T983--T965', '-J76542--AKJ7432']

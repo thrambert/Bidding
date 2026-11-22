@@ -26,34 +26,61 @@ sense_id;sequence
  213;  -    -   1M    -   3M  
  222;  -    -   1M    -   3E  
  215;  -    -   1M    -   4m  
+3471;  X    -   1SA   o   3SA 
+5319; 1T    -    -    X  
+5324; 1T    -    -    X    -   2K  
 2773; 1T    -   1K    -   1C    -   1P  
 2774; 1T    -   1K    -   1C    -   2P  
-3388; 1T    -   1K    -   1C    -   2P    -   3T  
-3486; 1T    -   1K    -   1C    -   2P    -   3T  
-3424; 1T    -   1K    -   1C    -   2P    -   3C  
+3688; 1T    -   1K    -   1C    -   2P    -   3T  
+3786; 1T    -   1K    -   1C    -   2P    -   3T  
+3724; 1T    -   1K    -   1C    -   2P    -   3C  
 2772; 1T    -   1K    -   1P    -   2C  
-3423; 1T    -   1K    -   1P    -   2C    -   2P  
-3387; 1T    -   1K    -   1P    -   2C    -   3T  
-3485; 1T    -   1K    -   1P    -   2C    -   3T  
+3723; 1T    -   1K    -   1P    -   2C    -   2P  
+3687; 1T    -   1K    -   1P    -   2C    -   3T  
+3785; 1T    -   1K    -   1P    -   2C    -   3T  
 2776; 1T    -   1K    -   1P    -   3C  
-3426; 1T    -   1K    -   1P    -   3C    -   3P  
-3390; 1T    -   1K    -   1P    -   3C    -   4T  
-3488; 1T    -   1K    -   1P    -   3C    -   4T  
+3726; 1T    -   1K    -   1P    -   3C    -   3P  
+3690; 1T    -   1K    -   1P    -   3C    -   4T  
+3788; 1T    -   1K    -   1P    -   3C    -   4T  
 2161; 1T    -   1K    -   1M  
 2196; 1T    -   1K    -   2T  
 2753; 1T    -   1K    -   2SA   -   3C  
 2752; 1T    -   1K    -   2SA   -   4C  
 2205; 1T    -   1K    -   3T  
 2080; 1T    -   1K    -   3M  
+1482; 1T    -   1K    X    -    -  
+1479; 1T    -   1K    X    -   1SA 
+3474; 1T    -   1K    X    -   2M    -   2SA 
+3472; 1T    -   1K    X    -   2M    o   3M  
+3473; 1T    -   1K    X    -   3M    o   4M  
+3479; 1T    -   1K    X   1C   1P    o   2P  
 2294; 1T    -   1K   1C   1P  
 2300; 1T    -   1K   1C   2P  
 2323; 1T    -   1K   1P   2T  
+5284; 1T    -   1K   1M    -    -    X  
+5293; 1T    -   1K   1M    -    -    X    -   1SA 
+5299; 1T    -   1K   1M    -    -    X    -   2G  
+5305; 1T    -   1K   1M    -    -   2M  
 2424; 1T    -   1K   1M    X  
 2336; 1T    -   1K   1M   3T  
-1049; 1T    -   1K   2T  
-1061; 1T    -   1K   2K  
-1067; 1T    -   1K   2SA 
+1159; 1T    -   1K   2T  
+1372; 1T    -   1K   2T    -   2M  
+1444; 1T    -   1K   2T    -   3T  
+3449; 1T    -   1K   2T    -   3T    -   FC  
+3422; 1T    -   1K   2T    -   3T    -   4C  
+1408; 1T    -   1K   2T    -   3M  
+3397; 1T    -   1K   2T    -   3M    -   4M  
+1171; 1T    -   1K   2K  
+1342; 1T    -   1K   2C   2P   2SA 
+1177; 1T    -   1K   2SA 
+1442; 1T    -   1K   2SA   -   3T  
+3447; 1T    -   1K   2SA   -   3T    -   FC  
+3420; 1T    -   1K   2SA   -   3T    -   4C  
+1370; 1T    -   1K   2SA   -   3M  
+1406; 1T    -   1K   2SA   -   4M  
 2301; 1T    -   1K   2m   2P  
+1153; 1T    -   1K   2M  
+1340; 1T    -   1K   2M    -   2SA 
 2078; 1T    -   1K    o   2K  
 2719; 1T    -   1K    o   2K   2M   3M  
 2716; 1T    -   1K    o   2K    o   2SA 
@@ -66,90 +93,232 @@ sense_id;sequence
 2723; 1T    -   1K    o   3K    o   3M  
 2721; 1T    -   1K    o   3K    o   4K  
 2771; 1T    -   1C    -   1P    -   2K  
-3369; 1T    -   1C    -   1P    -   2K    -   2C  
-3422; 1T    -   1C    -   1P    -   2K    -   2P  
-3386; 1T    -   1C    -   1P    -   2K    -   3T  
-3484; 1T    -   1C    -   1P    -   2K    -   3T  
-3352; 1T    -   1C    -   1P    -   2K    -   3C  
+3669; 1T    -   1C    -   1P    -   2K    -   2C  
+3722; 1T    -   1C    -   1P    -   2K    -   2P  
+3686; 1T    -   1C    -   1P    -   2K    -   3T  
+3784; 1T    -   1C    -   1P    -   2K    -   3T  
+3652; 1T    -   1C    -   1P    -   2K    -   3C  
 2775; 1T    -   1C    -   1P    -   3K  
-3370; 1T    -   1C    -   1P    -   3K    -   3C  
-3425; 1T    -   1C    -   1P    -   3K    -   3P  
-3389; 1T    -   1C    -   1P    -   3K    -   4T  
-3487; 1T    -   1C    -   1P    -   3K    -   4T  
-3353; 1T    -   1C    -   1P    -   3K    -   4C  
+3670; 1T    -   1C    -   1P    -   3K    -   3C  
+3725; 1T    -   1C    -   1P    -   3K    -   3P  
+3689; 1T    -   1C    -   1P    -   3K    -   4T  
+3787; 1T    -   1C    -   1P    -   3K    -   4T  
+3653; 1T    -   1C    -   1P    -   3K    -   4C  
 2780; 1T    -   1C    -   2K    -   3P  
 2707; 1T    -   1C    -   2C    -   2P  
+3589; 1T    -   1C    -   2SA   -   3K    -   3SA 
+3588; 1T    -   1C    -   2SA   -   3K    -   3E  
+5306; 1T    -   1C   1P    -    -   2P  
 2073; 1T    -   1C   1P   3P  
 2069; 1T    -   1C   1P   4K  
-1050; 1T    -   1C   2T  
-1068; 1T    -   1C   2SA 
+1160; 1T    -   1C   2T  
+1378; 1T    -   1C   2T    -   2E  
+1450; 1T    -   1C   2T    -   3T  
+1414; 1T    -   1C   2T    -   3E  
+1178; 1T    -   1C   2SA 
+1448; 1T    -   1C   2SA   -   3T  
+1376; 1T    -   1C   2SA   -   3E  
+1412; 1T    -   1C   2SA   -   4E  
 2779; 1T    -   1P    -   2K    -   3C  
 2182; 1T    -   1P    -   2C  
-1052; 1T    -   1P   2T  
-1070; 1T    -   1P   2SA 
+3593; 1T    -   1P    -   2SA   -   3K    -   3C  
+3594; 1T    -   1P    -   2SA   -   3K    -   3SA 
+1162; 1T    -   1P   2T  
+1461; 1T    -   1P   2T    -   3T  
+1389; 1T    -   1P   2T    -   3E  
+1425; 1T    -   1P   2T    -   4E  
+1180; 1T    -   1P   2SA 
+1459; 1T    -   1P   2SA   -   3T  
+1387; 1T    -   1P   2SA   -   3E  
+1423; 1T    -   1P   2SA   -   4E  
+5308; 1T    -   1P   2E    -    -   3E  
 2183; 1T    -   1SA   -   2K  
 2184; 1T    -   1SA   -   2C  
 2185; 1T    -   1SA   -   2P  
 2127; 1T    -   1SA   -   2SA 
 2201; 1T    -   1SA   -   2E  
-1084; 1T    -   1SA  2SA 
+1194; 1T    -   1SA  2SA 
+1463; 1T    -   1SA  2SA   -   3T  
+1391; 1T    -   1SA  2SA   -   3E  
+3413; 1T    -   1SA  2SA   -   4K    -   5K  
+1427; 1T    -   1SA  2SA   -   4E  
 2197; 1T    -   1M    -   2T  
 2181; 1T    -   1M    -   2K  
+3587; 1T    -   1M    -   2SA   -   3K    -   3M  
 2206; 1T    -   1M    -   3T  
 2067; 1T    -   1M    X   4K  
 2421; 1T    -   1M   2K    X  
+3410; 1T    -   1M   2SA   -   4K    -   5K  
  234; 1T    -   2T  
  227; 1T    -   2K  
  235; 1T    -   3T  
+3320; 1T    X    -   1K    -   1M  
+3346; 1T    X    -   1K    -   2T  
+3497; 1T    X    -   1K    -   2T    -   2K  
+3487; 1T    X    -   1K    -   2T    -   2E  
+3308; 1T    X    -   1K    -   2K  
+3328; 1T    X    -   1K    -   2M  
+3314; 1T    X    -   1K    -   3K  
+3336; 1T    X    -   1K    o   1SA 
+3340; 1T    X    -   1K    o   2SA 
+3370; 1T    X    -   2T    -   3K  
+3354; 1T    X    -   2K    -   2SA 
+3357; 1T    X    -   2K    -   2M  
+ 931; 1T    X   1K    X  
+ 942; 1T    X   1K   1SA 
+3384; 1T    X   1K   1SA   -   2SA 
+3388; 1T    X   1K   1SA   -   3SA 
+ 925; 1T    X   1K   1M  
+ 937; 1T    X   1K   2K  
+ 949; 1T    X   1SA   X  
+ 603; 1T   1K    -   1SA 
+ 591; 1T   1K    -   1M  
+ 545; 1T   1K    -   2T  
+3231; 1T   1K    -   2T    -   2K  
+3238; 1T   1K    -   2T    -   2SA 
+3253; 1T   1K    -   2T    -   2M  
+3274; 1T   1K    -   2T    -   3T  
+3260; 1T   1K    -   2T    -   3K  
+3267; 1T   1K    -   2T    -   3SA 
+ 559; 1T   1K    -   2C  
+ 560; 1T   1K    -   2P  
+ 609; 1T   1K    -   2SA 
+ 552; 1T   1K    -   3T  
+ 612; 1T   1K    -   3SA 
+ 583; 1T   1K    -   4T  
  348; 1T   1K    X  
+ 782; 1T   1K    X   XX  
 2355; 1T   1K    X   1C   2P  
 2352; 1T   1K    X   1M   1P  
 2370; 1T   1K    X   1M   2T  
 2377; 1T   1K    X   2K   3T  
 2379; 1T   1K    X   2M   3T  
 2241; 1T   1K   1C    -   1P  
+ 720; 1T   1K   1C   1P  
+ 752; 1T   1K   1C   2C  
+ 638; 1T   1K   1C   2P  
+ 698; 1T   1K   1C   4C  
 2247; 1T   1K   1P    -   2C  
+ 736; 1T   1K   1P    X  
+ 721; 1T   1K   1P   2C  
+ 753; 1T   1K   1P   2P  
+ 637; 1T   1K   1P   3C  
 2249; 1T   1K   1SA   -   2C  
 2251; 1T   1K   1SA   -   2P  
+ 776; 1T   1K   1SA   X  
+ 770; 1T   1K   1SA  2T  
 2283; 1T   1K   1M    -   2K  
+ 717; 1T   1K   1M   1SA 
+ 618; 1T   1K   1M   2T  
+ 706; 1T   1K   1M   2SA 
+ 630; 1T   1K   1M   3T  
+ 685; 1T   1K   1M   4T  
+ 639; 1T   1K   2T   3C  
+ 640; 1T   1K   2T   3P  
+ 740; 1T   1K   2C    X  
+ 739; 1T   1K   2m    X  
+ 724; 1T   1K   2m   2M  
+ 707; 1T   1K   2E   2SA 
+ 530; 1T   1K    o   2K  
+ 536; 1T   1K    o   3K  
+ 542; 1T   1K    o   4K  
+3245; 1T   1C    -   2T    -   2K  
+ 562; 1T   1C    -   2P  
+ 561; 1T   1C    -   3K  
+ 783; 1T   1C    X   XX  
 2363; 1T   1C    X   2T   2K  
 2246; 1T   1C   1P    -   2K  
 2071; 1T   1C   1P    -   4K   4K  
+ 737; 1T   1C   1P    X  
+ 718; 1T   1C   1P   1SA 
+ 619; 1T   1C   1P   2T  
+ 722; 1T   1C   1P   2K  
 2074; 1T   1C   1P   2C   4K  
+ 708; 1T   1C   1P   2SA 
+ 641; 1T   1C   1P   3K  
+ 686; 1T   1C   1P   4T  
 2252; 1T   1C   1SA   -   2P  
+ 777; 1T   1C   1SA   X  
+ 771; 1T   1C   1SA  2T  
+ 642; 1T   1C   2T   3K  
+ 643; 1T   1C   2T   3P  
+ 644; 1T   1C   2K   3P  
+ 742; 1T   1C   2C    X  
+ 726; 1T   1C   2C   2P  
+ 741; 1T   1C   2m    X  
+ 725; 1T   1C   2m   2E  
+3246; 1T   1P    -   2T    -   2K  
+ 563; 1T   1P    -   3K  
+ 564; 1T   1P    -   3C  
  378; 1T   1P    X    -   2K  
+ 784; 1T   1P    X   XX  
 2364; 1T   1P    X   2K   2C  
 2250; 1T   1P   1SA   -   2C  
+ 778; 1T   1P   1SA   X  
+ 772; 1T   1P   1SA  2T  
+ 645; 1T   1P   2T   3K  
+ 646; 1T   1P   2T   3C  
+ 647; 1T   1P   2K   3C  
+ 762; 1T   1P   2C   3C  
+ 648; 1T   1P   2C   4K  
+ 743; 1T   1P   2m    X  
+ 727; 1T   1P   2m   2E  
+3275; 1T   1M    -   2T    -   3T  
+ 594; 1T   1M    -   2K  
+ 584; 1T   1M    -   4T  
 2380; 1T   1M    X   2K   3T  
 2378; 1T   1M    X   2M   3T  
 2248; 1T   1M   1SA   -   2K  
 2290; 1T   1M   2K    -   2M  
+ 755; 1T   1M   2K   3K  
+ 687; 1T   1M   2m   4T  
+ 709; 1T   1M   2E   2SA 
+5261; 1T   1E    -    -   2T  
+ 794; 1T   1E    X   2T  
 2266; 1T   1E   1SA   -   2T  
 2276; 1T   1E   1SA   -   3T  
 2264; 1T   1E   1M    -   2T  
 2274; 1T   1E   1M    -   3T  
  344; 1T   1E   2T  
+ 763; 1T   1E   2T   3T  
  345; 1T   1E   3T  
  440; 1T   2K    X  
  426; 1T   2K   2C  
  430; 1T   2K   2P  
  403; 1T   2K   3K  
+ 804; 1T   2C   2P   3T  
 1014; 1T   2SA 
+ 909; 1T   2SA   -   3T  
+3295; 1T   2SA   -   3T    -   4C  
+ 892; 1T   2SA   -   3E  
+3284; 1T   2SA   -   4K    -   5K  
+ 900; 1T   2SA   -   4E  
  411; 1T   2SA  2SA 
  428; 1T   2SA  3K  
  432; 1T   2SA  3C  
  419; 1T   2SA  3SA 
+ 806; 1T   2M    -   3T  
+ 819; 1T   3K    -   FC  
+ 825; 1T   3K    -   3SA 
+ 809; 1T   3K    -   4K  
+ 831; 1T   3K    -   4SA 
+ 844; 1T   3K   3C    X  
+ 847; 1T   3K   3P    X  
+ 853; 1T   4K    -   4SA 
+ 850; 1T   4K    -   4M  
+ 865; 1T   4K   4C    X  
+ 868; 1T   4K   4P    X  
 3074; 1T    o   1K    -   2C    -   2P  
-3474; 1T    o   1K    -   2C    -   2P    -   2SA 
-3409; 1T    o   1K    -   2C    -   2P    -   3T  
-3507; 1T    o   1K    -   2C    -   2P    -   3T  
-3445; 1T    o   1K    -   2C    -   2P    -   3C  
-3473; 1T    o   1K    -   2C    -   2P    -   3SA 
+3774; 1T    o   1K    -   2C    -   2P    -   2SA 
+3709; 1T    o   1K    -   2C    -   2P    -   3T  
+3807; 1T    o   1K    -   2C    -   2P    -   3T  
+3745; 1T    o   1K    -   2C    -   2P    -   3C  
+3773; 1T    o   1K    -   2C    -   2P    -   3SA 
 3075; 1T    o   1K    -   2P    -   3C  
-3446; 1T    o   1K    -   2P    -   3C    -   3P  
-3475; 1T    o   1K    -   2P    -   3C    -   3SA 
-3410; 1T    o   1K    -   2P    -   3C    -   4T  
-3508; 1T    o   1K    -   2P    -   3C    -   4T  
+3746; 1T    o   1K    -   2P    -   3C    -   3P  
+3775; 1T    o   1K    -   2P    -   3C    -   3SA 
+3710; 1T    o   1K    -   2P    -   3C    -   4T  
+3808; 1T    o   1K    -   2P    -   3C    -   4T  
 2169; 1T    o   1K    -   2M  
 3058; 1T    o   1K    -   2M    -   2SA 
 3037; 1T    o   1K    -   2M    -   3T  
@@ -168,46 +337,46 @@ sense_id;sequence
 3180; 1T    o   1K    o   3T    o   4T  
 2170; 1T    o   1C    -   2P  
 3076; 1T    o   1C    -   2P    -   3K  
-3379; 1T    o   1C    -   2P    -   3K    -   3C  
-3447; 1T    o   1C    -   2P    -   3K    -   3P  
-3411; 1T    o   1C    -   2P    -   3K    -   4T  
-3509; 1T    o   1C    -   2P    -   3K    -   4T  
-3362; 1T    o   1C    -   2P    -   3K    -   4C  
+3679; 1T    o   1C    -   2P    -   3K    -   3C  
+3747; 1T    o   1C    -   2P    -   3K    -   3P  
+3711; 1T    o   1C    -   2P    -   3K    -   4T  
+3809; 1T    o   1C    -   2P    -   3K    -   4T  
+3662; 1T    o   1C    -   2P    -   3K    -   4C  
 2324; 1T    o   1C   1P   2T  
 2309; 1T    o   1C   1P   2K  
 2337; 1T    o   1C   1P   3T  
-3551; 1T    o   1C    o   2T    o   2K    -   2C  
-3565; 1T    o   1C    o   2T    o   2K    -   2P  
-3554; 1T    o   1C    o   2T    o   2K    -   3C  
+3851; 1T    o   1C    o   2T    o   2K    -   2C  
+3865; 1T    o   1C    o   2T    o   2K    -   2P  
+3854; 1T    o   1C    o   2T    o   2K    -   3C  
 3025; 1T    o   1C    o   2K    o   2P  
-3401; 1T    o   1C    o   2K    o   2P    -   3T  
-3499; 1T    o   1C    o   2K    o   2P    -   3T  
-3437; 1T    o   1C    o   2K    o   2P    -   3K  
-3375; 1T    o   1C    o   2K    o   2P    -   3C  
-3358; 1T    o   1C    o   2K    o   2P    -   4C  
-3317; 1T    o   1C    o   2K    o   2SA   -   3P  
+3701; 1T    o   1C    o   2K    o   2P    -   3T  
+3799; 1T    o   1C    o   2K    o   2P    -   3T  
+3737; 1T    o   1C    o   2K    o   2P    -   3K  
+3675; 1T    o   1C    o   2K    o   2P    -   3C  
+3658; 1T    o   1C    o   2K    o   2P    -   4C  
+3617; 1T    o   1C    o   2K    o   2SA   -   3P  
 2739; 1T    o   1P    -   1SA   -   4C  
 2310; 1T    o   1P   2T   2C  
-3566; 1T    o   1P    o   2T    o   2K    -   2C  
-3552; 1T    o   1P    o   2T    o   2K    -   2P  
-3555; 1T    o   1P    o   2T    o   2K    -   3P  
+3866; 1T    o   1P    o   2T    o   2K    -   2C  
+3852; 1T    o   1P    o   2T    o   2K    -   2P  
+3855; 1T    o   1P    o   2T    o   2K    -   3P  
 3145; 1T    o   1P    o   2T    o   2C  
 3026; 1T    o   1P    o   2K    o   2C  
-3376; 1T    o   1P    o   2K    o   2C    -   2P  
-3402; 1T    o   1P    o   2K    o   2C    -   3T  
-3500; 1T    o   1P    o   2K    o   2C    -   3T  
-3438; 1T    o   1P    o   2K    o   2C    -   3K  
-3359; 1T    o   1P    o   2K    o   2C    -   3P  
-3318; 1T    o   1P    o   2K    o   2SA   -   3C  
-3302; 1T    o   1P    o   2C    o   2SA   -   3T  
-3319; 1T    o   1P    o   2C    o   2SA   -   3K  
+3676; 1T    o   1P    o   2K    o   2C    -   2P  
+3702; 1T    o   1P    o   2K    o   2C    -   3T  
+3800; 1T    o   1P    o   2K    o   2C    -   3T  
+3738; 1T    o   1P    o   2K    o   2C    -   3K  
+3659; 1T    o   1P    o   2K    o   2C    -   3P  
+3618; 1T    o   1P    o   2K    o   2SA   -   3C  
+3602; 1T    o   1P    o   2C    o   2SA   -   3T  
+3619; 1T    o   1P    o   2C    o   2SA   -   3K  
 2982; 1T    o   1P    o   2C    o   3T  
 3027; 1T    o   1P    o   2C    o   3K  
-3439; 1T    o   1P    o   2C    o   3K    -   3C  
-3377; 1T    o   1P    o   2C    o   3K    -   3P  
-3403; 1T    o   1P    o   2C    o   3K    -   4T  
-3501; 1T    o   1P    o   2C    o   3K    -   4T  
-3360; 1T    o   1P    o   2C    o   3K    -   4P  
+3739; 1T    o   1P    o   2C    o   3K    -   3C  
+3677; 1T    o   1P    o   2C    o   3K    -   3P  
+3703; 1T    o   1P    o   2C    o   3K    -   4T  
+3801; 1T    o   1P    o   2C    o   3K    -   4T  
+3660; 1T    o   1P    o   2C    o   3K    -   4P  
 2997; 1T    o   1P    o   2C    o   4T  
 2311; 1T    o   1SA  2K   2C  
 2312; 1T    o   1SA  2K   2P  
@@ -221,63 +390,93 @@ sense_id;sequence
 2747; 1T    o   1M    -   2SA   -   3K  
 2735; 1T    o   1M    o   1SA   -   3F  
 3146; 1T    o   1M    o   2T    o   2K  
-3557; 1T    o   1M    o   2T    o   2K    -   2SA 
-3563; 1T    o   1M    o   2T    o   2K    -   3T  
-3561; 1T    o   1M    o   2T    o   2K    -   3K  
-3559; 1T    o   1M    o   2T    o   2K    -   3SA 
+3857; 1T    o   1M    o   2T    o   2K    -   2SA 
+3863; 1T    o   1M    o   2T    o   2K    -   3T  
+3861; 1T    o   1M    o   2T    o   2K    -   3K  
+3859; 1T    o   1M    o   2T    o   2K    -   3SA 
 3033; 1T    o   1M    o   2K    o   2SA 
-3301; 1T    o   1M    o   2K    o   2SA   -   3T  
-3307; 1T    o   1M    o   2K    o   2SA   -   3K  
-3313; 1T    o   1M    o   2K    o   2SA   -   3SA 
-3311; 1T    o   1M    o   2K    o   2SA   -   3M  
+3601; 1T    o   1M    o   2K    o   2SA   -   3T  
+3607; 1T    o   1M    o   2K    o   2SA   -   3K  
+3613; 1T    o   1M    o   2K    o   2SA   -   3SA 
+3611; 1T    o   1M    o   2K    o   2SA   -   3M  
 3018; 1T    o   1M    o   2K    o   2M  
 3023; 1T    o   1M    o   2K    o   2M  
-3468; 1T    o   1M    o   2K    o   2E    -   2SA 
-3467; 1T    o   1M    o   2K    o   2E    -   3SA 
+3768; 1T    o   1M    o   2K    o   2E    -   2SA 
+3767; 1T    o   1M    o   2K    o   2E    -   3SA 
 2981; 1T    o   1M    o   2K    o   3T  
 2989; 1T    o   1M    o   2K    o   3K  
 3011; 1T    o   1M    o   2K    o   3SA 
 2996; 1T    o   1M    o   2K    o   4T  
 3004; 1T    o   1M    o   2K    o   4K  
 3193; 1T    o   1M    o   3T    o   3K  
+5325; 1K    -    -    X    -   3T  
 2770; 1K    -   1C    -   1P    -   2T  
-3385; 1K    -   1C    -   1P    -   2T    -   2K  
-3483; 1K    -   1C    -   1P    -   2T    -   2K  
-3368; 1K    -   1C    -   1P    -   2T    -   2C  
-3421; 1K    -   1C    -   1P    -   2T    -   2P  
-3351; 1K    -   1C    -   1P    -   2T    -   3C  
+3685; 1K    -   1C    -   1P    -   2T    -   2K  
+3783; 1K    -   1C    -   1P    -   2T    -   2K  
+3668; 1K    -   1C    -   1P    -   2T    -   2C  
+3721; 1K    -   1C    -   1P    -   2T    -   2P  
+3651; 1K    -   1C    -   1P    -   2T    -   3C  
 2778; 1K    -   1C    -   2T    -   3P  
 2198; 1K    -   1C    -   2K  
+3592; 1K    -   1C    -   2SA   -   3T    -   3SA 
+3591; 1K    -   1C    -   2SA   -   3T    -   3E  
 2207; 1K    -   1C    -   3K  
+5271; 1K    -   1C   1P    -    -   2T  
+5307; 1K    -   1C   1P    -    -   2P  
 2295; 1K    -   1C   1P   2T  
 2325; 1K    -   1C   1P   2K  
 2303; 1K    -   1C   1P   3T  
 2338; 1K    -   1C   1P   3K  
 2070; 1K    -   1C   1P   4T  
+5272; 1K    -   1C   2T    -    -   2P  
 2326; 1K    -   1C   2T   2K  
 2339; 1K    -   1C   2T   3K  
-1051; 1K    -   1C   2K  
-1069; 1K    -   1C   2SA 
+1161; 1K    -   1C   2K  
+1384; 1K    -   1C   2K    -   2P   ou   3T  
+1456; 1K    -   1C   2K    -   3K  
+1420; 1K    -   1C   2K    -   3P   ou   4T  
+3403; 1K    -   1C   2K    -   4T    -   5T  
+1179; 1K    -   1C   2SA 
+1454; 1K    -   1C   2SA   -   3K  
+1382; 1K    -   1C   2SA   -   3E  
+3401; 1K    -   1C   2SA   -   4T    -   5T  
+1418; 1K    -   1C   2SA   -   4E  
 2302; 1K    -   1C   2m   2P  
 2918; 1K    -   1C    o   2T    -   2P  
-3427; 1K    -   1C    o   2T    -   2P    -   3T  
-3391; 1K    -   1C    o   2T    -   2P    -   3K  
-3489; 1K    -   1C    o   2T    -   2P    -   3K  
-3371; 1K    -   1C    o   2T    -   2P    -   3C  
-3354; 1K    -   1C    o   2T    -   2P    -   4C  
+3727; 1K    -   1C    o   2T    -   2P    -   3T  
+3691; 1K    -   1C    o   2T    -   2P    -   3K  
+3789; 1K    -   1C    o   2T    -   2P    -   3K  
+3671; 1K    -   1C    o   2T    -   2P    -   3C  
+3654; 1K    -   1C    o   2T    -   2P    -   4C  
 2777; 1K    -   1P    -   2T    -   3C  
 2199; 1K    -   1P    -   2K  
 2186; 1K    -   1P    -   2C  
+3595; 1K    -   1P    -   2SA   -   3T    -   3C  
+3596; 1K    -   1P    -   2SA   -   3T    -   3SA 
 2208; 1K    -   1P    -   3K  
-1053; 1K    -   1P   2K  
-1071; 1K    -   1P   2SA 
+1163; 1K    -   1P   2K  
+1396; 1K    -   1P   2K    -   2C   ou   3T  
+1468; 1K    -   1P   2K    -   3K  
+1432; 1K    -   1P   2K    -   3C   ou   4T  
+3407; 1K    -   1P   2K    -   4T    -   5T  
+1181; 1K    -   1P   2SA 
+1466; 1K    -   1P   2SA   -   3K  
+1394; 1K    -   1P   2SA   -   3E  
+3405; 1K    -   1P   2SA   -   4T    -   5T  
+1430; 1K    -   1P   2SA   -   4E  
+5309; 1K    -   1P   2E    -    -   3E  
 2164; 1K    -   1SA   -   2T  
 2188; 1K    -   1SA   -   2C  
 2189; 1K    -   1SA   -   2P  
 2128; 1K    -   1SA   -   2SA 
 2329; 1K    -   1SA  2T   2K  
-1083; 1K    -   1SA  2SA 
+1193; 1K    -   1SA  2SA 
+1470; 1K    -   1SA  2SA   -   3K  
+1398; 1K    -   1SA  2SA   -   3E  
+3409; 1K    -   1SA  2SA   -   4T    -   5T  
+1434; 1K    -   1SA  2SA   -   4E  
 2163; 1K    -   1M    -   2T  
+3590; 1K    -   1M    -   2SA   -   3T    -   3M  
 2068; 1K    -   1M    X   4T  
 2422; 1K    -   1M   2T    X  
 2909; 1K    -   1M    o   2T    -   2SA 
@@ -289,31 +488,91 @@ sense_id;sequence
 2187; 1K    -   2T    -   2M  
 2211; 1K    -   2T    -   3K  
 2132; 1K    -   2T    -   3SA 
-1055; 1K    -   2T   2K  
+1165; 1K    -   2T   2K  
+1373; 1K    -   2T   2K    -   2M  
+1445; 1K    -   2T   2K    -   3K  
+3450; 1K    -   2T   2K    -   3K    -   FC  
+3423; 1K    -   2T   2K    -   3K    -   4C  
+1409; 1K    -   2T   2K    -   3M  
+3398; 1K    -   2T   2K    -   3M    -   4M  
 2427; 1K    -   2T   2C    X  
 2429; 1K    -   2T   2C    X  
 2428; 1K    -   2T   2P    X  
 2430; 1K    -   2T   2P    X  
-1073; 1K    -   2T   2SA 
+1183; 1K    -   2T   2SA 
+1443; 1K    -   2T   2SA   -   3K  
+3448; 1K    -   2T   2SA   -   3K    -   FC  
+3421; 1K    -   2T   2SA   -   3K    -   4C  
+1371; 1K    -   2T   2SA   -   3M  
+1407; 1K    -   2T   2SA   -   4M  
+5287; 1K    -   2T   2M    -    -    X  
+5296; 1K    -   2T   2M    -    -    X    -   2SA 
+5302; 1K    -   2T   2M    -    -    X    -   2G   ou   3G  
+5310; 1K    -   2T   2M    -    -   3M  
  236; 1K    -   2K  
 2190; 1K    -   2SA   -   3T  
  228; 1K    -   3T  
  237; 1K    -   3K  
+3349; 1K    X    -   2T    o   2K  
+3490; 1K    X    -   2T    o   2K    -   2M  
+3500; 1K    X    -   2T    o   2K    -   3T  
+3343; 1K    X    -   2T    o   2SA 
+3323; 1K    X    -   2T    o   2M  
+3311; 1K    X    -   2T    o   3T  
+3331; 1K    X    -   2T    o   3M  
+3317; 1K    X    -   2T    o   4T  
+3358; 1K    X    -   2C    -   2P  
+3359; 1K    X    -   2P    -   3C  
+3355; 1K    X    -   2M    -   2SA 
+3360; 1K    X    -   2M    -   3T  
+ 950; 1K    X   1SA   X  
  276; 1K    X   2T  
+ 928; 1K    X   2T   2M  
+ 939; 1K    X   2T   3T  
+3255; 1K   1C    -   2K    -   3T  
+ 566; 1K   1C    -   2P  
+ 565; 1K   1C    -   3T  
+ 785; 1K   1C    X   XX  
 2371; 1K   1C    X   1P   2K  
 2356; 1K   1C    X   2m   2P  
 2242; 1K   1C   1P    -   2T  
 2265; 1K   1C   1P    -   2K  
 2275; 1K   1C   1P    -   3K  
 2072; 1K   1C   1P    -   4T   4T  
+ 738; 1K   1C   1P    X  
+ 719; 1K   1C   1P   1SA 
+ 723; 1K   1C   1P   2T  
+ 620; 1K   1C   1P   2K  
 2077; 1K   1C   1P   2C   4T  
+ 710; 1K   1C   1P   2SA 
+ 652; 1K   1C   1P   3T  
+ 690; 1K   1C   1P   4K  
 2254; 1K   1C   1SA   -   2P  
+ 779; 1K   1C   1SA   X  
+ 773; 1K   1C   1SA  2K  
+ 651; 1K   1C   2T   3P  
+ 649; 1K   1C   2K   3P  
+ 650; 1K   1C   2K   4T  
+3256; 1K   1P    -   2K    -   3T  
+ 567; 1K   1P    -   3T  
+ 568; 1K   1P    -   3C  
  377; 1K   1P    X    -   2T  
  379; 1K   1P    X    -   3T  
+ 786; 1K   1P    X   XX  
 2365; 1K   1P    X   2T   2C  
 2253; 1K   1P   1SA   -   2C  
+ 780; 1K   1P   1SA   X  
+ 774; 1K   1P   1SA  2K  
+ 656; 1K   1P   2T   3C  
+ 654; 1K   1P   2K   3C  
+ 653; 1K   1P   2K   4T  
+ 655; 1K   1P   2C   4T  
  389; 1K   1SA  2K  
+ 593; 1K   1M    -   2T  
+3277; 1K   1M    -   2K    -   3K  
+ 585; 1K   1M    -   4K  
 2372; 1K   1M    X   2T   2K  
+ 795; 1K   1M    X   2K  
 2357; 1K   1M    X   2M   3T  
 2381; 1K   1M    X   2M   3K  
 2243; 1K   1M   1SA   -   2T  
@@ -323,9 +582,31 @@ sense_id;sequence
 2240; 1K   1M   2T    -   2SA 
 2289; 1K   1M   2T    -   2M  
 2279; 1K   1M   2T    -   3K  
+ 621; 1K   1M   2T   2K  
+ 756; 1K   1M   2T   3T  
+ 631; 1K   1M   2T   3K  
+ 764; 1K   1M   2K   3K  
 2255; 1K   1M   2SA   -   3T  
+ 744; 1K   1M   2m    X  
+ 728; 1K   1M   2m   2M  
+ 711; 1K   1M   2E   2SA 
+ 691; 1K   1M   2E   4K  
  346; 1K   1E   2K  
  347; 1K   1E   3K  
+5259; 1K   2T    -    -    X    -   2K  
+5262; 1K   2T    -    -   2K  
+ 548; 1K   2T    -   2K  
+3241; 1K   2T    -   2K    -   2SA 
+3248; 1K   2T    -   2K    -   2M  
+3234; 1K   2T    -   2K    -   3T  
+3276; 1K   2T    -   2K    -   3K  
+3270; 1K   2T    -   2K    -   3SA 
+3263; 1K   2T    -   2K    -   4T  
+ 598; 1K   2T    -   2M  
+ 555; 1K   2T    -   3K  
+ 571; 1K   2T    -   3C  
+ 572; 1K   2T    -   3P  
+ 586; 1K   2T    -   4K  
  358; 1K   2T    X  
  368; 1K   2T    X    -   2K  
  359; 1K   2T    X    -   2C  
@@ -337,13 +618,28 @@ sense_id;sequence
  362; 1K   2T    X    -   3P  
  367; 1K   2T    X    -   3SA 
  364; 1K   2T    X    -   4T  
+ 788; 1K   2T    X   XX  
+ 797; 1K   2T    X   2K  
 2382; 1K   2T    X   2M   3K  
 2383; 1K   2T    X   3T   3K  
  363; 1K   2T    X    o   4C  
  356; 1K   2T   2K  
+ 745; 1K   2T   2K    X  
+ 729; 1K   2T   2K   2M  
+ 766; 1K   2T   2K   3K  
+ 661; 1K   2T   2K   3C  
+ 662; 1K   2T   2K   3P  
+ 746; 1K   2T   2C    X  
+ 730; 1K   2T   2C   2P  
+ 757; 1K   2T   2C   3C  
+ 663; 1K   2T   2C   3P  
+ 761; 1K   2T   2P   3P  
+ 664; 1K   2T   2P   4C  
  354; 1K   2T   2SA 
  352; 1K   2T   2M  
 2291; 1K   2T   2M    -   3T  
+ 712; 1K   2T   2E   2SA 
+ 623; 1K   2T   2E   3K  
  357; 1K   2T   3K  
  355; 1K   2T   3SA 
  353; 1K   2T   3E  
@@ -352,25 +648,44 @@ sense_id;sequence
  431; 1K   2K   2P  
 2256; 1K   2K   2SA   -   3T  
  404; 1K   2K   3T  
+ 805; 1K   2C   2P   3K  
 1015; 1K   2SA 
+ 910; 1K   2SA   -   3K  
+3296; 1K   2SA   -   3K    -   4C  
+ 893; 1K   2SA   -   3E  
+3285; 1K   2SA   -   4T    -   5T  
+ 901; 1K   2SA   -   4E  
  412; 1K   2SA  2SA 
  429; 1K   2SA  3T  
  433; 1K   2SA  3C  
  420; 1K   2SA  3SA 
+ 692; 1K   2m   2E   4K  
+ 807; 1K   2M    -   3K  
 2257; 1K   2M   2SA   -   3T  
+ 820; 1K   3T    -   FC  
+ 826; 1K   3T    -   3SA 
+ 815; 1K   3T    -   3M  
+ 810; 1K   3T    -   4T  
+ 832; 1K   3T    -   4SA 
+ 845; 1K   3T   3C    X  
+ 848; 1K   3T   3P    X  
+ 854; 1K   4T    -   4SA 
+ 851; 1K   4T    -   4M  
+ 866; 1K   4T   4C    X  
+ 869; 1K   4T   4P    X  
 2171; 1K    o   1C    -   2P  
 3077; 1K    o   1C    -   2P    -   3T  
-3412; 1K    o   1C    -   2P    -   3T    -   3K  
-3510; 1K    o   1C    -   2P    -   3T    -   3K  
-3380; 1K    o   1C    -   2P    -   3T    -   3C  
-3448; 1K    o   1C    -   2P    -   3T    -   3P  
-3363; 1K    o   1C    -   2P    -   3T    -   4C  
+3712; 1K    o   1C    -   2P    -   3T    -   3K  
+3810; 1K    o   1C    -   2P    -   3T    -   3K  
+3680; 1K    o   1C    -   2P    -   3T    -   3C  
+3748; 1K    o   1C    -   2P    -   3T    -   3P  
+3663; 1K    o   1C    -   2P    -   3T    -   4C  
 3078; 1K    o   1C    -   3T    -   3P  
-3449; 1K    o   1C    -   3T    -   3P    -   4T  
-3413; 1K    o   1C    -   3T    -   3P    -   4K  
-3511; 1K    o   1C    -   3T    -   3P    -   4K  
-3381; 1K    o   1C    -   3T    -   3P    -   4C  
-3364; 1K    o   1C    -   3T    -   3P    -   5C  
+3749; 1K    o   1C    -   3T    -   3P    -   4T  
+3713; 1K    o   1C    -   3T    -   3P    -   4K  
+3811; 1K    o   1C    -   3T    -   3P    -   4K  
+3681; 1K    o   1C    -   3T    -   3P    -   4C  
+3664; 1K    o   1C    -   3T    -   3P    -   5C  
 3149; 1K    o   1C    o   2K    o   3T  
 3166; 1K    o   1C    o   2K    o   4T  
 3131; 1K    o   1C    o   2m    o   3SA 
@@ -379,37 +694,37 @@ sense_id;sequence
 3181; 1K    o   1C    o   3K    o   4K  
 2740; 1K    o   1P    -   1SA   -   4C  
 3079; 1K    o   1P    -   3T    -   3C  
-3382; 1K    o   1P    -   3T    -   3C    -   3P  
-3450; 1K    o   1P    -   3T    -   3C    -   4T  
-3414; 1K    o   1P    -   3T    -   3C    -   4K  
-3512; 1K    o   1P    -   3T    -   3C    -   4K  
-3365; 1K    o   1P    -   3T    -   3C    -   4P  
+3682; 1K    o   1P    -   3T    -   3C    -   3P  
+3750; 1K    o   1P    -   3T    -   3C    -   4T  
+3714; 1K    o   1P    -   3T    -   3C    -   4K  
+3812; 1K    o   1P    -   3T    -   3C    -   4K  
+3665; 1K    o   1P    -   3T    -   3C    -   4P  
 2327; 1K    o   1P   2T   2K  
 2314; 1K    o   1P   2T   2C  
 2340; 1K    o   1P   2m   3K  
 2919; 1K    o   1P    o   2T    -   2C  
-3372; 1K    o   1P    o   2T    -   2C    -   2P  
-3428; 1K    o   1P    o   2T    -   2C    -   3T  
-3392; 1K    o   1P    o   2T    -   2C    -   3K  
-3490; 1K    o   1P    o   2T    -   2C    -   3K  
-3355; 1K    o   1P    o   2T    -   2C    -   3P  
+3672; 1K    o   1P    o   2T    -   2C    -   2P  
+3728; 1K    o   1P    o   2T    -   2C    -   3T  
+3692; 1K    o   1P    o   2T    -   2C    -   3K  
+3790; 1K    o   1P    o   2T    -   2C    -   3K  
+3655; 1K    o   1P    o   2T    -   2C    -   3P  
 3147; 1K    o   1P    o   2K    o   2C  
-3553; 1K    o   1P    o   2K    o   2C    -   2P  
-3558; 1K    o   1P    o   2K    o   2C    -   2SA 
-3567; 1K    o   1P    o   2K    o   2C    -   3T  
-3564; 1K    o   1P    o   2K    o   2C    -   3K  
-3562; 1K    o   1P    o   2K    o   2C    -   3C  
-3556; 1K    o   1P    o   2K    o   2C    -   3P  
-3560; 1K    o   1P    o   2K    o   2C    -   3SA 
+3853; 1K    o   1P    o   2K    o   2C    -   2P  
+3858; 1K    o   1P    o   2K    o   2C    -   2SA 
+3867; 1K    o   1P    o   2K    o   2C    -   3T  
+3864; 1K    o   1P    o   2K    o   2C    -   3K  
+3862; 1K    o   1P    o   2K    o   2C    -   3C  
+3856; 1K    o   1P    o   2K    o   2C    -   3P  
+3860; 1K    o   1P    o   2K    o   2C    -   3SA 
 3167; 1K    o   1P    o   2K    o   4T  
-3320; 1K    o   1P    o   2C    o   2SA   -   3T  
-3303; 1K    o   1P    o   2C    o   2SA   -   3K  
+3620; 1K    o   1P    o   2C    o   2SA   -   3T  
+3603; 1K    o   1P    o   2C    o   2SA   -   3K  
 3028; 1K    o   1P    o   2C    o   3T  
-3404; 1K    o   1P    o   2C    o   3T    -   3K  
-3502; 1K    o   1P    o   2C    o   3T    -   3K  
-3440; 1K    o   1P    o   2C    o   3T    -   3C  
-3378; 1K    o   1P    o   2C    o   3T    -   3P  
-3361; 1K    o   1P    o   2C    o   3T    -   4P  
+3704; 1K    o   1P    o   2C    o   3T    -   3K  
+3802; 1K    o   1P    o   2C    o   3T    -   3K  
+3740; 1K    o   1P    o   2C    o   3T    -   3C  
+3678; 1K    o   1P    o   2C    o   3T    -   3P  
+3661; 1K    o   1P    o   2C    o   3T    -   4P  
 2983; 1K    o   1P    o   2C    o   3K  
 2998; 1K    o   1P    o   2C    o   4K  
 3132; 1K    o   1P    o   2m    o   3SA 
@@ -435,7 +750,7 @@ sense_id;sequence
 3039; 1K    o   1M    -   3T    -   3K  
 3062; 1K    o   1M    -   3T    -   3SA 
 3070; 1K    o   1M    -   3T    -   3M  
-3477; 1K    o   1M    -   3T    -   3E    -   3SA 
+3777; 1K    o   1M    -   3T    -   3E    -   3SA 
 3052; 1K    o   1M    -   3T    -   4T  
 3048; 1K    o   1M    -   3T    -   4K  
 2304; 1K    o   1M   2E   3T  
@@ -456,22 +771,22 @@ sense_id;sequence
 3136; 1K    o   2T    o   2K    o   3SA 
 3113; 1K    o   2T    o   2K    o   4K  
 3029; 1K    o   2T    o   2C    o   2P  
-3405; 1K    o   2T    o   2C    o   2P    -   3K  
-3503; 1K    o   2T    o   2C    o   2P    -   3K  
-3441; 1K    o   2T    o   2C    o   2P    -   3C  
-3470; 1K    o   2T    o   2C    o   2P    -   3SA 
-3304; 1K    o   2T    o   2C    o   2SA   -   3K  
-3321; 1K    o   2T    o   2C    o   2SA   -   3P  
-3305; 1K    o   2T    o   2P    o   2SA   -   3K  
-3322; 1K    o   2T    o   2P    o   2SA   -   3C  
+3705; 1K    o   2T    o   2C    o   2P    -   3K  
+3803; 1K    o   2T    o   2C    o   2P    -   3K  
+3741; 1K    o   2T    o   2C    o   2P    -   3C  
+3770; 1K    o   2T    o   2C    o   2P    -   3SA 
+3604; 1K    o   2T    o   2C    o   2SA   -   3K  
+3621; 1K    o   2T    o   2C    o   2SA   -   3P  
+3605; 1K    o   2T    o   2P    o   2SA   -   3K  
+3622; 1K    o   2T    o   2P    o   2SA   -   3C  
 3030; 1K    o   2T    o   2P    o   3C  
-3442; 1K    o   2T    o   2P    o   3C    -   3P  
-3471; 1K    o   2T    o   2P    o   3C    -   3SA 
-3406; 1K    o   2T    o   2P    o   3C    -   4K  
-3504; 1K    o   2T    o   2P    o   3C    -   4K  
+3742; 1K    o   2T    o   2P    o   3C    -   3P  
+3771; 1K    o   2T    o   2P    o   3C    -   3SA 
+3706; 1K    o   2T    o   2P    o   3C    -   4K  
+3804; 1K    o   2T    o   2P    o   3C    -   4K  
 3035; 1K    o   2T    o   2M    o   2SA 
-3315; 1K    o   2T    o   2M    o   2SA   -   3SA 
-3309; 1K    o   2T    o   2M    o   2SA   -   3M  
+3615; 1K    o   2T    o   2M    o   2SA   -   3SA 
+3609; 1K    o   2T    o   2M    o   2SA   -   3M  
 3020; 1K    o   2T    o   2M    o   3T  
 2987; 1K    o   2T    o   2M    o   3K  
 3016; 1K    o   2T    o   2M    o   3SA 
@@ -484,6 +799,8 @@ sense_id;sequence
 3188; 1K    o   2T    o   3K    o   4T  
 3179; 1K    o   2T    o   3K    o   4K  
 2029; 1K    o   2K    o   3T  
+5323; 1C    -    -    X    -   2P  
+5315; 1C    -    -   2C  
  207; 1C    -   1P  
 2123; 1C    -   1P    -   1SA 
 2733; 1C    -   1P    -   1SA   -   3C  
@@ -498,25 +815,48 @@ sense_id;sequence
 3212; 1C    -   1P    -   3C    -   4T  
 3214; 1C    -   1P    -   3C    -   4K  
 3199; 1C    -   1P    -   3C    -   4C  
+1481; 1C    -   1P    X    -   1SA 
+1357; 1C    -   1P   1SA   -   2T  
+1358; 1C    -   1P   1SA   -   2P  
+5273; 1C    -   1P   2T    -    -   2K  
 2296; 1C    -   1P   2T   2K  
 2075; 1C    -   1P   2T   3K  
+5274; 1C    -   1P   2K    -    -   3T  
 2076; 1C    -   1P   2K   4T  
-1054; 1C    -   1P   2C  
-1072; 1C    -   1P   2SA 
+1164; 1C    -   1P   2C  
+1474; 1C    -   1P   2C    -   3C  
+3467; 1C    -   1P   2C    -   3C    -   FC  
+3443; 1C    -   1P   2C    -   3C    -   5T  
+1402; 1C    -   1P   2C    -   3m  
+1438; 1C    -   1P   2C    -   4m  
+3416; 1C    -   1P   2C    -   4m    -   5m  
+1182; 1C    -   1P   2SA 
+1472; 1C    -   1P   2SA   -   3C  
+3465; 1C    -   1P   2SA   -   3C    -   FC  
+3441; 1C    -   1P   2SA   -   3C    -   5T  
+1400; 1C    -   1P   2SA   -   3m  
+1436; 1C    -   1P   2SA   -   4m  
+3414; 1C    -   1P   2SA   -   4m    -   5m  
+5288; 1C    -   1P   2m    -    -    X  
+5292; 1C    -   1P   2m    -    -    X    -   2P  
+5297; 1C    -   1P   2m    -    -    X    -   2SA 
+5303; 1C    -   1P   2m    -    -    X    -   2G   ou   3G  
+5275; 1C    -   1P   2m    -    -   2C  
+5277; 1C    -   1P   2m    -    -   3C  
 2328; 1C    -   1P   2m   2C  
 2341; 1C    -   1P   2m   3C  
 2920; 1C    -   1P    o   2T    o   2K  
-3393; 1C    -   1P    o   2T    o   2K    -   2C  
-3491; 1C    -   1P    o   2T    o   2K    -   2C  
-3373; 1C    -   1P    o   2T    o   2K    -   2P  
-3429; 1C    -   1P    o   2T    o   2K    -   3T  
-3356; 1C    -   1P    o   2T    o   2K    -   3P  
+3693; 1C    -   1P    o   2T    o   2K    -   2C  
+3791; 1C    -   1P    o   2T    o   2K    -   2C  
+3673; 1C    -   1P    o   2T    o   2K    -   2P  
+3729; 1C    -   1P    o   2T    o   2K    -   3T  
+3656; 1C    -   1P    o   2T    o   2K    -   3P  
 2921; 1C    -   1P    o   2K    o   3T  
-3430; 1C    -   1P    o   2K    o   3T    -   3K  
-3394; 1C    -   1P    o   2K    o   3T    -   3C  
-3492; 1C    -   1P    o   2K    o   3T    -   3C  
-3374; 1C    -   1P    o   2K    o   3T    -   3P  
-3357; 1C    -   1P    o   2K    o   3T    -   4P  
+3730; 1C    -   1P    o   2K    o   3T    -   3K  
+3694; 1C    -   1P    o   2K    o   3T    -   3C  
+3792; 1C    -   1P    o   2K    o   3T    -   3C  
+3674; 1C    -   1P    o   2K    o   3T    -   3P  
+3657; 1C    -   1P    o   2K    o   3T    -   4P  
 2902; 1C    -   1P    o   2m    o    -  
 2904; 1C    -   1P    o   2m    o   2C  
 2906; 1C    -   1P    o   2m    o   2P  
@@ -528,38 +868,126 @@ sense_id;sequence
 2914; 1C    -   1P    o   2m    o   4C  
 2191; 1C    -   1SA   -   2P  
 2166; 1C    -   1SA   -   2m  
-1081; 1C    -   1SA  2C  
+1191; 1C    -   1SA  2C  
+1381; 1C    -   1SA  2C    -   2P   ou   3T  
+1453; 1C    -   1SA  2C    -   3C  
+3432; 1C    -   1SA  2C    -   3C    -   4P  
+3395; 1C    -   1SA  2C    -   3P    -   4P  
+1417; 1C    -   1SA  2C    -   3P   ou   4T  
 2425; 1C    -   1SA  2P    X  
+1476; 1C    -   1SA  2SA   -   3C  
 2943; 1C    -   2T    -   2K    o   2P  
-3431; 1C    -   2T    -   2K    o   2P    -   3K  
-3395; 1C    -   2T    -   2K    o   2P    -   3C  
-3493; 1C    -   2T    -   2K    o   2P    -   3C  
+3731; 1C    -   2T    -   2K    o   2P    -   3K  
+3695; 1C    -   2T    -   2K    o   2P    -   3C  
+3793; 1C    -   2T    -   2K    o   2P    -   3C  
 2945; 1C    -   2T    -   2K    o   3P  
-3433; 1C    -   2T    -   2K    o   3P    -   4K  
-3397; 1C    -   2T    -   2K    o   3P    -   4C  
-3495; 1C    -   2T    -   2K    o   3P    -   4C  
+3733; 1C    -   2T    -   2K    o   3P    -   4K  
+3697; 1C    -   2T    -   2K    o   3P    -   4C  
+3795; 1C    -   2T    -   2K    o   3P    -   4C  
 3215; 1C    -   2T    -   3C    -   4K  
-1056; 1C    -   2T   2C  
-1074; 1C    -   2T   2SA 
+5276; 1C    -   2T   2K    -    -   2C  
+5278; 1C    -   2T   2K    -    -   3C  
+1166; 1C    -   2T   2C  
+1379; 1C    -   2T   2C    -   2P   ou   3K  
+1451; 1C    -   2T   2C    -   3C  
+3394; 1C    -   2T   2C    -   3P    -   4P  
+1415; 1C    -   2T   2C    -   3P   ou   4K  
+3412; 1C    -   2T   2C    -   4K    -   5K  
+1184; 1C    -   2T   2SA 
+1449; 1C    -   2T   2SA   -   3C  
+1377; 1C    -   2T   2SA   -   3E  
+1413; 1C    -   2T   2SA   -   4E  
 2193; 1C    -   2K    -   3T  
 3213; 1C    -   2K    -   3C    -   4T  
-1057; 1C    -   2K   2C  
-1075; 1C    -   2K   2SA 
+1167; 1C    -   2K   2C  
+1385; 1C    -   2K   2C    -   2P   ou   3T  
+1457; 1C    -   2K   2C    -   3C  
+3396; 1C    -   2K   2C    -   3P    -   4P  
+1421; 1C    -   2K   2C    -   3P   ou   4T  
+3404; 1C    -   2K   2C    -   4T    -   5T  
+5279; 1C    -   2K   2P    -    -   3C  
+1185; 1C    -   2K   2SA 
+1455; 1C    -   2K   2SA   -   3C  
+1383; 1C    -   2K   2SA   -   3E  
+3402; 1C    -   2K   2SA   -   4T    -   5T  
+1419; 1C    -   2K   2SA   -   4E  
+5280; 1C    -   2K   3T    -    -   3C  
+5336; 1C    -   2C    -    -    X    -   2P  
+5330; 1C    -   2C    -    -   2P  
+3478; 1C    -   2C    X    -   3P    o   4P  
 2008; 1C    -   2C   2P    X  
-1089; 1C    -   2C   3C  
-1091; 1C    -   2C   4T  
+1199; 1C    -   2C   3C  
+1386; 1C    -   2C   3C    -   3P   ou   4T  
+1458; 1C    -   2C   3C    -   4C  
+3434; 1C    -   2C   3C    -   4C    -   4P  
+1422; 1C    -   2C   3C    -   4P   ou   5T  
+1201; 1C    -   2C   4T  
+1452; 1C    -   2C   4T    -   4C  
+3430; 1C    -   2C   4T    -   4C    -   4P  
+1416; 1C    -   2C   4T    -   4P   ou   5T  
+1380; 1C    -   2C   4T    -   4E  
 2704; 1C    -   2SA   -   3T    -   3P  
-3259; 1C    -   2SA   -   3m    -   3SA 
-3258; 1C    -   2SA   -   3m    -   3E  
 2192; 1C    -   2m    -   2P  
 2758; 1C    -   2m    -   2SA   -   3C  
 3211; 1C    -   2m    -   3C    -   3P  
+3456; 1C    -   2m   2C    -   3C    -   FC  
+3429; 1C    -   2m   2C    -   3C    -   4P  
+3454; 1C    -   2m   2SA   -   3C    -   FC  
+3427; 1C    -   2m   2SA   -   3C    -   4P  
  212; 1C    -   3P  
-1044; 1C    -    o   2P  
+3338; 1C    X    -   1P    -   1SA 
+3339; 1C    X    -   1P    -   1SA 
+3353; 1C    X    -   1P    -   2C  
+3504; 1C    X    -   1P    -   2C    -   2P  
+3496; 1C    X    -   1P    -   2C    -   3m  
+3327; 1C    X    -   1P    -   2m  
+3335; 1C    X    -   1P    -   3m  
+3348; 1C    X    -   1P    o   2C  
+3499; 1C    X    -   1P    o   2C    -   2P  
+3489; 1C    X    -   1P    o   2C    -   3m  
+3310; 1C    X    -   1P    o   2P  
+3313; 1C    X    -   1P    o   2P  
+3342; 1C    X    -   1P    o   2SA 
+3345; 1C    X    -   1P    o   2SA 
+3322; 1C    X    -   1P    o   2m  
+3316; 1C    X    -   1P    o   3P  
+3319; 1C    X    -   1P    o   3P  
+3330; 1C    X    -   1P    o   3m  
+3491; 1C    X    -   2T    -   2C    -   2P  
+3356; 1C    X    -   2P    -   2SA 
+3361; 1C    X    -   2P    -   3m  
+3351; 1C    X    -   2m    -   2C  
+3494; 1C    X    -   2m    -   2C    -   2P  
+3325; 1C    X    -   2m    -   2P  
+3333; 1C    X    -   2m    -   3P  
  272; 1C    X   1P  
+ 951; 1C    X   1SA   X  
+3366; 1C    X   2C    X    -   2P  
+3380; 1C    X   2C    X    -   2SA 
+3374; 1C    X   2C    X    -   3P  
+ 929; 1C    X   2m   2C  
  269; 1C    X   3P  
+5258; 1C   1P    -    -    X    -   2C  
+5263; 1C   1P    -    -   2C  
+ 605; 1C   1P    -   1SA 
+ 547; 1C   1P    -   2C  
+3233; 1C   1P    -   2C    -   2P  
+3240; 1C   1P    -   2C    -   2SA 
+3279; 1C   1P    -   2C    -   3C  
+3262; 1C   1P    -   2C    -   3P  
+3269; 1C   1P    -   2C    -   3SA 
+3257; 1C   1P    -   2C    -   3m  
+ 611; 1C   1P    -   2SA 
+ 596; 1C   1P    -   2m  
+ 569; 1C   1P    -   3T  
+ 570; 1C   1P    -   3K  
+ 554; 1C   1P    -   3C  
+ 614; 1C   1P    -   3SA 
+ 587; 1C   1P    -   4C  
  323; 1C   1P    X  
+ 787; 1C   1P    X   XX  
 2353; 1C   1P    X   2T   2K  
+ 796; 1C   1P    X   2C  
 2384; 1C   1P    X   2P   3C  
 2373; 1C   1P    X   2m   2C  
 2385; 1C   1P    X   2m   3C  
@@ -569,10 +997,23 @@ sense_id;sequence
 2268; 1C   1P   1SA   -   2C  
 2236; 1C   1P   1SA   -   2SA 
 2278; 1C   1P   1SA   -   3C  
+ 781; 1C   1P   1SA   X  
+ 775; 1C   1P   1SA  2C  
 2262; 1C   1P   2T    -   2K  
+ 747; 1C   1P   2T    X  
+ 731; 1C   1P   2T   2K  
+ 758; 1C   1P   2T   3T  
+ 657; 1C   1P   2T   3K  
+ 689; 1C   1P   2T   4T  
 2259; 1C   1P   2K    -   3T  
+ 760; 1C   1P   2K   3K  
+ 658; 1C   1P   2K   4T  
+ 694; 1C   1P   2K   4K  
  311; 1C   1P   2C  
 2010; 1C   1P   2C   2P    X  
+ 765; 1C   1P   2C   3C  
+ 659; 1C   1P   2C   4T  
+ 660; 1C   1P   2C   4K  
  318; 1C   1P   2P  
  312; 1C   1P   2SA 
  319; 1C   1P   2m  
@@ -581,8 +1022,12 @@ sense_id;sequence
 2285; 1C   1P   2m    -   2P  
 2237; 1C   1P   2m    -   2SA 
 2280; 1C   1P   2m    -   3C  
+ 622; 1C   1P   2m   2C  
 2090; 1C   1P   2m   2P   3P  
+ 632; 1C   1P   2m   3C  
 2085; 1C   1P   2m    o   3m  
+ 713; 1C   1P   2E   2SA 
+ 696; 1C   1P   2E   4C  
  313; 1C   1P   3C  
  316; 1C   1P   3P  
  314; 1C   1P   3SA 
@@ -590,7 +1035,18 @@ sense_id;sequence
  315; 1C   1P   4C  
  317; 1C   1P   4m  
  321; 1C   1P   4m  
+ 532; 1C   1P    o   2P  
+ 538; 1C   1P    o   3P  
+ 544; 1C   1P    o   4P  
+ 873; 1C   1SA   -   2T  
+ 872; 1C   1SA   -   2K  
+ 874; 1C   1SA   -   2C  
+ 875; 1C   1SA   -   2P  
 2367; 1C   1E    X   2E   3T  
+3249; 1C   2T    -   2C    -   2P  
+ 574; 1C   2T    -   3P  
+ 573; 1C   2T    -   4K  
+ 789; 1C   2T    X   XX  
 2374; 1C   2T    X   2K   2C  
 2366; 1C   2T    X   2K   2P  
 2358; 1C   2T    X   2P   3K  
@@ -599,39 +1055,90 @@ sense_id;sequence
 2271; 1C   2T   2K    -   2C  
 2258; 1C   2T   2K    -   2P  
 2286; 1C   2T   2K    -   3T  
+ 748; 1C   2T   2K    X  
+ 624; 1C   2T   2K   2C  
+ 732; 1C   2T   2K   2P  
+ 633; 1C   2T   2K   3C  
+ 668; 1C   2T   2K   3P  
+ 749; 1C   2T   2C    X  
+ 733; 1C   2T   2C   2P  
+ 666; 1C   2T   2C   3P  
+ 665; 1C   2T   2C   4K  
+ 667; 1C   2T   2P   4K  
+3251; 1C   2K    -   2C    -   2P  
+ 578; 1C   2K    -   3P  
+ 577; 1C   2K    -   4T  
+ 791; 1C   2K    X   XX  
 2388; 1C   2K    X   3T   3C  
+ 750; 1C   2K   2C    X  
+ 734; 1C   2K   2C   2P  
+ 674; 1C   2K   2C   3P  
+ 673; 1C   2K   2C   4T  
 2292; 1C   2K   2P    -   3K  
+ 675; 1C   2K   2P   4T  
+ 625; 1C   2K   2E   3C  
+ 676; 1C   2K   3T   4P  
 1008; 1C   2C  
+ 895; 1C   2C    -   2P   ou   3T  
+3299; 1C   2C    -   2SA   -   4P  
+3283; 1C   2C    -   3P    -   4P  
+ 903; 1C   2C    -   3P   ou   4T  
  413; 1C   2C   2SA 
  434; 1C   2C   3T  
  421; 1C   2C   3SA 
 1004; 1C   2P  
+ 802; 1C   2P    -   2SA 
+ 808; 1C   2P    -   3C  
+ 911; 1C   2SA   -   3C  
+3297; 1C   2SA   -   3C    -   5T  
  445; 1C   2SA   X  
  438; 1C   2SA  3K  
  408; 1C   2SA  3P  
+5264; 1C   2m    -    -   2C  
+3278; 1C   2m    -   2C    -   3C  
+ 600; 1C   2m    -   2P  
+ 588; 1C   2m    -   4C  
+ 798; 1C   2m    X   2C  
 2386; 1C   2m    X   3m   3C  
 2009; 1C   2m   2C   2P    X  
+ 767; 1C   2m   2C   3C  
 2238; 1C   2m   2P    -   2SA 
+ 714; 1C   2m   2E   2SA 
+ 697; 1C   2m   2E   4C  
  332; 1C   2E   3P  
 1011; 1C   3T  
+3301; 1C   3T    -   3C    -   4P  
+ 897; 1C   3T    -   3E  
+ 905; 1C   3T    -   4E  
  415; 1C   3T   2SA 
  436; 1C   3T   3P  
  423; 1C   3T   3SA 
+ 821; 1C   3P    -   FC  
+ 827; 1C   3P    -   3SA 
+ 811; 1C   3P    -   4P  
+ 833; 1C   3P    -   4SA 
+ 837; 1C   3P   4T    X  
+ 842; 1C   3P   4K    X  
+ 849; 1C   3m   3P    X  
+ 856; 1C   4P    -   4SA 
+ 859; 1C   4P   5T    X  
+ 863; 1C   4P   5K    X  
+ 871; 1C   4m   4P    X  
 2174; 1C    o   1P    -   3T  
 3080; 1C    o   1P    -   3T    -   3K  
-3415; 1C    o   1P    -   3T    -   3K    -   3C  
-3513; 1C    o   1P    -   3T    -   3K    -   3C  
-3383; 1C    o   1P    -   3T    -   3K    -   3P  
-3478; 1C    o   1P    -   3T    -   3K    -   3SA 
-3451; 1C    o   1P    -   3T    -   3K    -   4T  
-3366; 1C    o   1P    -   3T    -   3K    -   4P  
+3715; 1C    o   1P    -   3T    -   3K    -   3C  
+3813; 1C    o   1P    -   3T    -   3K    -   3C  
+3683; 1C    o   1P    -   3T    -   3K    -   3P  
+3778; 1C    o   1P    -   3T    -   3K    -   3SA 
+3751; 1C    o   1P    -   3T    -   3K    -   4T  
+3666; 1C    o   1P    -   3T    -   3K    -   4P  
 2175; 1C    o   1P    -   3K  
 3081; 1C    o   1P    -   3K    -   4T  
-3452; 1C    o   1P    -   3K    -   4T    -   4K  
-3416; 1C    o   1P    -   3K    -   4T    -   4C  
-3514; 1C    o   1P    -   3K    -   4T    -   4C  
-3384; 1C    o   1P    -   3K    -   4T    -   4P  
-3367; 1C    o   1P    -   3K    -   4T    -   5P  
+3752; 1C    o   1P    -   3K    -   4T    -   4K  
+3716; 1C    o   1P    -   3K    -   4T    -   4C  
+3814; 1C    o   1P    -   3K    -   4T    -   4C  
+3684; 1C    o   1P    -   3K    -   4T    -   4P  
+3667; 1C    o   1P    -   3K    -   4T    -   5P  
 3041; 1C    o   1P    -   3m    -   3C  
 3071; 1C    o   1P    -   3m    -   3P  
 3064; 1C    o   1P    -   3m    -   3SA 
@@ -648,9 +1155,9 @@ sense_id;sequence
 3208; 1C    o   1P    o   3C    o   3P  
 3203; 1C    o   1P    o   3C    o   3SA 
 2926; 1C    o   1SA   -   2T    -   2K  
-3251; 1C    o   1SA   -   2T    -   2K  
-3253; 1C    o   1SA   -   2T    -   2C  
-3255; 1C    o   1SA   -   2T    -   2P  
+3581; 1C    o   1SA   -   2T    -   2K  
+3583; 1C    o   1SA   -   2T    -   2C  
+3585; 1C    o   1SA   -   2T    -   2P  
 2929; 1C    o   1SA   -   2T    o   3K  
 2923; 1C    o   1SA   -   2m    o    -  
 2928; 1C    o   1SA   -   2m    o   2P  
@@ -669,28 +1176,28 @@ sense_id;sequence
 2925; 1C    o   1SA   o   2m    o   2C  
 2178; 1C    o   2T    -   3K  
 3082; 1C    o   2T    -   3K    -   3P  
-3453; 1C    o   2T    -   3K    -   3P    -   4K  
-3417; 1C    o   2T    -   3K    -   3P    -   4C  
-3515; 1C    o   2T    -   3K    -   3P    -   4C  
+3753; 1C    o   2T    -   3K    -   3P    -   4K  
+3717; 1C    o   2T    -   3K    -   3P    -   4C  
+3815; 1C    o   2T    -   3K    -   3P    -   4C  
 2333; 1C    o   2T   2K   2C  
 2319; 1C    o   2T   2K   2P  
 2305; 1C    o   2T   2P   3K  
 3152; 1C    o   2T    o   2C    o   3K  
 3172; 1C    o   2T    o   2C    o   4K  
-3323; 1C    o   2T    o   2P    o   2SA   -   3K  
+3623; 1C    o   2T    o   2P    o   2SA   -   3K  
 3021; 1C    o   2T    o   2P    o   3T  
 3031; 1C    o   2T    o   2P    o   3K  
-3407; 1C    o   2T    o   2P    o   3K    -   3C  
-3505; 1C    o   2T    o   2P    o   3K    -   3C  
-3443; 1C    o   2T    o   2P    o   3K    -   3P  
+3707; 1C    o   2T    o   2P    o   3K    -   3C  
+3805; 1C    o   2T    o   2P    o   3K    -   3C  
+3743; 1C    o   2T    o   2P    o   3K    -   3P  
 2320; 1C    o   2K   2P   3T  
 3153; 1C    o   2K    o   2C    o   3T  
 3170; 1C    o   2K    o   2C    o   4T  
-3324; 1C    o   2K    o   2P    o   2SA   -   3T  
+3624; 1C    o   2K    o   2P    o   2SA   -   3T  
 3032; 1C    o   2K    o   2P    o   3T  
-3408; 1C    o   2K    o   2P    o   3T    -   3C  
-3506; 1C    o   2K    o   2P    o   3T    -   3C  
-3444; 1C    o   2K    o   2P    o   3T    -   3P  
+3708; 1C    o   2K    o   2P    o   3T    -   3C  
+3806; 1C    o   2K    o   2P    o   3T    -   3C  
+3744; 1C    o   2K    o   2P    o   3T    -   3P  
 3022; 1C    o   2K    o   2P    o   3K  
 2005; 1C    o   2C    o   2P  
 2018; 1C    o   2SA   o   2P  
@@ -698,56 +1205,76 @@ sense_id;sequence
 3151; 1C    o   2m    o   2C    o   2P  
 3168; 1C    o   2m    o   2C    o   3P  
 3036; 1C    o   2m    o   2P    o   2SA 
-3306; 1C    o   2m    o   2P    o   2SA   -   3C  
-3310; 1C    o   2m    o   2P    o   2SA   -   3P  
-3316; 1C    o   2m    o   2P    o   2SA   -   3SA 
+3606; 1C    o   2m    o   2P    o   2SA   -   3C  
+3610; 1C    o   2m    o   2P    o   2SA   -   3P  
+3616; 1C    o   2m    o   2P    o   2SA   -   3SA 
 2988; 1C    o   2m    o   2P    o   3C  
 2995; 1C    o   2m    o   2P    o   3P  
 3017; 1C    o   2m    o   2P    o   3SA 
-3472; 1C    o   2m    o   2P    o   3E    -   3SA 
+3772; 1C    o   2m    o   2P    o   3E    -   3SA 
 3003; 1C    o   2m    o   2P    o   4C  
 3010; 1C    o   2m    o   2P    o   4P  
 2021; 1C    o   3C    o   3P  
-1059; 1P    -   1K   2P  
-1077; 1P    -   1K   2SA 
-3252; 1P    -   1SA   -   2T    -   2K  
-3254; 1P    -   1SA   -   2T    -   2C  
-3256; 1P    -   1SA   -   2T    -   2P  
+5316; 1P    -    -   2P  
+1169; 1P    -   1K   2P  
+1469; 1P    -   1K   2P    -   3P  
+1397; 1P    -   1K   2P    -   3E  
+3408; 1P    -   1K   2P    -   4T    -   5T  
+1433; 1P    -   1K   2P    -   4E  
+1187; 1P    -   1K   2SA 
+1467; 1P    -   1K   2SA   -   3P  
+1395; 1P    -   1K   2SA   -   3E  
+3406; 1P    -   1K   2SA   -   4T    -   5T  
+1431; 1P    -   1K   2SA   -   4E  
+3582; 1P    -   1SA   -   2T    -   2K  
+3584; 1P    -   1SA   -   2T    -   2C  
+3586; 1P    -   1SA   -   2T    -   2P  
 2168; 1P    -   1SA   -   2C  
 2167; 1P    -   1SA   -   2m  
 2426; 1P    -   1SA  2C    X  
 2332; 1P    -   1SA  2C   2P  
 2346; 1P    -   1SA  2C   3P  
-1080; 1P    -   1SA  2P  
+1190; 1P    -   1SA  2P  
+1465; 1P    -   1SA  2P    -   3P  
+3433; 1P    -   1SA  2P    -   3P    -   4C  
+1393; 1P    -   1SA  2P    -   3E  
+1429; 1P    -   1SA  2P    -   4E  
+1477; 1P    -   1SA  2SA   -   3P  
 2299; 1P    -   1SA  2m   2C  
 2331; 1P    -   1SA  2m   2P  
 2345; 1P    -   1SA  2m   3P  
 2944; 1P    -   2T    -   2K    o   2C  
-3396; 1P    -   2T    -   2K    o   2C    -   2P  
-3494; 1P    -   2T    -   2K    o   2C    -   2P  
-3432; 1P    -   2T    -   2K    o   2C    -   3K  
+3696; 1P    -   2T    -   2K    o   2C    -   2P  
+3794; 1P    -   2T    -   2K    o   2C    -   2P  
+3732; 1P    -   2T    -   2K    o   2C    -   3K  
 2946; 1P    -   2T    -   2K    o   3C  
-3398; 1P    -   2T    -   2K    o   3C    -   3P  
-3496; 1P    -   2T    -   2K    o   3C    -   3P  
-3434; 1P    -   2T    -   2K    o   3C    -   4K  
+3698; 1P    -   2T    -   2K    o   3C    -   3P  
+3796; 1P    -   2T    -   2K    o   3C    -   3P  
+3734; 1P    -   2T    -   2K    o   3C    -   4K  
 3218; 1P    -   2T    -   3P    -   4K  
 2334; 1P    -   2T   2K   2P  
 2307; 1P    -   2T   2K   3C  
 2349; 1P    -   2T   2K   3P  
 2306; 1P    -   2T   2C   3K  
-1058; 1P    -   2T   2P  
-1076; 1P    -   2T   2SA 
+1168; 1P    -   2T   2P  
+1462; 1P    -   2T   2P    -   3P  
+1390; 1P    -   2T   2P    -   3E  
+1426; 1P    -   2T   2P    -   4E  
+1186; 1P    -   2T   2SA 
+1460; 1P    -   2T   2SA   -   3P  
+1388; 1P    -   2T   2SA   -   3E  
+1424; 1P    -   2T   2SA   -   4E  
 2941; 1P    -   2T    o   2C    o   3T  
 2947; 1P    -   2T    o   2C    o   3K  
-3435; 1P    -   2T    o   2C    o   3K    -   3C  
-3399; 1P    -   2T    o   2C    o   3K    -   3P  
-3497; 1P    -   2T    o   2C    o   3K    -   3P  
+3735; 1P    -   2T    o   2C    o   3K    -   3C  
+3699; 1P    -   2T    o   2C    o   3K    -   3P  
+3797; 1P    -   2T    o   2C    o   3K    -   3P  
 2194; 1P    -   2K    -   3T  
 3216; 1P    -   2K    -   3P    -   4T  
 2948; 1P    -   2K    o   2C    o   3T  
-3436; 1P    -   2K    o   2C    o   3T    -   3C  
-3400; 1P    -   2K    o   2C    o   3T    -   3P  
-3498; 1P    -   2K    o   2C    o   3T    -   3P  
+3736; 1P    -   2K    o   2C    o   3T    -   3C  
+3700; 1P    -   2K    o   2C    o   3T    -   3P  
+3798; 1P    -   2K    o   2C    o   3T    -   3P  
 2942; 1P    -   2K    o   2C    o   3K  
  208; 1P    -   2C  
 2097; 1P    -   2C    -   2P  
@@ -758,23 +1285,72 @@ sense_id;sequence
 3219; 1P    -   2C    -   3P    -   4K  
 2195; 1P    -   2C    -   3m  
 2096; 1P    -   2C    -   4m  
-1060; 1P    -   2C   2P  
-1078; 1P    -   2C   2SA 
+1487; 1P    -   2C    X    -    -  
+1170; 1P    -   2C   2P  
+1475; 1P    -   2C   2P    -   3P  
+3468; 1P    -   2C   2P    -   3P    -   FC  
+3444; 1P    -   2C   2P    -   3P    -   5T  
+1403; 1P    -   2C   2P    -   3m  
+1439; 1P    -   2C   2P    -   4m  
+3417; 1P    -   2C   2P    -   4m    -   5m  
+1188; 1P    -   2C   2SA 
+1473; 1P    -   2C   2SA   -   3P  
+3466; 1P    -   2C   2SA   -   3P    -   FC  
+3442; 1P    -   2C   2SA   -   3P    -   5T  
+1401; 1P    -   2C   2SA   -   3m  
+1437; 1P    -   2C   2SA   -   4m  
+3415; 1P    -   2C   2SA   -   4m    -   5m  
+5283; 1P    -   2C   3m    -    -   3P  
 2094; 1P    -   2C   3m   3C  
 2095; 1P    -   2C    o   4C  
-1090; 1P    -   2P   3P  
-1092; 1P    -   2P   4T  
+5337; 1P    -   2P    -    -    X    -   3C  
+1200; 1P    -   2P   3P  
+1435; 1P    -   2P   3P    -   4C   ou   5T  
+1471; 1P    -   2P   3P    -   4P  
+3435; 1P    -   2P   3P    -   4P    -   4C  
+1399; 1P    -   2P   3P    -   4E  
+1202; 1P    -   2P   4T  
+1428; 1P    -   2P   4T    -   4C   ou   5K  
+1464; 1P    -   2P   4T    -   4P  
+3431; 1P    -   2P   4T    -   4P    -   4C  
+1392; 1P    -   2P   4T    -   4E  
 2703; 1P    -   2SA   -   3T    -   3C  
-3260; 1P    -   2SA   -   3m    -   3C  
-3261; 1P    -   2SA   -   3m    -   3SA 
 3220; 1P    -   2m    -   3P    -   4C  
+3463; 1P    -   2m   2P    -   3P    -   FC  
+3439; 1P    -   2m   2P    -   3P    -   4C  
+3461; 1P    -   2m   2SA   -   3P    -   FC  
+3437; 1P    -   2m   2SA   -   3P    -   4C  
+5281; 1P    -   2m   2E    -    -   2P  
+5282; 1P    -   2m   2E    -    -   3P  
 2950; 1P    -   2m    o   2C    o   2P  
 2937; 1P    -   2m    o   2C    o   2SA 
 2939; 1P    -   2m    o   2C    o   3SA 
 2757; 1P    -   2E    -   2SA   -   3P  
  211; 1P    -   4C  
+3492; 1P    X    -   2T    -   2P    -   3C  
+3326; 1P    X    -   2m    -   2C  
+3352; 1P    X    -   2m    -   2P  
+3495; 1P    X    -   2m    -   2P    -   3C  
+3334; 1P    X    -   2m    -   3C  
+ 952; 1P    X   1SA   X  
  271; 1P    X   2C  
+ 936; 1P    X   2C    X  
+ 941; 1P    X   2C   3C  
+3381; 1P    X   2P    X    -   2SA 
+3382; 1P    X   2P    X    -   2SA 
+3368; 1P    X   2P    X    -   3C  
+3367; 1P    X   2P    X    -   3E  
+3375; 1P    X   2P    X    -   4C  
+ 930; 1P    X   2m   2P  
  268; 1P    X   4C  
+ 877; 1P   1SA   -   2T  
+ 878; 1P   1SA   -   2K  
+ 876; 1P   1SA   -   2C  
+ 879; 1P   1SA   -   2P  
+3258; 1P   2T    -   2P    -   3C  
+ 575; 1P   2T    -   3K  
+ 576; 1P   2T    -   3C  
+ 790; 1P   2T    X   XX  
 2354; 1P   2T    X   2K   2C  
 2375; 1P   2T    X   2K   2P  
 2360; 1P   2T    X   2K   3K  
@@ -783,55 +1359,130 @@ sense_id;sequence
 2272; 1P   2T   2K    -   2P  
 2287; 1P   2T   2K    -   3T  
 2281; 1P   2T   2K    -   3P  
+ 626; 1P   2T   2K   2P  
+ 672; 1P   2T   2K   3C  
+ 634; 1P   2T   2K   3P  
 2261; 1P   2T   2C    -   3K  
+ 627; 1P   2T   2C   2P  
+ 635; 1P   2T   2C   3P  
+ 671; 1P   2T   2C   4K  
+ 669; 1P   2T   2P   4K  
+ 670; 1P   2T   2P   4C  
+ 751; 1P   2T   2m    X  
+ 735; 1P   2T   2m   2C  
+3259; 1P   2K    -   2P    -   3C  
+ 580; 1P   2K    -   3C  
+ 579; 1P   2K    -   4T  
+ 792; 1P   2K    X   XX  
 2368; 1P   2K    X   2C   3T  
 2362; 1P   2K    X   3m   3C  
 2260; 1P   2K   2C    -   3T  
+ 628; 1P   2K   2C   2P  
+ 636; 1P   2K   2C   3P  
+ 679; 1P   2K   2C   4T  
+ 678; 1P   2K   2P   3C  
+ 677; 1P   2K   2P   4T  
+ 680; 1P   2K   3T   4C  
+ 551; 1P   2C    -   2P  
+3244; 1P   2C    -   2P    -   2SA 
+3237; 1P   2C    -   2P    -   3C  
+3281; 1P   2C    -   2P    -   3P  
+3273; 1P   2C    -   2P    -   3SA 
+3252; 1P   2C    -   2P    -   3m  
+3266; 1P   2C    -   2P    -   4C  
+ 608; 1P   2C    -   2SA 
+ 558; 1P   2C    -   3P  
+ 617; 1P   2C    -   3SA 
+ 602; 1P   2C    -   3m  
+ 581; 1P   2C    -   4T  
+ 582; 1P   2C    -   4K  
+ 590; 1P   2C    -   4P  
+ 793; 1P   2C    X   XX  
+ 800; 1P   2C    X   2P  
 2369; 1P   2C    X   3T   3K  
 2390; 1P   2C    X   3C   3P  
 2392; 1P   2C    X   3m   3P  
+ 716; 1P   2C   2P   2SA 
+ 769; 1P   2C   2P   3P  
+ 681; 1P   2C   2P   4T  
+ 682; 1P   2C   2P   4K  
+ 702; 1P   2C   2P   4P  
+ 684; 1P   2C   3T   4K  
+ 683; 1P   2C   3K   5T  
 2293; 1P   2C   3m    -   3C  
+ 629; 1P   2C   3m   3P  
+ 535; 1P   2C    o   3C  
+ 541; 1P   2C    o   4C  
 1009; 1P   2P  
+3300; 1P   2P    -   2SA   -   4C  
+ 896; 1P   2P    -   3E  
+ 904; 1P   2P    -   4E  
  414; 1P   2P   2SA 
  435; 1P   2P   3C  
  422; 1P   2P   3SA 
+ 912; 1P   2SA   -   3P  
+3298; 1P   2SA   -   3P    -   5T  
  446; 1P   2SA   X  
  439; 1P   2SA  3K  
  409; 1P   2SA  3C  
+ 599; 1P   2m    -   2C  
+3280; 1P   2m    -   2P    -   3P  
+ 589; 1P   2m    -   4P  
 2376; 1P   2m    X   2C   2P  
 2391; 1P   2m    X   2C   3P  
+ 799; 1P   2m    X   2P  
 2389; 1P   2m    X   3m   3P  
 2273; 1P   2m   2C    -   2P  
 2239; 1P   2m   2C    -   2SA 
 2282; 1P   2m   2C    -   3P  
 2288; 1P   2m   2C    -   3m  
+ 768; 1P   2m   2P   3P  
+ 715; 1P   2m   2E   2SA 
+ 701; 1P   2m   2E   4P  
+ 703; 1P   2M   3m   4P  
+5265; 1P   2E    -    -   2P  
 2011; 1P   2E   2P   3E    X  
  331; 1P   2E   4C  
 1012; 1P   3T  
+3302; 1P   3T    -   3P    -   4C  
+ 898; 1P   3T    -   3E  
+ 906; 1P   3T    -   4E  
  416; 1P   3T   2SA 
  437; 1P   3T   3C  
  424; 1P   3T   3SA 
+ 822; 1P   3C    -   FC  
+ 828; 1P   3C    -   3SA 
+ 812; 1P   3C    -   4C  
+ 834; 1P   3C    -   4SA 
+ 838; 1P   3C   4T    X  
+ 840; 1P   3C   4T    X  
+ 843; 1P   3C   4K    X  
+ 846; 1P   3m   3C    X  
+ 857; 1P   4C    -   4SA 
+ 860; 1P   4C   5T    X  
+ 864; 1P   4C   5K    X  
+ 867; 1P   4m   4C    X  
 2177; 1P    o   1SA   -   3m  
 3043; 1P    o   1SA   -   3m    -   3P  
 2298; 1P    o   1SA  2T   2K  
 2179; 1P    o   2T    -   3K  
 3083; 1P    o   2T    -   3K    -   3C  
-3418; 1P    o   2T    -   3K    -   3C    -   3P  
-3516; 1P    o   2T    -   3K    -   3C    -   3P  
-3454; 1P    o   2T    -   3K    -   3C    -   4K  
+3718; 1P    o   2T    -   3K    -   3C    -   3P  
+3816; 1P    o   2T    -   3K    -   3C    -   3P  
+3754; 1P    o   2T    -   3K    -   3C    -   4K  
 3084; 1P    o   2T    -   3C    -   4K  
-3455; 1P    o   2T    -   3C    -   4K    -   4C  
-3419; 1P    o   2T    -   3C    -   4K    -   4P  
-3517; 1P    o   2T    -   3C    -   4K    -   4P  
+3755; 1P    o   2T    -   3C    -   4K    -   4C  
+3719; 1P    o   2T    -   3C    -   4K    -   4P  
+3817; 1P    o   2T    -   3C    -   4K    -   4P  
 3154; 1P    o   2T    o   2P    o   3K  
 3175; 1P    o   2T    o   2P    o   4K  
 3205; 1P    o   2T    o   3P    o   3SA 
 3210; 1P    o   2T    o   3P    o   4T  
 3201; 1P    o   2T    o   3P    o   4P  
 3085; 1P    o   2K    -   3C    -   4T  
-3456; 1P    o   2K    -   3C    -   4T    -   4C  
-3420; 1P    o   2K    -   3C    -   4T    -   4P  
-3518; 1P    o   2K    -   3C    -   4T    -   4P  
+3756; 1P    o   2K    -   3C    -   4T    -   4C  
+3720; 1P    o   2K    -   3C    -   4T    -   4P  
+3818; 1P    o   2K    -   3C    -   4T    -   4P  
 2321; 1P    o   2K   2C   3T  
 2308; 1P    o   2K   3T   3C  
 3155; 1P    o   2K    o   2P    o   3T  
@@ -864,38 +1515,83 @@ sense_id;sequence
 2935; 1P    o   2m    o   2C    o   3P  
 3177; 1P    o   2m    o   2P    o   4C  
    4; 1SA 
+5201; 1SA   -    -    X  
+1221; 1SA   -    -    X    -   2T  
+1225; 1SA   -    -    X    -   2T    -   2K  
+1223; 1SA   -    -    X    -   2K  
+1227; 1SA   -    -    X    -   2K    -   2C    -   2P  
+1228; 1SA   -    -    X    -   2K    -   2P    -   3C  
+1226; 1SA   -    -    X    -   2K    -   2M  
+1224; 1SA   -    -    X    -   2SA 
+1222; 1SA   -    -    X    -   2M  
+5202; 1SA   -    -   2T  
+1230; 1SA   -    -   2T    -   2K  
+1229; 1SA   -    -   2T    -   2M  
+1231; 1SA   -    -   2T    -   3K  
+5203; 1SA   -    -   2K  
+5204; 1SA   -    -   2C  
+5205; 1SA   -    -   2P  
+5206; 1SA   -    -   2SA 
+5207; 1SA   -    -   3T  
 1507; 1SA   -   2T  
-1601; 1SA   -   2T    -   2K  
-1603; 1SA   -   2T    -   2SA 
-1602; 1SA   -   2T    -   2M  
+1203; 1SA   -   2T    X  
+1774; 1SA   -   2T    X   XX  
+1775; 1SA   -   2T    X   2K  
+1776; 1SA   -   2T    X   2C  
+1798; 1SA   -   2T    X   2C    -   2P  
+1799; 1SA   -   2T    X   2C    -   4P  
+1777; 1SA   -   2T    X   2P  
+1800; 1SA   -   2T    X   2P    -   3C  
+1801; 1SA   -   2T    X   2P    -   4C  
+1778; 1SA   -   2T    X   2SA 
+1802; 1SA   -   2T    X   2SA   -   3SA 
+1779; 1SA   -   2T    X   3T  
+1803; 1SA   -   2T    X   3T    -   3M  
+1804; 1SA   -   2T    X   3T    -   4M  
+1788; 1SA   -   2T   2K    X  
 1508; 1SA   -   2K  
-1701; 1SA   -   2K    -   2C  
-1703; 1SA   -   2K    -   3C  
+1204; 1SA   -   2K    X  
+1780; 1SA   -   2K    X   XX  
+1805; 1SA   -   2K    X   XX    -   2C  
+1806; 1SA   -   2K    X   XX    -   4C  
+1784; 1SA   -   2K    X   2C  
 1509; 1SA   -   2C  
-1704; 1SA   -   2C    -   3P  
-1702; 1SA   -   2C   2P  
+1205; 1SA   -   2C    X  
+1781; 1SA   -   2C    X   XX  
+1807; 1SA   -   2C    X   XX    -   2P  
+1808; 1SA   -   2C    X   XX    -   4P  
+1785; 1SA   -   2C    X   2P  
+1790; 1SA   -   2C   2P    X  
 1510; 1SA   -   2P  
-1705; 1SA   -   2P    -   3T  
-1723; 1SA   -   2P    -   3T    -   3K  
-1711; 1SA   -   2P    -   3T    -   3C  
-1712; 1SA   -   2P    -   3T    -   3P  
-1713; 1SA   -   2P    -   3T    -   3SA 
-1721; 1SA   -   2P    -   3T    -   4T  
-1719; 1SA   -   2P    -   3T    -   4K  
-1717; 1SA   -   2P    -   3T    -   4SA 
+1206; 1SA   -   2P    X  
+1782; 1SA   -   2P    X   XX  
+1809; 1SA   -   2P    X   XX    -   3T  
+1810; 1SA   -   2P    X   XX    -   5T  
+1786; 1SA   -   2P    X   3T  
 1501; 1SA   -   2SA 
+1789; 1SA   -   2m   2C    X  
+1208; 1SA   -   2E   2SA 
+1209; 1SA   -   2E   2F  
+1791; 1SA   -   2E   3T    X  
+1792; 1SA   -   2E   3K    X  
+1793; 1SA   -   2E   3C    X  
+1794; 1SA   -   2E   3P    X  
 1511; 1SA   -   3T  
-1706; 1SA   -   3T    -   3K  
-1714; 1SA   -   3T    -   3K    -   3C  
-1715; 1SA   -   3T    -   3K    -   3P  
-1716; 1SA   -   3T    -   3K    -   3SA 
-1720; 1SA   -   3T    -   3K    -   4T  
-1722; 1SA   -   3T    -   3K    -   4K  
-1718; 1SA   -   3T    -   3K    -   4SA 
+1207; 1SA   -   3T    X  
+1783; 1SA   -   3T    X   XX  
+1811; 1SA   -   3T    X   XX    -   3K  
+1812; 1SA   -   3T    X   XX    -   5K  
+1787; 1SA   -   3T    X   3K  
+1795; 1SA   -   3T   3K    X  
+1796; 1SA   -   3T   3C    X  
+1797; 1SA   -   3T   3P    X  
 1513; 1SA   -   3K  
+1519; 1SA   -   3K    -   FC  
 1516; 1SA   -   3K    -   3SA 
+1520; 1SA   -   3C    -   FC  
 1517; 1SA   -   3C    -   3SA 
 1518; 1SA   -   3P    -   3SA 
+1521; 1SA   -   3P    -   4E  
 1502; 1SA   -   3SA 
 1514; 1SA   -   3M  
 1512; 1SA   -   4K  
@@ -904,47 +1600,197 @@ sense_id;sequence
 1504; 1SA   -   5SA 
 1505; 1SA   -   6SA 
 1506; 1SA   -   7SA 
+1020; 1SA   X  
+1210; 1SA   X    -   2T  
+1214; 1SA   X    -   2T    -   2K  
+1212; 1SA   X    -   2K  
+1216; 1SA   X    -   2K    -   2C    -   2P  
+1217; 1SA   X    -   2K    -   2P    -   3C  
+1215; 1SA   X    -   2K    -   2M  
+1213; 1SA   X    -   2SA 
+1211; 1SA   X    -   2M  
+1747; 1SA   X   XX  
+1739; 1SA   X   2T  
+1766; 1SA   X   2T    -   2K  
+1768; 1SA   X   2T    -   2SA 
+1767; 1SA   X   2T    -   2M  
+1740; 1SA   X   2K  
+1769; 1SA   X   2K    -   2C  
+1741; 1SA   X   2C  
+1770; 1SA   X   2C    -   2P  
+1742; 1SA   X   2P  
+1771; 1SA   X   2P    -   3T  
+1745; 1SA   X   2SA 
+1773; 1SA   X   2SA   -   3SA 
+1743; 1SA   X   3T  
+1772; 1SA   X   3T    -   3K  
+1744; 1SA   X   3K  
+1746; 1SA   X   3SA 
+1021; 1SA  2T  
+1219; 1SA  2T    -   2K  
+1218; 1SA  2T    -   2M  
+1220; 1SA  2T    -   3K  
+1726; 1SA  2T    X  
+1727; 1SA  2T   2K  
+1724; 1SA  2T   2C  
+1725; 1SA  2T   2P  
+1728; 1SA  2T   3SA 
+1022; 1SA  2K  
+1730; 1SA  2K   3T  
+1749; 1SA  2K   3T    -   3C  
+1750; 1SA  2K   3T    -   3P  
+1748; 1SA  2K   3T    -   3SA 
+1023; 1SA  2C  
+1731; 1SA  2C   3K  
+1752; 1SA  2C   3K    -   3C  
+1753; 1SA  2C   3K    -   3P  
+1751; 1SA  2C   3K    -   3SA 
+1024; 1SA  2P  
+1732; 1SA  2P   3C  
+1756; 1SA  2P   3C    -   3P  
+1754; 1SA  2P   3C    -   3SA 
+1755; 1SA  2P   3C    -   4C  
+1025; 1SA  2SA 
+1729; 1SA  2m   2M  
+1738; 1SA  2E    X  
+1733; 1SA  2E   2SA 
+1757; 1SA  2E   2SA   -   3T  
+1734; 1SA  2E   3T  
+1758; 1SA  2E   3T    -   3K  
+1735; 1SA  2E   3K  
+1759; 1SA  2E   3K    -   3C  
+1736; 1SA  2E   3C  
+1760; 1SA  2E   3C    -   3P  
+1737; 1SA  2E   3P  
+1762; 1SA  2E   3P    -    -  
+1761; 1SA  2E   3P    -   3SA 
+1763; 1SA  2E   3P    -   4F  
+1764; 1SA  2E   3P    -   4F  
+1765; 1SA  2E   3P    -   4F  
+1026; 1SA  3T  
    6; 1m  
+5321; 1m    -    -    X    -   2C  
+5322; 1m    -    -    X    -   2P  
+5318; 1m    -    -   2T  
+5317; 1m    -    -   2K  
 2162; 1m    -   1C    -   1P  
 2713; 1m    -   1C    -   3C    -   3P  
 2058; 1m    -   1C    -   3P  
+1483; 1m    -   1C    X    -    -  
+3476; 1m    -   1C    X    -   2P    -   2SA 
+3475; 1m    -   1C    X    -   2P    o   3P  
+5285; 1m    -   1C   1P    -    -    X  
+5294; 1m    -   1C   1P    -    -    X    -   1SA 
+5290; 1m    -   1C   1P    -    -    X    -   2C  
+5300; 1m    -   1C   1P    -    -    X    -   2G  
 2061; 1m    -   1C   1P   3C  
 2062; 1m    -   1C   1P   4C  
+1154; 1m    -   1C   2P  
+1341; 1m    -   1C   2P    -   2SA 
+3453; 1m    -   1C   2SA   -   3m    -   FC  
+3426; 1m    -   1C   2SA   -   3m    -   4P  
+3393; 1m    -   1C   2m    -   3P    -   4P  
+3455; 1m    -   1C   2m    -   3m    -   FC  
+3428; 1m    -   1C   2m    -   3m    -   4P  
 2121; 1m    -   1P    -   1SA 
 2124; 1m    -   1P    -   2SA 
 2057; 1m    -   1P    -   4C  
+3460; 1m    -   1P   2SA   -   3m    -   FC  
+3436; 1m    -   1P   2SA   -   3m    -   4C  
+3392; 1m    -   1P   2m    -   3C    -   4C  
+3462; 1m    -   1P   2m    -   3m    -   FC  
+3438; 1m    -   1P   2m    -   3m    -   4C  
+5286; 1m    -   1P   2E    -    -    X  
+5291; 1m    -   1P   2E    -    -    X    -   2P  
+5295; 1m    -   1P   2E    -    -    X    -   2SA 
+5301; 1m    -   1P   2E    -    -    X    -   2G   ou   3G  
  231; 1m    -   1SA 
-1079; 1m    -   1SA  2m  
+3464; 1m    -   1SA  2SA   -   3m    -   FC  
+3440; 1m    -   1SA  2SA   -   3m    -   4C  
+1189; 1m    -   1SA  2m  
+1374; 1m    -   1SA  2m    -   2M  
+1446; 1m    -   1SA  2m    -   3m  
+3451; 1m    -   1SA  2m    -   3m    -   FC  
+3424; 1m    -   1SA  2m    -   3m    -   4C  
+1410; 1m    -   1SA  2m    -   3M  
+3399; 1m    -   1SA  2m    -   3M    -   4M  
 2708; 1m    -   1M    -   2M    -   2SA 
 2705; 1m    -   1M    -   2M    -   3m  
 2706; 1m    -   1M    -   2M    -   3E  
 2709; 1m    -   1M    -   3M    -    -  
 2710; 1m    -   1M    -   3M    -   4M  
 2714; 1m    -   1M    -   3M    -   4E  
+1480; 1m    -   1M    X    -   1SA 
 2423; 1m    -   1M    X   XX  
 2122; 1m    -   1E    -   1SA 
 2125; 1m    -   1E    -   2SA 
+1359; 1m    -   1E   1SA   -   2T  
+1360; 1m    -   1E   1SA   -   2K  
+1361; 1m    -   1E   1SA   -   2C  
+1362; 1m    -   1E   1SA   -   2P  
+1363; 1m    -   1E   1SA   -   3T  
  224; 1m    -   1F  
  232; 1m    -   2SA 
-1087; 1m    -   2m   3m  
+5335; 1m    -   2m    -    -    X    -   2M  
+3477; 1m    -   2m    X    -   3M    -   4M  
+1197; 1m    -   2m   3m  
+1375; 1m    -   2m   3m    -   3M  
+1447; 1m    -   2m   3m    -   4m  
+3452; 1m    -   2m   3m    -   4m    -   FC  
+3425; 1m    -   2m   3m    -   4m    -   4C  
+1411; 1m    -   2m   3m    -   4M  
  226; 1m    -   2M  
  233; 1m    -   3SA 
  229; 1m    -   3E  
  230; 1m    -   4E  
-1043; 1m    -    o   2M  
+3321; 1m    X    -   1C    -   1P  
+3329; 1m    X    -   1C    -   2P  
+3347; 1m    X    -   1C    -   2m  
+3498; 1m    X    -   1C    -   2m    -   2C  
+3488; 1m    X    -   1C    -   2m    -   2P  
+3337; 1m    X    -   1M    -   1SA 
+3309; 1m    X    -   1M    -   2M  
+3315; 1m    X    -   1M    -   3M  
+3341; 1m    X    -   1M    o   2SA 
+3369; 1m    X    -   2m    -   3M  
  280; 1m    X   XX  
+ 947; 1m    X   XX   2m  
+3377; 1m    X   XX   2m    -   2SA 
+3363; 1m    X   XX   2m    -   2M  
+3371; 1m    X   XX   2m    -   3M  
+ 932; 1m    X   1C    X  
+ 926; 1m    X   1C   1P  
+ 933; 1m    X   1P    X  
+ 927; 1m    X   1P   2C  
  279; 1m    X   1SA 
+ 948; 1m    X   1SA  2m  
+3378; 1m    X   1SA  2m    -   2SA 
+3364; 1m    X   1SA  2m    -   2M  
+3372; 1m    X   1SA  2m    -   3M  
 2065; 1m    X   1M    -   3SA 
+ 943; 1m    X   1M   1SA 
+3385; 1m    X   1M   1SA   -   2SA 
+3389; 1m    X   1M   1SA   -   3SA 
+ 938; 1m    X   1M   2M  
  275; 1m    X   1E  
  284; 1m    X   2SA 
  281; 1m    X   2m  
+ 953; 1m    X   2m    X  
+3379; 1m    X   2m    X    -   2SA 
+3365; 1m    X   2m    X    -   2M  
+3373; 1m    X   2m    X    -   3M  
  282; 1m    X   3m  
  277; 1m    X   3E  
  283; 1m    X   4m  
  278; 1m    X   4E  
+ 592; 1m   1C    -   1P  
+3254; 1m   1C    -   2m    -   2P  
  349; 1m   1C    X  
 2284; 1m   1C   1P    -   2C  
 2066; 1m   1C   1P    -   3SA 
+ 754; 1m   1C   1P   2P  
+ 595; 1m   1P    -   2C  
+3247; 1m   1P    -   2m    -   2C  
  350; 1m   1P    X  
  373; 1m   1P    X    -   FC  
  374; 1m   1P    X    -   1SA 
@@ -954,6 +1800,11 @@ sense_id;sequence
  371; 1m   1P    X    -   3C  
  376; 1m   1P    X    -   3SA 
  372; 1m   1P    X    -   4C  
+ 880; 1m   1SA   -   2T  
+ 881; 1m   1SA   -   2K  
+ 882; 1m   1SA   -   2C  
+ 883; 1m   1SA   -   2P  
+ 884; 1m   1SA   -   3T  
  397; 1m   1SA   X  
  393; 1m   1SA  1E  
  388; 1m   1SA  2T  
@@ -963,32 +1814,65 @@ sense_id;sequence
  395; 1m   1SA  3E  
  391; 1m   1SA  4E  
  396; 1m   1SA  4E  
+ 604; 1m   1M    -   1SA 
+ 610; 1m   1M    -   2SA 
+ 546; 1m   1M    -   2m  
+3239; 1m   1M    -   2m    -   2SA 
+3232; 1m   1M    -   2m    -   2M  
+3268; 1m   1M    -   2m    -   3SA 
+3261; 1m   1M    -   2m    -   3M  
+ 613; 1m   1M    -   3SA 
+ 553; 1m   1M    -   3m  
  339; 1m   1M   2E  
+ 531; 1m   1M    o   2M  
+ 537; 1m   1M    o   3M  
+ 543; 1m   1M    o   4M  
+5257; 1m   1E    -    -    X    -   2m  
+5266; 1m   1E    -    -   1M  
 2231; 1m   1E   1P    -   1SA 
 2233; 1m   1E   1P    -   2SA 
+ 704; 1m   1E   1P   4P  
  341; 1m   1E   1SA 
 2235; 1m   1E   1SA   -   2SA 
  338; 1m   1E   1M  
 2232; 1m   1E   1M    -   1SA 
 2234; 1m   1E   1M    -   2SA 
+ 688; 1m   1E   2T   4T  
+ 693; 1m   1E   2K   4K  
  342; 1m   1E   2SA 
  351; 1m   1E   2E  
  343; 1m   1E   3SA 
  340; 1m   1E   3F  
 1013; 1m   2K  
+ 908; 1m   2K    -   2SA 
+3289; 1m   2K    -   2SA   -   FC  
+3294; 1m   2K    -   2SA   -   4C  
+ 891; 1m   2K    -   2M  
+ 899; 1m   2K    -   3M  
+3282; 1m   2K    -   3M    -   4M  
  410; 1m   2K   2SA 
  418; 1m   2K   3SA 
  398; 1m   2K   3m  
+ 803; 1m   2C   2P   2SA 
+3290; 1m   2SA   -   3m    -   FC  
  442; 1m   2SA   X  
  405; 1m   2SA  3P  
  399; 1m   2SA  3m  
 1003; 1m   2M  
+ 801; 1m   2M    -   2SA 
+ 818; 1m   3C    -   3P  
+ 824; 1m   3M    -   FC  
+ 830; 1m   3M    -   3SA 
+ 836; 1m   3M    -   4SA 
+ 814; 1m   3M    -   4M  
+ 870; 1m   4C   4P    X  
+ 858; 1m   4M    -   4SA 
 3059; 1m    o   1C    -   2P    -   2SA 
 3069; 1m    o   1C    -   2P    -   3C  
 3051; 1m    o   1C    -   2P    -   3P  
 3061; 1m    o   1C    -   2P    -   3SA 
 3038; 1m    o   1C    -   2P    -   3m  
-3476; 1m    o   1C    -   2P    -   3E    -   3SA 
+3776; 1m    o   1C    -   2P    -   3E    -   3SA 
 3047; 1m    o   1C    -   2P    -   4m  
 2063; 1m    o   1C   1P   2P  
 3160; 1m    o   1C    o   2m    o   3K  
@@ -996,15 +1880,15 @@ sense_id;sequence
 3186; 1m    o   1C    o   3m    o   3C  
 3192; 1m    o   1C    o   3m    o   3P  
 2730; 1m    o   1P    -   1SA   -   2C  
-3469; 1m    o   1P    o   2C   3E    -   3SA 
 3019; 1m    o   1P    o   2C    o   2P  
 3024; 1m    o   1P    o   2C    o   2P  
 3034; 1m    o   1P    o   2C    o   2SA 
-3308; 1m    o   1P    o   2C    o   2SA   -   3C  
-3312; 1m    o   1P    o   2C    o   2SA   -   3P  
-3314; 1m    o   1P    o   2C    o   2SA   -   3SA 
+3608; 1m    o   1P    o   2C    o   2SA   -   3C  
+3612; 1m    o   1P    o   2C    o   2SA   -   3P  
+3614; 1m    o   1P    o   2C    o   2SA   -   3SA 
 2990; 1m    o   1P    o   2C    o   3C  
 3012; 1m    o   1P    o   2C    o   3SA 
+3769; 1m    o   1P    o   2C    o   3E    -   3SA 
 3005; 1m    o   1P    o   2C    o   4C  
 3161; 1m    o   1P    o   2m    o   3K  
 3158; 1m    o   1P    o   2m    o   3C  
@@ -1040,19 +1924,28 @@ sense_id;sequence
 2030; 1m    o   3m    o   3SA 
 2031; 1m    o   3m    o   3M  
    5; 1M  
+5326; 1M    -    -    X    -   3m  
  209; 1M    -   1SA 
 2129; 1M    -   1SA   -   2SA 
-1082; 1M    -   1SA  2SA 
+1192; 1M    -   1SA  2SA 
+1404; 1M    -   1SA  2SA   -   3m  
+3469; 1M    -   1SA  2SA   -   3M    -   FC  
+3445; 1M    -   1SA  2SA   -   3M    -   5T  
+1440; 1M    -   1SA  2SA   -   4m  
+3418; 1M    -   1SA  2SA   -   4m    -   5m  
+3458; 1M    -   1SA  2M    -   3M    -   FC  
+3400; 1M    -   1SA  2M    -   4T    -   5T  
 2936; 1M    -   2T    -   2K    o   2SA 
 2949; 1M    -   2T    -   2K    o   2M  
 2940; 1M    -   2T    -   2K    o   3T  
 2932; 1M    -   2T    -   2K    o   3K  
 2938; 1M    -   2T    -   2K    o   3SA 
 2933; 1M    -   2T    -   2K    o   3M  
+3411; 1M    -   2T   2SA   -   4K    -   5K  
+1486; 1M    -   2K    X    -    -  
  202; 1M    -   2SA 
 2702; 1M    -   2SA   -   3T    -   3K  
 2701; 1M    -   2SA   -   3T    -   3M  
-3257; 1M    -   2SA   -   3m    -   3M  
  206; 1M    -   2m  
 2203; 1M    -   2m    -   2M  
 3121; 1M    -   2m    -   2M    -   3M  
@@ -1065,10 +1958,22 @@ sense_id;sequence
 2083; 1M    -   2m    -   4m  
 2092; 1M    -   2m    X   XX  
 2087; 1M    -   2m    X   3m  
+5289; 1M    -   2m   2E    -    -    X  
+5298; 1M    -   2m   2E    -    -    X    -   2SA 
+5304; 1M    -   2m   2E    -    -    X    -   2G   ou   3G  
 2086; 1M    -   2m   2E   3m  
 2091; 1M    -   2m   2E   3E  
  201; 1M    -   2M  
-1088; 1M    -   2M   2SA 
+5331; 1M    -   2M    -    -   2SA 
+1198; 1M    -   2M   2SA 
+1405; 1M    -   2M   2SA   -   3m  
+1478; 1M    -   2M   2SA   -   3M  
+3470; 1M    -   2M   2SA   -   3M    -   FC  
+3446; 1M    -   2M   2SA   -   3M    -   5T  
+1441; 1M    -   2M   2SA   -   4m  
+3419; 1M    -   2M   2SA   -   4m    -   5m  
+3459; 1M    -   2M   3M    -   4M    -   4SA 
+3457; 1M    -   2M   4T    -   4M    -   4SA 
 2130; 1M    -   2E    -   2SA 
 2134; 1M    -   2E    -   3SA 
  204; 1M    -   3SA 
@@ -1077,13 +1982,26 @@ sense_id;sequence
 2020; 1M    -   3M    -   4M  
  210; 1M    -   4m  
  205; 1M    -   4M  
+3324; 1M    X    -   2T    -   2K  
+3350; 1M    X    -   2T    -   2M  
+3501; 1M    X    -   2T    -   2M    -   3T  
+3502; 1M    X    -   2T    -   2M    -   3T  
+3493; 1M    X    -   2T    -   2M    -   3K  
+3332; 1M    X    -   2T    -   3K  
+3503; 1M    X    -   2K    -   2M    -   3K  
+3344; 1M    X    -   2m    o   2SA 
+3312; 1M    X    -   2m    o   3m  
+3318; 1M    X    -   2m    o   4m  
  274; 1M    X   XX  
  273; 1M    X   1SA 
+ 935; 1M    X   2K    X  
  262; 1M    X   2SA 
  270; 1M    X   2m  
 2088; 1M    X   2m   2E   3F  
+ 940; 1M    X   2m   3m  
 2084; 1M    X   2m    o   3m  
  261; 1M    X   2M  
+ 954; 1M    X   2M    X  
  265; 1M    X   3SA 
  264; 1M    X   3m  
  263; 1M    X   3M  
@@ -1096,13 +2014,42 @@ sense_id;sequence
  382; 1M   1SA  3M  
  386; 1M   1SA  3E  
  383; 1M   1SA  4M  
+ 597; 1M   2T    -   2K  
+ 549; 1M   2T    -   2M  
+3242; 1M   2T    -   2M    -   2SA 
+3235; 1M   2T    -   2M    -   3T  
+3271; 1M   2T    -   2M    -   3SA 
+3264; 1M   2T    -   2M    -   4T  
+ 556; 1M   2T    -   3M  
+ 759; 1M   2T   2K   3K  
+ 607; 1M   2K    -   2SA 
+ 550; 1M   2K    -   2M  
+3243; 1M   2K    -   2M    -   2SA 
+3250; 1M   2K    -   2M    -   3T  
+3236; 1M   2K    -   2M    -   3K  
+3272; 1M   2K    -   2M    -   3SA 
+3265; 1M   2K    -   2M    -   4K  
+ 601; 1M   2K    -   3T  
+ 616; 1M   2K    -   3SA 
+ 557; 1M   2K    -   3M  
+ 534; 1M   2K    o   3K  
+ 540; 1M   2K    o   4K  
  406; 1M   2C   3K  
 1010; 1M   2SA 
+ 894; 1M   2SA   -   3m  
+3291; 1M   2SA   -   3M    -   FC  
+ 902; 1M   2SA   -   4m  
+3286; 1M   2SA   -   4m    -   5m  
  417; 1M   2SA  2SA 
  425; 1M   2SA  3SA 
  402; 1M   2SA  3M  
+ 700; 1M   2m   2C   4C  
+ 913; 1M   2M    -   2SA 
+3292; 1M   2M    -   2SA   -   FC  
+3287; 1M   2M    -   4T    -   5T  
  443; 1M   2M    X  
  400; 1M   2M   3M  
+5260; 1M   2E    -    -    X    -   2M  
  337; 1M   2E    X  
  325; 1M   2E   2SA 
  324; 1M   2E   2M  
@@ -1115,15 +2062,30 @@ sense_id;sequence
  328; 1M   2E   4M  
  329; 1M   2E   4E  
  336; 1M   2E   4F  
+ 914; 1M   3T    -   3M  
+3293; 1M   3T    -   3M    -   FC  
+ 816; 1M   3T    -   3E  
+3288; 1M   3T    -   4K    -   5K  
  444; 1M   3T    X  
+ 841; 1M   3T   3K    X  
  401; 1M   3T   3M  
  407; 1M   3T   4T  
+ 817; 1M   3K    -   3M  
+ 839; 1M   3K   4T    X  
+ 823; 1M   3m    -   FC  
+ 829; 1M   3m    -   3SA 
+ 835; 1M   3m    -   4SA 
+ 813; 1M   3m    -   4m  
+ 862; 1M   4T   4K    X  
+ 861; 1M   4K   5T    X  
+ 855; 1M   4m    -   4SA 
+ 852; 1M   4m    -   4M  
 3065; 1M    o   1SA   -   3m    -   3SA 
 3055; 1M    o   1SA   -   3m    -   4m  
 3115; 1M    o   1SA   o   2M    o   4M  
 3066; 1M    o   2T    -   3K    -   3SA 
 3044; 1M    o   2T    -   3K    -   3M  
-3479; 1M    o   2T    -   3K    -   3E    -   3SA 
+3779; 1M    o   2T    -   3K    -   3E    -   3SA 
 3072; 1M    o   2T    -   3K    -   4T  
 3056; 1M    o   2T    -   3K    -   4K  
 3206; 1M    o   2T    o   3M    o   4T  
@@ -1146,31 +2108,98 @@ sense_id;sequence
 2007; 1M    o   2M    o   4M  
 2023; 1M    o   3SA   o   4E  
 2022; 1M    o   3M    o   4E  
-1062; 1E    -   1C   2C  
-1063; 1E    -   1P   2P  
+5327; 1E    -    -    X    -   1SA 
+5320; 1E    -    -    X    -   1F   ou   2F  
+5328; 1E    -    -    X    -   2SA 
+5329; 1E    -    -    X    -   2E  
+5313; 1E    -    -   1SA 
+5311; 1E    -    -   1F   ou   2F  
+5314; 1E    -    -   2SA 
+5312; 1E    -    -   2F   ou   3F  
+1172; 1E    -   1C   2C  
+1484; 1E    -   1P    X    -    -  
+1173; 1E    -   1P   2P  
 2210; 1E    -   1SA   -   3E  
 2055; 1E    -   1M    -   4T  
 2056; 1E    -   1M    -   4K  
 2133; 1E    -   1F   3SA 
-1064; 1E    -   2T   3T  
-1065; 1E    -   2K   3K  
-1066; 1E    -   2C   3C  
-1085; 1E    -   2E   2F  
-1086; 1E    -   2E   3F  
-1047; 1E    -    o    X  
-1048; 1E    -    o   1SA 
-1041; 1E    -    o   1F  
-1042; 1E    -    o   2F  
-1045; 1E    -    o   3F  
-1046; 1E    -    o   4F  
+1485; 1E    -   2T    X    -    -  
+1174; 1E    -   2T   3T  
+1175; 1E    -   2K   3K  
+1176; 1E    -   2C   3C  
+5333; 1E    -   2E    -    -    X  
+5338; 1E    -   2E    -    -    X    -   2SA 
+5339; 1E    -   2E    -    -    X    -   2SA   -   3m  
+5334; 1E    -   2E    -    -    X    -   2F   ou   3F  
+5332; 1E    -   2E    -    -   2F   ou   3F  
+1195; 1E    -   2E   2F  
+1196; 1E    -   2E   3F  
+1157; 1E    -    o    X  
+1158; 1E    -    o   1SA 
+1151; 1E    -    o   1F  
+1152; 1E    -    o   2F  
+1155; 1E    -    o   3F  
+1156; 1E    -    o   4F  
 1019; 1E    X  
+ 923; 1E    X    -   nF  
+ 919; 1E    X    -   1SA 
+3383; 1E    X    -   1SA   -   2SA 
+3387; 1E    X    -   1SA   -   3SA 
+ 922; 1E    X    -   1F   ou   2F  
+ 920; 1E    X    -   2SA 
+3391; 1E    X    -   2SA   -   3SA 
+ 924; 1E    X    -   2E  
+3376; 1E    X    -   2E    -   2SA 
+3362; 1E    X    -   2E    -   2M  
+ 921; 1E    X    -   3SA 
+ 944; 1E    X   XX   1F  
+ 945; 1E    X   XX   2F  
+ 946; 1E    X   XX   3F  
+ 934; 1E    X   2T    X  
+ 955; 1E    X   2E   1SA 
+3386; 1E    X   2E   1SA   -   2SA 
+3390; 1E    X   2E   1SA   -   3SA 
+ 956; 1E    X   2E   2SA 
+ 699; 1E   1P   2C   4C  
 1007; 1E   1SA 
+ 887; 1E   1SA  2T    X  
+ 888; 1E   1SA  2K    X  
+ 889; 1E   1SA  2C    X  
+ 890; 1E   1SA  2P    X  
+ 885; 1E   1SA   o   2SA 
+ 886; 1E   1SA   o   3SA 
 1001; 1E   1F  
+5251; 1E   1F    -    -    X  
+5253; 1E   1F    -    -    X    -   1M  
+5254; 1E   1F    -    -    X    -   2G  
+5269; 1E   1F    -    -   1SA 
+5267; 1E   1F    -    -   2G  
+ 606; 1E   2T    -   2SA 
+ 615; 1E   2T    -   3SA 
+ 695; 1E   2T   2K   4K  
+ 533; 1E   2T    o   3T  
+ 539; 1E   2T    o   4T  
+ 705; 1E   2m   2P   4P  
 1002; 1E   2F  
+5252; 1E   2F    -    -    X  
+5255; 1E   2F    -    -    X    -   2M  
+5256; 1E   2F    -    -    X    -   3G  
+5270; 1E   2F    -    -   2SA 
+5268; 1E   2F    -    -   2G  
 1018; 1E   3SA 
+ 918; 1E   3SA   -   4E  
+3307; 1E   3SA   -   4E    -   5m  
+3305; 1E   3SA   -   4E    -   6m  
 1017; 1E   3E  
+ 915; 1E   3E    -   3SA 
+ 917; 1E   3E    -   4T  
+3303; 1E   3E    -   4T    -   4K  
+ 916; 1E   3E    -   4E  
+3306; 1E   3E    -   4E    -   5m  
+3304; 1E   3E    -   4E    -   6m  
 1005; 1E   3F  
 1016; 1E   4SA 
+ 907; 1E   4SA   -   5m  
 1006; 1E   4F  
 2745; 1E    o   1C    o   1SA   -   2T  
 2746; 1E    o   1P    -   1SA   -   2T  
@@ -1195,45 +2224,517 @@ sense_id;sequence
 2053; 1E    o   1M    o   4M  
 2755; 1E    o   2m    o   2SA   -   3m  
    2; 2T  
-1605; 2T    -   2K    -   2M  
-1604; 2T    -   2K    -   3m  
-1606; 2T    -   2K    -   3M  
-1609; 2T    -   2C    -   3P  
-1610; 2T    -   2P    -   3C  
-1619; 2T    -   2P    -   4C  
-1612; 2T    -   2SA   -   3T  
-1613; 2T    -   2SA   -   3K  
-1616; 2T    -   2SA   -   3C  
-1617; 2T    -   2SA   -   3P  
-1614; 2T    -   2SA   -   4T  
-1615; 2T    -   2SA   -   4K  
-1611; 2T    -   2M    -   3m  
-1607; 2T    -   2M    -   3M  
-1618; 2T    -   2M    -   4m  
-1608; 2T    -   2M    -   4M  
-1620; 2T    -   2E    -   3T   3SA 
-1621; 2T    -   2E    -   3K   3SA 
-1622; 2T    -   2E    -   3m   5m  
-3457; 2T    -   3T  
+4500; 2T    -   2K  
+4534; 2T    -   2K    -   2C    -   2P  
+4538; 2T    -   2K    -   2C    -   3P  
+4535; 2T    -   2K    -   2C    -   3m  
+4536; 2T    -   2K    -   2P    -   3C  
+4512; 2T    -   2K    -   2SA 
+4558; 2T    -   2K    -   2SA   -   3T  
+4567; 2T    -   2K    -   2SA   -   3T    -   3K  
+4575; 2T    -   2K    -   2SA   -   3T    -   3K    -   3C  
+4585; 2T    -   2K    -   2SA   -   3T    -   3K    -   3C    -   3P  
+4587; 2T    -   2K    -   2SA   -   3T    -   3K    -   3C    -   4P  
+4576; 2T    -   2K    -   2SA   -   3T    -   3K    -   3P  
+4586; 2T    -   2K    -   2SA   -   3T    -   3K    -   3P    -   3C  
+4588; 2T    -   2K    -   2SA   -   3T    -   3K    -   3P    -   4C  
+4571; 2T    -   2K    -   2SA   -   3T    -   3K    -   3SA 
+4572; 2T    -   2K    -   2SA   -   3T    -   3K    -   4SA 
+4570; 2T    -   2K    -   2SA   -   3T    -   3K    -   4m  
+4574; 2T    -   2K    -   2SA   -   3T    -   3K    -   5SA 
+4573; 2T    -   2K    -   2SA   -   3T    -   3K    -   6SA 
+4578; 2T    -   2K    -   2SA   -   3T    -   3C    -   3P  
+4579; 2T    -   2K    -   2SA   -   3T    -   3P    -   4C  
+4569; 2T    -   2K    -   2SA   -   3T    -   3SA 
+4581; 2T    -   2K    -   2SA   -   3T    -   3SA   -   4T  
+4589; 2T    -   2K    -   2SA   -   3T    -   3SA   -   4T    -   4C  
+4582; 2T    -   2K    -   2SA   -   3T    -   3SA   -   4K  
+4590; 2T    -   2K    -   2SA   -   3T    -   3SA   -   4K    -   4P  
+4583; 2T    -   2K    -   2SA   -   3T    -   3SA   -   4C  
+4584; 2T    -   2K    -   2SA   -   3T    -   3SA   -   4P  
+4568; 2T    -   2K    -   2SA   -   3T    -   3M  
+4580; 2T    -   2K    -   2SA   -   3T    -   3M    -   4m  
+4577; 2T    -   2K    -   2SA   -   3T    -   3M    -   4M  
+4559; 2T    -   2K    -   2SA   -   3K  
+4593; 2T    -   2K    -   2SA   -   3K    -   3C  
+4599; 2T    -   2K    -   2SA   -   3K    -   3SA 
+4560; 2T    -   2K    -   2SA   -   3C  
+4594; 2T    -   2K    -   2SA   -   3C    -   3P  
+4600; 2T    -   2K    -   2SA   -   3C    -   3SA 
+4561; 2T    -   2K    -   2SA   -   3P  
+4601; 2T    -   2K    -   2SA   -   3P    -   3SA 
+4595; 2T    -   2K    -   2SA   -   3P    -   4T  
+4562; 2T    -   2K    -   2SA   -   4T  
+4596; 2T    -   2K    -   2SA   -   4T    -   4K  
+4602; 2T    -   2K    -   2SA   -   4T    -   4SA 
+4563; 2T    -   2K    -   2SA   -   4K  
+4597; 2T    -   2K    -   2SA   -   4K    -   4C  
+4598; 2T    -   2K    -   2SA   -   4K    -   4P  
+4603; 2T    -   2K    -   2SA   -   4K    -   4SA 
+4564; 2T    -   2K    -   2SA   -   4SA 
+4557; 2T    -   2K    -   2SA   -   4M  
+4565; 2T    -   2K    -   2SA   -   5SA 
+4566; 2T    -   2K    -   2SA   -   6SA 
+4511; 2T    -   2K    -   2M  
+4542; 2T    -   2K    -   2M    -   2SA 
+4541; 2T    -   2K    -   2M    -   3M  
+4539; 2T    -   2K    -   2M    -   4T  
+4540; 2T    -   2K    -   2M    -   4K  
+4537; 2T    -   2K    -   2M    -   4M  
+4543; 2T    -   2K    -   3T    -   3K  
+4514; 2T    -   2K    -   3SA 
+4544; 2T    -   2K    -   3m    -   3M  
+4545; 2T    -   2K    -   3m    -   4m  
+4547; 2T    -   2K    -   3M    -   FC  
+4546; 2T    -   2K    -   3M    -   4M  
+4513; 2T    -   2K    -   3E  
+4515; 2T    -   2K    -   4T  
+4516; 2T    -   2K    -   4K  
+4533; 2T    -   2K    X   XX  
+4550; 2T    -   2K   2C    -   2P  
+4517; 2T    -   2K   2C    X  
+4519; 2T    -   2K   2C   2P  
+4518; 2T    -   2K   2P    X  
+4521; 2T    -   2K   2P   3C  
+4522; 2T    -   2K   2M    -  
+4548; 2T    -   2K   2M    -   2SA 
+4549; 2T    -   2K   2M    -   3SA 
+4551; 2T    -   2K   2M    -   3E  
+4520; 2T    -   2K   2M   3m  
+4553; 2T    -   2K   3T    -   3K  
+4523; 2T    -   2K   3T    X  
+4525; 2T    -   2K   3T   3K  
+4524; 2T    -   2K   3K    X  
+4556; 2T    -   2K   3C    -   3P  
+4528; 2T    -   2K   3C    X  
+4530; 2T    -   2K   3C   3P  
+4529; 2T    -   2K   3P    X  
+4531; 2T    -   2K   3P   4C  
+4527; 2T    -   2K   3m    -  
+4552; 2T    -   2K   3m    -   3SA 
+4554; 2T    -   2K   3m    -   3M  
+4526; 2T    -   2K   3m   3M  
+4532; 2T    -   2K   3M    -  
+4555; 2T    -   2K   3M    -   3SA 
+4510; 2T    X   XX  
+4509; 2T    X   2E  
+4508; 2T    X   3T  
+4501; 2T   2K   2M  
+4503; 2T   2K   3T  
+4502; 2T   2C   2P  
+4505; 2T   2P   3C  
+4504; 2T   2M   3m  
+4506; 2T   2E    X  
+4507; 2T   3E    X  
    1; 2K  
-3458; 2K    -   3K  
-3459; 2C    -   3C  
-3460; 2P    -   3P  
-1709; 2P    -   4C  
+4000; 2K    -   2C  
+4018; 2K    -   2C    -   2P  
+4031; 2K    -   2C    -   2P    -   2SA 
+4036; 2K    -   2C    -   2P    -   2SA   -   3C    -   4C  
+4034; 2K    -   2C    -   2P    -   2SA   -   3SA 
+4035; 2K    -   2C    -   2P    -   2SA   -   3m    -   5m  
+4033; 2K    -   2C    -   2P    -   2SA   -   3E  
+4038; 2K    -   2C    -   2P    -   2SA   -   3E    -   3SA 
+4037; 2K    -   2C    -   2P    -   2SA   -   3E    -   4P  
+4032; 2K    -   2C    -   2P    -   2SA   -   4P  
+4028; 2K    -   2C    -   2P    -   3P  
+4030; 2K    -   2C    -   2P    -   3E  
+4029; 2K    -   2C    -   2P    -   4P  
+4017; 2K    -   2C    -   3SA 
+4016; 2K    -   2C    -   4M  
+4001; 2K    -   2P  
+4002; 2K    -   2SA 
+4024; 2K    -   2SA   -   3SA 
+4106; 2K    -   2SA   -   3SA   -   4T  
+4107; 2K    -   2SA   -   3SA   -   4T    -   4K  
+4110; 2K    -   2SA   -   3SA   -   4T    -   4K    -   6SA 
+4109; 2K    -   2SA   -   3SA   -   4T    -   4SA 
+4113; 2K    -   2SA   -   3SA   -   4T    -   4SA   -   6C  
+4114; 2K    -   2SA   -   3SA   -   4T    -   4SA   -   6P  
+4115; 2K    -   2SA   -   3SA   -   4T    -   4SA   -   6SA 
+4108; 2K    -   2SA   -   3SA   -   4T    -   4M  
+4112; 2K    -   2SA   -   3SA   -   4T    -   4M    -   6SA 
+4111; 2K    -   2SA   -   3SA   -   4T    -   4M    -   6M  
+4116; 2K    -   2SA   -   3SA   -   4K  
+4124; 2K    -   2SA   -   3SA   -   4K    -   6C  
+4128; 2K    -   2SA   -   3SA   -   4K    -   6SA 
+4120; 2K    -   2SA   -   3SA   -   4K    -   7C  
+4117; 2K    -   2SA   -   3SA   -   4C  
+4125; 2K    -   2SA   -   3SA   -   4C    -   6P  
+4129; 2K    -   2SA   -   3SA   -   4C    -   6SA 
+4121; 2K    -   2SA   -   3SA   -   4C    -   7P  
+4118; 2K    -   2SA   -   3SA   -   4P  
+4126; 2K    -   2SA   -   3SA   -   4P    -   6T  
+4130; 2K    -   2SA   -   3SA   -   4P    -   6SA 
+4122; 2K    -   2SA   -   3SA   -   4P    -   7T  
+4119; 2K    -   2SA   -   3SA   -   5T  
+4127; 2K    -   2SA   -   3SA   -   5T    -   6K  
+4131; 2K    -   2SA   -   3SA   -   5T    -   6SA 
+4123; 2K    -   2SA   -   3SA   -   5T    -   7K  
+4103; 2K    -   2SA   -   3m    -   3SA 
+4102; 2K    -   2SA   -   3m    -   3M  
+4101; 2K    -   2SA   -   3m    -   4m  
+4104; 2K    -   2SA   -   3M    -   FC  
+4105; 2K    -   2SA   -   3M    -   3SA 
+4023; 2K    -   2SA   -   3E  
+4019; 2K    -   2M    -   2SA 
+4042; 2K    -   2M    -   2SA   -   3T  
+4043; 2K    -   2M    -   2SA   -   3T    -   3K  
+4049; 2K    -   2M    -   2SA   -   3T    -   3K    -   3C  
+4059; 2K    -   2M    -   2SA   -   3T    -   3K    -   3C    -   3P  
+4061; 2K    -   2M    -   2SA   -   3T    -   3K    -   3C    -   4P  
+4050; 2K    -   2M    -   2SA   -   3T    -   3K    -   3P  
+4060; 2K    -   2M    -   2SA   -   3T    -   3K    -   3P    -   3C  
+4062; 2K    -   2M    -   2SA   -   3T    -   3K    -   3P    -   4C  
+4047; 2K    -   2M    -   2SA   -   3T    -   3K    -   3SA 
+4048; 2K    -   2M    -   2SA   -   3T    -   3K    -   4SA 
+4046; 2K    -   2M    -   2SA   -   3T    -   3K    -   4m  
+4052; 2K    -   2M    -   2SA   -   3T    -   3C    -   3P  
+4053; 2K    -   2M    -   2SA   -   3T    -   3P    -   4C  
+4045; 2K    -   2M    -   2SA   -   3T    -   3SA 
+4055; 2K    -   2M    -   2SA   -   3T    -   3SA   -   4T  
+4063; 2K    -   2M    -   2SA   -   3T    -   3SA   -   4T    -   4C  
+4056; 2K    -   2M    -   2SA   -   3T    -   3SA   -   4K  
+4064; 2K    -   2M    -   2SA   -   3T    -   3SA   -   4K    -   4P  
+4057; 2K    -   2M    -   2SA   -   3T    -   3SA   -   4C  
+4058; 2K    -   2M    -   2SA   -   3T    -   3SA   -   4P  
+4044; 2K    -   2M    -   2SA   -   3T    -   3M  
+4054; 2K    -   2M    -   2SA   -   3T    -   3M    -   4m  
+4051; 2K    -   2M    -   2SA   -   3T    -   3M    -   4M  
+4065; 2K    -   2M    -   2SA   -   3K  
+4070; 2K    -   2M    -   2SA   -   3K    -   3C  
+4078; 2K    -   2M    -   2SA   -   3K    -   3SA 
+4066; 2K    -   2M    -   2SA   -   3C  
+4071; 2K    -   2M    -   2SA   -   3C    -   3P  
+4079; 2K    -   2M    -   2SA   -   3C    -   3SA 
+4067; 2K    -   2M    -   2SA   -   3P  
+4072; 2K    -   2M    -   2SA   -   3P    -   4T  
+4076; 2K    -   2M    -   2SA   -   3P    -   5T  
+4039; 2K    -   2M    -   2SA   -   3SA 
+4068; 2K    -   2M    -   2SA   -   4T  
+4073; 2K    -   2M    -   2SA   -   4T    -   4K  
+4077; 2K    -   2M    -   2SA   -   4T    -   5K  
+4069; 2K    -   2M    -   2SA   -   4K  
+4074; 2K    -   2M    -   2SA   -   4K    -   4C  
+4075; 2K    -   2M    -   2SA   -   4K    -   4P  
+4080; 2K    -   2M    -   2SA   -   4K    -   4SA 
+4040; 2K    -   2M    -   2SA   -   4SA 
+4085; 2K    -   2M    -   3C    -   FC  
+4087; 2K    -   2M    -   3C    -   3SA 
+4086; 2K    -   2M    -   3C    -   4C  
+4088; 2K    -   2M    -   3P    -   FC  
+4090; 2K    -   2M    -   3P    -   3SA 
+4089; 2K    -   2M    -   3P    -   4P  
+4084; 2K    -   2M    -   3m    -   3SA 
+4083; 2K    -   2M    -   3m    -   3M  
+4081; 2K    -   2M    -   3m    -   4m  
+4082; 2K    -   2M    -   3m    -   5m  
+4020; 2K    -   2M    -   3E  
+4003; 2K    -   3T  
+4022; 2K    -   3T    -   3K  
+4100; 2K    -   3T    -   3K    -   3SA 
+4099; 2K    -   3T    -   3K    -   3M  
+4097; 2K    -   3T    -   3K    -   4K  
+4098; 2K    -   3T    -   3K    -   5K  
+4026; 2K    -   3T    -   4T  
+4166; 2K    -   3T    -   4T    -   4SA 
+4165; 2K    -   3T    -   4T    -   4M  
+4164; 2K    -   3T    -   4T    -   5T  
+4163; 2K    -   3T    -   4T    -   6T  
+4004; 2K    -   3K  
+4027; 2K    -   3K    -   4m  
+4170; 2K    -   3K    -   4m    -   4SA 
+4169; 2K    -   3K    -   4m    -   4M  
+4168; 2K    -   3K    -   4m    -   5m  
+4167; 2K    -   3K    -   4m    -   6m  
+4091; 2K    -   3m    -   3C    -   FC  
+4093; 2K    -   3m    -   3C    -   3SA 
+4092; 2K    -   3m    -   3C    -   4C  
+4094; 2K    -   3m    -   3P    -   FC  
+4096; 2K    -   3m    -   3P    -   3SA 
+4095; 2K    -   3m    -   3P    -   4P  
+4025; 2K    -   3m    -   3SA 
+4132; 2K    -   3m    -   3SA   -   4T  
+4133; 2K    -   3m    -   3SA   -   4T    -   4K  
+4139; 2K    -   3m    -   3SA   -   4T    -   4K    -   4SA 
+4137; 2K    -   3m    -   3SA   -   4T    -   4K    -   4M  
+4138; 2K    -   3m    -   3SA   -   4T    -   4K    -   5m  
+4136; 2K    -   3m    -   3SA   -   4T    -   4K    -   6SA 
+4135; 2K    -   3m    -   3SA   -   4T    -   4SA 
+4145; 2K    -   3m    -   3SA   -   4T    -   4SA   -   5C  
+4146; 2K    -   3m    -   3SA   -   4T    -   4SA   -   5P  
+4142; 2K    -   3m    -   3SA   -   4T    -   4SA   -   6C  
+4143; 2K    -   3m    -   3SA   -   4T    -   4SA   -   6P  
+4144; 2K    -   3m    -   3SA   -   4T    -   4SA   -   6SA 
+4134; 2K    -   3m    -   3SA   -   4T    -   4M  
+4141; 2K    -   3m    -   3SA   -   4T    -   4M    -   4SA 
+4140; 2K    -   3m    -   3SA   -   4T    -   4M    -   6M  
+4147; 2K    -   3m    -   3SA   -   4K  
+4155; 2K    -   3m    -   3SA   -   4K    -   4C  
+4159; 2K    -   3m    -   3SA   -   4K    -   4SA 
+4151; 2K    -   3m    -   3SA   -   4K    -   6C  
+4148; 2K    -   3m    -   3SA   -   4C  
+4156; 2K    -   3m    -   3SA   -   4C    -   4P  
+4160; 2K    -   3m    -   3SA   -   4C    -   4SA 
+4152; 2K    -   3m    -   3SA   -   4C    -   6P  
+4149; 2K    -   3m    -   3SA   -   4P  
+4161; 2K    -   3m    -   3SA   -   4P    -   4SA 
+4157; 2K    -   3m    -   3SA   -   4P    -   5T  
+4153; 2K    -   3m    -   3SA   -   4P    -   6T  
+4150; 2K    -   3m    -   3SA   -   5T  
+4162; 2K    -   3m    -   3SA   -   5T    -    -  
+4158; 2K    -   3m    -   3SA   -   5T    -   5K  
+4154; 2K    -   3m    -   3SA   -   5T    -   6K  
+4021; 2K    -   3m    -   3M  
+4015; 2K    X   XX  
+4014; 2K    X   2SA 
+4012; 2K    X   2M  
+4013; 2K    X   3m  
+4005; 2K   2C   2P  
+4006; 2K   2P   3E  
+4010; 2K   2M    X  
+4008; 2K   2M   2SA 
+4011; 2K   3m    X  
+4009; 2K   3m   3SA 
+4007; 2K   3m   3E  
+5231; 2C    -    -    X  
+1285; 2C    -    -    X    -   2P  
+1287; 2C    -    -    X    -   3P  
+1286; 2C    -    -    X    -   4P  
+5233; 2C    -    -   2P  
+5236; 2C    -    -   4T  
+5237; 2C    -    -   4K  
+ 449; 2C    -   2P  
+2433; 2C    -   2SA   o   4P  
+1250; 2C    X    -   2SA   -   3C  
+1248; 2C    X    -   2SA   -   3P  
+1252; 2C    X    -   2SA   -   3SA 
+1244; 2C    X    -   2SA   -   3m    -   3C  
+1242; 2C    X    -   2SA   -   3m    -   3SA 
+1237; 2C    X    -   3C    -   3P  
+1233; 2C    X    -   3P  
+1028; 2C   2P  
+1030; 2C   2P  
+1255; 2C   2P    -   2SA 
+1257; 2C   2P    -   3C  
+1256; 2C   2P    -   3P  
+1254; 2C   2P    -   3m  
+ 460; 2C   2P    X  
+ 471; 2C   2P   2SA 
+2436; 2C   2P   2SA   -   3M  
+2437; 2C   2P   2SA   -   3G  
+2440; 2C   2P   2SA   o   3SA 
+2438; 2C   2P   2SA   o   4P  
+2439; 2C   2P   2SA   o   4G  
+ 454; 2C   2P   3C  
+ 468; 2C   2P   3SA 
+ 464; 2C   2P   3m  
+ 457; 2C   2P   4C  
+1266; 2C   2SA   -   3K  
+1268; 2C   2SA   -   3K    -   3P  
+1267; 2C   2SA   -   3K    -   3SA 
+1274; 2C   2SA   -   3C  
+1281; 2C   2SA   -   3C    -   3P  
+1282; 2C   2SA   -   3C    -   3SA 
+1284; 2C   2SA   -   3P    -   3SA 
+1283; 2C   2SA   -   3P    -   4T  
+1261; 2C   3m    -   3P  
+ 467; 2C   3m   3P  
+1036; 2C   4T  
+1037; 2C   4K  
+5232; 2P    -    -    X  
+1288; 2P    -    -    X    -   2C  
+1290; 2P    -    -    X    -   3C  
+1289; 2P    -    -    X    -   4C  
+5234; 2P    -    -   3F  
+5238; 2P    -    -   4T  
+5239; 2P    -    -   4K  
+ 450; 2P    -   3C  
+1249; 2P    X    -   2SA   -   3C  
+1251; 2P    X    -   2SA   -   3P  
+1253; 2P    X    -   2SA   -   3SA 
+1245; 2P    X    -   2SA   -   3m    -   3P  
+1243; 2P    X    -   2SA   -   3m    -   3SA 
+1273; 2P   2SA   -   3K  
+1279; 2P   2SA   -   3K    -   3C  
+1280; 2P   2SA   -   3K    -   3SA 
+1269; 2P   2SA   -   3C  
+1270; 2P   2SA   -   3C    -   3SA 
+1271; 2P   2SA   -   3C    -   4C  
+1029; 2P   3C  
+1031; 2P   3C  
+1259; 2P   3C    -   2SA 
+1260; 2P   3C    -   4C  
+1258; 2P   3C    -   4m  
+ 463; 2P   3C    X  
+ 456; 2P   3C   3P  
+ 470; 2P   3C   3SA 
+ 459; 2P   3C   4P  
+1262; 2P   3m    -   3C  
+ 465; 2P   3m   3C  
+1038; 2P   4T  
+1039; 2P   4K  
    3; 2SA 
+5001; 2SA   -   3T  
+5013; 2SA   -   3T    -   3K  
+5022; 2SA   -   3T    -   3K    -   3C  
+5032; 2SA   -   3T    -   3K    -   3C    -   3P  
+5034; 2SA   -   3T    -   3K    -   3C    -   4P  
+5023; 2SA   -   3T    -   3K    -   3P  
+5033; 2SA   -   3T    -   3K    -   3P    -   3C  
+5035; 2SA   -   3T    -   3K    -   3P    -   4C  
+5017; 2SA   -   3T    -   3K    -   3SA 
+5018; 2SA   -   3T    -   3K    -   4SA 
+5016; 2SA   -   3T    -   3K    -   4m  
+5020; 2SA   -   3T    -   3K    -   5SA 
+5019; 2SA   -   3T    -   3K    -   6SA 
+5051; 2SA   -   3T    -   3K    -   6SA 
+5021; 2SA   -   3T    -   3K    -   7SA 
+5025; 2SA   -   3T    -   3C    -   3P  
+5026; 2SA   -   3T    -   3P    -   4C  
+5015; 2SA   -   3T    -   3SA 
+5028; 2SA   -   3T    -   3SA   -   4T  
+5036; 2SA   -   3T    -   3SA   -   4T    -   4C  
+5029; 2SA   -   3T    -   3SA   -   4K  
+5037; 2SA   -   3T    -   3SA   -   4K    -   4P  
+5030; 2SA   -   3T    -   3SA   -   4C  
+5031; 2SA   -   3T    -   3SA   -   4P  
+5014; 2SA   -   3T    -   3M  
+5027; 2SA   -   3T    -   3M    -   4m  
+5024; 2SA   -   3T    -   3M    -   4M  
+5003; 2SA   -   3K  
+5040; 2SA   -   3K    -   3C  
+5046; 2SA   -   3K    -   3SA 
+5004; 2SA   -   3C  
+5041; 2SA   -   3C    -   3P  
+5047; 2SA   -   3C    -   3SA 
+5005; 2SA   -   3P  
+5048; 2SA   -   3P    -   3SA 
+5042; 2SA   -   3P    -   4T  
+5008; 2SA   -   3SA 
+5006; 2SA   -   4T  
+5043; 2SA   -   4T    -   4K  
+5049; 2SA   -   4T    -   4SA 
+5007; 2SA   -   4K  
+5044; 2SA   -   4K    -   4C  
+5045; 2SA   -   4K    -   4P  
+5050; 2SA   -   4K    -   4SA 
+5009; 2SA   -   4SA 
+5002; 2SA   -   4M  
+5011; 2SA   -   5SA 
+5010; 2SA   -   6SA 
+5012; 2SA   -   7SA 
    7; 2M  
-1710; 2M    -   3m  
-1707; 2M    -   3M  
-1708; 2M    -   4m  
-3481; 2E    -   2SA 
-3480; 2E    -   3SA 
-3461; 3T    -   4T  
-3462; 3K    -   4K  
-3463; 3C    -   4C  
-3464; 3P    -   4P  
+1291; 2M    -    -    X    -   2SA 
+1292; 2M    -    -    X    -   3m  
+1293; 2M    -    -    X    -   4m  
+5235; 2M    -    -   2SA 
+ 453; 2M    -   2SA 
+2431; 2M    -   2SA   -   3M  
+2432; 2M    -   2SA   -   3G  
+2435; 2M    -   2SA   o   3SA 
+2434; 2M    -   2SA   o   4G  
+ 452; 2M    -   3SA 
+ 451; 2M    -   3m  
+ 447; 2M    -   3M  
+ 448; 2M    -   4M  
+1027; 2M    X  
+1239; 2M    X    -   2SA 
+1240; 2M    X    -   2SA   -   3T  
+1241; 2M    X    -   2SA   -   3K  
+1246; 2M    X    -   2SA   -   3m    -   3E  
+1247; 2M    X    -   2SA   -   3m    -   4E  
+1232; 2M    X    -   2E   ou   3E  
+1234; 2M    X    -   3SA 
+1235; 2M    X    -   3M  
+1236; 2M    X    -   3M    -   3SA 
+1238; 2M    X    -   3M    -   4E  
+1033; 2M   2SA 
+1272; 2M   2SA   -   3T  
+1277; 2M   2SA   -   3T    -   3K  
+1278; 2M   2SA   -   3T    -   3SA 
+1275; 2M   2SA   -   3P  
+1276; 2M   2SA   -   3SA 
+1263; 2M   3T    -   3K  
+ 461; 2M   3T    X  
+ 466; 2M   3T   3K  
+ 462; 2M   3K    X  
+1035; 2M   3SA 
+1032; 2M   3m  
+1264; 2M   3m    -   3SA 
+1265; 2M   3m    -   4m  
+ 469; 2M   3m   3SA 
+ 455; 2M   3m   3M  
+ 458; 2M   3m   4M  
+1034; 2M   3M  
+5243; 3T    -    -   4T  
+5244; 3T    -    -   4K  
+ 473; 3T    -   3K  
+ 481; 3T   3K    X  
+1043; 3T   4T  
+1044; 3T   4K  
+5245; 3K    -    -   4K  
+1045; 3K   4K  
+5246; 3C    -    -   4C  
+ 475; 3C    -   3P  
+1046; 3C   4C  
+ 484; 3P   4C    X  
+ 487; 3P   4C   4P  
   10; 3SA 
+ 496; 3SA   -   4T  
+2441; 3SA   -   4T    -   4K  
+ 498; 3SA   -   4K  
+2443; 3SA   -   4K    -   4C  
+2444; 3SA   -   4K    -   4P  
+2445; 3SA   -   4K    -   4SA 
+2446; 3SA   -   4K    -   5T  
+ 499; 3SA   -   4M  
+ 497; 3SA   -   5T  
+2442; 3SA   -   5T    -   5K  
+ 474; 3m    -   3E  
+ 483; 3m   3C    X  
+ 485; 3m   3E   4m  
+5247; 3M    -    -   4SA 
+ 482; 3M   4K    X  
+1047; 3M   4SA 
+ 486; 3M   4m   4M  
    8; 3E  
-3482; 3E    -   3SA 
-3465; 4T    -   5T  
-3466; 4K    -   5K  
+5241; 3E    -    -    X  
+1298; 3E    -    -    X    -   nF  
+1297; 3E    -    -    X    -   3F   ou   4F  
+1299; 3E    -    -    X   4E   4F   ou   5F  
+5242; 3E    -    -   3SA 
+5240; 3E    -    -   3F   ou   4F  
+ 476; 3E    -   FC  
+ 477; 3E    -   3SA 
+ 478; 3E    -   4SA 
+ 472; 3E    -   4E  
+1041; 3E    X  
+1295; 3E    X    -   nF  
+1294; 3E    X    -   3F   ou   4F  
+1296; 3E    X   4E   4F   ou   5F  
+ 479; 3E   3P    X  
+1042; 3E   3SA 
+1040; 3E   3F   ou   4F  
+ 480; 3E   4T    X  
+ 492; 4T   4K    X  
+1049; 4C   4SA 
+5249; 4C   4SA 
+1305; 4P    -    -   4SA   -   5E  
+1050; 4P   4SA 
+5250; 4P   4SA 
+1302; 4P   4SA   -   5E  
+ 495; 4P   5C    X  
+ 488; 4m    -   4M  
    9; 4E  
+1303; 4E    -    -    X    -   4F   ou   5F  
+1304; 4E    -    -    X   5E   5F   ou   6F  
+ 489; 4E    -   4SA 
+1048; 4E    X  
+5248; 4E    X  
+1300; 4E    X    -   4F   ou   5F  
+1301; 4E    X   5E   5F   ou   6F  
+ 494; 4E   4C    X  
+ 490; 4E   4P    X  
+ 491; 4E   5T    X  
+ 493; 4E   5K    X  

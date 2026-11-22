@@ -161,6 +161,7 @@ class ExcelToCsv:
       "comment",
    ]
    BOOL_FIELDS = [
+      "full",
       "suit_stop",
       "suit_control",
       "suit_force",

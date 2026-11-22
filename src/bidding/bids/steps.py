@@ -21,7 +21,7 @@ class Step(Enum):
    RI_UP_N4 = auto() # réponse à intervention à saut à la couleur du joueur 4
    RI_SA_N4 = auto() # réponse à intervention par 1SA du joueur 4
    RI_X_N4 = auto()  # réponse à intervention par contre d'appel du joueur 4
-   RI_OSPE = auto() # réponse à intervention suite ouverture spéciale: 1SA, 2M, 3E, 4E
+   RI_OSPE = auto()  # réponse à intervention suite ouverture spéciale: 1SA, 2M, 3E, 4E
    REDI_N2 = auto()  # redemande de l'intervenant (joueur 2, lap 2)
    REDI_N4 = auto()  # redemande de l'intervenant (joueur 4, lap 2)
    RI2_N2 = auto()   # 2e enchère du répondant en intervention (joueur 4, lap 2)

@@ -3,12 +3,12 @@ Removable.
 This module creates a file dna.csv with all bidding sequences from sense file,
 to examine completeness of sequences.
 """
-import csv
 from pydantic import computed_field
 from functools import reduce
-from utils import Asset, MyFileAccessException
+from utils import Asset
 from bids.files import CsvFile
-from bids.files import SemiColon, SenseExcelFile
+from bids.files import SenseExcelFile
+from bids.bid_rules import BidRule
 
 
 class DnaBid:
@@ -34,11 +34,14 @@ class DnaBid:
       "M",
       "E",
       "F",
+      "G",
    ]
    BIDSYMB = [
       "-",
       "X",
       "XX",
+      "nF",
+      "nG",
       "FC",
       "o",
    ]
@@ -55,8 +58,10 @@ class DnaBid:
          return 10 * self.level + self.SUITSYMB.index(self.suit_symbol)
       elif self.raw == "o":
          return 999
-      else:
+      elif self.raw in self.BIDSYMB:
          return self.BIDSYMB.index(self.raw)
+      else:
+         return 998
 
    def __lt__(self, other) -> bool:
       return self.order < other.order
@@ -128,6 +133,7 @@ class Sequence:
 class Dna:
    """
    This class is used to check completeness of SEFsense.xlsx sequences.
+   Sequences with partial historic bids are ignored.
    It provides a file dna.csv with all referenced sequences defined in
    sense.csv columns hist_bid and bid.
    File is sorted using suit order as : 
@@ -160,12 +166,15 @@ class Dna:
       sense_excel_file = SenseExcelFile()
       for row in sense_excel_file.get_rows():
          bidding = self._bidding(row)
+         if bidding.startswith(BidRule.PARTIAL_BID_FLAG):
+            continue
+
          sequence = Sequence(value=bidding,id=row[0])
          sequences.append(sequence)
       return sequences
 
    def _bidding(self, row) -> str:
-      first_pass = "- - " if row[4] else ""
+      first_pass = "- - " if row[3] else ""
       hist_bid = (row[1] + " ") if row[1] else ""
       bid = "-" if row[2] == "passe" else row[2]
       return first_pass + hist_bid + bid

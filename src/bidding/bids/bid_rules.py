@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pydantic import AfterValidator, BaseModel, BeforeValidator, Field
-from typing import Annotated
+from typing import Annotated, ClassVar
 import re
 from bids.files import RuleFile
 from bids.bids import Bid
@@ -53,8 +53,9 @@ def _validated_bicolor(value: str) -> str:
 
 def _validated_hist_bid(value: str) -> str:
    if value:
+
       for bid_raw in value.split(" "):
-         if not Bid.valid_raw_bid(bid_raw):
+         if not Bid.valid_raw_bid(bid_raw) and bid_raw != BidRule.PARTIAL_BID_FLAG:
             raise MyDataException(f"'{value}' ne correspond pas à une suite d'enchères.")
    return value
 
@@ -102,6 +103,8 @@ class BidRule(BaseModel):
    raw_bid:       The bid to make if all conditions of the rule are satisfied.
    sense_id:      Id for sense of bid in SEFsense file.
    """
+   PARTIAL_BID_FLAG: ClassVar[str] = ">>"
+
    id: int
    step: Annotated[str, AfterValidator(_validated_step)]
    opp_next_step: Annotated[str, AfterValidator(_validated_step)]
@@ -128,6 +131,15 @@ class BidRule(BaseModel):
    raw_bid: str = ""
    sense_id: Annotated[int, Field(default=""), BeforeValidator(_ensure_sense_id)]
 
+   def hist_bid_is_partial(self) -> bool:
+      return self.hist_bid.startswith(BidRule.PARTIAL_BID_FLAG)
+
+   def polished_hist_bid(self) -> str:
+      if self.hist_bid_is_partial():
+         return self.hist_bid[3:]
+      else:
+         return self.hist_bid
+
    @staticmethod
    def condition_names() -> list[str]:
       fields = list(BidRule.model_fields.keys())
@@ -141,6 +153,13 @@ class BidRule(BaseModel):
       bid_rule_file = RuleFile(BidRule.model_fields.keys())
       rows = bid_rule_file.get_rows(step_name)
       return [BidRule(**row) for row in rows]
+
+   @staticmethod
+   def get_last_id() -> int:
+      # This function returns id of the last rule in file.
+      bid_rule_file = RuleFile(BidRule.model_fields.keys())
+      last_rule = BidRule(**bid_rule_file.get_last_row())
+      return last_rule.id
 
    def split_fit(self, partner_suit_code: str) -> tuple:
       # Returns (suit_code, partner nbr trumps, player nbr trumps)

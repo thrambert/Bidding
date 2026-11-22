@@ -258,7 +258,7 @@ class RuleAnalyzer:
       opp_last_suit_code = self.record.last_suit_code(opp_camp)
       if opp_last_suit_code:
          suit = MetaSuit.from_code(opp_last_suit_code)
-         return self.hand.stops_count(suit) >= 1
+         return self.hand.stops_count(suit) >= rule.stops
       else:
          return True
    
@@ -269,9 +269,9 @@ class RuleAnalyzer:
          return True
          
    def _hist_bid_check(self, rule: BidRule) -> bool:
-      requested_raw_bids = list(reversed(rule.hist_bid.split(" ")))
+      requested_raw_bids = list(reversed(rule.polished_hist_bid().split(" ")))
       requested_bids = [Bid(value) for value in requested_raw_bids]
-      return self.record.comply_with(requested_bids)
+      return self.record.comply_with(requested_bids, rule.hist_bid_is_partial())
    
    #  ═════════════════════════════════════════════════════════════════════════
    #  Conditions as functions
@@ -308,8 +308,14 @@ class RuleAnalyzer:
       return suit_lengths[0] <= 1
 
    def _short_in_interv_color_check(self) -> bool:
-      intervention_suit = MetaSuit.from_code(self.record.last.suit_code)
+      intervention_suit_code = self.record.last_suit_code(self.record.last.camp)
+      intervention_suit = MetaSuit.from_code(intervention_suit_code)
       return self.hand.cards_count[intervention_suit] <= 1
+
+   def _not_5_in_interv_color_check(self) -> bool:
+      intervention_suit_code = self.record.last_suit_code(self.record.last.camp)
+      intervention_suit = MetaSuit.from_code(intervention_suit_code)
+      return self.hand.cards_count[intervention_suit] < 5
 
    def _honors_in_bicolors_check(self) -> bool:
       pts_H = [self.hand.suit_points_H(s) for s in self.hand.longest_suits]
@@ -391,13 +397,22 @@ class RuleAnalyzer:
    def _one_major_ace_check(self) -> bool:
       return self.hand.has_one_major_ace_and_no_minor()
 
+   def _unnamed_3_cards_check(self, arg: str) -> bool:
+      # Returns True if player has at least 3 cards in unnamed suits
+      suit_codes = self.record.suit_codes()
+      unnamed_suits = [MetaSuit.from_code(s) for s in suit_codes]
+      for suit in unnamed_suits:
+         if self.hand.cards_count[suit] < 3:
+            return False
+      return True
+
    def _suit_length_check(self, arg: str) -> bool:
       meta_suit = MetaSuit.from_code(arg[0])
       suit_length = self.hand.cards_count[meta_suit]
       condition = arg[1:]
       return self.op_match(math_inequality=condition, value=suit_length)
 
-   def _no_short_suit_check (self, arg: str) -> bool:
+   def _no_short_suit_check(self, arg: str) -> bool:
       # Returns True if every given suits have 2 cards at least
       #  Arg = "CD..." or "", where CD... are suit codes.
       #  If arg = "", all suits are concerned.

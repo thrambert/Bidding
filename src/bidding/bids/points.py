@@ -1,4 +1,5 @@
 import re
+from bidding.utils import MyDataException
 
 
 class PointZone:
@@ -33,6 +34,9 @@ class PointZone:
       op = re.match(r'[<>]=?', zone_of_points)
       numbers = re.findall(r'\d+', zone_of_points)
       types = re.findall(r'HL?D?', zone_of_points)
+      if not types:
+         raise MyDataException(f"error in PointZone, zone {zone_of_points} has no type (H, HL or HLD)")
+
       self._load_types(types)
       if op:
          self._load_values_with_inequality(str(op.group()), int(numbers[0]))
@@ -58,12 +62,14 @@ class PointZone:
    
    def contains(self, pts_H: int, pts_HL: int) -> bool:
       if self.is_HLD():
-         print("error in PointZone, should use HLD")
+         raise MyDataException(f"error in PointZone, use contains_HLD() instead of contains()")
+
       player_min = pts_H if self.type_min == "H" else pts_HL
       player_max = pts_H if self.type_max == "H" else pts_HL
       return player_min >= self.min and player_max <= self.max
 
    def contains_HLD(self, pts_HLD: int) -> bool:
-      if not self.is_HLD:
-         print("error in PointZone, should not use HLD")
+      if not self.is_HLD():
+         raise MyDataException(f"error in PointZone, do not use contains_HLD() but contains()")
+      
       return pts_HLD >= self.min and pts_HLD <= self.max
