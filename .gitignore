@@ -8,3 +8,15 @@ wheels/
 
 # Virtual environments
 .venv
+
+# macOS
+.DS_Store
+
+# Office lock files
+~$*
+
+# Generated from Excel files / simulations
+assets/bid_rules.csv
+assets/bid_senses.csv
+assets/dna.csv
+assets/bid_history.csv

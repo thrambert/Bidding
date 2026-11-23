@@ -1,7 +1,7 @@
 [project]
 name = "bidding"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.0.2"
+description = "A game to play bridge with cards."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -10,3 +10,23 @@ dependencies = [
     "pydantic>=2.12.5",
     "pyqt6>=6.11.0",
 ]
+
+[build-system]
+requires = ["uv_build>=0.9.15,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "RET503"]

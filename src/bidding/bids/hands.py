@@ -1,419 +1,421 @@
 from __future__ import annotations
 
-from functools import cached_property, reduce
-from enum import Enum
 import re
+from enum import Enum
+from functools import cached_property, reduce
+
 from bridgebots.deal import Card, PlayerHand
 from bridgebots.deal_enums import Rank, Suit
-from deals.distributions import Distribution
+
+from bidding.deals.distributions import Distribution
 
 
 class MetaSuit(Enum):
-   """
-   This class manages suits to support bidding rules, including SA.
-   ____________________________________________________________________________
-   Properties
-   rank:       For ordering. Example: HEARTS is a lower suit than SPADES.
-   suit:       item of Suit enum class or None for SA.
-   text:       Name in french in lowercase, example: carreau.
-   code:       A capital french letter(s) to symbolize suit, example P, SA.
-   group:      two string values: mineure, Majeure, or "" for SA
-   group_code: A capital letter to symbolize group: m, M, or "" for SA
-   """
-   CLUBS =     ("0", "trèfle", "T", "mineure")
-   DIAMONDS =  ("1", "carreau", "K", "mineure")
-   HEARTS =    ("2", "coeur", "C", "Majeure")
-   SPADES =    ("3", "pique", "P", "Majeure")
-   NO_TRUMP =  ("4", "sans atout", "SA", "")
+    """
+    This class manages suits to support bidding rules, including SA.
+    ____________________________________________________________________________
+    Properties
+    rank:       For ordering. Example: HEARTS is a lower suit than SPADES.
+    suit:       item of Suit enum class or None for SA.
+    text:       Name in french in lowercase, example: carreau.
+    code:       A capital french letter(s) to symbolize suit, example P, SA.
+    group:      two string values: mineure, Majeure, or "" for SA
+    group_code: A capital letter to symbolize group: m, M, or "" for SA
+    """
 
-   def __init__(self, rank_str, text, code, group):
-      # args are automtically set with values defined upside ("0", "trèfle"...).
-      self.rank = int(rank_str)
-      self.suit = None if self.name == 'NO_TRUMP' else Suit.from_str(self.name[0])
-      self.text = text
-      self.code = code
-      self.group = group
+    CLUBS = ("0", "trèfle", "T", "mineure")
+    DIAMONDS = ("1", "carreau", "K", "mineure")
+    HEARTS = ("2", "coeur", "C", "Majeure")
+    SPADES = ("3", "pique", "P", "Majeure")
+    NO_TRUMP = ("4", "sans atout", "SA", "")
 
-   @property
-   def group_code(self):
-      return self.group[:1] if self.group else ""
-   
-   def is_major(self):
-      return self.group == "Majeure"
-   
-   def is_minor(self):
-      return self.group == "mineure"
+    def __init__(self, rank_str, text, code, group):
+        """args are automtically set with values defined upside ("0", "trèfle"...)."""
+        self.rank = int(rank_str)
+        self.suit = None if self.name == "NO_TRUMP" else Suit.from_str(self.name[0])
+        self.text = text
+        self.code = code
+        self.group = group
 
-   def same_rank(self, other_suit: MetaSuit) -> bool:
-      return (self.is_major() == other_suit.is_major())
-   
-   def __eq__(self, other) -> bool:
-      return self.rank == other.rank
-   
-   def __lt__(self, other) -> bool:
-      return self.rank < other.rank
+    @property
+    def group_code(self):
+        return self.group[:1] if self.group else ""
 
-   def __le__(self, other) -> bool:
-      return self.rank <= other.rank
+    def is_major(self):
+        return self.group == "Majeure"
 
-   def __hash__(self):
-      # Required when you declare __eq__ to keep the object hashable
-      return hash(self.rank)
-   
-   def __repr__(self) -> str:
-      return self.text
+    def is_minor(self):
+        return self.group == "mineure"
 
-   def any_texts(self) -> list[str]:
-      return [self.text, self.group]
-   
-   def any_codes(self) -> list[str]:
-      return [self.code, self.group_code]
-   
-   @staticmethod
-   def four_suits() -> list[MetaSuit]:
-      return [s for s in MetaSuit if s != MetaSuit.NO_TRUMP]
-   
-   @staticmethod
-   def four_suit_codes() -> list[str]:
-      return [s.code for s in MetaSuit if s != MetaSuit.NO_TRUMP]
+    def same_rank(self, other_suit: MetaSuit) -> bool:
+        return self.is_major() == other_suit.is_major()
 
-   @staticmethod
-   def from_suit(suit: Suit) -> MetaSuit:
-      meta_suit = [s for s in MetaSuit if s.name == suit.name]
-      return meta_suit[0] if meta_suit else None
+    def __eq__(self, other) -> bool:
+        return self.rank == other.rank
 
-   @staticmethod
-   def from_text(suit_text: str) -> MetaSuit:
-      meta_suit = [s for s in MetaSuit if s.text == suit_text]
-      return meta_suit[0] if meta_suit else None
+    def __lt__(self, other) -> bool:
+        return self.rank < other.rank
 
-   @staticmethod
-   def from_code(suit_code: str) -> MetaSuit:
-      meta_suit = [s for s in MetaSuit if s.code == suit_code]
-      return meta_suit[0] if meta_suit else None
+    def __le__(self, other) -> bool:
+        return self.rank <= other.rank
 
-   @staticmethod
-   def from_rank(suit_rank: int) -> MetaSuit:
-      meta_suit = [s for s in MetaSuit if s.rank == suit_rank]
-      return meta_suit[0] if meta_suit else None
+    def __hash__(self):
+        """Required when you declare __eq__ to keep the object hashable"""
+        return hash(self.rank)
 
-   @staticmethod
-   def all_texts() -> list[str]:
-      return [s.text for s in MetaSuit]
+    def __repr__(self) -> str:
+        return self.text
 
-   @staticmethod
-   def all_groups() -> list[str]:
-      return ["Majeure", "mineure"]
+    def any_texts(self) -> list[str]:
+        return [self.text, self.group]
+
+    def any_codes(self) -> list[str]:
+        return [self.code, self.group_code]
+
+    @staticmethod
+    def four_suits() -> list[MetaSuit]:
+        return [s for s in MetaSuit if s != MetaSuit.NO_TRUMP]
+
+    @staticmethod
+    def four_suit_codes() -> list[str]:
+        return [s.code for s in MetaSuit if s != MetaSuit.NO_TRUMP]
+
+    @staticmethod
+    def from_suit(suit: Suit) -> MetaSuit:
+        meta_suit = [s for s in MetaSuit if s.name == suit.name]
+        return meta_suit[0] if meta_suit else None
+
+    @staticmethod
+    def from_text(suit_text: str) -> MetaSuit:
+        meta_suit = [s for s in MetaSuit if s.text == suit_text]
+        return meta_suit[0] if meta_suit else None
+
+    @staticmethod
+    def from_code(suit_code: str) -> MetaSuit:
+        meta_suit = [s for s in MetaSuit if s.code == suit_code]
+        return meta_suit[0] if meta_suit else None
+
+    @staticmethod
+    def from_rank(suit_rank: int) -> MetaSuit:
+        meta_suit = [s for s in MetaSuit if s.rank == suit_rank]
+        return meta_suit[0] if meta_suit else None
+
+    @staticmethod
+    def all_texts() -> list[str]:
+        return [s.text for s in MetaSuit]
+
+    @staticmethod
+    def all_groups() -> list[str]:
+        return ["Majeure", "mineure"]
 
 
 class RichHand:
-   """
-   This class described player's hand and its computed properties.
-   ____________________________________________________________________________
-   Public properties
-   suits:         dict[MetaSuit, list[Rank]], ex: suits[SPADES] = [KING, FIVE]
-   cards:         List of cards. Ex of a card: Card(suit: HEART, rank: QUEEN)
-   longest_suits: The 2 suits having the most cards, see detail below.
-   count_longest: Number of cards for 2 longest suits, see detail below.
-   points_H:      Count of honor points
-   points_HL:     Count of honor points plus distribution points
-   distribution:  French distrib the hand matches with. Ex: ['régulier', '4333']
-   cards_count:   Number of cards per suit in descending order.
-   majors_count:  Number of cards per major suit.
-   won_tricks:    French: Levées de jeu
-   def_tricks:    French: Levées sures de défense quelque soit contrat adverse
-   lost_tricks:   French: Perdantes
-   best_minor_code:  Longest minor suit code, or club if eq 3, or diamond if eq 4
-   best_major_code:  Longest major suit code, or heart if eq 4, or spade if eq 5
-   strong_suits:     Suits which a strength, which means containing ace or king
-   ____________________________________________________________________________
-   Detail on suits
-   Suits are sorted from lowest suit (clubs) to highest (spades).
-      Ranks in suit are sorted from highest card ACE to lowest TWO.
-   Detail on longest_suits and count_longest
-      They are sorted by decreasing number of cards. In cas of equality of length,
-      highest suit is in first if length >= 5, else lowest suit is in first.
-      Suits order from highest to lowest: spade, heart, diamond, club.
-   """
-   def __init__(self, player_hand: PlayerHand):
-      self._player_hand = player_hand
-      self.suits = {MetaSuit.from_suit(k): v for k, v in player_hand.suits.items()}
-      self.cards: list[Card] = player_hand.cards
-      self.longest_suits: tuple[MetaSuit, MetaSuit] = self._longest_suits_and_counts[:2]
-      self.count_longest: tuple[int, int] = self._longest_suits_and_counts[2:]
+    """
+    This class described player's hand and its computed properties.
+    ____________________________________________________________________________
+    Public properties
+    suits:         dict[MetaSuit, list[Rank]], ex: suits[SPADES] = [KING, FIVE]
+    cards:         List of cards. Ex of a card: Card(suit: HEART, rank: QUEEN)
+    longest_suits: The 2 suits having the most cards, see detail below.
+    count_longest: Number of cards for 2 longest suits, see detail below.
+    points_H:      Count of honor points
+    points_HL:     Count of honor points plus distribution points
+    distribution:  French distrib the hand matches with. Ex: ['régulier', '4333']
+    cards_count:   Number of cards per suit in descending order.
+    majors_count:  Number of cards per major suit.
+    won_tricks:    French: Levées de jeu
+    def_tricks:    French: Levées sures de défense quelque soit contrat adverse
+    lost_tricks:   French: Perdantes
+    best_minor_code:  Longest minor suit code, or club if eq 3, or diamond if eq 4
+    best_major_code:  Longest major suit code, or heart if eq 4, or spade if eq 5
+    strong_suits:     Suits which a strength, which means containing ace or king
+    ____________________________________________________________________________
+    Detail on suits
+    Suits are sorted from lowest suit (clubs) to highest (spades).
+       Ranks in suit are sorted from highest card ACE to lowest TWO.
+    Detail on longest_suits and count_longest
+       They are sorted by decreasing number of cards. In cas of equality of length,
+       highest suit is in first if length >= 5, else lowest suit is in first.
+       Suits order from highest to lowest: spade, heart, diamond, club.
+    """
 
-   @cached_property
-   def points_H(self) -> int:
-      points = 0
-      for meta_suit in MetaSuit.four_suits():
-         points += self.suit_points_H(meta_suit)
-      return points
-   
-   @cached_property
-   def points_HL(self) -> int:
-      points = self.points_H
-      for ranks in self.suits.values():
-         points += max(0, len(ranks) - 4)
-      return points
+    _HONORS_WON_TRICKS = {
+        "AKQ": 3,
+        "AKJ": 2.5,
+        "AQJ": 2.25,
+        "AK": 2,
+        "AQ.": 1.5,
+        "A": 1,
+        "KQJ": 2,
+        "KQ.": 1.25,
+        "K.": 0.5,
+        "QJ.": 0.75,
+        "QT9": 0.75,
+        "Q.": 0.25,
+    }
 
-   def points_HLD(self, trump: MetaSuit, partner_nbr_trumps: int) -> int:
-      points = self.points_HL
-      # Trump
-      total_trumps = partner_nbr_trumps + self.cards_count[trump]
-      points += (2 if total_trumps == 9 else 0) + max(0, total_trumps - 9)
-      points -= max(0, self.cards_count[trump] - 4)   # deduct HL pts on trump
-      # Doubleton and short suits
-      for suit in [s for s in MetaSuit.four_suits() if s != trump]:
-         points += max(0, 3 - self.cards_count[suit])
-      return points
-   
-   def suit_points_H(self, meta_suit: MetaSuit) -> int:
-      points = 0
-      cards_ranks = self.suits[meta_suit]
-      for rank in cards_ranks:
-         match rank:
-            case Rank.JACK:
-               points += 1
-            case Rank.QUEEN:
-               points += 2
-            case Rank.KING:
-               points += 3
-            case Rank.ACE:
-               points += 4
-      return points
+    def __init__(self, player_hand: PlayerHand):
+        self._player_hand = player_hand
+        self.suits = {MetaSuit.from_suit(k): v for k, v in player_hand.suits.items()}
+        self.cards: list[Card] = player_hand.cards
+        self.longest_suits: tuple[MetaSuit, MetaSuit] = self._longest_suits_and_counts[:2]
+        self.count_longest: tuple[int, int] = self._longest_suits_and_counts[2:]
 
-   @cached_property
-   def distribution(self) -> list[str]:
-      numeric_distrib = self._compute_ordinal_distribution()
-      distribution = Distribution(numeric_distrib)
-      return distribution.get_all_shapes()
-   
-   @cached_property
-   def cards_count(self) -> dict[MetaSuit, int]:
-      # Returns dict sorted by reverse count and by rank (trèfle, puis carreau...)
-      count_per_suit = {MetaSuit.from_suit(k): len(v) for k, v in self.suits.items()}
-      sorted_count = sorted(count_per_suit.items(), key=lambda x:x[1], reverse=True)
-      return dict(sorted_count)
+    @cached_property
+    def points_H(self) -> int:
+        points = 0
+        for meta_suit in MetaSuit.four_suits():
+            points += self.suit_points_H(meta_suit)
+        return points
 
-   @cached_property
-   def majors_count(self) -> dict[MetaSuit, int]:
-      return {
-         MetaSuit.SPADES: len(self.suits[MetaSuit.SPADES]),
-         MetaSuit.HEARTS: len(self.suits[MetaSuit.HEARTS]),
-      }
+    @cached_property
+    def points_HL(self) -> int:
+        points = self.points_H
+        for ranks in self.suits.values():
+            points += max(0, len(ranks) - 4)
+        return points
 
-   @cached_property
-   def won_tricks(self) -> float:
-      tricks = 0
-      for string_cards in self._string_cards.values():
-         tricks += self._won_tricks_length(len(string_cards))
-         tricks += self._won_tricks_honors(string_cards)
-      return tricks
+    def points_HLD(self, trump: MetaSuit, partner_nbr_trumps: int) -> int:
+        points = self.points_HL
+        # Trump
+        total_trumps = partner_nbr_trumps + self.cards_count[trump]
+        points += (2 if total_trumps == 9 else 0) + max(0, total_trumps - 9)
+        points -= max(0, self.cards_count[trump] - 4)  # deduct HL pts on trump
+        # Doubleton and short suits
+        for suit in [s for s in MetaSuit.four_suits() if s != trump]:
+            points += max(0, 3 - self.cards_count[suit])
+        return points
 
-   @cached_property
-   def def_tricks(self) -> int:
-      tricks = 0
-      for suit_string_cards in self._string_cards.values():
-         if re.match('AR', suit_string_cards):
-            tricks += 2 if len(suit_string_cards) < 6 else 1
-         elif re.match('A', suit_string_cards):
-            tricks += 1
-      return tricks
+    def suit_points_H(self, meta_suit: MetaSuit) -> int:
+        points = 0
+        cards_ranks = self.suits[meta_suit]
+        for rank in cards_ranks:
+            match rank:
+                case Rank.JACK:
+                    points += 1
+                case Rank.QUEEN:
+                    points += 2
+                case Rank.KING:
+                    points += 3
+                case Rank.ACE:
+                    points += 4
+        return points
 
-   @cached_property
-   def lost_tricks(self) -> int:
-      lost_tricks = 0
-      for suit_string_cards in self._string_cards.values():
-         if suit_string_cards:
-            count = min(3, len(suit_string_cards))
-            magic_cards = '[' + 'AKQ'[0:count] + ']'
-            matched = re.findall(magic_cards, suit_string_cards)
-            lost_tricks += count - len(matched)
-      return lost_tricks
+    @cached_property
+    def distribution(self) -> list[str]:
+        numeric_distrib = self._compute_ordinal_distribution()
+        distribution = Distribution(numeric_distrib)
+        return distribution.get_all_shapes()
 
-   @cached_property
-   def best_minor_code(self) -> str:
-      if self.cards_count[MetaSuit.DIAMONDS] > self.cards_count[MetaSuit.CLUBS]:
-         return MetaSuit.DIAMONDS.code
-      elif self.cards_count[MetaSuit.DIAMONDS] < self.cards_count[MetaSuit.CLUBS]:
-         return MetaSuit.CLUBS.code
-      elif self.cards_count[MetaSuit.DIAMONDS] == 3:
-         return MetaSuit.CLUBS.code
-      else:
-         return MetaSuit.DIAMONDS.code
+    @cached_property
+    def cards_count(self) -> dict[MetaSuit, int]:
+        """Returns dict sorted by reverse count and by rank (trèfle, puis carreau...)"""
+        count_per_suit = {MetaSuit.from_suit(k): len(v) for k, v in self.suits.items()}
+        sorted_count = sorted(count_per_suit.items(), key=lambda x: x[1], reverse=True)
+        return dict(sorted_count)
 
-   @cached_property
-   def best_major_code(self) -> str:
-      if self.cards_count[MetaSuit.SPADES] > self.cards_count[MetaSuit.HEARTS]:
-         return MetaSuit.SPADES.code
-      elif self.cards_count[MetaSuit.SPADES] < self.cards_count[MetaSuit.HEARTS]:
-         return MetaSuit.HEARTS.code
-      elif self.cards_count[MetaSuit.SPADES] <= 4:
-         return MetaSuit.HEARTS.code
-      else:
-         return MetaSuit.SPADES.code
+    @cached_property
+    def majors_count(self) -> dict[MetaSuit, int]:
+        return {
+            MetaSuit.SPADES: len(self.suits[MetaSuit.SPADES]),
+            MetaSuit.HEARTS: len(self.suits[MetaSuit.HEARTS]),
+        }
 
-   @cached_property
-   def strong_suits(self) -> list[MetaSuit]:
-      # Returns suits which a strength, which means containing ace or king
-      strong_cards = [Rank.ACE, Rank.KING]
-      return [s for s in MetaSuit.four_suits() if self.suits[s][0] in strong_cards]
+    @cached_property
+    def won_tricks(self) -> float:
+        tricks = 0
+        for string_cards in self._string_cards.values():
+            tricks += self._won_tricks_length(len(string_cards))
+            tricks += self._won_tricks_honors(string_cards)
+        return tricks
 
-   @cached_property
-   def _longest_suits_and_counts(self) -> tuple[MetaSuit, MetaSuit, int, int]:
-      """
-      Returns 2 longest suits and their number of cards.
-      If length is 5 or 6 for each, it returns highest suit first,
-      if length is <=4 for each, it returns lowest suit first.
-      """
-      suit_count = self.cards_count
-      long = list(suit_count.keys())[:2]
-      count = list(suit_count.values())
-      if count[0] == count[1]:
-         five_or_six_cards = (count[0] >= 5)
-         long.sort(key=lambda suit: suit.value, reverse=five_or_six_cards)
-      return (long[0], long[1], suit_count[long[0]], suit_count[long[1]])
+    @cached_property
+    def def_tricks(self) -> int:
+        tricks = 0
+        for cards in self._string_cards.values():
+            if cards.startswith("AK"):
+                tricks += 2 if len(cards) < 6 else 1
+            elif cards.startswith("A"):
+                tricks += 1
+        return tricks
 
-   @cached_property
-   def _string_cards(self) -> dict[Suit, str]:
-      # Returns cards of suits in reverse order, as "AKQ94".
-      cards_per_suits = {}
-      for suit, ranks in self.suits.items():
-         sorted_ranks = sorted(ranks, reverse=True)
-         short_cards = [r.abbreviation() for r in sorted_ranks]
-         string_cards = "".join(c for c in short_cards)
-         cards_per_suits[suit] = string_cards
-      return cards_per_suits
+    @cached_property
+    def lost_tricks(self) -> int:
+        lost_tricks = 0
+        for suit_string_cards in self._string_cards.values():
+            if suit_string_cards:
+                count = min(3, len(suit_string_cards))
+                magic_cards = "[" + "AKQ"[0:count] + "]"
+                matched = re.findall(magic_cards, suit_string_cards)
+                lost_tricks += count - len(matched)
+        return lost_tricks
 
-   def longest_suit(self, except_suit_codes: set[str]) -> MetaSuit:
-      """
-      Returns longest suit which is not in given set.
-      If several suits have same length, returns major prior.
-      """
-      suits = [s for s in self.cards_count.keys() if s.code not in except_suit_codes]
-      if self.cards_count[suits[1]] == self.cards_count[suits[0]]:
-         longest = suits[1] if suits[0].is_minor else suits[0]
-         if self.cards_count[suits[2]] == self.cards_count[longest]:
-            longest = suits[2] if longest.is_minor() else longest
-      return longest
-            
-   def stops_count(self, suit: MetaSuit) -> float:
-      # Returns number of times the hand can stop opponents in given suit.
-      pts_H = self.suit_points_H(suit)
-      ranks = self.suits[suit]
-      if not ranks:
-         return 0
-      elif pts_H == 10:
-         return 4
-      elif pts_H == 9:
-         return 3
-      elif pts_H >=7:
-         return 2
-      elif pts_H >= 5 and len(ranks) >= 3:
-         return 1.5
-      elif pts_H >= 1 and len(ranks) >= 15 - ranks[0].value[0]:   # ACE.value = 14, KING = 13...
-         return 1
-      else:
-         return 0
+    @cached_property
+    def best_minor_code(self) -> str:
+        if self.cards_count[MetaSuit.DIAMONDS] > self.cards_count[MetaSuit.CLUBS]:
+            return MetaSuit.DIAMONDS.code
+        elif self.cards_count[MetaSuit.DIAMONDS] < self.cards_count[MetaSuit.CLUBS]:
+            return MetaSuit.CLUBS.code
+        elif self.cards_count[MetaSuit.DIAMONDS] == 3:
+            return MetaSuit.CLUBS.code
+        else:
+            return MetaSuit.DIAMONDS.code
 
-   def controlled_suit_codes(self) -> set[str]:
-      ctrls = [s.code for s in MetaSuit.four_suits() if self.controls(s)]
-      return set(ctrls)
+    @cached_property
+    def best_major_code(self) -> str:
+        if self.cards_count[MetaSuit.SPADES] > self.cards_count[MetaSuit.HEARTS]:
+            return MetaSuit.SPADES.code
+        elif self.cards_count[MetaSuit.SPADES] < self.cards_count[MetaSuit.HEARTS]:
+            return MetaSuit.HEARTS.code
+        elif self.cards_count[MetaSuit.SPADES] <= 4:
+            return MetaSuit.HEARTS.code
+        else:
+            return MetaSuit.SPADES.code
 
-   def controls(self, suit: MetaSuit) -> bool:
-      ranks = self.suits[suit]
-      if len(ranks) <= 1:
-         return True
-      else:
-         return ranks[0] in {Rank.ACE, Rank.KING}
+    @cached_property
+    def strong_suits(self) -> list[MetaSuit]:
+        """Returns suits which a strength, which means containing ace or king"""
+        strong_cards = [Rank.ACE, Rank.KING]
+        return [s for s in MetaSuit.four_suits() if self.suits[s][0] in strong_cards]
 
-   def blackwood_keys(self, fit_suit: MetaSuit) -> tuple[int, bool]:
-      # Returns number of keys and True if Queen is in fitted suit.
-      fit_ranks = self.suits[fit_suit]
-      count = self.aces_count() + (1 if Rank.KING in fit_ranks else 0)
-      return (count, Rank.QUEEN in fit_ranks)
+    @cached_property
+    def _longest_suits_and_counts(self) -> tuple[MetaSuit, MetaSuit, int, int]:
+        """
+        Returns 2 longest suits and their number of cards.
+        If length is 5 or 6 for each, it returns highest suit first,
+        if length is <=4 for each, it returns lowest suit first.
+        """
+        suit_count = self.cards_count
+        long = list(suit_count.keys())[:2]
+        count = list(suit_count.values())
+        if count[0] == count[1]:
+            five_or_six_cards = count[0] >= 5
+            long.sort(key=lambda suit: suit.value, reverse=five_or_six_cards)
+        return (long[0], long[1], suit_count[long[0]], suit_count[long[1]])
 
-   def aces_count(self) -> int:
-      aces = ["A" for ranks in self.suits.values() if ranks and ranks[0] == Rank.ACE]
-      return len(aces)
+    @cached_property
+    def _string_cards(self) -> dict[Suit, str]:
+        """Returns cards of suits in reverse order, as "AKQ94"."""
+        cards_per_suits = {}
+        for suit, ranks in self.suits.items():
+            sorted_ranks = sorted(ranks, reverse=True)
+            short_cards = [r.abbreviation() for r in sorted_ranks]
+            string_cards = "".join(c for c in short_cards)
+            cards_per_suits[suit] = string_cards
+        return cards_per_suits
 
-   def has_one_major_ace_and_no_minor(self) -> bool:
-      major_ranks = [ranks for s, ranks in self.suits.items() if s.is_major()]
-      major_aces = ["A" for ranks in major_ranks if ranks and ranks[0] == Rank.ACE]
-      return len(major_aces) == 1 and self.aces_count == 1
-
-   def has_queen(self, suit: MetaSuit) -> bool:
-      ranks = self.suits[suit]
-      return Rank.QUEEN in ranks
-
-   def king_second(self, suit: MetaSuit) -> bool:
-      # Returns True if 'Roi second' in french for given suit.
-      return 'KING' in self.suits[suit] and self.cards_count[suit] == 2
-
-   def get_suits_having(self, rank : Rank) -> list[MetaSuit]:
-      # Returns list of suits which contains given rank, from clubs to spades.
-      return [s for s in MetaSuit.four_suits() if rank in self.suits[s]]
-   
-   def covering_count(self, bicolor: list[MetaSuit]) -> int:
-      # Returns number of aces, kings and queens in bicolor suits and number of
-      #  aces and pairs (king, queen) in other suits.
-      count = 0
-      for suit in MetaSuit.four_suits():
-         ranks = set(self.suits[suit])
-         honors = {'ACE', 'KING', 'QUEEN'} if suit in bicolor else {'ACE'}
-         count += len(ranks & honors)
-         if suit not in bicolor and len(ranks & {'KING', 'QUEEN'}) == 2:
-            count += 1
-      return count
-
-   def _compute_ordinal_distribution(self) -> str:
-      # This function returns numbers of cards per suit separated by "-",
-      #  example: 5-4-2-2.
-      count_per_suit = [str(n) for n in self.cards_count.values()]
-      return reduce(lambda x, y: x + "-" + y, count_per_suit)
-
-   def _won_tricks_length(self, count: int) -> float:
-      if count == 4:
-         return 0.5
-      elif count == 5:
-         return 1.5
-      elif count >= 6:
-         return float(count) - 3
-      else:
-         return 0
-      
-   def _won_tricks_honors(self, suit_string_cards: str) -> float:
-      HONORS_WON_TRICKS = {
-         'AKQ': 3,
-         'AKJ': 2.5,
-         'AQJ': 2.25,
-         'AK':  2,
-         'AQ.': 1.5,
-         'A':   1,
-         'KQJ': 2,
-         'KQ.': 1.25,
-         'K.':  0.5,
-         'QJ.': 0.75,
-         'QT9': 0.75,
-         'Q.':  0.25,
-      }
-      for pattern, value in HONORS_WON_TRICKS.items():
-         if re.match(pattern, suit_string_cards):
-            return value
-         else:
+    def stops_count(self, suit: MetaSuit) -> float:
+        """Returns number of times the hand can stop opponents in given suit."""
+        pts_H = self.suit_points_H(suit)
+        ranks = self.suits[suit]
+        if not ranks:
+            return 0
+        elif pts_H == 10:
+            return 4
+        elif pts_H == 9:
+            return 3
+        elif pts_H >= 7:
+            return 2
+        elif pts_H >= 5 and len(ranks) >= 3:
+            return 1.5
+        elif pts_H >= 1 and len(ranks) >= 15 - ranks[0].value[0]:  # ACE.value = 14, KING = 13...
+            return 1
+        else:
             return 0
 
-   def __repr__(self):
-      # Returns one chr per card from spades to clubs, sorted from highest to lowest.
-      #  Each group of cards of same suit are separated by "-" even if no card in suit.
-      #  example a) "AKQ9-Q9-KQJ98-A4" where AKQ9 are spades, A4 are clubs.
-      #  exemple b) "86-7-AKQJT98764-" with no card in clubs.
-      #  exemple c) "86--7-AKQJT98764" with no card in hearts.
-      suit_cards = []
-      for ranks in reversed(self.suits.values()):
-         if ranks:
-            abbr_ranks = [r.abbreviation() for r in ranks]
-            suit_cards.append(reduce(lambda x, y: x + y, abbr_ranks))
-         else:
-            suit_cards.append("")
-      return reduce(lambda x, y: x + "-" + y, suit_cards)
+    def controlled_suit_codes(self) -> set[str]:
+        ctrls = [s.code for s in MetaSuit.four_suits() if self.controls(s)]
+        return set(ctrls)
+
+    def controls(self, suit: MetaSuit) -> bool:
+        ranks = self.suits[suit]
+        if len(ranks) <= 1:
+            return True
+        else:
+            return ranks[0] in {Rank.ACE, Rank.KING}
+
+    def blackwood_keys(self, fit_suit: MetaSuit) -> tuple[int, bool]:
+        """Returns number of keys and True if Queen is in fitted suit."""
+        fit_ranks = self.suits[fit_suit]
+        count = self.aces_count() + (1 if Rank.KING in fit_ranks else 0)
+        return (count, Rank.QUEEN in fit_ranks)
+
+    def aces_count(self) -> int:
+        aces = ["A" for ranks in self.suits.values() if ranks and ranks[0] == Rank.ACE]
+        return len(aces)
+
+    def has_one_major_ace_and_no_minor(self) -> bool:
+        major_aces = [
+            s for s, ranks in self.suits.items() if s.is_major() and ranks[:1] == [Rank.ACE]
+        ]
+        return len(major_aces) == 1 and self.aces_count() == 1
+
+    def has_queen(self, suit: MetaSuit) -> bool:
+        ranks = self.suits[suit]
+        return Rank.QUEEN in ranks
+
+    def king_second(self, suit: MetaSuit) -> bool:
+        """Returns True if 'Roi second' in french for given suit."""
+        ranks = self.suits[suit]
+        return len(ranks) == 2 and Rank.KING in ranks
+
+    def get_suits_having(self, rank: Rank) -> list[MetaSuit]:
+        """Returns list of suits which contains given rank, from clubs to spades."""
+        return [s for s in MetaSuit.four_suits() if rank in self.suits[s]]
+
+    def covering_count(self, bicolor: list[MetaSuit]) -> int:
+        """
+        Returns number of aces, kings and queens in bicolor suits and number of
+        aces and pairs (king, queen) in other suits.
+        """
+        count = 0
+        for suit in MetaSuit.four_suits():
+            ranks = set(self.suits[suit])
+            if suit in bicolor:
+                count += len(ranks & {Rank.ACE, Rank.KING, Rank.QUEEN})
+            else:
+                count += Rank.ACE in ranks
+                count += {Rank.KING, Rank.QUEEN} <= ranks
+        return count
+
+    def _compute_ordinal_distribution(self) -> str:
+        """
+        This function returns numbers of cards per suit separated by "-",
+        example: 5-4-2-2.
+        """
+        count_per_suit = [str(n) for n in self.cards_count.values()]
+        return reduce(lambda x, y: x + "-" + y, count_per_suit)
+
+    def _won_tricks_length(self, count: int) -> float:
+        if count == 4:
+            return 0.5
+        elif count == 5:
+            return 1.5
+        elif count >= 6:
+            return float(count) - 3
+        else:
+            return 0
+
+    def _won_tricks_honors(self, suit_string_cards: str) -> float:
+        """Patterns are tested in order: the first match wins."""
+        for pattern, value in self._HONORS_WON_TRICKS.items():
+            if re.match(pattern, suit_string_cards):
+                return value
+        return 0
+
+    def __repr__(self):
+        """
+        Returns one chr per card from spades to clubs, sorted from highest to lowest.
+        Each group of cards of same suit are separated by "-" even if no card in suit.
+        example a) "AKQ9-Q9-KQJ98-A4" where AKQ9 are spades, A4 are clubs.
+        exemple b) "86-7-AKQJT98764-" with no card in clubs.
+        exemple c) "86--7-AKQJT98764" with no card in hearts.
+        """
+        suit_cards = []
+        for ranks in reversed(self.suits.values()):
+            if ranks:
+                abbr_ranks = [r.abbreviation() for r in ranks]
+                suit_cards.append(reduce(lambda x, y: x + y, abbr_ranks))
+            else:
+                suit_cards.append("")
+        return reduce(lambda x, y: x + "-" + y, suit_cards)

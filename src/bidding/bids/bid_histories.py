@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-from pydantic import BaseModel
-from bids.files import BidHistoryFile
+from collections.abc import Iterable
 
+from pydantic import BaseModel
+
+from bidding.bids.files import BidHistoryFile
 
 # def _left_padding(text: str) -> str:
 #    # Returns a 7 chr string where text left aligned and completed with spaces on right.
@@ -20,28 +22,32 @@ from bids.files import BidHistoryFile
 #    #  on left and on right.
 #    return text.center(10, " ")
 
+
 class BidHistory(BaseModel):
-   """
-   This class describes data stored into bid history file. 
-   This file contains one single column with rule id. A rule id is written
-   in file as soon as this rule is satisfied while bidding.
-   A rule id is unique in file.
+    """
+    This class describes data stored into bid history file.
+    This file contains one single column with rule id. A rule id is written
+    in file as soon as this rule is satisfied while bidding.
+    A rule id is unique in file.
 
-   Properties
-   id:         id of a rule.
-   """
-   id: int
+    Properties
+    id:         id of a rule.
+    """
 
-   def add_in_file(self):
-      history_file = BidHistoryFile(BidHistory.model_fields.keys())
-      bid_history = history_file.get_row(self.id)
-      if not bid_history:
-         history_file.add_row(self.model_dump())
+    id: int
 
-   @staticmethod
-   def get_all_rules_ids() -> list[int]:
-      history_file = BidHistoryFile(BidHistory.model_fields.keys())
-      rule_ids = history_file.get_satisfied_rules()
-      rule_ids.sort()
-      return rule_ids
-      
+    @staticmethod
+    def add_all_in_file(rule_ids: Iterable[int]):
+        """Appends in a single write the given rule ids which are not yet in file."""
+        history_file = BidHistoryFile(BidHistory.model_fields.keys())
+        known_ids = set(history_file.get_satisfied_rules())
+        new_ids = [i for i in dict.fromkeys(rule_ids) if i not in known_ids]
+        if new_ids:
+            history_file.add_rows([BidHistory(id=i).model_dump() for i in new_ids])
+
+    @staticmethod
+    def get_all_rules_ids() -> list[int]:
+        history_file = BidHistoryFile(BidHistory.model_fields.keys())
+        rule_ids = history_file.get_satisfied_rules()
+        rule_ids.sort()
+        return rule_ids

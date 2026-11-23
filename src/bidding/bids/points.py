@@ -1,75 +1,79 @@
 import re
+
 from bidding.utils import MyDataException
 
 
 class PointZone:
-   """
-   This class provides a zone of points for player's hand.
-   ____________________________________________________________________________
-   Properties
-   min:        min value included
-   max:        max value included
-   type_min:   type of points for min value H, HL or HLD
-   type_max:   same for max value
-   """
-   def __init__(self, zone_of_points: str = ""):
-      self.min: int = 0
-      self.max: int = 40
-      self.type_min: str = "H"
-      self.type_max: str = "H"
-      if zone_of_points:
-         self._load_attributes(zone_of_points)
+    """
+    This class provides a zone of points for player's hand.
+    ____________________________________________________________________________
+    Properties
+    min:        min value included
+    max:        max value included
+    type_min:   type of points for min value H, HL or HLD
+    type_max:   same for max value
+    """
 
-   def _load_attributes(self, zone_of_points: str):
-      """
-      Argument zone_of_points may follow one of patterns below :
-      a) nnH, nnHL, or nnHLD  -> means equals nnH...
-      b) OPnnH, OPnnHL, or OPnnHLD
-      c) nn-ppH, nn-ppHL, or nn-ppHLD
-      d) nnH-ppHL, or nnHL-ppH
-      where    OP is <, >, <=, >=
-               nn, pp are numbers from 0 to 40, and nn < pp
-               H, HL, HLD are ways to count points of a hand in bridge.
-      """
-      op = re.match(r'[<>]=?', zone_of_points)
-      numbers = re.findall(r'\d+', zone_of_points)
-      types = re.findall(r'HL?D?', zone_of_points)
-      if not types:
-         raise MyDataException(f"error in PointZone, zone {zone_of_points} has no type (H, HL or HLD)")
+    def __init__(self, zone_of_points: str = ""):
+        self.min: int = 0
+        self.max: int = 40
+        self.type_min: str = "H"
+        self.type_max: str = "H"
+        if zone_of_points:
+            self._load_attributes(zone_of_points)
 
-      self._load_types(types)
-      if op:
-         self._load_values_with_inequality(str(op.group()), int(numbers[0]))
-      else:
-         self._load_values_without_inequality(numbers)
+    def _load_attributes(self, zone_of_points: str):
+        """
+        Argument zone_of_points may follow one of patterns below :
+        a) nnH, nnHL, or nnHLD  -> means equals nnH...
+        b) OPnnH, OPnnHL, or OPnnHLD
+        c) nn-ppH, nn-ppHL, or nn-ppHLD
+        d) nnH-ppHL, or nnHL-ppH
+        where    OP is <, >, <=, >=
+                 nn, pp are numbers from 0 to 40, and nn < pp
+                 H, HL, HLD are ways to count points of a hand in bridge.
+        """
+        op = re.match(r"[<>]=?", zone_of_points)
+        numbers = re.findall(r"\d+", zone_of_points)
+        types = re.findall(r"HL?D?", zone_of_points)
+        if not types:
+            raise MyDataException(
+                f"error in PointZone, zone {zone_of_points} has no type (H, HL or HLD)"
+            )
 
-   def _load_types(self, types: list):
-      self.type_min = types[0]
-      self.type_max = types[1] if len(types) == 2 else self.type_min
+        self._load_types(types)
+        if op:
+            self._load_values_with_inequality(str(op.group()), int(numbers[0]))
+        else:
+            self._load_values_without_inequality(numbers)
 
-   def _load_values_with_inequality(self, op: str, number: int):
-      if op[:1] == ">":
-         self.min = number + (0 if op == ">=" else 1)
-      elif op[:1] == "<":
-         self.max = number + (0 if op == "<=" else -1)
+    def _load_types(self, types: list):
+        self.type_min = types[0]
+        self.type_max = types[1] if len(types) == 2 else self.type_min
 
-   def _load_values_without_inequality(self, numbers: list):
-      self.min = int(numbers[0])
-      self.max = int(numbers[1]) if len(numbers) == 2 else self.min
+    def _load_values_with_inequality(self, op: str, number: int):
+        if op[:1] == ">":
+            self.min = number + (0 if op == ">=" else 1)
+        elif op[:1] == "<":
+            self.max = number + (0 if op == "<=" else -1)
 
-   def is_HLD(self) -> bool:
-      return self.type_min == "HLD" and self.type_max == "HLD"
-   
-   def contains(self, pts_H: int, pts_HL: int) -> bool:
-      if self.is_HLD():
-         raise MyDataException(f"error in PointZone, use contains_HLD() instead of contains()")
+    def _load_values_without_inequality(self, numbers: list):
+        self.min = int(numbers[0])
+        self.max = int(numbers[1]) if len(numbers) == 2 else self.min
 
-      player_min = pts_H if self.type_min == "H" else pts_HL
-      player_max = pts_H if self.type_max == "H" else pts_HL
-      return player_min >= self.min and player_max <= self.max
+    def is_HLD(self) -> bool:
+        return self.type_min == "HLD" and self.type_max == "HLD"
 
-   def contains_HLD(self, pts_HLD: int) -> bool:
-      if not self.is_HLD():
-         raise MyDataException(f"error in PointZone, do not use contains_HLD() but contains()")
-      
-      return pts_HLD >= self.min and pts_HLD <= self.max
+    def contains(self, pts_H: int, pts_HL: int) -> bool:
+        if self.is_HLD():
+            raise MyDataException("error in PointZone, use contains_HLD() instead of contains()")
+
+        player_min = pts_H if self.type_min == "H" else pts_HL
+        player_max = pts_H if self.type_max == "H" else pts_HL
+        return player_min >= self.min and player_max <= self.max
+
+    def contains_HLD(self, pts_HLD: int) -> bool:
+        if not self.is_HLD():
+            raise MyDataException("error in PointZone, do not use contains_HLD() but contains()")
+
+        return pts_HLD >= self.min and pts_HLD <= self.max

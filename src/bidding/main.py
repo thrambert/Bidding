@@ -1,9 +1,10 @@
-# The module to call when launching the app.
-import app
+"""The module to call when launching the app."""
+
+from bidding import app
 
 
 def main():
-   app.start()
+    app.start()
 
 
 if __name__ == "__main__":

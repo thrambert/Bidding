@@ -1,26 +1,30 @@
-# This file starts the app.
+"""This file starts the app."""
+
+import logging
+import sys
+
 from PyQt6.QtWidgets import QApplication
-from utils import Asset
-from bids.file_loaders import FileLoader
-from bids.test_bidding import test_deals
 
+from bidding.bids.file_loaders import FileLoader
+from bidding.bids.simulations import run_simulations
+from bidding.utils import Asset
 
-my_app = QApplication([])
+logger = logging.getLogger(__name__)
 
 
 def start():
-   # This function starts app and proceeds to app initializations.
-   Asset.set_project_root()
-   try:
-      FileLoader().run()
-   except Exception as error:
-      print(f"\n--> ERROR WHILE CHECKING EXCEL FILES \n{error.__str__()}\n")
-      return
-   print("\nExcel files successfully converted into csv, and compliant with related data models.\n")
-   
-   test_deals()
+    """This function starts app and proceeds to app initializations."""
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
+    _qt_app = QApplication(sys.argv)
+    Asset.set_project_root()
+    try:
+        FileLoader().run()
+    except Exception as error:
+        logger.error("Error while checking Excel files:\n%s", error)
+        return
+    logger.info("Excel files converted into csv, and compliant with related data models.")
 
+    run_simulations()
 
-
-   # TODO: Add a_view = instance of mainWindow
-   # my_app.exec()
+    # TODO: Add a_view = instance of mainWindow
+    # _qt_app.exec()

@@ -1,175 +1,213 @@
 from __future__ import annotations
 
-from pydantic import AfterValidator, BaseModel, BeforeValidator, Field
-from typing import Annotated, ClassVar
 import re
-from bids.files import RuleFile
-from bids.bids import Bid
-from bids.hands import MetaSuit
-from bids.steps import Step
-from deals.distributions import Distribution
-from utils import MyDataException
+from collections import defaultdict
+from functools import cache
+from typing import Annotated, ClassVar
 
+from pydantic import AfterValidator, BaseModel, BeforeValidator, ConfigDict, Field
+
+from bidding.bids.bids import Bid
+from bidding.bids.files import RuleFile
+from bidding.bids.hands import MetaSuit
+from bidding.bids.steps import Step
+from bidding.deals.distributions import Distribution
+from bidding.utils import MyDataException
 
 # =============================================================================
-#  COMMON VALIDATORS ALSO USED BY SENSE 
+#  COMMON VALIDATORS ALSO USED BY SENSE
 # =============================================================================
+
+# Accepted forms: nnT, OPnnT, nn-ppT, nnT-ppT  (see PointZone), where
+#  OP is <, <=, > or >=, and T is H, HL or HLD.
+_POINT_ZONE_RE = re.compile(r"(?:[<>]=?\d{1,2}|\d{1,2}(?:HLD|HL|H)?(?:-\d{1,2})?)(?:HLD|HL|H)")
+# Accepted forms: n, =n, <n, <=n, >n, >=n
+_COUNT_RE = re.compile(r"(?:[<>]=?|=)?\d+")
+
 
 def validated_points(value: str) -> str:
-   if value and not re.search("(>=)?[1-2]?[0-9]H?(HL)?-?[1-2]?[0-9]?HL?(LD)?", value):
-      raise MyDataException(f"{value} n'est pas un intervalle de points valide.")
-   return value
-   
+    if value and not _POINT_ZONE_RE.fullmatch(value):
+        raise MyDataException(f"{value} n'est pas un intervalle de points valide.")
+    return value
+
+
 def validated_distrib(value: str) -> str:
-   if value and value not in Distribution.all_including_special():
-      raise MyDataException(f"{value} n'est pas une distribution valide.")
-   return value
+    if value and value not in Distribution.all_including_special():
+        raise MyDataException(f"{value} n'est pas une distribution valide.")
+    return value
+
 
 def validated_suit(value: str) -> str:
-   if value and not value in MetaSuit.all_texts() + MetaSuit.all_groups():
-      raise MyDataException(f"{value} n'est pas une couleur valide.")
-   return value
+    if value and value not in MetaSuit.all_texts() + MetaSuit.all_groups():
+        raise MyDataException(f"{value} n'est pas une couleur valide.")
+    return value
+
 
 def validated_count(value: str) -> str:
-   if value and not re.search(">?<?(>=)?(<=)?[1-9]", value):
-      raise MyDataException(f"{value} n'est pas une condition valide sur un nombre.")
-   return value
-   
+    if value and not _COUNT_RE.fullmatch(value):
+        raise MyDataException(f"{value} n'est pas une condition valide sur un nombre.")
+    return value
+
+
 # =============================================================================
 #  PRIVATE VALIDATORS
 # =============================================================================
 
+
 def _validated_step(value: str) -> str:
-   if value and not value in [e.name for e in Step]:
-      raise MyDataException(f"{value} n'est pas une étape valide dans le cycle des enchères.")
-   return value
+    if value and value not in [e.name for e in Step]:
+        raise MyDataException(f"{value} n'est pas une étape valide dans le cycle des enchères.")
+    return value
+
 
 def _validated_bicolor(value: str) -> str:
-   if value:
-      for suit_name in value.split(","):
-         if suit_name not in MetaSuit.all_texts():
-            raise MyDataException(f"{value} n'est pas un couple de deux couleurs valides.")
-   return value
+    if value:
+        for suit_name in value.split(","):
+            if suit_name not in MetaSuit.all_texts():
+                raise MyDataException(f"{value} n'est pas un couple de deux couleurs valides.")
+    return value
+
 
 def _validated_hist_bid(value: str) -> str:
-   if value:
+    if value:
+        for bid_raw in value.split(" "):
+            if not Bid.valid_raw_bid(bid_raw) and bid_raw != BidRule.PARTIAL_BID_FLAG:
+                raise MyDataException(f"'{value}' ne correspond pas à une suite d'enchères.")
+    return value
 
-      for bid_raw in value.split(" "):
-         if not Bid.valid_raw_bid(bid_raw) and bid_raw != BidRule.PARTIAL_BID_FLAG:
-            raise MyDataException(f"'{value}' ne correspond pas à une suite d'enchères.")
-   return value
 
 def _ensure_sense_id(value: str) -> int:
-   return 0 if value in ["none", ""] else int(value)
+    return 0 if value in ["none", ""] else int(value)
 
 
 class BidRule(BaseModel):
-   """
-   This class describes a rule to make a bid. These rules are based on SEF
-   (Système d'Enchère Français).
-   Its properties are either conditions which must all be satisfied to make
-   the bid, either description data.
-   ____________________________________________________________________________
-   Properties used to filter rules or to describe rule
+    """
+    This class describes a rule to make a bid. These rules are based on SEF
+    (Système d'Enchère Français).
+    Its properties are either conditions which must all be satisfied to make
+    the bid, either description data.
+    ____________________________________________________________________________
+    Properties used to filter rules or to describe rule
 
-   id:            Unique id of a rule.
-   step:          Bidding context in which the rule is to be applied.
-   opp_next_step: Bidding context for the player just after the current one.
-   camp_next_step: Bidding context for next bid of player's partner.
-   ____________________________________________________________________________
-   Properties as conditions
+    id:            Unique id of a rule.
+    step:          Bidding context in which the rule is to be applied.
+    opp_next_step: Bidding context for the player just after the current one.
+    camp_next_step: Bidding context for next bid of player's partner.
+    ____________________________________________________________________________
+    Properties as conditions
 
-   points:        An interval of points the player's hand must be in.
-   distribution:  Pattern condition the player must comply to apply the rule.
-   bicolor:       A set of 2 suits in which longest suits must be.
-   suit1:         Condition on longest suit of player's hand.
-   suit1_count:   Condition on number of cards into longest suit.
-   suit2:         Condition on 2nd longest suit.
-   suit2_count:   Condition on number of cards into that suit.
-   first_pass:    Condition on number of pass before opening.
-   won_tricks:    Minimum number of tricks the player should realize.
-   def_tricks:    Condition on number of possible won tricks out of trump.
-   lost_tricks:   Condition on possible lost tricks. Depends on vuln if suffix V
-   fit_cards:     Condition on number of cards in partner suit.
-   stops:         Required min number of stops of opponents' suits.
-   hist_bid:      Required consecutive last bids.
-   function'n':   Name of a function which contains a specific condition.
-   arg1:          Argument for function 1
-   ____________________________________________________________________________
-   Properties providing the bid to make if all conditions are satisfied
+    points:        An interval of points the player's hand must be in.
+    distribution:  Pattern condition the player must comply to apply the rule.
+    bicolor:       A set of 2 suits in which longest suits must be.
+    suit1:         Condition on longest suit of player's hand.
+    suit1_count:   Condition on number of cards into longest suit.
+    suit2:         Condition on 2nd longest suit.
+    suit2_count:   Condition on number of cards into that suit.
+    first_pass:    Condition on number of pass before opening.
+    won_tricks:    Minimum number of tricks the player should realize.
+    def_tricks:    Condition on number of possible won tricks out of trump.
+    lost_tricks:   Condition on possible lost tricks. Depends on vuln if suffix V
+    fit_cards:     Condition on number of cards in partner suit.
+    stops:         Required min number of stops of opponents' suits.
+    hist_bid:      Required consecutive last bids.
+    function'n':   Name of a function which contains a specific condition.
+    arg1:          Argument for function 1
+    ____________________________________________________________________________
+    Properties providing the bid to make if all conditions are satisfied
 
-   function_bid:  Name of a function to decide which bid to make in complex case.
-   arg_bid:       Argument for function bid.
-   raw_bid:       The bid to make if all conditions of the rule are satisfied.
-   sense_id:      Id for sense of bid in SEFsense file.
-   """
-   PARTIAL_BID_FLAG: ClassVar[str] = ">>"
+    function_bid:  Name of a function to decide which bid to make in complex case.
+    arg_bid:       Argument for function bid.
+    raw_bid:       The bid to make if all conditions of the rule are satisfied.
+    sense_id:      Id for sense of bid in SEFsense file.
+    ____________________________________________________________________________
+    Rules are read from file once and shared from memory, hence frozen.
+    """
 
-   id: int
-   step: Annotated[str, AfterValidator(_validated_step)]
-   opp_next_step: Annotated[str, AfterValidator(_validated_step)]
-   camp_next_step: Annotated[str, AfterValidator(_validated_step)]
-   points: Annotated[str, Field(default=""), AfterValidator(validated_points)]
-   distribution: Annotated[str, Field(default=""), AfterValidator(validated_distrib)]
-   bicolor: Annotated[str, Field(default=""), AfterValidator(_validated_bicolor)]
-   suit1: Annotated[str, Field(default=""), AfterValidator(validated_suit)]
-   suit1_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
-   suit2: Annotated[str, Field(default=""), AfterValidator(validated_suit)]
-   suit2_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
-   first_pass: str = ""
-   won_tricks: float = 0
-   def_tricks: Annotated[str, Field(default=""), AfterValidator(validated_count)]
-   lost_tricks: str = ""
-   fit_cards: Annotated[str, Field(default=""), AfterValidator(validated_count)]
-   stops: float = 0
-   hist_bid: Annotated[str, Field(default=""), AfterValidator(_validated_hist_bid)]
-   function1: str = ""
-   function2: str = ""
-   arg2: str = ""
-   function_bid: str = ""
-   arg_bid: str = ""
-   raw_bid: str = ""
-   sense_id: Annotated[int, Field(default=""), BeforeValidator(_ensure_sense_id)]
+    model_config = ConfigDict(frozen=True)
 
-   def hist_bid_is_partial(self) -> bool:
-      return self.hist_bid.startswith(BidRule.PARTIAL_BID_FLAG)
+    PARTIAL_BID_FLAG: ClassVar[str] = ">>"
 
-   def polished_hist_bid(self) -> str:
-      if self.hist_bid_is_partial():
-         return self.hist_bid[3:]
-      else:
-         return self.hist_bid
+    id: int
+    step: Annotated[str, AfterValidator(_validated_step)]
+    opp_next_step: Annotated[str, AfterValidator(_validated_step)]
+    camp_next_step: Annotated[str, AfterValidator(_validated_step)]
+    points: Annotated[str, Field(default=""), AfterValidator(validated_points)]
+    distribution: Annotated[str, Field(default=""), AfterValidator(validated_distrib)]
+    bicolor: Annotated[str, Field(default=""), AfterValidator(_validated_bicolor)]
+    suit1: Annotated[str, Field(default=""), AfterValidator(validated_suit)]
+    suit1_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
+    suit2: Annotated[str, Field(default=""), AfterValidator(validated_suit)]
+    suit2_count: Annotated[str, Field(default=""), AfterValidator(validated_count)]
+    first_pass: str = ""
+    won_tricks: float = 0
+    def_tricks: Annotated[str, Field(default=""), AfterValidator(validated_count)]
+    lost_tricks: str = ""
+    fit_cards: Annotated[str, Field(default=""), AfterValidator(validated_count)]
+    stops: float = 0
+    hist_bid: Annotated[str, Field(default=""), AfterValidator(_validated_hist_bid)]
+    function1: str = ""
+    function2: str = ""
+    arg2: str = ""
+    function_bid: str = ""
+    arg_bid: str = ""
+    raw_bid: str = ""
+    sense_id: Annotated[int, Field(default=0), BeforeValidator(_ensure_sense_id)]
 
-   @staticmethod
-   def condition_names() -> list[str]:
-      fields = list(BidRule.model_fields.keys())
-      lowest = fields.index("points")
-      highest = fields.index("arg2")
-      return fields[lowest:highest]
+    def hist_bid_is_partial(self) -> bool:
+        return self.hist_bid.startswith(BidRule.PARTIAL_BID_FLAG)
 
-   @staticmethod
-   def get_rules(step_name: str = "") -> list[BidRule]:
-      # This function reads file and sends back bid rules for given arguments.
-      bid_rule_file = RuleFile(BidRule.model_fields.keys())
-      rows = bid_rule_file.get_rows(step_name)
-      return [BidRule(**row) for row in rows]
+    def polished_hist_bid(self) -> str:
+        return self.hist_bid.removeprefix(BidRule.PARTIAL_BID_FLAG).strip()
 
-   @staticmethod
-   def get_last_id() -> int:
-      # This function returns id of the last rule in file.
-      bid_rule_file = RuleFile(BidRule.model_fields.keys())
-      last_rule = BidRule(**bid_rule_file.get_last_row())
-      return last_rule.id
+    @staticmethod
+    def condition_names() -> list[str]:
+        fields = list(BidRule.model_fields.keys())
+        lowest = fields.index("points")
+        highest = fields.index("arg2")
+        return fields[lowest:highest]
 
-   def split_fit(self, partner_suit_code: str) -> tuple:
-      # Returns (suit_code, partner nbr trumps, player nbr trumps)
-      if not self.fit:
-         return "", 0, 0
-      suit_like, nbr_partner, nbr_player = self.fit.replace(" ", "").split(",")
-      if suit_like == "par":
-         suit_code = partner_suit_code
-      elif suit_like in [s.code for s in MetaSuit.four_suits()]:
-         suit_code = suit_like
-      else:
-         suit_code = ""
-      return suit_code, int(nbr_partner), int(nbr_player)
+    @staticmethod
+    def get_rules(step_name: str = "") -> list[BidRule]:
+        """Returns rules of given step, or all rules if no step, in file order."""
+        if not step_name:
+            return list(_all_rules())
+        return list(_rules_by_step().get(step_name, ()))
+
+    @staticmethod
+    def get_last_id() -> int:
+        """Returns id of the last rule in file, or 0 if file has no rule."""
+        rules = _all_rules()
+        return rules[-1].id if rules else 0
+
+    @staticmethod
+    def clear_cache():
+        """To call when rule file has been rewritten."""
+        _all_rules.cache_clear()
+        _rules_by_step.cache_clear()
+
+    def split_fit(self, partner_suit_code: str) -> tuple:
+        """Returns (suit_code, partner nbr trumps, player nbr trumps)"""
+        if not self.fit:
+            return "", 0, 0
+        suit_like, nbr_partner, nbr_player = self.fit.replace(" ", "").split(",")
+        if suit_like == "par":
+            suit_code = partner_suit_code
+        elif suit_like in [s.code for s in MetaSuit.four_suits()]:
+            suit_code = suit_like
+        else:
+            suit_code = ""
+        return suit_code, int(nbr_partner), int(nbr_player)
+
+
+@cache
+def _all_rules() -> tuple[BidRule, ...]:
+    rows = RuleFile(BidRule.model_fields.keys()).get_rows()
+    return tuple(BidRule(**row) for row in rows)
+
+
+@cache
+def _rules_by_step() -> dict[str, tuple[BidRule, ...]]:
+    grouped: dict[str, list[BidRule]] = defaultdict(list)
+    for rule in _all_rules():
+        grouped[rule.step].append(rule)
+    return {step: tuple(rules) for step, rules in grouped.items()}

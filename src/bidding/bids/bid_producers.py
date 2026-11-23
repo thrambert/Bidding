@@ -1,177 +1,153 @@
-from bids.bid_senses import BidSense
-from bids.bids import Bid, Camp, Forcing
-from bids.bid_records import BidRecord
-from bids.hands import RichHand
-from bids.hazes import Fit, Haze
-from bids.slams import Slam
+from bidding.bids.bid_records import BidRecord
+from bidding.bids.bid_senses import BidSense
+from bidding.bids.bids import Bid, Camp, Forcing
+from bidding.bids.hands import RichHand
+from bidding.bids.hazes import Fit, Haze
+from bidding.bids.slams import Slam
 
 
 class BidProducer:
-   """
-   This class produces bidding without help of SEF rules. It is based on
-   information gathered along previous bidding.
+    """
+    This class produces bidding without help of SEF rules. It is based on
+    information gathered along previous bidding.
 
-   Properties
-   slam:             An instance to manage slam bids sequences for a given camp.
-                     Only 1st camp starting controls or blackwood gets slam instance.
-   haze:             Information on each player's hand deducted from bidding.
-   rank:             Rank of the current player who has to make a bid
-   camp:             Camp the player belongs to.
-   partner_rank:     Rank of current player's partner
-   partner_bid:      Last bid made by partner.
-   last_normal_bid:  Last bid made which was not a special one (X, XX, passe).
-   forcing:          Forcing indication in partner last bid.
-   """
-   POINTS_TABLE = {
-      20: 1,
-      21: 1,
-      22: 1,
-      23: 2,
-      24: 2,
-      25: 3,
-      26: 3,
-      27: 4,
-      28: 4,
-      29: 4,
-      30: 5,
-      31: 5,
-      32: 5,
-      33: 6,
-      34: 6,
-      35: 6,
-      36: 6,
-      37: 7,
-      38: 7,
-      39: 7,
-      40: 7,
-   }
+    Properties
+    slam:             An instance to manage slam bids sequences for a given camp.
+                      Only 1st camp starting controls or blackwood gets slam instance.
+    haze:             Information on each player's hand deducted from bidding.
+    rank:             Rank of the current player who has to make a bid
+    camp:             Camp the player belongs to.
+    partner_rank:     Rank of current player's partner
+    partner_bid:      Last bid made by partner.
+    last_normal_bid:  Last bid made which was not a special one (X, XX, passe).
+    forcing:          Forcing indication in partner last bid.
+    """
 
-   def __init__(self, haze: Haze):
-      self.haze = haze
-      self.slam: Slam = None
+    POINTS_TABLE = {
+        20: 1,
+        21: 1,
+        22: 1,
+        23: 2,
+        24: 2,
+        25: 3,
+        26: 3,
+        27: 4,
+        28: 4,
+        29: 4,
+        30: 5,
+        31: 5,
+        32: 5,
+        33: 6,
+        34: 6,
+        35: 6,
+        36: 6,
+        37: 7,
+        38: 7,
+        39: 7,
+        40: 7,
+    }
 
-   def _update_properties(self, record: BidRecord):
-      _, self.rank = record.next_lap_and_rank(False)
-      self.camp = Camp.from_rank(self.rank)
-      self.partner_rank = self.camp.other_rank(self.rank)
-      self.partner_bid = record.second_last
-      self.last_normal_bid = record.last_normal_bid()
-      self.forcing = Forcing.from_value(record.second_last.sense.forcing)
-   
-   def make_bid(self, hand: RichHand, record: BidRecord) -> BidSense:
-      # TODO Manage additional cases :
-      #   - IMPORTANT --> when fitted, always check camp pts with min required for bid (ex: 5T required 29 HLD)
-      #   - when opponents talk or take double
-      #   - after 2 passes (en réveil)
-      self._update_properties(record)
-      fit = self.haze.fit(hand.cards_count, self.partner_rank)
-      camp_points = self._compute_camp_points(hand, fit)
-      over = self.last_normal_bid.level > self._max_possible_level(camp_points)
+    def __init__(self, haze: Haze):
+        self.haze = haze
+        self.slam: Slam = None
 
-      # if fit:
-      #    print(f"BidProducer, fit de {fit.total_cards} {fit.suit.text} et {camp_points} points.")
-      # else:
-      #    print("No fit")
+    def _update_properties(self, record: BidRecord):
+        _, self.rank = record.next_lap_and_rank(False)
+        self.camp = Camp.from_rank(self.rank)
+        self.partner_rank = self.camp.other_rank(self.rank)
+        self.partner_bid = record.second_last
+        self.last_normal_bid = record.last_normal_bid()
+        self.forcing = Forcing.from_value(record.second_last.sense.forcing)
 
-      if self.forcing == Forcing.PASS or over:
-         return BidSense.passe()
-      else:
-         return self._steer_bid_to_make(hand, fit, camp_points)
+    def make_bid(self, hand: RichHand, record: BidRecord) -> BidSense:
+        # TODO Manage additional cases :
+        #   - IMPORTANT --> when fitted, always check camp pts with min required for bid
+        #     (ex: 5T required 29 HLD)
+        #   - when opponents talk or take double
+        #   - after 2 passes (en réveil)
+        self._update_properties(record)
+        fit = self.haze.fit(hand.cards_count, self.partner_rank)
+        camp_points = self._compute_camp_points(hand, fit)
+        over = self.last_normal_bid.level > self._max_possible_level(camp_points)
 
-   def _steer_bid_to_make(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
-      if fit:
-         return self._steer_fitted(hand, fit, pts)
-      else:
-         return self._make_unfitted_bid(self.last_normal_bid, pts)
-         
-   def _steer_fitted(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
-      minor_ctr = fit.minor() and (pts >= 31 or Bid("3SA") < self.last_normal_bid)
-      if fit.major() or minor_ctr:
-         return self._make_fitted_bid(hand, fit, pts)
-      else:
-         #TODO SA if we stop opp suits, or announce a force,
-         #  or 4e suit forcing, or play with 5-2 fit or pass.
-         #  En attendant on génère un bid pass (à supprimer par la suite):
-         return BidSense.passe()
+        # if fit:
+        #    print(f"BidProducer, fit de {fit.total_cards} {fit.suit.text} et {camp_points} pts.")
+        # else:
+        #    print("No fit")
 
-   def _make_fitted_bid(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
-      if pts >= 31 and not self.slam:
-         self.slam = Slam(self.camp, fit.suit, fit.total_cards, pts, self.partner_bid)
-         self.haze.set_implicit_fit(fit.suit, self.camp, self.partner_rank)
-      if self.slam and self.slam.camp == self.camp:
-         return self.slam.next_bid(
-            hand, 
-            self.partner_bid, 
-            self.last_normal_bid,
-            self.haze.declared_controls(self.camp)
-            )
-      elif (fit.major() and pts >= 26) or (fit.minor() and pts >= 28):
-         next_raw_bid = ("4" if fit.major() else "5") + fit.suit.code
-         next_bid = Bid(next_raw_bid)
-         if next_bid > self.last_normal_bid:
-            return BidSense(id=0,raw_bid=next_raw_bid,forcing=Forcing.PASS.value)
-         else:
+        if self.forcing == Forcing.PASS or over:
             return BidSense.passe()
-      else:
-         next_raw_bid = self.last_normal_bid.first_bid_above_or_pass(fit.suit).raw
-         return BidSense(id=0,raw_bid=next_raw_bid)
-      
-   # TODO: Remove next function after 30-11-2026
-   # def _make_fitted_bid(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
-   #    if pts >= 31 and not self.slam:
-   #       self.slam = Slam(fit.suit, fit.total_cards, pts, self.partner_bid)
-   #       self.haze.set_implicit_fit(fit.suit, self.camp, self.partner_rank)
-   #    if self.slam:
-   #       return self.slam.next_bid(
-   #          hand, 
-   #          self.partner_bid, 
-   #          self.last_normal_bid,
-   #          self.haze.declared_controls(self.camp)
-   #          )
-   #    elif (fit.major() and pts >= 26) or (fit.minor() and pts >= 28):
-   #       next_raw_bid = ("4" if fit.major() else "5") + fit.suit.code
-   #       next_bid = Bid(next_raw_bid)
-   #       if next_bid > self.last_normal_bid:
-   #          return BidSense(id=0,raw_bid=next_raw_bid,forcing=Forcing.PASS.value)
-   #       else:
-   #          return BidSense.passe()
-   #    else:
-   #       next_raw_bid = self.last_normal_bid.first_bid_above_or_pass(fit.suit).raw
-   #       return BidSense(id=0,raw_bid=next_raw_bid)
-      
-   def _make_unfitted_bid(self, last_normal_bid: Bid, pts: int) -> BidSense:
-      if self.haze.stop_opp_suits(self.camp):
-         return self._make_SA_bid(last_normal_bid, pts)
-      else:
-         return self._make_lowest_bid()
-   
-   def _make_SA_bid(self, last_normal_bid: Bid, pts: int) -> BidSense:
-      Bid_3SA = Bid("3SA")
-      Bid_6SA = Bid("6SA")
-      if pts >= 32 and last_normal_bid < Bid_6SA:
-         return BidSense(id=0,raw_bid=Bid_6SA.raw)
-      elif pts >= 25 and last_normal_bid < Bid_3SA:
-         return BidSense(id=0,raw_bid=Bid_3SA.raw)
-      else:
-         return BidSense.passe()
+        else:
+            return self._steer_bid_to_make(hand, fit, camp_points)
 
-   def _make_lowest_bid(self) -> BidSense:
-      # TODO: Passe si les adv ont parlé, sinon chercher un fit 7e idéalement
-      #  5-2, et l'annoncer ou passer si c'est la dernière enchère du partenaire.
-      #  En attendant on génère un bid pass (à supprimer par la suite):
-      return BidSense.passe()
+    def _steer_bid_to_make(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
+        if fit:
+            return self._steer_fitted(hand, fit, pts)
+        else:
+            return self._make_unfitted_bid(self.last_normal_bid, pts)
 
-   def _compute_camp_points(self, hand: RichHand, fit: Fit) -> int:
-      if fit:
-         player_points = hand.points_HLD(fit.suit, fit.partner_count())
-      else:
-         player_points = hand.points_HL
-      return player_points + self.haze.hands[self.partner_rank].points.min
+    def _steer_fitted(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
+        minor_ctr = fit.minor() and (pts >= 31 or Bid("3SA") < self.last_normal_bid)
+        if fit.major() or minor_ctr:
+            return self._make_fitted_bid(hand, fit, pts)
+        else:
+            # TODO SA if we stop opp suits, or announce a force,
+            #  or 4e suit forcing, or play with 5-2 fit or pass.
+            #  En attendant on génère un bid pass (à supprimer par la suite):
+            return BidSense.passe()
 
-   def _max_possible_level(self, points: int) -> int:
-      if points < 20:
-         return 0
-      elif points > 40:
-         return 7
-      else:
-         return self.POINTS_TABLE[points]
+    def _make_fitted_bid(self, hand: RichHand, fit: Fit, pts: int) -> BidSense:
+        if pts >= 31 and not self.slam:
+            self.slam = Slam(self.camp, fit.suit, fit.total_cards, pts, self.partner_bid)
+            self.haze.set_implicit_fit(fit.suit, self.camp, self.partner_rank)
+        if self.slam and self.slam.camp == self.camp:
+            return self.slam.next_bid(
+                hand, self.partner_bid, self.last_normal_bid, self.haze.declared_controls(self.camp)
+            )
+        elif (fit.major() and pts >= 26) or (fit.minor() and pts >= 28):
+            next_raw_bid = ("4" if fit.major() else "5") + fit.suit.code
+            next_bid = Bid(next_raw_bid)
+            if next_bid > self.last_normal_bid:
+                return BidSense(id=0, raw_bid=next_raw_bid, forcing=Forcing.PASS.value)
+            else:
+                return BidSense.passe()
+        else:
+            next_raw_bid = self.last_normal_bid.first_bid_above_or_pass(fit.suit).raw
+            return BidSense(id=0, raw_bid=next_raw_bid)
+
+    def _make_unfitted_bid(self, last_normal_bid: Bid, pts: int) -> BidSense:
+        if self.haze.stop_opp_suits(self.camp):
+            return self._make_SA_bid(last_normal_bid, pts)
+        else:
+            return self._make_lowest_bid()
+
+    def _make_SA_bid(self, last_normal_bid: Bid, pts: int) -> BidSense:
+        Bid_3SA = Bid("3SA")
+        Bid_6SA = Bid("6SA")
+        if pts >= 32 and last_normal_bid < Bid_6SA:
+            return BidSense(id=0, raw_bid=Bid_6SA.raw)
+        elif pts >= 25 and last_normal_bid < Bid_3SA:
+            return BidSense(id=0, raw_bid=Bid_3SA.raw)
+        else:
+            return BidSense.passe()
+
+    def _make_lowest_bid(self) -> BidSense:
+        # TODO: Passe si les adv ont parlé, sinon chercher un fit 7e idéalement
+        #  5-2, et l'annoncer ou passer si c'est la dernière enchère du partenaire.
+        #  En attendant on génère un bid pass (à supprimer par la suite):
+        return BidSense.passe()
+
+    def _compute_camp_points(self, hand: RichHand, fit: Fit) -> int:
+        if fit:
+            player_points = hand.points_HLD(fit.suit, fit.partner_count)
+        else:
+            player_points = hand.points_HL
+        return player_points + self.haze.hands[self.partner_rank].points.min
+
+    def _max_possible_level(self, points: int) -> int:
+        if points < 20:
+            return 0
+        elif points > 40:
+            return 7
+        else:
+            return self.POINTS_TABLE[points]
